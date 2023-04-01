@@ -1,3 +1,17 @@
 {
-    "a":"a"
+    "login_": {
+        "email": "Email",
+        "password": "Mật khẩu",
+        "emailHint": "Nhập email của bạn",
+        "passwordHint": "Nhập mật khẩu của bạn",
+        "forgotPassword": "Quên mật khẩu?",
+        "orLogInWith": "Hoặc đăng nhập bằng",
+        "doNotHaveAnAccount": "Chưa có tài khoản? ",
+        "registerNow": "Đăng ký",
+        "logIn": "Đăng Nhập",
+        "emailNotValid": "Email không hợp lệ",
+        "emailIsRequired": "Email bắt buộc",
+        "passwordMustBeAtLeastSixCharacters": "Mật khẩu phải dài tối thiểu 6 ký tự",
+        "passwordIsRequired": "Mật khẩu bắt buộc"
+    }
 }
