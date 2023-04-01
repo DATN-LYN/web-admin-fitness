@@ -1,0 +1,34 @@
+targets:
+  $default:
+    builders:
+      ferry_generator|graphql_builder:
+        enabled: true
+        options:
+          schema: web_admin_fitness|lib/global/graphql/schema.graphql
+          type_overrides:
+            JSON:
+              name: JsonObject
+              import: "package:built_value/json_object.dart"
+            JSONObject:
+              name: JsonObject
+              import: "package:built_value/json_object.dart"
+            TimeDate:
+              name: DateTime
+            DateTime:
+              name: DateTime
+
+      ferry_generator|serializer_builder:
+        enabled: true
+        options:
+          schema: web_admin_fitness|lib/global/graphql/schema.graphql
+          type_overrides:
+            JSON:
+              name: JsonObject
+              import: "package:built_value/json_object.dart"
+            JSONObject:
+              name: JsonObject
+              import: "package:built_value/json_object.dart"
+            TimeDate:
+              name: DateTime
+            DateTime:
+              name: DateTime
