@@ -30,8 +30,32 @@ class I18n implements WidgetsLocalizations {
     Localizations.of<I18n>(context, WidgetsLocalizations);
   @override
   TextDirection get textDirection => TextDirection.ltr;
-	/// "a"
-	String get a => "a";
+	/// "Email"
+	String get login_Email => "Email";
+	/// "Password"
+	String get login_Password => "Password";
+	/// "Enter your email"
+	String get login_EmailHint => "Enter your email";
+	/// "Enter your password"
+	String get login_PasswordHint => "Enter your password";
+	/// "Forgot password?"
+	String get login_ForgotPassword => "Forgot password?";
+	/// "Or log in with"
+	String get login_OrLogInWith => "Or log in with";
+	/// "Don't have an account? "
+	String get login_DoNotHaveAnAccount => "Don't have an account? ";
+	/// "Register now"
+	String get login_RegisterNow => "Register now";
+	/// "Log In"
+	String get login_LogIn => "Log In";
+	/// "Email is invalid"
+	String get login_EmailNotValid => "Email is invalid";
+	/// "Email is required"
+	String get login_EmailIsRequired => "Email is required";
+	/// "Password must be at least 6 characters"
+	String get login_PasswordMustBeAtLeastSixCharacters => "Password must be at least 6 characters";
+	/// "Password is required"
+	String get login_PasswordIsRequired => "Password is required";
 }
 class _I18n_en_US extends I18n {
   const _I18n_en_US();
@@ -40,9 +64,45 @@ class _I18n_vi_VN extends I18n {
   const _I18n_vi_VN();
   @override
   TextDirection get textDirection => TextDirection.ltr;
-	/// "a"
+	/// "Email"
 	@override
-	String get a => "a";
+	String get login_Email => "Email";
+	/// "Mật khẩu"
+	@override
+	String get login_Password => "Mật khẩu";
+	/// "Nhập email của bạn"
+	@override
+	String get login_EmailHint => "Nhập email của bạn";
+	/// "Nhập mật khẩu của bạn"
+	@override
+	String get login_PasswordHint => "Nhập mật khẩu của bạn";
+	/// "Quên mật khẩu?"
+	@override
+	String get login_ForgotPassword => "Quên mật khẩu?";
+	/// "Hoặc đăng nhập bằng"
+	@override
+	String get login_OrLogInWith => "Hoặc đăng nhập bằng";
+	/// "Chưa có tài khoản? "
+	@override
+	String get login_DoNotHaveAnAccount => "Chưa có tài khoản? ";
+	/// "Đăng ký"
+	@override
+	String get login_RegisterNow => "Đăng ký";
+	/// "Đăng Nhập"
+	@override
+	String get login_LogIn => "Đăng Nhập";
+	/// "Email không hợp lệ"
+	@override
+	String get login_EmailNotValid => "Email không hợp lệ";
+	/// "Email bắt buộc"
+	@override
+	String get login_EmailIsRequired => "Email bắt buộc";
+	/// "Mật khẩu phải dài tối thiểu 6 ký tự"
+	@override
+	String get login_PasswordMustBeAtLeastSixCharacters => "Mật khẩu phải dài tối thiểu 6 ký tự";
+	/// "Mật khẩu bắt buộc"
+	@override
+	String get login_PasswordIsRequired => "Mật khẩu bắt buộc";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

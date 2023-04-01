@@ -1,3 +1,17 @@
 {
-    "a":"a"
+    "login_": {
+        "email": "Email",
+        "password": "Password",
+        "emailHint": "Enter your email",
+        "passwordHint": "Enter your password",
+        "forgotPassword": "Forgot password?",
+        "orLogInWith": "Or log in with",
+        "doNotHaveAnAccount": "Don't have an account? ",
+        "registerNow": "Register now",
+        "logIn": "Log In",
+        "emailNotValid": "Email is invalid",
+        "emailIsRequired": "Email is required",
+        "passwordMustBeAtLeastSixCharacters": "Password must be at least 6 characters",
+        "passwordIsRequired": "Password is required"
+    }
 }
