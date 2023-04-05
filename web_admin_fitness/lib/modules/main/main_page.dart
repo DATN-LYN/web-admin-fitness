@@ -4,6 +4,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../global/models/nav_item.dart';
 import '../../global/routers/app_router.dart';
+import '../../global/themes/app_colors.dart';
 import 'modules/widgets/menu_rail.dart';
 
 class MainPage extends StatefulWidget {
@@ -57,6 +58,7 @@ class _MainPageState extends State<MainPage> {
               type: BottomNavigationBarType.fixed,
               currentIndex: tabsRouter.activeIndex,
               onTap: tabsRouter.setActiveIndex,
+              selectedItemColor: AppColors.primaryBold,
               items: List.generate(
                 navItems.length,
                 (index) => BottomNavigationBarItem(

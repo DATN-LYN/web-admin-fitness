@@ -64,6 +64,8 @@ dependencies:
   responsive_framework: ^0.2.0
   touchable_opacity: ^1.2.0
   flutter_spinkit: ^5.1.0
+  url_launcher: ^6.1.6
+  share_plus: ^6.3.0
 
 
 

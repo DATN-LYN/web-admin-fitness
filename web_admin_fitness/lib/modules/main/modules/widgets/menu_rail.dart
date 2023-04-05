@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:web_admin_fitness/global/themes/app_colors.dart';
 
 import '../../../../global/gen/assets.gen.dart';
 import '../../../../global/models/nav_item.dart';
@@ -43,7 +44,7 @@ class _MenuRailState extends State<MenuRail> {
               child: GestureDetector(
                 onTap: () => AutoRouter.of(context).push(const MainRoute()),
                 child: Center(
-                  child: Assets.images.login.image(
+                  child: Assets.images.logoContainer.image(
                     height: 50,
                     width: 50,
                     fit: BoxFit.contain,
@@ -120,7 +121,7 @@ class _RailItem extends StatelessWidget {
                 height: 50,
                 child: Center(
                   child: isSelected
-                      ? Icon(item.selectedIcon, color: Colors.white)
+                      ? Icon(item.selectedIcon, color: AppColors.grey1)
                       : Icon(item.icon),
                 ),
               ),
@@ -134,7 +135,7 @@ class _RailItem extends StatelessWidget {
                             item.label,
                             style: TextStyle(
                               fontSize: 16,
-                              color: isSelected ? Colors.white : null,
+                              color: isSelected ? AppColors.grey1 : null,
                               height: 1,
                             ),
                             overflow: TextOverflow.ellipsis,
