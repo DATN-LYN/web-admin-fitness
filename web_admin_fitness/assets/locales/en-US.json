@@ -13,5 +13,38 @@
         "emailIsRequired": "Email is required",
         "passwordMustBeAtLeastSixCharacters": "Password must be at least 6 characters",
         "passwordIsRequired": "Password is required"
-    }
+    },
+    "button_":{
+        "next": "Next",
+        "done": "Done",
+        "cancel": "Cancel",
+        "ok": "OK"
+    },
+    "setting_":{
+        "title":"Setting",
+        "language":"Language",
+        "shareWithFriends":"Share with friends",
+        "privacyPolicy":"Privacy policy",
+        "termsAndConditions":"Terms and conditions",
+        "changePassword":"Change password",
+        "logout":"Log out",
+        "account":"Account",
+        "security": "Security",
+        "aboutApp":"About app",
+        "changePasswordDes": "Please enter your old password, then enter the new password to proceed with the password change",
+        "oldPassword": "Old password",
+        "oldPasswordHint": "Enter your old password",
+        "oldPasswordRequired": "Old password is required",
+        "newPassword": "New password",
+        "newPasswordHint": "Enter your new password",
+        "newPasswordRequired": "New password is required",
+        "confirmNewPassword": "Confirm new password",
+        "confirmNewPasswordHint": "Enter your confirm new password",
+        "confirmNewPasswordRequired": "Confirm new password is required",
+        "passwordNotMatch": "Password not match",
+        "confirmLogout": "Confirm logout",
+        "confirmLogoutDes": "You need confirm to logout from this app"
+    },
+    "language": ["English (US)", "Tiếng Việt"]
+
 }

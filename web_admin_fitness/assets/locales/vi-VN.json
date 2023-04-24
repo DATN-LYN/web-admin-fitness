@@ -13,5 +13,40 @@
         "emailIsRequired": "Email bắt buộc",
         "passwordMustBeAtLeastSixCharacters": "Mật khẩu phải dài tối thiểu 6 ký tự",
         "passwordIsRequired": "Mật khẩu bắt buộc"
-    }
+    },
+    "button_":{
+        "next": "Tiếp tục",
+        "done": "Xong",
+        "cancel": "Huỷ bỏ",
+        "ok": "Đồng ý"
+    },
+    "setting_":{
+        "title":"Cài đặt",
+        "language":"Ngôn ngữ",
+        "shareWithFriends":"Chia sẻ với bạn bè",
+        "privacyPolicy":"Chính sách bảo mật",
+        "termsAndConditions":"Điều khoản và điều kiện",
+        "changePassword":"Thay đổi mật khẩu",
+        "logout":"Đăng xuất",
+        "account":"Tài khoản",
+        "security": "Bảo mật",
+        "aboutApp":"Về ứng dụng",
+        "changePasswordDes": "Vui lòng nhập mật khẩu cũ của bạn, sau đó nhập mật khẩu mới để tiến hành thay đổi mật khẩu",
+      "oldPassword": "Mật khẩu cũ",
+      "oldPasswordHint": "Nhập mật khẩu cũ của bạn",
+      "oldPasswordRequired": "Mật khẩu cũ bắt buộc",
+      "newPassword": "Mật khẩu mới",
+      "newPasswordHint": "Nhập mật khẩu mới của bạn",
+      "newPasswordRequired": "Mật khẩu mới bắt buộc",
+      "confirmNewPassword": "Xác nhận mật khẩu mới",
+      "confirmNewPasswordHint": "Nhập xác nhận mật khẩu mới",
+      "confirmNewPasswordRequired": "Xác nhận mật khẩu mới bắt buộc",
+      "passwordNotMatch": "Mật khẩu không khớp",
+      "confirmChange": "Xác nhận thay đổi",
+      "confirmLogout": "Xác nhận đăng xuất",
+      "confirmLogoutDes": "Bạn cần xác nhận để đăng xuất khỏi ứng dụng"
+    },
+    "language": ["English (US)", "Tiếng Việt"]
+
+    
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
 
 import 'global/gen/i18n.dart';
 import 'global/providers/app_settings_provider.dart';
@@ -15,9 +16,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => AppSettingsProvider(),
-        ),
+        ChangeNotifierProvider(create: (_) => AppSettingsProvider()),
         ChangeNotifierProvider(create: (_) => locator.get<AuthProvider>()),
       ],
       child: const MyApp(),
@@ -58,6 +57,18 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           theme: AppThemes.light(),
           routerDelegate: _appRouter.delegate(),
           routeInformationParser: _appRouter.defaultRouteParser(),
+          builder: (context, child) {
+            return ResponsiveWrapper.builder(
+              child,
+              minWidth: 300,
+              defaultScale: true,
+              breakpoints: const [
+                ResponsiveBreakpoint.resize(300, name: MOBILE),
+                ResponsiveBreakpoint.resize(850, name: TABLET),
+                ResponsiveBreakpoint.resize(1080, name: DESKTOP),
+              ],
+            );
+          },
         );
       },
     );

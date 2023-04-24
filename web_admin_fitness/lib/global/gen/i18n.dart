@@ -56,6 +56,64 @@ class I18n implements WidgetsLocalizations {
 	String get login_PasswordMustBeAtLeastSixCharacters => "Password must be at least 6 characters";
 	/// "Password is required"
 	String get login_PasswordIsRequired => "Password is required";
+	/// "Next"
+	String get button_Next => "Next";
+	/// "Done"
+	String get button_Done => "Done";
+	/// "Cancel"
+	String get button_Cancel => "Cancel";
+	/// "OK"
+	String get button_Ok => "OK";
+	/// "Setting"
+	String get setting_Title => "Setting";
+	/// "Language"
+	String get setting_Language => "Language";
+	/// "Share with friends"
+	String get setting_ShareWithFriends => "Share with friends";
+	/// "Privacy policy"
+	String get setting_PrivacyPolicy => "Privacy policy";
+	/// "Terms and conditions"
+	String get setting_TermsAndConditions => "Terms and conditions";
+	/// "Change password"
+	String get setting_ChangePassword => "Change password";
+	/// "Log out"
+	String get setting_Logout => "Log out";
+	/// "Account"
+	String get setting_Account => "Account";
+	/// "Security"
+	String get setting_Security => "Security";
+	/// "About app"
+	String get setting_AboutApp => "About app";
+	/// "Please enter your old password, then enter the new password to proceed with the password change"
+	String get setting_ChangePasswordDes => "Please enter your old password, then enter the new password to proceed with the password change";
+	/// "Old password"
+	String get setting_OldPassword => "Old password";
+	/// "Enter your old password"
+	String get setting_OldPasswordHint => "Enter your old password";
+	/// "Old password is required"
+	String get setting_OldPasswordRequired => "Old password is required";
+	/// "New password"
+	String get setting_NewPassword => "New password";
+	/// "Enter your new password"
+	String get setting_NewPasswordHint => "Enter your new password";
+	/// "New password is required"
+	String get setting_NewPasswordRequired => "New password is required";
+	/// "Confirm new password"
+	String get setting_ConfirmNewPassword => "Confirm new password";
+	/// "Enter your confirm new password"
+	String get setting_ConfirmNewPasswordHint => "Enter your confirm new password";
+	/// "Confirm new password is required"
+	String get setting_ConfirmNewPasswordRequired => "Confirm new password is required";
+	/// "Password not match"
+	String get setting_PasswordNotMatch => "Password not match";
+	/// "Confirm logout"
+	String get setting_ConfirmLogout => "Confirm logout";
+	/// "You need confirm to logout from this app"
+	String get setting_ConfirmLogoutDes => "You need confirm to logout from this app";
+	/// ["English (US)", "Tiếng Việt"]
+	List<String> get language => ["English (US)", "Tiếng Việt"];
+	/// "Xác nhận thay đổi"
+	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
 class _I18n_en_US extends I18n {
   const _I18n_en_US();
@@ -103,6 +161,90 @@ class _I18n_vi_VN extends I18n {
 	/// "Mật khẩu bắt buộc"
 	@override
 	String get login_PasswordIsRequired => "Mật khẩu bắt buộc";
+	/// "Tiếp tục"
+	@override
+	String get button_Next => "Tiếp tục";
+	/// "Xong"
+	@override
+	String get button_Done => "Xong";
+	/// "Huỷ bỏ"
+	@override
+	String get button_Cancel => "Huỷ bỏ";
+	/// "Đồng ý"
+	@override
+	String get button_Ok => "Đồng ý";
+	/// "Cài đặt"
+	@override
+	String get setting_Title => "Cài đặt";
+	/// "Ngôn ngữ"
+	@override
+	String get setting_Language => "Ngôn ngữ";
+	/// "Chia sẻ với bạn bè"
+	@override
+	String get setting_ShareWithFriends => "Chia sẻ với bạn bè";
+	/// "Chính sách bảo mật"
+	@override
+	String get setting_PrivacyPolicy => "Chính sách bảo mật";
+	/// "Điều khoản và điều kiện"
+	@override
+	String get setting_TermsAndConditions => "Điều khoản và điều kiện";
+	/// "Thay đổi mật khẩu"
+	@override
+	String get setting_ChangePassword => "Thay đổi mật khẩu";
+	/// "Đăng xuất"
+	@override
+	String get setting_Logout => "Đăng xuất";
+	/// "Tài khoản"
+	@override
+	String get setting_Account => "Tài khoản";
+	/// "Bảo mật"
+	@override
+	String get setting_Security => "Bảo mật";
+	/// "Về ứng dụng"
+	@override
+	String get setting_AboutApp => "Về ứng dụng";
+	/// "Vui lòng nhập mật khẩu cũ của bạn, sau đó nhập mật khẩu mới để tiến hành thay đổi mật khẩu"
+	@override
+	String get setting_ChangePasswordDes => "Vui lòng nhập mật khẩu cũ của bạn, sau đó nhập mật khẩu mới để tiến hành thay đổi mật khẩu";
+	/// "Mật khẩu cũ"
+	@override
+	String get setting_OldPassword => "Mật khẩu cũ";
+	/// "Nhập mật khẩu cũ của bạn"
+	@override
+	String get setting_OldPasswordHint => "Nhập mật khẩu cũ của bạn";
+	/// "Mật khẩu cũ bắt buộc"
+	@override
+	String get setting_OldPasswordRequired => "Mật khẩu cũ bắt buộc";
+	/// "Mật khẩu mới"
+	@override
+	String get setting_NewPassword => "Mật khẩu mới";
+	/// "Nhập mật khẩu mới của bạn"
+	@override
+	String get setting_NewPasswordHint => "Nhập mật khẩu mới của bạn";
+	/// "Mật khẩu mới bắt buộc"
+	@override
+	String get setting_NewPasswordRequired => "Mật khẩu mới bắt buộc";
+	/// "Xác nhận mật khẩu mới"
+	@override
+	String get setting_ConfirmNewPassword => "Xác nhận mật khẩu mới";
+	/// "Nhập xác nhận mật khẩu mới"
+	@override
+	String get setting_ConfirmNewPasswordHint => "Nhập xác nhận mật khẩu mới";
+	/// "Xác nhận mật khẩu mới bắt buộc"
+	@override
+	String get setting_ConfirmNewPasswordRequired => "Xác nhận mật khẩu mới bắt buộc";
+	/// "Mật khẩu không khớp"
+	@override
+	String get setting_PasswordNotMatch => "Mật khẩu không khớp";
+	/// "Xác nhận đăng xuất"
+	@override
+	String get setting_ConfirmLogout => "Xác nhận đăng xuất";
+	/// "Bạn cần xác nhận để đăng xuất khỏi ứng dụng"
+	@override
+	String get setting_ConfirmLogoutDes => "Bạn cần xác nhận để đăng xuất khỏi ứng dụng";
+	/// ["English (US)", "Tiếng Việt"]
+	@override
+	List<String> get language => ["English (US)", "Tiếng Việt"];
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

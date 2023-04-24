@@ -1,11 +1,21 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:provider/provider.dart';
+import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 
 import '../../global/gen/assets.gen.dart';
 import '../../global/gen/i18n.dart';
+import '../../global/graphql/__generated__/schema.schema.gql.dart';
+import '../../global/graphql/auth/__generated__/mutation_login.data.gql.dart';
+import '../../global/graphql/auth/__generated__/mutation_login.req.gql.dart';
+import '../../global/models/hive/user.dart';
+import '../../global/providers/auth_provider.dart';
+import '../../global/routers/app_router.dart';
 import '../../global/themes/app_colors.dart';
+import '../../global/utils/dialogs.dart';
 import '../../global/widgets/elevated_button_opacity.dart';
 import '../../global/widgets/label.dart';
 
@@ -16,16 +26,60 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> with ClientMixin {
   final formKey = GlobalKey<FormBuilderState>();
   bool passwordObscure = true;
   bool isLoading = false;
 
-  void login() {}
+  void login() async {
+    if (formKey.currentState!.saveAndValidate()) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      final loginReq = GLoginReq(
+        (b) => b.vars.input.replace(
+          GLoginInput.fromJson(formKey.currentState!.value)!,
+        ),
+      );
+
+      setState(() => isLoading = true);
+      final response = await client.request(loginReq).first;
+      setState(() => isLoading = false);
+
+      if (mounted) {
+        AutoRouter.of(context).replaceAll([const MainRoute()]);
+      }
+
+      if (response.hasErrors) {
+        if (mounted) {
+          DialogUtils.showError(context: context, response: response);
+        }
+      } else {
+        handleLoginSuccess(response.data!.login);
+      }
+    }
+  }
+
+  void handleLoginSuccess(GLoginData_login response) async {
+    print(response.user);
+    await context.read<AuthProvider>().login(
+          token: response.accessToken!,
+          //refreshToken: response.refreshToken,
+          user: User.fromJson(response.user!.toJson()),
+        );
+
+    if (!mounted) return;
+
+    // if (AutoRouter.of(context).canPop()) {
+    //   AutoRouter.of(context).pop();
+    // } else {
+    //   AutoRouter.of(context).replaceAll([const MainRoute()]);
+    // }
+    AutoRouter.of(context).replaceAll([const MainRoute()]);
+  }
 
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
+    final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: kIsWeb ? null : AppBar(elevation: 0),
@@ -34,8 +88,11 @@ class _LoginPageState extends State<LoginPage> {
           Expanded(
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: width > 850
+                    ? const EdgeInsets.symmetric(horizontal: 100)
+                    : const EdgeInsets.all(16),
                 child: FormBuilder(
+                  key: formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,14 +100,16 @@ class _LoginPageState extends State<LoginPage> {
                       //Assets.images.logo.image(width: 100),
                       const SizedBox(height: 16),
                       const Text(
-                        'Login',
+                        'Login with your admin account',
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
                           overflow: TextOverflow.visible,
                         ),
                       ),
+
                       const SizedBox(height: 16),
+                      Label(i18n.login_Email),
                       FormBuilderTextField(
                         name: 'email',
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -138,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          if (MediaQuery.of(context).size.width > 850)
+          if (width > 850)
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(16),
