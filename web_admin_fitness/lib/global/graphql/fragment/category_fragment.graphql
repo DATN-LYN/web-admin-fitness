@@ -1,0 +1,7 @@
+fragment Category on Category {
+  id
+  name
+  imgUrl
+  createdAt
+  updatedAt
+}

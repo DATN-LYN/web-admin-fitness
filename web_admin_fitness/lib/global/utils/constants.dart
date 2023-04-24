@@ -9,4 +9,5 @@ class Constants {
   static const String privacyPolicyUrl = 'http://localhost:4000/graphql';
   static const String termsAndConditionsUrl = 'http://localhost:4000/graphql';
   static const String introductionUrl = 'http://localhost:4000/graphql';
+  static const double defaultLimit = 15;
 }

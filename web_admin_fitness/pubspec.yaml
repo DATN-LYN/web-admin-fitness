@@ -66,6 +66,14 @@ dependencies:
   flutter_spinkit: ^5.1.0
   url_launcher: ^6.1.6
   share_plus: ^6.3.0
+  syncfusion_flutter_datagrid: ^21.1.41
+  adaptive_selector:
+    git:
+      url: https://github.com/lvxduck/adaptive_selector.git
+      ref: feat/multiple_choice
+  responsive_builder: ^0.6.4
+  side_sheet: ^1.0.4
+
 
 
 

@@ -1,0 +1,13 @@
+query GetInbox($categoryId: String!) {
+  getInbox(categoryId: $categoryId) {
+    id
+    message
+    userId
+    user {
+      email
+      avatar
+    }
+    createdAt
+    updatedAt
+  }
+}

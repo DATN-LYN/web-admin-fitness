@@ -23,6 +23,12 @@ class _MainPageState extends State<MainPage> {
       route: const HomeRoute(),
     ),
     NavItem(
+      label: 'Categories',
+      icon: Icons.category_outlined,
+      selectedIcon: Icons.category,
+      route: const SettingRoute(),
+    ),
+    NavItem(
       label: 'Setting',
       icon: Icons.settings_outlined,
       selectedIcon: Icons.settings,

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
+import 'package:web_admin_fitness/global/graphql/auth/__generated__/query_login.data.gql.dart';
+import 'package:web_admin_fitness/global/graphql/auth/__generated__/query_login.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 
 import '../../global/gen/assets.gen.dart';
 import '../../global/gen/i18n.dart';
 import '../../global/graphql/__generated__/schema.schema.gql.dart';
-import '../../global/graphql/auth/__generated__/mutation_login.data.gql.dart';
-import '../../global/graphql/auth/__generated__/mutation_login.req.gql.dart';
 import '../../global/models/hive/user.dart';
 import '../../global/providers/auth_provider.dart';
 import '../../global/routers/app_router.dart';
@@ -32,11 +32,13 @@ class _LoginPageState extends State<LoginPage> with ClientMixin {
   bool isLoading = false;
 
   void login() async {
+    AutoRouter.of(context).replaceAll([const MainRoute()]);
+
     if (formKey.currentState!.saveAndValidate()) {
       FocusManager.instance.primaryFocus?.unfocus();
       final loginReq = GLoginReq(
         (b) => b.vars.input.replace(
-          GLoginInput.fromJson(formKey.currentState!.value)!,
+          GLoginInputDto.fromJson(formKey.currentState!.value)!,
         ),
       );
 

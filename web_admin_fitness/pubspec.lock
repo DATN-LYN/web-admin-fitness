@@ -17,6 +17,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
+  adaptive_selector:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "feat/multiple_choice"
+      resolved-ref: "652d120b7e836fad275fb47e2000dd3450c4da7e"
+      url: "https://github.com/lvxduck/adaptive_selector.git"
+    source: git
+    version: "0.0.3"
   analyzer:
     dependency: transitive
     description:
@@ -981,6 +990,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.2"
+  responsive_builder:
+    dependency: "direct main"
+    description:
+      name: responsive_builder
+      sha256: e23ef8ce1191f878dd50d28f1496d659fc923718dbfd407b121bb167f95ba090
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.4"
   responsive_framework:
     dependency: "direct main"
     description:
@@ -1045,6 +1062,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  side_sheet:
+    dependency: "direct main"
+    description:
+      name: side_sheet
+      sha256: "3c46b88c01a741126129b9f6c9f5a7e0b97728ab78617ff4997a61f6a7629e25"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -1130,6 +1155,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: "05b079cb1be26a8d5c1afe714172d2eed9178049f4a7dc773b2cbb8b053eff8d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "21.1.41"
+  syncfusion_flutter_datagrid:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_datagrid
+      sha256: "65e16ad6d3ac9afce678084b45ab91e7aaf04811aaae48e46ab5bdd5226c54d1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "21.1.41"
   synchronized:
     dependency: transitive
     description:
