@@ -1,0 +1,252 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+type Category {
+  id: ID
+  name: String
+  imgUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Exercise {
+  id: ID
+  name: String
+  duration: Float
+  videoUrl: String
+  imgUrl: String
+  set: Float
+  calo: Float
+  programId: String!
+  program: Program
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+enum FILTER_OPERATOR {
+  eq
+  like
+}
+
+input FilterDto {
+  field: String
+  data: String
+  operator: FILTER_OPERATOR
+}
+
+type ICategories {
+  meta: Meta
+  items: [Category!]
+}
+
+type ICategory {
+  id: ID
+  name: String
+  imgUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IExercise {
+  id: ID
+  name: String
+  duration: Float
+  videoUrl: String
+  imgUrl: String
+  set: Float
+  calo: Float
+  programId: String!
+  program: Program
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IExercises {
+  meta: Meta
+  items: [Exercise!]
+}
+
+type IInbox {
+  id: ID
+  message: String
+  isSender: Boolean!
+  userId: String!
+  user: User
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IInboxes {
+  meta: Meta
+  items: [Inbox!]
+}
+
+type Inbox {
+  id: ID
+  message: String
+  isSender: Boolean!
+  userId: String!
+  user: User
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IProgram {
+  id: ID
+  name: String
+  duration: String
+  calo: Float
+  level: Float
+  bodyPart: String
+  description: String
+  imgUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IPrograms {
+  meta: Meta
+  items: [Program!]
+}
+
+input LoginInputDto {
+  accessToken: String
+  expiresIn: String
+  token: String
+  email: String
+  password: String
+}
+
+type LoginResponseDto {
+  id: ID!
+  user: User
+  accessToken: String
+  refreshToken: String
+}
+
+type Meta {
+  totalItems: Float
+  itemCount: Float
+  itemsPerPage: Float
+  totalPages: Float
+  currentPage: Float
+}
+
+type Mutation {
+  upsertExercise(input: UpsertExerciseInputDto!): IExercise!
+  register(input: RegisterInputDto!): ResponseMessageBase!
+  logout(userId: String!): ResponseMessageBase!
+  upsertInbox(input: UpsertInboxInputDto!): IInbox!
+  deleteInbox(categoryId: String!): ResponseMessageBase!
+  upsertCategory(input: UpsertCategoryInputDto!): ICategory!
+  deleteCategory(categoryId: String!): ResponseMessageBase!
+  upsertProgram(input: UpsertProgramInputDto!): IProgram!
+}
+
+type Program {
+  id: ID
+  name: String
+  duration: String
+  calo: Float
+  level: Float
+  bodyPart: String
+  description: String
+  imgUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Query {
+  getExercise(programId: String!): IExercise!
+  getExercises(queryParams: QueryFilterDto!): IExercises!
+  loginGoogle(input: LoginInputDto!): LoginResponseDto!
+  login(input: LoginInputDto!): LoginResponseDto!
+  refreshToken(refreshToken: String!): RefreshTokenResponseDto!
+  getInbox(categoryId: String!): IInbox!
+  getInboxes(queryParams: QueryFilterDto!): IInboxes!
+  getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
+  getCategory(categoryId: String!): ICategory!
+  getCategories(queryParams: QueryFilterDto!): ICategories!
+  getProgram(programId: String!): IProgram!
+  getPrograms(queryParams: QueryFilterDto!): IPrograms!
+  getABC: Float!
+}
+
+input QueryFilterDto {
+  limit: Float
+  page: Float
+  orderBy: String
+  filters: [FilterDto!]
+}
+
+type RefreshTokenResponseDto {
+  token: String!
+}
+
+input RegisterInputDto {
+  email: String
+  password: String
+}
+
+type ResponseMessageBase {
+  message: String!
+  success: Boolean!
+}
+
+type Role {
+  id: String!
+}
+
+input UpsertCategoryInputDto {
+  id: ID
+  name: String!
+}
+
+input UpsertExerciseInputDto {
+  id: ID
+  name: String!
+  imgUrl: String!
+  duration: Float!
+  videoUrl: String!
+  set: Float!
+  calo: Float!
+}
+
+input UpsertInboxInputDto {
+  id: ID
+  message: String!
+  userId: String!
+  isSender: Boolean!
+}
+
+input UpsertProgramInputDto {
+  id: ID
+  name: String!
+  duration: String!
+  calo: Float!
+  level: Float!
+  bodyPart: String!
+  description: String!
+  imgUrl: String!
+}
+
+type User {
+  id: String
+  email: String!
+  password: String!
+  googleId: String
+  avatar: String
+  refreshToken: String
+  roleId: String
+  role: Role
+  inboxes: [Inbox!]
+}
+

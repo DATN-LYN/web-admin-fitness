@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
       label: 'Categories',
       icon: Icons.category_outlined,
       selectedIcon: Icons.category,
-      route: const SettingRoute(),
+      route: const CategoriesManagerRoute(),
     ),
     NavItem(
       label: 'Setting',

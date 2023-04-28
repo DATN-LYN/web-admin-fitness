@@ -1,7 +1,7 @@
 #import '../fragment/meta_fragment.graphql'
 #import '../fragment/category_fragment.graphql'
 
-query GetCatefories($queryParams: QueryFilterDto!) {
+query GetCategories($queryParams: QueryFilterDto!) {
   getCategories(queryParams: $queryParams) {
     meta {
       ...Meta
