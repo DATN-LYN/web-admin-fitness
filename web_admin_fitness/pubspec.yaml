@@ -73,8 +73,11 @@ dependencies:
       ref: feat/multiple_choice
   responsive_builder: ^0.6.4
   side_sheet: ^1.0.4
-
-
+  url_strategy: ^0.2.0
+  syncfusion_flutter_core: ^21.1.41
+  sentry_flutter: ^6.18.1
+  sentry_link: ^0.1.2
+  flutter_svg: ^2.0.5
 
 
 dev_dependencies:

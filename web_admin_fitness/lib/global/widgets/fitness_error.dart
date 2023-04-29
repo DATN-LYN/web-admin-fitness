@@ -15,6 +15,7 @@ class FitnessError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
+    print(response?.linkException);
 
     return LayoutBuilder(builder: (context, box) {
       return SingleChildScrollView(

@@ -4,6 +4,7 @@ import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_error.dart';
 import 'package:web_admin_fitness/global/widgets/infinity_list.dart';
+import 'package:web_admin_fitness/modules/main/modules/categories/widgets/category_item.dart';
 
 class CategoriesListView extends StatelessWidget with ClientMixin {
   CategoriesListView({super.key, required this.request});
@@ -82,13 +83,19 @@ class CategoriesListView extends StatelessWidget with ClientMixin {
           );
         }
 
-        return ListView.separated(
+        return GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1 / 1.2,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
+          ),
           itemCount: categories!.length + (hasMoreData ? 1 : 0),
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           itemBuilder: (context, index) {
-            return const Text('daaa');
+            final item = categories[index];
+            return CategoryItem(category: item);
           },
-          separatorBuilder: (_, __) => const SizedBox(height: 16),
         );
       },
     );

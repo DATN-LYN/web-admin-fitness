@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
+import 'package:web_admin_fitness/global/gen/assets.gen.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
@@ -48,11 +49,11 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
   Widget sortButton(String fieldName) {
     return InkWell(
       onTap: () => handleOrderBy(fieldName),
-      child: Icon(orderBy == 'Category.$fieldName:DESC'
-          ? Icons.arrow_drop_down_outlined
+      child: orderBy == 'Category.$fieldName:DESC'
+          ? Assets.icons.icSortDown.svg(width: 10, height: 10)
           : orderBy == 'Category.$fieldName:ASC'
-              ? Icons.arrow_drop_up_sharp
-              : Icons.sort),
+              ? Assets.icons.icSortUpper.svg(width: 10, height: 10)
+              : Assets.icons.icSort.svg(width: 12, height: 12),
     );
   }
 
@@ -62,67 +63,72 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
     final i18n = I18n.of(context)!;
     var request = widget.getCategoriesReq;
 
-    return DataTableBuilder(
-      client: client,
-      request: request,
-      meta: (response) {
-        return response?.data?.getCategories.meta;
-      },
-      changeLimitRequest: (response, limit) {
-        request = request.rebuild(
-          (b) => b..vars.queryParams.limit = limit.toDouble(),
-        );
-        return request;
-      },
-      changePageRequest: (response, page) {
-        request = request.rebuild(
-          (b) => b..vars.queryParams.page = page.toDouble(),
-        );
-        return request;
-      },
-      builder: (context, response, error) {
-        final data = response?.data?.getCategories;
-        final categories = data?.items?.toList() ?? <GCategory>[];
+    return Padding(
+      padding: EdgeInsets.fromLTRB(spacing, 0, spacing, spacing),
+      child: DataTableBuilder(
+        client: client,
+        request: request,
+        meta: (response) {
+          return response?.data?.getCategories.meta;
+        },
+        changeLimitRequest: (response, limit) {
+          request = request.rebuild(
+            (b) => b..vars.queryParams.limit = limit.toDouble(),
+          );
+          return request;
+        },
+        changePageRequest: (response, page) {
+          request = request.rebuild(
+            (b) => b..vars.queryParams.page = page.toDouble(),
+          );
+          return request;
+        },
+        builder: (context, response, error) {
+          final data = response?.data?.getCategories;
+          final categories = data?.items?.toList() ?? <GCategory>[];
 
-        final dataSource = TableDataSource<GCategory>(
-          tableData: categories,
-          columnItems: [
-            TableColumn(
-              label: 'id',
-              minimumWidth: 100,
-              columnWidthMode: ColumnWidthMode.fill,
-              cellBuilder: (e) => Text(e.id ?? '_'),
-            ),
-            TableColumn(
-              label: 'Name',
-              itemValue: (e) => e.name,
-              minimumWidth: 125,
-              align: Alignment.center,
-              columnWidthMode: ColumnWidthMode.fill,
-              action: sortButton('name'),
-            ),
-            TableColumn(
-              label: 'Image URL',
-              itemValue: (e) => e.imgUrl,
-              minimumWidth: 220,
-              columnWidthMode: ColumnWidthMode.fill,
-              action: sortButton('imgUrl'),
-            ),
-          ],
-        );
+          final dataSource = TableDataSource<GCategory>(
+            tableData: categories,
+            columnItems: [
+              TableColumn(
+                label: 'id',
+                minimumWidth: 250,
+                maximumWidth: 400,
+                columnWidthMode: ColumnWidthMode.fill,
+                // cellBuilder: (e) => Text(e.id ?? '_'),
+                itemValue: (e) => e.id,
+              ),
+              TableColumn(
+                label: 'Name',
+                itemValue: (e) => e.name,
+                minimumWidth: 90,
+                maximumWidth: 150,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('name'),
+              ),
+              TableColumn(
+                label: 'Image URL',
+                itemValue: (e) => e.imgUrl,
+                minimumWidth: 250,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('imgUrl'),
+              ),
+            ],
+          );
 
-        return SfDataGrid(
-          source: dataSource,
-          shrinkWrapRows: true,
-          rowHeight: 64,
-          headerRowHeight: 42,
-          footerFrozenColumnsCount: 1,
-          headerGridLinesVisibility: GridLinesVisibility.none,
-          horizontalScrollPhysics: const ClampingScrollPhysics(),
-          columns: dataSource.buildColumns(),
-          columnWidthMode: ColumnWidthMode.fill,
-        );
-      },
+          return SfDataGrid(
+            source: dataSource,
+            shrinkWrapRows: true,
+            rowHeight: 64,
+            headerRowHeight: 42,
+            footerFrozenColumnsCount: 1,
+            headerGridLinesVisibility: GridLinesVisibility.none,
+            horizontalScrollPhysics: const ClampingScrollPhysics(),
+            columns: dataSource.buildColumns(),
+            columnWidthMode: ColumnWidthMode.fill,
+          );
+        },
+      ),
     );
   }
 }

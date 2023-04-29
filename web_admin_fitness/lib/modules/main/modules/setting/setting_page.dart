@@ -14,6 +14,7 @@ import '../../../../global/widgets/avatar.dart';
 import '../../../../global/widgets/dialogs/confirmation_dialog.dart';
 import '../../../../global/widgets/dialogs/radio_selector_dialog.dart';
 import '../../../../global/widgets/shadow_wrapper.dart';
+import 'widgets/change_password_dialog.dart';
 import 'widgets/setting_tile.dart';
 
 class SettingPage extends StatefulWidget {
@@ -46,19 +47,12 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   Future<void> changePasswordHandler() async {
-    // final data = await showModalBottomSheet(
-    //   isScrollControlled: true,
-    //   context: context,
-    //   shape: const RoundedRectangleBorder(
-    //     borderRadius: BorderRadius.only(
-    //       topLeft: Radius.circular(12),
-    //       topRight: Radius.circular(12),
-    //     ),
-    //   ),
-    //   builder: (_) => const ChangePasswordBottomSheet(),
-    // );
+    final data = await showDialog(
+      context: context,
+      builder: (_) => const ChangePasswordDialog(),
+    );
 
-    // if (data != null) {}
+    if (data != null) {}
   }
 
   void logOut() {

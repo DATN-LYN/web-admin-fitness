@@ -1,18 +1,12 @@
 import 'dart:async';
-import 'dart:developer';
-import 'dart:io';
 
 import 'package:ferry/ferry.dart';
-import 'package:gql_error_link/gql_error_link.dart';
 import 'package:gql_exec/gql_exec.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:gql_link/gql_link.dart';
 import 'package:gql_transform_link/gql_transform_link.dart';
-
-import '../../locator.dart';
-import '../enums/app_locale.dart';
-import '../providers/auth_provider.dart';
-import '../services/hive_service.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:sentry_link/sentry_link.dart';
 
 class HttpAuthLink extends Link {
   HttpAuthLink({
@@ -21,11 +15,13 @@ class HttpAuthLink extends Link {
     required this.graphQLEndpoint,
   }) {
     _link = Link.from([
-      ErrorLink(
-        onGraphQLError: handleGraphQLError,
-        onException: handleException,
-      ),
+      // ErrorLink(
+      //   onGraphQLError: handleGraphQLError,
+      //   onException: handleException,
+      // ),
       TransformLink(requestTransformer: transformRequest),
+      SentryLink.link(),
+      SentryTracingLink(shouldStartTransaction: true),
     ]);
   }
 
@@ -39,54 +35,54 @@ class HttpAuthLink extends Link {
 
   void updateToken() => _token = getToken();
 
-  Stream<Response>? handleGraphQLError(
-    Request request,
-    NextLink forward,
-    Response response,
-  ) async* {
-    log('!!! GraphQL Exception: ${response.errors?.first.message}');
-    try {
-      final statusCode = response.response['errors'].first['statusCode'];
-      final messageCode = response.response['errors'].first['messageCode'];
+  // Stream<Response>? handleGraphQLError(
+  //   Request request,
+  //   NextLink forward,
+  //   Response response,
+  // ) async* {
+  //   log('!!! GraphQL Exception: ${response.errors?.first.message}');
+  //   try {
+  //     final statusCode = response.response['errors'].first['statusCode'];
+  //     final messageCode = response.response['errors'].first['messageCode'];
 
-      if (statusCode == 401) {
-        refreshTokenRequest = refreshTokenRequest ?? getNewToken();
-        await refreshTokenRequest;
-        refreshTokenRequest = null;
+  //     if (statusCode == 401) {
+  //       refreshTokenRequest = refreshTokenRequest ?? getNewToken();
+  //       await refreshTokenRequest;
+  //       refreshTokenRequest = null;
 
-        yield* this.request(request, forward);
-        return;
-      }
+  //       yield* this.request(request, forward);
+  //       return;
+  //     }
 
-      if (statusCode == 400 &&
-          (messageCode == 'INVALID_REFRESH_TOKEN' ||
-              messageCode == 'REFRESH_TOKEN_EXPIRE')) {
-        await locator.get<AuthProvider>().logout();
-        //locator.get<EventBus>().fire(const LoadHomeListLocationBusEvent());
-      }
-    } catch (_) {}
+  //     if (statusCode == 400 &&
+  //         (messageCode == 'INVALID_REFRESH_TOKEN' ||
+  //             messageCode == 'REFRESH_TOKEN_EXPIRE')) {
+  //       await locator.get<AuthProvider>().logout();
+  //       //locator.get<EventBus>().fire(const LoadHomeListLocationBusEvent());
+  //     }
+  //   } catch (_) {}
 
-    yield* forward(request);
-  }
+  //   yield* forward(request);
+  // }
 
-  Stream<Response> handleException(
-    Request request,
-    NextLink forward,
-    LinkException exception,
-  ) async* {
-    log('!!! Link Exception: ${exception.originalException.toString()}');
+  // Stream<Response> handleException(
+  //   Request request,
+  //   NextLink forward,
+  //   LinkException exception,
+  // ) async* {
+  //   log('!!! Link Exception: ${exception.originalException.toString()}');
 
-    final message = exception is HttpLinkServerException
-        ? exception.response.reasonPhrase
-        : exception.toString();
+  //   final message = exception is HttpLinkServerException
+  //       ? exception.response.reasonPhrase
+  //       : exception.toString();
 
-    Zone.current.handleUncaughtError(
-      message ?? 'Unknown error',
-      StackTrace.fromString(''),
-    );
+  //   Zone.current.handleUncaughtError(
+  //     message ?? 'Unknown error',
+  //     StackTrace.fromString(''),
+  //   );
 
-    throw exception;
-  }
+  //   throw exception;
+  // }
 
   Request transformRequest(Request request) {
     return request.updateContextEntry<HttpLinkHeaders>(
@@ -94,6 +90,7 @@ class HttpAuthLink extends Link {
         headers: <String, String>{
           ...headers?.headers ?? <String, String>{},
           'authorization': _token,
+          'Accept-Language': 'en',
         },
       ),
     );
@@ -109,15 +106,9 @@ class HttpAuthLink extends Link {
         .concat(
           HttpLink(
             graphQLEndpoint,
-            defaultHeaders: {
-              'Accept-Language':
-                  locator.get<HiveService>().getAppSettings().locale ==
-                          AppLocale.viVN
-                      ? 'vi'
-                      : 'en',
-              'appdevice': Platform.operatingSystem.toUpperCase(),
-              'appversion': '1.0.0',
-            },
+            httpClient: SentryHttpClient(networkTracing: true),
+            serializer: SentryRequestSerializer(),
+            parser: SentryResponseParser(),
           ),
         )
         .request(request, forward);
