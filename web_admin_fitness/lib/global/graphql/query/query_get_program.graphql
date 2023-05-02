@@ -1,0 +1,16 @@
+#import '../fragment/program_fragment.graphql'
+
+query GetProgram($programId: String!) {
+  getProgram(programId: $programId) {
+    id
+    name
+    duration
+    calo
+    level
+    bodyPart
+    description
+    imgUrl
+    createdAt
+    updatedAt
+  }
+}

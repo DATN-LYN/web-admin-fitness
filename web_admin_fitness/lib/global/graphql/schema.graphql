@@ -1,121 +1,255 @@
-"""Exposes a URL that specifies the behaviour of this scalar."""
+"""Exposes a URL that specifies the behavior of this scalar."""
 directive @specifiedBy(
-  """The URL that specifies the behaviour of this scalar."""
+  """The URL that specifies the behavior of this scalar."""
   url: String!
 ) on SCALAR
 
 type Category {
-  id: ID!
-  name: String!
-  imgUrl: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type CategoryMutationResponse implements IMutationResponse {
-  code: Float!
-  success: Boolean!
-  message: String
-  category: Category
-  errors: [FieldError!]
-}
-
-input CreateCategoryInput {
-  name: String!
-  imgUrl: String!
-}
-
-input CreateProgramInput {
-  name: String!
-  imgUrl: String!
-  videoUrl: String!
-  duration: String!
-  setNum: Float!
-  bodyPart: String!
-  level: Float!
-  description: String!
+  id: ID
+  name: String
+  imgUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 """
-The javascript `Date` as string. Type represents date and time as the ISO Date string.
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
-type FieldError {
-  field: String!
-  message: String!
+type Exercise {
+  id: ID
+  name: String
+  duration: Float
+  videoUrl: String
+  imgUrl: String
+  set: Float
+  calo: Float
+  programId: String!
+  program: Program
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
-interface IMutationResponse {
-  code: Float!
-  success: Boolean!
+enum FILTER_OPERATOR {
+  eq
+  like
+}
+
+input FilterDto {
+  field: String
+  data: String
+  operator: FILTER_OPERATOR
+}
+
+type ICategories {
+  meta: Meta
+  items: [Category!]
+}
+
+type ICategory {
+  id: ID
+  name: String
+  imgUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IExercise {
+  id: ID
+  name: String
+  duration: Float
+  videoUrl: String
+  imgUrl: String
+  set: Float
+  calo: Float
+  programId: String!
+  program: Program
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IExercises {
+  meta: Meta
+  items: [Exercise!]
+}
+
+type IInbox {
+  id: ID
   message: String
+  isSender: Boolean!
+  userId: String!
+  user: User
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
-input LoginInput {
-  email: String!
-  password: String!
+type IInboxes {
+  meta: Meta
+  items: [Inbox!]
+}
+
+type Inbox {
+  id: ID
+  message: String
+  isSender: Boolean!
+  userId: String!
+  user: User
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IProgram {
+  id: ID
+  name: String
+  duration: Float
+  calo: Float
+  level: Float
+  view: Float
+  bodyPart: Float
+  description: String
+  imgUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IPrograms {
+  meta: Meta
+  items: [Program!]
+}
+
+input LoginInputDto {
+  accessToken: String
+  expiresIn: String
+  token: String
+  email: String
+  password: String
+}
+
+type LoginResponseDto {
+  id: ID!
+  user: User
+  accessToken: String
+  refreshToken: String
+}
+
+type Meta {
+  totalItems: Float
+  itemCount: Float
+  itemsPerPage: Float
+  totalPages: Float
+  currentPage: Float
 }
 
 type Mutation {
-  createCategory(createCatInput: CreateCategoryInput!): CategoryMutationResponse!
-  createProgram(createProgramInput: CreateProgramInput!): ProgramMutationResponse!
-  register(registerInput: RegisterInput!): UserMutationResponse!
-  login(loginInput: LoginInput!): UserMutationResponse!
-  logout(userId: ID!): UserMutationResponse!
-}
-
-type PaginatedPrograms {
-  totalCount: Float!
-  cursor: DateTime!
-  hasMore: Boolean!
-  paginatedPrograms: [Program!]!
+  upsertExercise(input: UpsertExerciseInputDto!): IExercise!
+  register(input: RegisterInputDto!): ResponseMessageBase!
+  logout(userId: String!): ResponseMessageBase!
+  upsertInbox(input: UpsertInboxInputDto!): IInbox!
+  deleteInbox(categoryId: String!): ResponseMessageBase!
+  upsertCategory(input: UpsertCategoryInputDto!): ICategory!
+  deleteCategory(categoryId: String!): ResponseMessageBase!
+  upsertProgram(input: UpsertProgramInputDto!): IProgram!
 }
 
 type Program {
-  id: ID!
-  name: String!
-  duration: String!
-  setNum: Float!
-  bodyPart: String!
-  level: Float!
-  description: String!
-  imgUrl: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type ProgramMutationResponse implements IMutationResponse {
-  code: Float!
-  success: Boolean!
-  message: String
-  program: Program
-  errors: [FieldError!]
+  id: ID
+  name: String
+  duration: Float
+  calo: Float
+  level: Float
+  view: Float
+  bodyPart: Float
+  description: String
+  imgUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 type Query {
-  posts(cursor: String, limit: Int!): PaginatedPrograms
-  post(id: ID!): Program
-  hello: String!
+  getExercise(programId: String!): IExercise!
+  getExercises(queryParams: QueryFilterDto!): IExercises!
+  loginGoogle(input: LoginInputDto!): LoginResponseDto!
+  login(input: LoginInputDto!): LoginResponseDto!
+  refreshToken(refreshToken: String!): RefreshTokenResponseDto!
+  getInbox(categoryId: String!): IInbox!
+  getInboxes(queryParams: QueryFilterDto!): IInboxes!
+  getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
+  getCategory(categoryId: String!): ICategory!
+  getCategories(queryParams: QueryFilterDto!): ICategories!
+  getProgram(programId: String!): IProgram!
+  getPrograms(queryParams: QueryFilterDto!): IPrograms!
+  getABC: Float!
 }
 
-input RegisterInput {
-  fullName: String!
-  email: String!
-  password: String!
+input QueryFilterDto {
+  limit: Float
+  page: Float
+  orderBy: String
+  filters: [FilterDto!]
+}
+
+type RefreshTokenResponseDto {
+  token: String!
+}
+
+input RegisterInputDto {
+  email: String
+  password: String
+}
+
+type ResponseMessageBase {
+  message: String!
+  success: Boolean!
+}
+
+type Role {
+  id: String!
+}
+
+input UpsertCategoryInputDto {
+  id: ID
+  name: String!
+  imgUrl: String!
+}
+
+input UpsertExerciseInputDto {
+  id: ID
+  name: String!
+  imgUrl: String!
+  duration: Float!
+  videoUrl: String!
+  set: Float!
+  calo: Float!
+}
+
+input UpsertInboxInputDto {
+  id: ID
+  message: String!
+  userId: String!
+  isSender: Boolean!
+}
+
+input UpsertProgramInputDto {
+  id: ID
+  name: String!
+  duration: Float!
+  calo: Float!
+  level: Float!
+  bodyPart: Float!
+  description: String!
+  imgUrl: String!
 }
 
 type User {
-  id: ID!
+  id: String
   email: String!
-  fullName: String!
-}
-
-type UserMutationResponse implements IMutationResponse {
-  code: Float!
-  success: Boolean!
-  message: String
-  user: User
-  accessToken: String
+  password: String!
+  googleId: String
+  avatar: String
+  refreshToken: String
+  roleId: String
+  role: Role
+  inboxes: [Inbox!]
 }
 

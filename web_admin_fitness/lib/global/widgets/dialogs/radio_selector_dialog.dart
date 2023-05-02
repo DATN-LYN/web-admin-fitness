@@ -35,54 +35,57 @@ class _RadioSelectorDialogState<T> extends State<RadioSelectorDialog<T>> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 400),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-            const SizedBox(height: 12),
-            ...widget.values.map(
-              (element) {
-                bool isChecked = _currentValue == element;
-                return RadioBox(
-                  onTap: () {
-                    setState(() {
-                      _currentValue = element;
-                    });
-                  },
-                  isChecked: isChecked,
-                  label: widget.itemLabelBuilder(element),
-                );
-              },
-            ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButtonOpacity(
-                    onTap: AutoRouter.of(context).pop,
-                    color: AppColors.neutral20,
-                    label: i18n.button_Cancel,
+              const SizedBox(height: 12),
+              ...widget.values.map(
+                (element) {
+                  bool isChecked = _currentValue == element;
+                  return RadioBox(
+                    onTap: () {
+                      setState(() {
+                        _currentValue = element;
+                      });
+                    },
+                    isChecked: isChecked,
+                    label: widget.itemLabelBuilder(element),
+                  );
+                },
+              ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButtonOpacity(
+                      onTap: AutoRouter.of(context).pop,
+                      color: AppColors.grey6,
+                      label: i18n.button_Cancel,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: ElevatedButtonOpacity(
-                    onTap: () => AutoRouter.of(context).pop(_currentValue),
-                    label: i18n.button_Ok,
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: ElevatedButtonOpacity(
+                      onTap: () => AutoRouter.of(context).pop(_currentValue),
+                      label: i18n.button_Ok,
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,12 +1,6 @@
-mutation Logout($userId: ID){
-  logout(userId: $userId){
-    code
-    success
+mutation Logout($userId: String!) {
+  logout(userId: $userId) {
     message
-    user{
-      id
-      email
-    }
-    accessToken
+    success
   }
 }

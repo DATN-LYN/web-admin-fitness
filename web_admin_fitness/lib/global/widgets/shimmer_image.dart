@@ -39,14 +39,19 @@ class ShimmerImage extends StatelessWidget {
           child: Container(
             height: width,
             width: height,
-            color: AppColors.background,
+            color: AppColors.grey6,
           ),
         ),
         errorWidget: (context, url, error) =>
             errorWidget ??
-            Icon(
-              Icons.error,
-              size: iconErrorSize,
+            Container(
+              height: width,
+              width: height,
+              color: AppColors.grey6,
+              child: Icon(
+                Icons.error,
+                size: iconErrorSize,
+              ),
             ),
       ),
     );

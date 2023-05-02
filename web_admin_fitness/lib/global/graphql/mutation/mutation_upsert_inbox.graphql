@@ -1,0 +1,7 @@
+# mutation UpsertInbox($input: UpsertInboxInputDto!) {
+#   upsertInbox(input: $input) {
+#     id
+#     message
+#     userId
+#   }
+# }

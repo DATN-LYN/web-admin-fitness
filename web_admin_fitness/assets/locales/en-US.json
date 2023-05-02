@@ -12,13 +12,16 @@
         "emailNotValid": "Email is invalid",
         "emailIsRequired": "Email is required",
         "passwordMustBeAtLeastSixCharacters": "Password must be at least 6 characters",
-        "passwordIsRequired": "Password is required"
+        "passwordIsRequired": "Password is required",
+        "adminLogin":"Admin Login"
     },
     "button_":{
         "next": "Next",
         "done": "Done",
         "cancel": "Cancel",
-        "ok": "OK"
+        "ok": "OK",
+        "apply": "Apply",
+        "confirm":"Confirm"
     },
     "setting_":{
         "title":"Setting",
@@ -45,6 +48,51 @@
         "confirmLogout": "Confirm logout",
         "confirmLogoutDes": "You need confirm to logout from this app"
     },
-    "language": ["English (US)", "Tiếng Việt"]
+    "language": ["English (US)", "Tiếng Việt"],
+    "categories_":{
+        "categoryList": "Category List"
+    },
+    "programs_":{
+        "calo":"calo",
+        "programList": "Program List",
+        "bodyPart":"Body Part",
+        "description":"Description"
+    },
+    "common_":{
+        "actions":"Actions",
+        "notFound":"Not Found",
+        "viewDetail":"View Detail",
+        "duration": "Duration",
+        "level": "Level",
+        "imageUrl": "Image URL",
+        "id":"ID",
+        "name":"Name",
+        "calo":"Calo"
+    },
+    "main_":{
+        "home":"Home",
+        "categories":"Categories",
+        "programs":"Programs",
+        "setting":"Setting",
+        "exercises":"Exercises",
+        "inboxes":"Inboxes"
+    },
+    "workoutLevel": [
+        "Beginner", 
+        "Intermediate", 
+        "Advanced"
+    ],
+    "workoutBodyPart": [
+        "Upper", 
+        "Downer", 
+        "Abs", 
+        "Full Body"
+    ],
+    "filter_":{
+        "filter":"Filter",
+        "workoutLevel": "Workout Level"
+    }
+
+
 
 }

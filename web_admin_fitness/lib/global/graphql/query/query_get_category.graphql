@@ -1,0 +1,9 @@
+query GetCategory($categoryId: String!) {
+  getCategory(categoryId: $categoryId) {
+    id
+    name
+    imgUrl
+    createdAt
+    updatedAt
+  }
+}
