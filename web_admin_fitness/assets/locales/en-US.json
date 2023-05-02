@@ -100,5 +100,11 @@
         "program": "Program",
         "programId":"Program ID",
         "videoUrl": "Video URL"
+    },
+    "inboxes_":{
+        "inboxList": "Inbox List",
+        "user": "User",
+        "message": "Message",
+        "isSender": "Is Sender"
     }
 }

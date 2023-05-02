@@ -55,6 +55,12 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise
     show GExerciseReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.var.gql.dart'
     show GExerciseVars;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.data.gql.dart'
+    show GInboxData, GInboxData_user;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.req.gql.dart'
+    show GInboxReq;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.var.gql.dart'
+    show GInboxVars;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/meta_fragment.data.gql.dart'
     show GMetaData;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/meta_fragment.req.gql.dart'
@@ -106,6 +112,17 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_i
     show GGetInboxReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inbox.var.gql.dart'
     show GGetInboxVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.data.gql.dart'
+    show
+        GGetInboxesData,
+        GGetInboxesData_getInboxes,
+        GGetInboxesData_getInboxes_items,
+        GGetInboxesData_getInboxes_items_user,
+        GGetInboxesData_getInboxes_meta;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.req.gql.dart'
+    show GGetInboxesReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.var.gql.dart'
+    show GGetInboxesVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_program.data.gql.dart'
     show GGetProgramData, GGetProgramData_getProgram;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_program.req.gql.dart'
@@ -167,6 +184,13 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetInboxData_getInbox_user,
   GGetInboxReq,
   GGetInboxVars,
+  GGetInboxesData,
+  GGetInboxesData_getInboxes,
+  GGetInboxesData_getInboxes_items,
+  GGetInboxesData_getInboxes_items_user,
+  GGetInboxesData_getInboxes_meta,
+  GGetInboxesReq,
+  GGetInboxesVars,
   GGetProgramData,
   GGetProgramData_getProgram,
   GGetProgramReq,
@@ -177,6 +201,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetProgramsData_getPrograms_meta,
   GGetProgramsReq,
   GGetProgramsVars,
+  GInboxData,
+  GInboxData_user,
+  GInboxReq,
+  GInboxVars,
   GLoginData,
   GLoginData_login,
   GLoginData_login_user,

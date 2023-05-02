@@ -100,5 +100,11 @@
         "program":"Chương trình",
         "programId":"Mã chương trình",
         "videoUrl": "Đường dẫn video"
+    },
+    "inboxes_":{
+        "inboxList": "Danh sách tin nhắn",
+        "user": "Người dùng",
+        "message": "Tin nhắn",
+        "isSender": "Người gửi"
     }
 }
