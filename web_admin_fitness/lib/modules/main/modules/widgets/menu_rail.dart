@@ -12,18 +12,20 @@ class MenuRail extends StatefulWidget {
     required this.selectedIndex,
     required this.onDestinationSelected,
     required this.navItems,
+    this.isMobile = false,
   });
 
   final int selectedIndex;
   final List<NavItem> navItems;
   final Function(int) onDestinationSelected;
+  final bool isMobile;
 
   @override
   State<MenuRail> createState() => _MenuRailState();
 }
 
 class _MenuRailState extends State<MenuRail> {
-  bool isExpand = false;
+  late bool isExpand = widget.isMobile ? true : false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class _MenuRailState extends State<MenuRail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(height: widget.isMobile ? 50 : 0),
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
@@ -52,7 +55,7 @@ class _MenuRailState extends State<MenuRail> {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: widget.isMobile ? 0 : 30),
             Expanded(
               child: ListView(
                 children: List.generate(
@@ -68,14 +71,15 @@ class _MenuRailState extends State<MenuRail> {
               ),
             ),
             Divider(color: Colors.grey.shade500),
-            IconButton(
-              onPressed: () => setState(() => isExpand = !isExpand),
-              icon: Icon(
-                isExpand
-                    ? Icons.arrow_back_rounded
-                    : Icons.arrow_forward_rounded,
+            if (!widget.isMobile)
+              IconButton(
+                onPressed: () => setState(() => isExpand = !isExpand),
+                icon: Icon(
+                  isExpand
+                      ? Icons.arrow_back_rounded
+                      : Icons.arrow_forward_rounded,
+                ),
               ),
-            ),
           ],
         ),
       ),

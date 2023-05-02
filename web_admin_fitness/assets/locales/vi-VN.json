@@ -12,13 +12,16 @@
         "emailNotValid": "Email không hợp lệ",
         "emailIsRequired": "Email bắt buộc",
         "passwordMustBeAtLeastSixCharacters": "Mật khẩu phải dài tối thiểu 6 ký tự",
-        "passwordIsRequired": "Mật khẩu bắt buộc"
+        "passwordIsRequired": "Mật khẩu bắt buộc",
+        "adminLogin":"Đăng nhập dành cho Quản trị viên"
     },
     "button_":{
         "next": "Tiếp tục",
         "done": "Xong",
         "cancel": "Huỷ bỏ",
-        "ok": "Đồng ý"
+        "ok": "Đồng ý",
+        "apply": "Áp dụng",
+        "confirm":"Xác nhận"
     },
     "setting_":{
         "title":"Cài đặt",
@@ -46,7 +49,52 @@
       "confirmLogout": "Xác nhận đăng xuất",
       "confirmLogoutDes": "Bạn cần xác nhận để đăng xuất khỏi ứng dụng"
     },
-    "language": ["English (US)", "Tiếng Việt"]
+    "language": ["English (US)", "Tiếng Việt"],
+    "categories_":{
+        "categoryList": "Danh sách thể loại"
+    },
+    "programs_":{
+        "calo":"calo",
+        "programList": "Danh sách chương trình tập",
+        "bodyPart":"Bộ phận",
+        "description":"Mô tả"
+    },
+    "common_":{
+        "actions":"Hành động",
+        "notFound":"Không tìm thấy",
+        "viewDetail":"Xem chi tiết",
+        "duration": "Thời gian",
+        "level": "Độ khó",
+        "imageUrl": "Đường dẫn hình ảnh",
+        "id":"ID",
+        "name":"Tên",
+        "calo":"Calo"
+    },
+    "main_":{
+        "home":"Trang chủ",
+        "categories":"Thể loại",
+        "programs":"Chương trình",
+        "setting":"Cài đặt",
+        "exercises":"Bài tập",
+        "inboxes":"Tin Nhắn"
+    },
+    "workoutLevel": [
+        "Dễ", 
+        "Trung bình", 
+        "Khó"
+    ],
+    "workoutBodyPart": [
+        "Thân trên", 
+        "Thân dưới", 
+        "Bụng", 
+        "Toàn thân"
+    ],
+    "filter_":{
+        "filter":"Bộ lọc",
+        "workoutLevel": "Độ khó của chương trình"
+    }
+    
+
 
     
 }

@@ -32,8 +32,15 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/empty_data.png
+  AssetGenImage get emptyData =>
+      const AssetGenImage('assets/images/empty_data.png');
+
   /// File path: assets/images/login.jpg
   AssetGenImage get login => const AssetGenImage('assets/images/login.jpg');
+
+  /// File path: assets/images/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// File path: assets/images/logo_container.png
   AssetGenImage get logoContainer =>
@@ -44,7 +51,8 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/sad_face.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [login, logoContainer, sadFace];
+  List<AssetGenImage> get values =>
+      [emptyData, login, logo, logoContainer, sadFace];
 }
 
 class Assets {

@@ -1,40 +1,40 @@
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
-import 'package:web_admin_fitness/global/models/category_filter_data.dart';
-import 'package:web_admin_fitness/modules/main/modules/categories/widgets/categories_list_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/categories/widgets/categories_table_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/categories/widgets/search_bar_category.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
+import 'package:web_admin_fitness/global/models/program_filter_data.dart';
+import 'package:web_admin_fitness/modules/main/modules/programs/widgets/program_search_bar.dart';
+import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_list_view.dart';
+import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_overview.dart';
+import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_table_view.dart';
 
 import '../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../global/gen/i18n.dart';
 import '../../../../global/utils/constants.dart';
 import '../../../../global/widgets/responsive/responsive_page_builder.dart';
-import 'widgets/categories_overview.dart';
 
-class CategoriesManagerPage extends StatefulWidget {
-  const CategoriesManagerPage({super.key});
+class ProgramsManagerPage extends StatefulWidget {
+  const ProgramsManagerPage({super.key});
 
   @override
-  State<CategoriesManagerPage> createState() => _CategoriesManagerPageState();
+  State<ProgramsManagerPage> createState() => _ProgramsManagerPageState();
 }
 
-class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
-  final initialFilter = const CategoryFilterData();
+class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
+  final initialFilter = const ProgramFilterData();
 
-  late var getCategoriesReq = GGetCategoriesReq(
+  late var getProgramsReq = GGetProgramsReq(
     (b) => b
-      ..requestId = '@getCategoriesRequestId'
+      ..requestId = '@getProgramsRequestId'
       ..fetchPolicy = FetchPolicy.CacheAndNetwork
       ..vars.queryParams.page = 1
       ..vars.queryParams.limit = Constants.defaultLimit
-      ..vars.queryParams.orderBy = 'Category.createdAt:DESC',
+      ..vars.queryParams.orderBy = 'Program.createdAt:DESC',
   );
 
   void refreshHandler() {
     setState(() {
-      getCategoriesReq = getCategoriesReq.rebuild(
+      getProgramsReq = getProgramsReq.rebuild(
         (b) => b
           ..vars.queryParams.page = 1
           ..updateResult = ((previous, result) => result),
@@ -42,9 +42,9 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
     });
   }
 
-  void handleFilterChange(GGetCategoriesReq newReq) {
+  void handleFilterChange(GGetProgramsReq newReq) {
     setState(
-      () => getCategoriesReq = getCategoriesReq.rebuild((b) => b
+      () => getProgramsReq = getProgramsReq.rebuild((b) => b
         ..vars.queryParams.filters =
             newReq.vars.queryParams.filters?.toBuilder()),
     );
@@ -62,40 +62,43 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CategoriesOverview(),
+            const ProgramsOverview(),
             SizedBox(height: responsive.adap(20.0, 32.0)),
             Text(
-              i18n.categories_CategoryList,
+              i18n.programs_ProgramList,
               style: const TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
               ),
             ),
             const SizedBox(height: 16),
-            SearchBarCategory(
-              onChanged: (newReq) =>
-                  handleFilterChange(newReq as GGetCategoriesReq),
-              request: GGetCategoriesReq(
+            ProgramSearchBar(
+              onChanged: (newReq) => handleFilterChange(newReq),
+              request: GGetProgramsReq(
                 (b) => b
                   ..vars.queryParams =
-                      getCategoriesReq.vars.queryParams.toBuilder(),
+                      getProgramsReq.vars.queryParams.toBuilder(),
               ),
               initialFilter: initialFilter,
-              searchField: 'Category.name',
+              searchField: 'Program.name',
             ),
           ],
         ),
       ),
-      listView: CategoriesListView(
-        request: getCategoriesReq,
+      listView: ProgramsListView(
+        request: getProgramsReq,
       ),
-      tableView: CategoriesTableView(
-        getCategoriesReq: getCategoriesReq,
+      tableView: ProgramsTableView(
+        getProgramsReq: getProgramsReq,
         onRequestChanged: (request) {
           setState(() {
-            getCategoriesReq = request;
+            getProgramsReq = request;
           });
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
       ),
     );
   }

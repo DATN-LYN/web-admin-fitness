@@ -15,7 +15,16 @@ class AppColors {
   static const primary = Color(0xFFAFD1FD);
   static const primarySoft = Color(0xFFADCEFF);
   static const primaryBold = Color(0xFF0462DC);
-  static const error = Color(0xFFF74360);
-  static const warning = Color(0xFFFF934B);
+  static const informationSoft = Color(0xFFE5EDFE);
+  static const information = Color(0xFF5487F5);
+  static const alertSoft = Color(0xFFFFF4D9);
+  static const alert = Color(0xFFDEAD00);
+  static const successSoft = Color(0xFFD5F2EA);
   static const success = Color(0xFF00C48C);
+  static const errorSoft = Color(0xFFFFE1E1);
+  static const error = Color(0xFFD53A3A);
+  static const warningSoft = Color(0xFFFFF1E9);
+  static const warning = Color(0xFFFF802C);
+  static const pendingSoft = Color(0xFFF4E7FF);
+  static const pending = Color(0xFF9624F0);
 }

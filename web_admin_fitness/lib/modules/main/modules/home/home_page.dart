@@ -11,13 +11,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomePage'),
-      ),
-      body: ListView(
-        children: const [CategoriesOverview()],
-      ),
+    return ListView(
+      children: const [CategoriesOverview()],
     );
   }
 }

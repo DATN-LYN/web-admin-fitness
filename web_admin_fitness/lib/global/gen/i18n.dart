@@ -56,6 +56,8 @@ class I18n implements WidgetsLocalizations {
 	String get login_PasswordMustBeAtLeastSixCharacters => "Password must be at least 6 characters";
 	/// "Password is required"
 	String get login_PasswordIsRequired => "Password is required";
+	/// "Admin Login"
+	String get login_AdminLogin => "Admin Login";
 	/// "Next"
 	String get button_Next => "Next";
 	/// "Done"
@@ -64,6 +66,10 @@ class I18n implements WidgetsLocalizations {
 	String get button_Cancel => "Cancel";
 	/// "OK"
 	String get button_Ok => "OK";
+	/// "Apply"
+	String get button_Apply => "Apply";
+	/// "Confirm"
+	String get button_Confirm => "Confirm";
 	/// "Setting"
 	String get setting_Title => "Setting";
 	/// "Language"
@@ -112,6 +118,54 @@ class I18n implements WidgetsLocalizations {
 	String get setting_ConfirmLogoutDes => "You need confirm to logout from this app";
 	/// ["English (US)", "Tiếng Việt"]
 	List<String> get language => ["English (US)", "Tiếng Việt"];
+	/// "Category List"
+	String get categories_CategoryList => "Category List";
+	/// "calo"
+	String get programs_Calo => "calo";
+	/// "Program List"
+	String get programs_ProgramList => "Program List";
+	/// "Body Part"
+	String get programs_BodyPart => "Body Part";
+	/// "Description"
+	String get programs_Description => "Description";
+	/// "Actions"
+	String get common_Actions => "Actions";
+	/// "Not Found"
+	String get common_NotFound => "Not Found";
+	/// "View Detail"
+	String get common_ViewDetail => "View Detail";
+	/// "Duration"
+	String get common_Duration => "Duration";
+	/// "Level"
+	String get common_Level => "Level";
+	/// "Image URL"
+	String get common_ImageUrl => "Image URL";
+	/// "ID"
+	String get common_Id => "ID";
+	/// "Name"
+	String get common_Name => "Name";
+	/// "Calo"
+	String get common_Calo => "Calo";
+	/// "Home"
+	String get main_Home => "Home";
+	/// "Categories"
+	String get main_Categories => "Categories";
+	/// "Programs"
+	String get main_Programs => "Programs";
+	/// "Setting"
+	String get main_Setting => "Setting";
+	/// "Exercises"
+	String get main_Exercises => "Exercises";
+	/// "Inboxes"
+	String get main_Inboxes => "Inboxes";
+	/// ["Beginner", "Intermediate", "Advanced"]
+	List<String> get workoutLevel => ["Beginner", "Intermediate", "Advanced"];
+	/// ["Upper", "Downer", "Abs", "Full Body"]
+	List<String> get workoutBodyPart => ["Upper", "Downer", "Abs", "Full Body"];
+	/// "Filter"
+	String get filter_Filter => "Filter";
+	/// "Workout Level"
+	String get filter_WorkoutLevel => "Workout Level";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -161,6 +215,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Mật khẩu bắt buộc"
 	@override
 	String get login_PasswordIsRequired => "Mật khẩu bắt buộc";
+	/// "Đăng nhập dành cho Quản trị viên"
+	@override
+	String get login_AdminLogin => "Đăng nhập dành cho Quản trị viên";
 	/// "Tiếp tục"
 	@override
 	String get button_Next => "Tiếp tục";
@@ -173,6 +230,12 @@ class _I18n_vi_VN extends I18n {
 	/// "Đồng ý"
 	@override
 	String get button_Ok => "Đồng ý";
+	/// "Áp dụng"
+	@override
+	String get button_Apply => "Áp dụng";
+	/// "Xác nhận"
+	@override
+	String get button_Confirm => "Xác nhận";
 	/// "Cài đặt"
 	@override
 	String get setting_Title => "Cài đặt";
@@ -245,6 +308,78 @@ class _I18n_vi_VN extends I18n {
 	/// ["English (US)", "Tiếng Việt"]
 	@override
 	List<String> get language => ["English (US)", "Tiếng Việt"];
+	/// "Danh sách thể loại"
+	@override
+	String get categories_CategoryList => "Danh sách thể loại";
+	/// "calo"
+	@override
+	String get programs_Calo => "calo";
+	/// "Danh sách chương trình tập"
+	@override
+	String get programs_ProgramList => "Danh sách chương trình tập";
+	/// "Bộ phận"
+	@override
+	String get programs_BodyPart => "Bộ phận";
+	/// "Mô tả"
+	@override
+	String get programs_Description => "Mô tả";
+	/// "Hành động"
+	@override
+	String get common_Actions => "Hành động";
+	/// "Không tìm thấy"
+	@override
+	String get common_NotFound => "Không tìm thấy";
+	/// "Xem chi tiết"
+	@override
+	String get common_ViewDetail => "Xem chi tiết";
+	/// "Thời gian"
+	@override
+	String get common_Duration => "Thời gian";
+	/// "Độ khó"
+	@override
+	String get common_Level => "Độ khó";
+	/// "Đường dẫn hình ảnh"
+	@override
+	String get common_ImageUrl => "Đường dẫn hình ảnh";
+	/// "ID"
+	@override
+	String get common_Id => "ID";
+	/// "Tên"
+	@override
+	String get common_Name => "Tên";
+	/// "Calo"
+	@override
+	String get common_Calo => "Calo";
+	/// "Trang chủ"
+	@override
+	String get main_Home => "Trang chủ";
+	/// "Thể loại"
+	@override
+	String get main_Categories => "Thể loại";
+	/// "Chương trình"
+	@override
+	String get main_Programs => "Chương trình";
+	/// "Cài đặt"
+	@override
+	String get main_Setting => "Cài đặt";
+	/// "Bài tập"
+	@override
+	String get main_Exercises => "Bài tập";
+	/// "Tin Nhắn"
+	@override
+	String get main_Inboxes => "Tin Nhắn";
+	/// ["Dễ", "Trung bình", "Khó"]
+	@override
+	List<String> get workoutLevel => ["Dễ", "Trung bình", "Khó"];
+	/// ["Thân trên", "Thân dưới", "Bụng", "Toàn thân"]
+	@override
+	List<String> get workoutBodyPart => ["Thân trên", "Thân dưới", "Bụng", "Toàn thân"];
+	/// "Bộ lọc"
+	@override
+	String get filter_Filter => "Bộ lọc";
+	/// "Độ khó của chương trình"
+	@override
+	String get filter_WorkoutLevel => "Độ khó của chương trình";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

@@ -102,10 +102,11 @@ type Inbox {
 type IProgram {
   id: ID
   name: String
-  duration: String
+  duration: Float
   calo: Float
   level: Float
-  bodyPart: String
+  view: Float
+  bodyPart: Float
   description: String
   imgUrl: String
   createdAt: DateTime
@@ -154,10 +155,11 @@ type Mutation {
 type Program {
   id: ID
   name: String
-  duration: String
+  duration: Float
   calo: Float
   level: Float
-  bodyPart: String
+  view: Float
+  bodyPart: Float
   description: String
   imgUrl: String
   createdAt: DateTime
@@ -208,6 +210,7 @@ type Role {
 input UpsertCategoryInputDto {
   id: ID
   name: String!
+  imgUrl: String!
 }
 
 input UpsertExerciseInputDto {
@@ -230,10 +233,10 @@ input UpsertInboxInputDto {
 input UpsertProgramInputDto {
   id: ID
   name: String!
-  duration: String!
+  duration: Float!
   calo: Float!
   level: Float!
-  bodyPart: String!
+  bodyPart: Float!
   description: String!
   imgUrl: String!
 }

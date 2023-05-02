@@ -125,6 +125,7 @@ abstract class GUpsertCategoryInputDto
 
   String? get id;
   String get name;
+  String get imgUrl;
   static Serializer<GUpsertCategoryInputDto> get serializer =>
       _$gUpsertCategoryInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -201,10 +202,10 @@ abstract class GUpsertProgramInputDto
 
   String? get id;
   String get name;
-  String get duration;
+  double get duration;
   double get calo;
   double get level;
-  String get bodyPart;
+  double get bodyPart;
   String get description;
   String get imgUrl;
   static Serializer<GUpsertProgramInputDto> get serializer =>

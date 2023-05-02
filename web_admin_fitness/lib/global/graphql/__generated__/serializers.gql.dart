@@ -55,6 +55,12 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/meta_fra
     show GMetaReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/meta_fragment.var.gql.dart'
     show GMetaVars;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart'
+    show GProgramData;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.req.gql.dart'
+    show GProgramReq;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.var.gql.dart'
+    show GProgramVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.data.gql.dart'
     show
         GGetCategoriesData,
@@ -77,6 +83,22 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_i
     show GGetInboxReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inbox.var.gql.dart'
     show GGetInboxVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_program.data.gql.dart'
+    show GGetProgramData, GGetProgramData_getProgram;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_program.req.gql.dart'
+    show GGetProgramReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_program.var.gql.dart'
+    show GGetProgramVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.data.gql.dart'
+    show
+        GGetProgramsData,
+        GGetProgramsData_getPrograms,
+        GGetProgramsData_getPrograms_items,
+        GGetProgramsData_getPrograms_meta;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart'
+    show GGetProgramsReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.var.gql.dart'
+    show GGetProgramsVars;
 import 'package:web_admin_fitness/global/utils/date_serializer.dart'
     show DateSerializer;
 
@@ -107,6 +129,16 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetInboxData_getInbox_user,
   GGetInboxReq,
   GGetInboxVars,
+  GGetProgramData,
+  GGetProgramData_getProgram,
+  GGetProgramReq,
+  GGetProgramVars,
+  GGetProgramsData,
+  GGetProgramsData_getPrograms,
+  GGetProgramsData_getPrograms_items,
+  GGetProgramsData_getPrograms_meta,
+  GGetProgramsReq,
+  GGetProgramsVars,
   GLoginData,
   GLoginData_login,
   GLoginData_login_user,
@@ -120,6 +152,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GMetaData,
   GMetaReq,
   GMetaVars,
+  GProgramData,
+  GProgramReq,
+  GProgramVars,
   GQueryFilterDto,
   GRefreshTokenData,
   GRefreshTokenData_refreshToken,

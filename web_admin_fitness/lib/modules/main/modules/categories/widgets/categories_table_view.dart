@@ -5,7 +5,9 @@ import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
+import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
@@ -92,26 +94,59 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
             columnItems: [
               TableColumn(
                 label: 'id',
-                minimumWidth: 250,
-                maximumWidth: 400,
+                minimumWidth: 200,
                 columnWidthMode: ColumnWidthMode.fill,
-                // cellBuilder: (e) => Text(e.id ?? '_'),
                 itemValue: (e) => e.id,
               ),
               TableColumn(
                 label: 'Name',
                 itemValue: (e) => e.name,
-                minimumWidth: 90,
-                maximumWidth: 150,
+                minimumWidth: 100,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('name'),
               ),
               TableColumn(
-                label: 'Image URL',
-                itemValue: (e) => e.imgUrl,
-                minimumWidth: 250,
-                columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('imgUrl'),
+                  label: 'Image URL',
+                  // itemValue: (e) => e.imgUrl,
+                  minimumWidth: 350,
+                  columnWidthMode: ColumnWidthMode.fill,
+                  action: sortButton('imgUrl'),
+                  cellBuilder: (e) {
+                    return Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Row(
+                        children: [
+                          ShimmerImage(
+                            imageUrl: e.imgUrl ?? '',
+                            height: 120,
+                            width: 100,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          const SizedBox(width: 6),
+                          Expanded(
+                            child: Text(
+                              e.imgUrl ?? '_',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 3,
+                              softWrap: true,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+              TableColumn(
+                label: 'Actions',
+                align: Alignment.center,
+                width: 110,
+                cellBuilder: (e) {
+                  return IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.remove_red_eye),
+                    color: AppColors.grey4,
+                    tooltip: 'View Detail',
+                  );
+                },
               ),
             ],
           );
@@ -119,7 +154,7 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
           return SfDataGrid(
             source: dataSource,
             shrinkWrapRows: true,
-            rowHeight: 64,
+            rowHeight: 120,
             headerRowHeight: 42,
             footerFrozenColumnsCount: 1,
             headerGridLinesVisibility: GridLinesVisibility.none,

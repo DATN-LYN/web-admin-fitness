@@ -6,6 +6,7 @@ import 'package:web_admin_fitness/modules/main/modules/home/home_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/setting/setting_page.dart';
 
 import '../../modules/login/login_page.dart';
+import '../../modules/main/modules/programs/programs_manager_page.dart';
 import 'nested_route.dart';
 
 part 'app_router.gr.dart';
@@ -33,6 +34,10 @@ part 'app_router.gr.dart';
         NestedRoute(
           page: CategoriesManagerPage,
           path: 'categories',
+        ),
+        NestedRoute(
+          page: ProgramsManagerPage,
+          path: 'programs',
         ),
       ],
     ),

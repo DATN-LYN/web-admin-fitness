@@ -5,13 +5,13 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/models/category_filter_data.dart';
 
-import '../../../../../../global/gen/i18n.dart';
-import '../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
-import '../../../../../../global/themes/app_colors.dart';
-import '../../../../../../global/widgets/filter/filter_text_field.dart';
+import '../../../../../../../../../global/gen/i18n.dart';
+import '../../../../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
+import '../../../../../../../../../global/themes/app_colors.dart';
+import '../../../../../../../../../global/widgets/filter/filter_text_field.dart';
 
-class SearchBar extends StatefulWidget {
-  const SearchBar({
+class SearchBarCategory extends StatefulWidget {
+  const SearchBarCategory({
     super.key,
     required this.onChanged,
     required this.request,
@@ -27,10 +27,10 @@ class SearchBar extends StatefulWidget {
   final String searchField;
 
   @override
-  State<SearchBar> createState() => _SearchBarState();
+  State<SearchBarCategory> createState() => _SearchBarCategoryState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _SearchBarCategoryState extends State<SearchBarCategory> {
   late dynamic filter = widget.initialFilter;
 
   void handleFilter(dynamic filterData) {

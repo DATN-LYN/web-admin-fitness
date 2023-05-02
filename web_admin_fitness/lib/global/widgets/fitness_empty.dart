@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../gen/assets.gen.dart';
 import '../themes/app_colors.dart';
 
 class FitnessEmpty extends StatelessWidget {
   const FitnessEmpty({
     super.key,
     this.message,
-    this.image,
+    this.showImage = true,
     this.title,
     this.onPressed,
     this.textButton,
@@ -18,7 +19,7 @@ class FitnessEmpty extends StatelessWidget {
   final String? title;
   final String? textButton;
   final String? message;
-  final Image? image;
+  final bool showImage;
   final VoidCallback? onPressed;
 
   @override
@@ -29,7 +30,7 @@ class FitnessEmpty extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (image != null) image!,
+            if (showImage) Assets.images.emptyData.image(height: 150),
             const SizedBox(height: 24),
             if (title != null)
               Padding(
