@@ -178,6 +178,14 @@ class I18n implements WidgetsLocalizations {
 	String get exercises_ProgramId => "Program ID";
 	/// "Video URL"
 	String get exercises_VideoUrl => "Video URL";
+	/// "Inbox List"
+	String get inboxes_InboxList => "Inbox List";
+	/// "User"
+	String get inboxes_User => "User";
+	/// "Message"
+	String get inboxes_Message => "Message";
+	/// "Is Sender"
+	String get inboxes_IsSender => "Is Sender";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -410,6 +418,18 @@ class _I18n_vi_VN extends I18n {
 	/// "Đường dẫn video"
 	@override
 	String get exercises_VideoUrl => "Đường dẫn video";
+	/// "Danh sách tin nhắn"
+	@override
+	String get inboxes_InboxList => "Danh sách tin nhắn";
+	/// "Người dùng"
+	@override
+	String get inboxes_User => "Người dùng";
+	/// "Tin nhắn"
+	@override
+	String get inboxes_Message => "Tin nhắn";
+	/// "Người gửi"
+	@override
+	String get inboxes_IsSender => "Người gửi";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

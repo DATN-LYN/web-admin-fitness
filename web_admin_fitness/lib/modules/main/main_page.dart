@@ -46,6 +46,12 @@ class _MainPageState extends State<MainPage> {
         route: const ExercisesManagerRoute(),
       ),
       NavItem(
+        label: i18n.main_Inboxes,
+        icon: Icons.chat_bubble_outline_rounded,
+        selectedIcon: Icons.chat_bubble_outlined,
+        route: const InboxesManagerRoute(),
+      ),
+      NavItem(
         label: i18n.main_Setting,
         icon: Icons.settings_outlined,
         selectedIcon: Icons.settings,

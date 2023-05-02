@@ -80,19 +80,19 @@ class ProgramsListView extends StatelessWidget with ClientMixin {
         final data = response!.data!.getPrograms;
         final hasMoreData = data.meta!.currentPage!.toDouble() <
             data.meta!.totalPages!.toDouble();
-        final categories = data.items;
+        final programs = data.items;
 
-        if (categories?.isEmpty == true) {
+        if (programs?.isEmpty == true) {
           return FitnessEmpty(
             title: i18n.common_NotFound,
           );
         }
 
         return ListView.separated(
-          itemCount: categories!.length + (hasMoreData ? 1 : 0),
+          itemCount: programs!.length + (hasMoreData ? 1 : 0),
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           itemBuilder: (context, index) {
-            final item = categories[index];
+            final item = programs[index];
             return ProgramItem(program: item);
           },
           separatorBuilder: (_, __) => const SizedBox(height: 16),
