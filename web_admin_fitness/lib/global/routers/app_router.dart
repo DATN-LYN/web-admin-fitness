@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/modules/main/main_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/categories_manager_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/exercises/exercises_manager_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/home_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/setting/setting_page.dart';
 
@@ -38,6 +39,10 @@ part 'app_router.gr.dart';
         NestedRoute(
           page: ProgramsManagerPage,
           path: 'programs',
+        ),
+        NestedRoute(
+          page: ExercisesManagerPage,
+          path: 'exercises',
         ),
       ],
     ),

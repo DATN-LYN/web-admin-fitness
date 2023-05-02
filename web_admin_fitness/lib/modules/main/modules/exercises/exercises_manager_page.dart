@@ -1,40 +1,40 @@
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
-import 'package:web_admin_fitness/global/models/program_filter_data.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/program_search_bar.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_list_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_overview.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_table_view.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
+import 'package:web_admin_fitness/global/models/exercise_filter_data.dart';
+import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercise_search_bar.dart';
+import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercises_list_view.dart';
+import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercises_overview.dart';
+import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercises_table_view.dart';
 
 import '../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../global/gen/i18n.dart';
 import '../../../../global/utils/constants.dart';
 import '../../../../global/widgets/responsive/responsive_page_builder.dart';
 
-class ProgramsManagerPage extends StatefulWidget {
-  const ProgramsManagerPage({super.key});
+class ExercisesManagerPage extends StatefulWidget {
+  const ExercisesManagerPage({super.key});
 
   @override
-  State<ProgramsManagerPage> createState() => _ProgramsManagerPageState();
+  State<ExercisesManagerPage> createState() => _ExercisesManagerPageState();
 }
 
-class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
-  final initialFilter = const ProgramFilterData();
+class _ExercisesManagerPageState extends State<ExercisesManagerPage> {
+  final initialFilter = const ExerciseFilterData();
 
-  late var getProgramsReq = GGetProgramsReq(
+  late var getExercisesReq = GGetExercisesReq(
     (b) => b
-      ..requestId = '@getProgramsRequestId'
+      ..requestId = '@getExercisesReq'
       ..fetchPolicy = FetchPolicy.CacheAndNetwork
       ..vars.queryParams.page = 1
       ..vars.queryParams.limit = Constants.defaultLimit
-      ..vars.queryParams.orderBy = 'Program.createdAt:DESC',
+      ..vars.queryParams.orderBy = 'Exercise.createdAt:DESC',
   );
 
   void refreshHandler() {
     setState(() {
-      getProgramsReq = getProgramsReq.rebuild(
+      getExercisesReq = getExercisesReq.rebuild(
         (b) => b
           ..vars.queryParams.page = 1
           ..updateResult = ((previous, result) => result),
@@ -42,9 +42,9 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
     });
   }
 
-  void handleFilterChange(GGetProgramsReq newReq) {
+  void handleFilterChange(GGetExercisesReq newReq) {
     setState(
-      () => getProgramsReq = getProgramsReq.rebuild((b) => b
+      () => getExercisesReq = getExercisesReq.rebuild((b) => b
         ..vars.queryParams.filters =
             newReq.vars.queryParams.filters?.toBuilder()),
     );
@@ -62,11 +62,11 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const ProgramsOverview(),
+            const ExercisesOverview(),
             SizedBox(height: responsive.adap(20.0, 32.0)),
             if (!isDesktopView) ...[
               Text(
-                i18n.programs_ProgramList,
+                i18n.exercises_ExerciseList,
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -74,33 +74,29 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
               ),
               const SizedBox(height: 16),
             ],
-            ProgramSearchBar(
+            ExerciseSearchBar(
               onChanged: (newReq) => handleFilterChange(newReq),
-              request: GGetProgramsReq(
+              request: GGetExercisesReq(
                 (b) => b
                   ..vars.queryParams =
-                      getProgramsReq.vars.queryParams.toBuilder(),
+                      getExercisesReq.vars.queryParams.toBuilder(),
               ),
               initialFilter: initialFilter,
-              searchField: 'Program.name',
+              searchField: 'Exercise.name',
             ),
           ],
         ),
       ),
-      listView: ProgramsListView(
-        request: getProgramsReq,
+      listView: ExercisesListView(
+        request: getExercisesReq,
       ),
-      tableView: ProgramsTableView(
-        getProgramsReq: getProgramsReq,
+      tableView: ExercisesTableView(
+        getExercisesReq: getExercisesReq,
         onRequestChanged: (request) {
           setState(() {
-            getProgramsReq = request;
+            getExercisesReq = request;
           });
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
       ),
     );
   }

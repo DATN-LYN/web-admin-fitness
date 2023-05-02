@@ -23,7 +23,6 @@ type Exercise {
   duration: Float
   videoUrl: String
   imgUrl: String
-  set: Float
   calo: Float
   programId: String!
   program: Program
@@ -61,7 +60,6 @@ type IExercise {
   duration: Float
   videoUrl: String
   imgUrl: String
-  set: Float
   calo: Float
   programId: String!
   program: Program
@@ -142,7 +140,6 @@ type Meta {
 }
 
 type Mutation {
-  upsertExercise(input: UpsertExerciseInputDto!): IExercise!
   register(input: RegisterInputDto!): ResponseMessageBase!
   logout(userId: String!): ResponseMessageBase!
   upsertInbox(input: UpsertInboxInputDto!): IInbox!
@@ -150,6 +147,7 @@ type Mutation {
   upsertCategory(input: UpsertCategoryInputDto!): ICategory!
   deleteCategory(categoryId: String!): ResponseMessageBase!
   upsertProgram(input: UpsertProgramInputDto!): IProgram!
+  upsertExercise(input: UpsertExerciseInputDto!): IExercise!
 }
 
 type Program {
@@ -167,8 +165,6 @@ type Program {
 }
 
 type Query {
-  getExercise(programId: String!): IExercise!
-  getExercises(queryParams: QueryFilterDto!): IExercises!
   loginGoogle(input: LoginInputDto!): LoginResponseDto!
   login(input: LoginInputDto!): LoginResponseDto!
   refreshToken(refreshToken: String!): RefreshTokenResponseDto!
@@ -177,9 +173,11 @@ type Query {
   getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
   getCategory(categoryId: String!): ICategory!
   getCategories(queryParams: QueryFilterDto!): ICategories!
+  getABC: Float!
   getProgram(programId: String!): IProgram!
   getPrograms(queryParams: QueryFilterDto!): IPrograms!
-  getABC: Float!
+  getExercise(programId: String!): IExercise!
+  getExercises(queryParams: QueryFilterDto!): IExercises!
 }
 
 input QueryFilterDto {
@@ -219,7 +217,6 @@ input UpsertExerciseInputDto {
   imgUrl: String!
   duration: Float!
   videoUrl: String!
-  set: Float!
   calo: Float!
 }
 

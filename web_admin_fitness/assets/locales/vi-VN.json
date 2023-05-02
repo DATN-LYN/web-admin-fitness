@@ -57,7 +57,8 @@
         "calo":"calo",
         "programList": "Danh sách chương trình tập",
         "bodyPart":"Bộ phận",
-        "description":"Mô tả"
+        "description":"Mô tả",
+        "searchHint": "Nhập tên chương trình"
     },
     "common_":{
         "actions":"Hành động",
@@ -92,9 +93,12 @@
     "filter_":{
         "filter":"Bộ lọc",
         "workoutLevel": "Độ khó của chương trình"
+    },
+    "exercises_":{
+        "exerciseList": "Danh sách bài tập",
+        "searchHint":"Nhập tên bài tập",
+        "program":"Chương trình",
+        "programId":"Mã chương trình",
+        "videoUrl": "Đường dẫn video"
     }
-    
-
-
-    
 }

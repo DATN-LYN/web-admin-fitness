@@ -128,6 +128,8 @@ class I18n implements WidgetsLocalizations {
 	String get programs_BodyPart => "Body Part";
 	/// "Description"
 	String get programs_Description => "Description";
+	/// "Enter program name"
+	String get programs_SearchHint => "Enter program name";
 	/// "Actions"
 	String get common_Actions => "Actions";
 	/// "Not Found"
@@ -166,6 +168,16 @@ class I18n implements WidgetsLocalizations {
 	String get filter_Filter => "Filter";
 	/// "Workout Level"
 	String get filter_WorkoutLevel => "Workout Level";
+	/// "Exercise List"
+	String get exercises_ExerciseList => "Exercise List";
+	/// "Enter exercise name"
+	String get exercises_SearchHint => "Enter exercise name";
+	/// "Program"
+	String get exercises_Program => "Program";
+	/// "Program ID"
+	String get exercises_ProgramId => "Program ID";
+	/// "Video URL"
+	String get exercises_VideoUrl => "Video URL";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -323,6 +335,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Mô tả"
 	@override
 	String get programs_Description => "Mô tả";
+	/// "Nhập tên chương trình"
+	@override
+	String get programs_SearchHint => "Nhập tên chương trình";
 	/// "Hành động"
 	@override
 	String get common_Actions => "Hành động";
@@ -380,6 +395,21 @@ class _I18n_vi_VN extends I18n {
 	/// "Độ khó của chương trình"
 	@override
 	String get filter_WorkoutLevel => "Độ khó của chương trình";
+	/// "Danh sách bài tập"
+	@override
+	String get exercises_ExerciseList => "Danh sách bài tập";
+	/// "Nhập tên bài tập"
+	@override
+	String get exercises_SearchHint => "Nhập tên bài tập";
+	/// "Chương trình"
+	@override
+	String get exercises_Program => "Chương trình";
+	/// "Mã chương trình"
+	@override
+	String get exercises_ProgramId => "Mã chương trình";
+	/// "Đường dẫn video"
+	@override
+	String get exercises_VideoUrl => "Đường dẫn video";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

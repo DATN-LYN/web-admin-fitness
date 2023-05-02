@@ -5,7 +5,7 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_c
 import 'package:web_admin_fitness/global/models/category_filter_data.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/widgets/categories_list_view.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/widgets/categories_table_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/categories/widgets/search_bar_category.dart';
+import 'package:web_admin_fitness/modules/main/modules/categories/widgets/category_search_bar.dart';
 
 import '../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../global/gen/i18n.dart';
@@ -64,15 +64,17 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
           children: [
             const CategoriesOverview(),
             SizedBox(height: responsive.adap(20.0, 32.0)),
-            Text(
-              i18n.categories_CategoryList,
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
+            if (!isDesktopView) ...[
+              Text(
+                i18n.categories_CategoryList,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            SearchBarCategory(
+              const SizedBox(height: 16),
+            ],
+            CategorySearchBar(
               onChanged: (newReq) =>
                   handleFilterChange(newReq as GGetCategoriesReq),
               request: GGetCategoriesReq(

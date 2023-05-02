@@ -152,7 +152,6 @@ abstract class GUpsertExerciseInputDto
   String get imgUrl;
   double get duration;
   String get videoUrl;
-  double get set;
   double get calo;
   static Serializer<GUpsertExerciseInputDto> get serializer =>
       _$gUpsertExerciseInputDtoSerializer;
