@@ -41,7 +41,7 @@ class _MenuRailState extends State<MenuRail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: widget.isMobile ? 50 : 0),
+            SizedBox(height: widget.isMobile ? 50 : 30),
             MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(

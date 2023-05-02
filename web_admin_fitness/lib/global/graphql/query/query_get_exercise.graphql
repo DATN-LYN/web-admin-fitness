@@ -1,0 +1,13 @@
+query GetExercise($programId: String!) {
+  getExercise(programId: $programId) {
+    id
+    name
+    imgUrl
+    videoUrl
+    duration
+    calo
+    programId
+    createdAt
+    updatedAt
+  }
+}

@@ -56,7 +56,8 @@
         "calo":"calo",
         "programList": "Program List",
         "bodyPart":"Body Part",
-        "description":"Description"
+        "description":"Description",
+        "searchHint":"Enter program name"
     },
     "common_":{
         "actions":"Actions",
@@ -68,6 +69,7 @@
         "id":"ID",
         "name":"Name",
         "calo":"Calo"
+        
     },
     "main_":{
         "home":"Home",
@@ -91,8 +93,12 @@
     "filter_":{
         "filter":"Filter",
         "workoutLevel": "Workout Level"
+    },
+    "exercises_":{
+        "exerciseList": "Exercise List",
+        "searchHint": "Enter exercise name",
+        "program": "Program",
+        "programId":"Program ID",
+        "videoUrl": "Video URL"
     }
-
-
-
 }

@@ -1,0 +1,13 @@
+#import '../fragment/meta_fragment.graphql'
+#import '../fragment/exercise_fragment.graphql'
+
+query GetExercises($queryParams: QueryFilterDto!) {
+  getExercises(queryParams: $queryParams) {
+    meta {
+      ...Meta
+    }
+    items {
+      ...Exercise
+    }
+  }
+}

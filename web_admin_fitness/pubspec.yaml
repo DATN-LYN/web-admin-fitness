@@ -79,6 +79,7 @@ dependencies:
   sentry_link: ^0.1.2
   flutter_svg: ^2.0.5
   built_value: ^8.4.4
+  built_collection: ^5.1.1
 
 
 dev_dependencies:
