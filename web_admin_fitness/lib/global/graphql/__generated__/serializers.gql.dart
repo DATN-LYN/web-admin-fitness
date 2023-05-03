@@ -73,6 +73,12 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_
     show GProgramReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.var.gql.dart'
     show GProgramVars;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.data.gql.dart'
+    show GUserData;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.req.gql.dart'
+    show GUserReq;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.var.gql.dart'
+    show GUserVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.data.gql.dart'
     show
         GGetCategoriesData,
@@ -139,6 +145,16 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_p
     show GGetProgramsReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.var.gql.dart'
     show GGetProgramsVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.data.gql.dart'
+    show
+        GGetUsersData,
+        GGetUsersData_getUsers,
+        GGetUsersData_getUsers_items,
+        GGetUsersData_getUsers_meta;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart'
+    show GGetUsersReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.var.gql.dart'
+    show GGetUsersVars;
 import 'package:web_admin_fitness/global/utils/date_serializer.dart'
     show DateSerializer;
 
@@ -201,6 +217,12 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetProgramsData_getPrograms_meta,
   GGetProgramsReq,
   GGetProgramsVars,
+  GGetUsersData,
+  GGetUsersData_getUsers,
+  GGetUsersData_getUsers_items,
+  GGetUsersData_getUsers_meta,
+  GGetUsersReq,
+  GGetUsersVars,
   GInboxData,
   GInboxData_user,
   GInboxReq,
@@ -235,5 +257,8 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpsertExerciseInputDto,
   GUpsertInboxInputDto,
   GUpsertProgramInputDto,
+  GUserData,
+  GUserReq,
+  GUserVars,
 ])
 final Serializers serializers = _serializersBuilder.build();

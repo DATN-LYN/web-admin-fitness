@@ -77,7 +77,8 @@
         "programs":"Chương trình",
         "setting":"Cài đặt",
         "exercises":"Bài tập",
-        "inboxes":"Tin Nhắn"
+        "inboxes":"Tin Nhắn",
+        "users":"Người dùng"
     },
     "workoutLevel": [
         "Dễ", 
@@ -106,5 +107,10 @@
         "user": "Người dùng",
         "message": "Tin nhắn",
         "isSender": "Người gửi"
+    },
+    "users_":{
+        "userList": "Danh sách người dùng",
+        "searchHint": "Nhập tên người dùng"
+
     }
 }
