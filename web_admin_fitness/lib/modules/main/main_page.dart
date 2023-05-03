@@ -52,6 +52,12 @@ class _MainPageState extends State<MainPage> {
         route: const InboxesManagerRoute(),
       ),
       NavItem(
+        label: i18n.main_Users,
+        icon: Icons.account_circle_outlined,
+        selectedIcon: Icons.account_circle_rounded,
+        route: const UsersManagerRoute(),
+      ),
+      NavItem(
         label: i18n.main_Setting,
         icon: Icons.settings_outlined,
         selectedIcon: Icons.settings,

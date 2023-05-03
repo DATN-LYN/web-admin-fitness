@@ -160,6 +160,8 @@ class I18n implements WidgetsLocalizations {
 	String get main_Exercises => "Exercises";
 	/// "Inboxes"
 	String get main_Inboxes => "Inboxes";
+	/// "Users"
+	String get main_Users => "Users";
 	/// ["Beginner", "Intermediate", "Advanced"]
 	List<String> get workoutLevel => ["Beginner", "Intermediate", "Advanced"];
 	/// ["Upper", "Downer", "Abs", "Full Body"]
@@ -186,6 +188,12 @@ class I18n implements WidgetsLocalizations {
 	String get inboxes_Message => "Message";
 	/// "Is Sender"
 	String get inboxes_IsSender => "Is Sender";
+	/// "Enter user email"
+	String get inboxes_SearchHint => "Enter user email";
+	/// "User List"
+	String get users_UserList => "User List";
+	/// "Enter user email"
+	String get users_SearchHint => "Enter user email";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -391,6 +399,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Tin Nhắn"
 	@override
 	String get main_Inboxes => "Tin Nhắn";
+	/// "Người dùng"
+	@override
+	String get main_Users => "Người dùng";
 	/// ["Dễ", "Trung bình", "Khó"]
 	@override
 	List<String> get workoutLevel => ["Dễ", "Trung bình", "Khó"];
@@ -430,6 +441,12 @@ class _I18n_vi_VN extends I18n {
 	/// "Người gửi"
 	@override
 	String get inboxes_IsSender => "Người gửi";
+	/// "Danh sách người dùng"
+	@override
+	String get users_UserList => "Danh sách người dùng";
+	/// "Nhập tên người dùng"
+	@override
+	String get users_SearchHint => "Nhập tên người dùng";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

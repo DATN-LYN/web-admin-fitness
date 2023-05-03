@@ -153,6 +153,7 @@ abstract class GUpsertExerciseInputDto
   double get duration;
   String get videoUrl;
   double get calo;
+  String get programId;
   static Serializer<GUpsertExerciseInputDto> get serializer =>
       _$gUpsertExerciseInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
