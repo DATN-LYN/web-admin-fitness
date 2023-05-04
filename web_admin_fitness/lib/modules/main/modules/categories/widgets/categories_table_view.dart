@@ -93,20 +93,20 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
             tableData: categories,
             columnItems: [
               TableColumn(
-                label: 'id',
+                label: i18n.common_Id,
                 minimumWidth: 200,
                 columnWidthMode: ColumnWidthMode.fill,
                 itemValue: (e) => e.id,
               ),
               TableColumn(
-                label: 'Name',
+                label: i18n.common_Name,
                 itemValue: (e) => e.name,
                 minimumWidth: 100,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('name'),
               ),
               TableColumn(
-                  label: 'Image URL',
+                  label: i18n.common_ImageUrl,
                   // itemValue: (e) => e.imgUrl,
                   minimumWidth: 350,
                   columnWidthMode: ColumnWidthMode.fill,
@@ -136,7 +136,7 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
                     );
                   }),
               TableColumn(
-                label: 'Actions',
+                label: i18n.common_Actions,
                 align: Alignment.center,
                 width: 110,
                 cellBuilder: (e) {
@@ -144,7 +144,7 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
                     onPressed: () {},
                     icon: const Icon(Icons.remove_red_eye),
                     color: AppColors.grey4,
-                    tooltip: 'View Detail',
+                    tooltip: i18n.common_ViewDetail,
                   );
                 },
               ),

@@ -10,8 +10,8 @@ import '../../../../../../../../../global/graphql/__generated__/schema.schema.gq
 import '../../../../../../../../../global/themes/app_colors.dart';
 import '../../../../../../../../../global/widgets/filter/filter_text_field.dart';
 
-class SearchBarCategory extends StatefulWidget {
-  const SearchBarCategory({
+class CategorySearchBar extends StatefulWidget {
+  const CategorySearchBar({
     super.key,
     required this.onChanged,
     required this.request,
@@ -27,10 +27,10 @@ class SearchBarCategory extends StatefulWidget {
   final String searchField;
 
   @override
-  State<SearchBarCategory> createState() => _SearchBarCategoryState();
+  State<CategorySearchBar> createState() => _CategorySearchBarState();
 }
 
-class _SearchBarCategoryState extends State<SearchBarCategory> {
+class _CategorySearchBarState extends State<CategorySearchBar> {
   late dynamic filter = widget.initialFilter;
 
   void handleFilter(dynamic filterData) {

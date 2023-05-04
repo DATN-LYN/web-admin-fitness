@@ -1,21 +1,17 @@
-import 'dart:math';
-
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:side_sheet/side_sheet.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
-import 'package:web_admin_fitness/global/models/program_filter_data.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/program_filter_sheet.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.req.gql.dart';
+import 'package:web_admin_fitness/global/models/inbox_filter_data.dart';
 
-import '../../../../../../global/gen/i18n.dart';
-import '../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
-import '../../../../../../global/themes/app_colors.dart';
-import '../../../../../../global/widgets/filter/filter_text_field.dart';
+import '../../../../../../../../../global/gen/i18n.dart';
+import '../../../../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
+import '../../../../../../../../../global/themes/app_colors.dart';
+import '../../../../../../../../../global/widgets/filter/filter_text_field.dart';
 
-class ProgramSearchBar extends StatefulWidget {
-  const ProgramSearchBar({
+class InboxSearchBar extends StatefulWidget {
+  const InboxSearchBar({
     super.key,
     required this.onChanged,
     required this.request,
@@ -23,19 +19,19 @@ class ProgramSearchBar extends StatefulWidget {
     required this.searchField,
   });
 
-  final ValueChanged<GGetProgramsReq> onChanged;
-  final GGetProgramsReq request;
-  final ProgramFilterData initialFilter;
+  final ValueChanged<GGetInboxesReq> onChanged;
+  final GGetInboxesReq request;
+  final InboxFilterData initialFilter;
   final String searchField;
 
   @override
-  State<ProgramSearchBar> createState() => _ProgramSearchBarState();
+  State<InboxSearchBar> createState() => _InboxSearchBarState();
 }
 
-class _ProgramSearchBarState extends State<ProgramSearchBar> {
-  late ProgramFilterData filter = widget.initialFilter;
+class _InboxSearchBarState extends State<InboxSearchBar> {
+  late InboxFilterData filter = widget.initialFilter;
 
-  void handleFilter(ProgramFilterData filterData) {
+  void handleFilter(InboxFilterData filterData) {
     filter = filterData;
     final newFilters = widget.request.vars.queryParams.filters?.toList() ?? [];
 
@@ -90,18 +86,15 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
     }
 
     // filter by status
-    print(filterData);
-    newFilters.removeWhere((e) => e.field == 'Program.level');
-    if (filterData.levels.isNotEmpty) {
-      newFilters.add(
-        GFilterDto(
-          (b) => b
-            ..field = 'Program.level'
-            ..operator = GFILTER_OPERATOR.eq
-            ..data = filterData.levels.map((e) => e).join(','),
-        ),
-      );
-    }
+    // newFilters.removeWhere((e) => e.field == 'Remote.status');
+    // if (filterData.status.isNotEmpty) {
+    //   newFilters.add(
+    //     GFilterDto((b) => b
+    //       ..field = 'Remote.status'
+    //       ..operator = GFILTER_OPERATOR.eq
+    //       ..data = filterData.status.map((e) => e.name).join(',')),
+    //   );
+    // }
 
     widget.onChanged(widget.request.rebuild(
       (b) => b
@@ -124,7 +117,7 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
           Expanded(
             flex: 3,
             child: Text(
-              i18n.programs_ProgramList,
+              i18n.inboxes_InboxList,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
@@ -134,7 +127,7 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
         Expanded(
           flex: 1,
           child: FilterTextField(
-            hintText: i18n.programs_SearchHint,
+            hintText: i18n.exercises_SearchHint,
             onTextChange: (text) => handleFilter(
               filter.copyWith(keyword: text),
             ),
@@ -147,14 +140,14 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
           color: AppColors.grey6,
           child: IconButton(
             onPressed: () async {
-              final newFilter = await SideSheet.right(
-                body: ProgramFilterSheet(programFilterData: filter),
-                context: context,
-                width: min(
-                  MediaQuery.of(context).size.width * 0.8,
-                  400,
-                ),
-              );
+              // final newFilter = await SideSheet.right(
+              //   body: RemoteFilterSheet(initialFilters: filter),
+              //   context: context,
+              //   width: min(
+              //     MediaQuery.of(context).size.width * 0.8,
+              //     400,
+              //   ),
+              // );
 
               // * (Optional) show dialog on mobile
               // await showDialog(
@@ -171,9 +164,9 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
               //   ),
               // )
 
-              if (newFilter is ProgramFilterData) {
-                handleFilter(newFilter);
-              }
+              // if (newFilter is RemoteFilterData) {
+              //   handleFilter(newFilter);
+              // }
             },
             icon: const Icon(
               Icons.sort,

@@ -1,40 +1,40 @@
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
-import 'package:web_admin_fitness/global/models/program_filter_data.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/program_search_bar.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_list_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_overview.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_table_view.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.req.gql.dart';
+import 'package:web_admin_fitness/global/models/inbox_filter_data.dart';
+import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inboxes_list_view.dart';
+import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inboxes_overview.dart';
+import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inboxes_search_bar.dart';
+import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inboxes_table_view.dart';
 
 import '../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../global/gen/i18n.dart';
 import '../../../../global/utils/constants.dart';
 import '../../../../global/widgets/responsive/responsive_page_builder.dart';
 
-class ProgramsManagerPage extends StatefulWidget {
-  const ProgramsManagerPage({super.key});
+class InboxesManagerPage extends StatefulWidget {
+  const InboxesManagerPage({super.key});
 
   @override
-  State<ProgramsManagerPage> createState() => _ProgramsManagerPageState();
+  State<InboxesManagerPage> createState() => _InboxesManagerPageState();
 }
 
-class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
-  final initialFilter = const ProgramFilterData();
+class _InboxesManagerPageState extends State<InboxesManagerPage> {
+  final initialFilter = const InboxFilterData();
 
-  late var getProgramsReq = GGetProgramsReq(
+  late var getInboxesReq = GGetInboxesReq(
     (b) => b
-      ..requestId = '@getProgramsRequestId'
+      ..requestId = '@getInboxesReq'
       ..fetchPolicy = FetchPolicy.CacheAndNetwork
       ..vars.queryParams.page = 1
       ..vars.queryParams.limit = Constants.defaultLimit
-      ..vars.queryParams.orderBy = 'Program.createdAt:DESC',
+      ..vars.queryParams.orderBy = 'Inbox.createdAt:DESC',
   );
 
   void refreshHandler() {
     setState(() {
-      getProgramsReq = getProgramsReq.rebuild(
+      getInboxesReq = getInboxesReq.rebuild(
         (b) => b
           ..vars.queryParams.page = 1
           ..updateResult = ((previous, result) => result),
@@ -42,9 +42,9 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
     });
   }
 
-  void handleFilterChange(GGetProgramsReq newReq) {
+  void handleFilterChange(GGetInboxesReq newReq) {
     setState(
-      () => getProgramsReq = getProgramsReq.rebuild((b) => b
+      () => getInboxesReq = getInboxesReq.rebuild((b) => b
         ..vars.queryParams.filters =
             newReq.vars.queryParams.filters?.toBuilder()),
     );
@@ -62,11 +62,11 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const ProgramsOverview(),
+            const InboxesOverview(),
             SizedBox(height: responsive.adap(20.0, 32.0)),
             if (!isDesktopView) ...[
               Text(
-                i18n.programs_ProgramList,
+                i18n.inboxes_InboxList,
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -74,33 +74,29 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
               ),
               const SizedBox(height: 16),
             ],
-            ProgramSearchBar(
+            InboxSearchBar(
               onChanged: (newReq) => handleFilterChange(newReq),
-              request: GGetProgramsReq(
+              request: GGetInboxesReq(
                 (b) => b
                   ..vars.queryParams =
-                      getProgramsReq.vars.queryParams.toBuilder(),
+                      getInboxesReq.vars.queryParams.toBuilder(),
               ),
               initialFilter: initialFilter,
-              searchField: 'Program.name',
+              searchField: 'Exercise.name',
             ),
           ],
         ),
       ),
-      listView: ProgramsListView(
-        request: getProgramsReq,
+      listView: InboxesListView(
+        request: getInboxesReq,
       ),
-      tableView: ProgramsTableView(
-        getProgramsReq: getProgramsReq,
+      tableView: InboxesTableView(
+        getInboxesReq: getInboxesReq,
         onRequestChanged: (request) {
           setState(() {
-            getProgramsReq = request;
+            getInboxesReq = request;
           });
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
       ),
     );
   }

@@ -128,6 +128,8 @@ class I18n implements WidgetsLocalizations {
 	String get programs_BodyPart => "Body Part";
 	/// "Description"
 	String get programs_Description => "Description";
+	/// "Enter program name"
+	String get programs_SearchHint => "Enter program name";
 	/// "Actions"
 	String get common_Actions => "Actions";
 	/// "Not Found"
@@ -158,6 +160,8 @@ class I18n implements WidgetsLocalizations {
 	String get main_Exercises => "Exercises";
 	/// "Inboxes"
 	String get main_Inboxes => "Inboxes";
+	/// "Users"
+	String get main_Users => "Users";
 	/// ["Beginner", "Intermediate", "Advanced"]
 	List<String> get workoutLevel => ["Beginner", "Intermediate", "Advanced"];
 	/// ["Upper", "Downer", "Abs", "Full Body"]
@@ -166,6 +170,30 @@ class I18n implements WidgetsLocalizations {
 	String get filter_Filter => "Filter";
 	/// "Workout Level"
 	String get filter_WorkoutLevel => "Workout Level";
+	/// "Exercise List"
+	String get exercises_ExerciseList => "Exercise List";
+	/// "Enter exercise name"
+	String get exercises_SearchHint => "Enter exercise name";
+	/// "Program"
+	String get exercises_Program => "Program";
+	/// "Program ID"
+	String get exercises_ProgramId => "Program ID";
+	/// "Video URL"
+	String get exercises_VideoUrl => "Video URL";
+	/// "Inbox List"
+	String get inboxes_InboxList => "Inbox List";
+	/// "User"
+	String get inboxes_User => "User";
+	/// "Message"
+	String get inboxes_Message => "Message";
+	/// "Is Sender"
+	String get inboxes_IsSender => "Is Sender";
+	/// "Enter user email"
+	String get inboxes_SearchHint => "Enter user email";
+	/// "User List"
+	String get users_UserList => "User List";
+	/// "Enter user email"
+	String get users_SearchHint => "Enter user email";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -323,6 +351,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Mô tả"
 	@override
 	String get programs_Description => "Mô tả";
+	/// "Nhập tên chương trình"
+	@override
+	String get programs_SearchHint => "Nhập tên chương trình";
 	/// "Hành động"
 	@override
 	String get common_Actions => "Hành động";
@@ -368,6 +399,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Tin Nhắn"
 	@override
 	String get main_Inboxes => "Tin Nhắn";
+	/// "Người dùng"
+	@override
+	String get main_Users => "Người dùng";
 	/// ["Dễ", "Trung bình", "Khó"]
 	@override
 	List<String> get workoutLevel => ["Dễ", "Trung bình", "Khó"];
@@ -380,6 +414,39 @@ class _I18n_vi_VN extends I18n {
 	/// "Độ khó của chương trình"
 	@override
 	String get filter_WorkoutLevel => "Độ khó của chương trình";
+	/// "Danh sách bài tập"
+	@override
+	String get exercises_ExerciseList => "Danh sách bài tập";
+	/// "Nhập tên bài tập"
+	@override
+	String get exercises_SearchHint => "Nhập tên bài tập";
+	/// "Chương trình"
+	@override
+	String get exercises_Program => "Chương trình";
+	/// "Mã chương trình"
+	@override
+	String get exercises_ProgramId => "Mã chương trình";
+	/// "Đường dẫn video"
+	@override
+	String get exercises_VideoUrl => "Đường dẫn video";
+	/// "Danh sách tin nhắn"
+	@override
+	String get inboxes_InboxList => "Danh sách tin nhắn";
+	/// "Người dùng"
+	@override
+	String get inboxes_User => "Người dùng";
+	/// "Tin nhắn"
+	@override
+	String get inboxes_Message => "Tin nhắn";
+	/// "Người gửi"
+	@override
+	String get inboxes_IsSender => "Người gửi";
+	/// "Danh sách người dùng"
+	@override
+	String get users_UserList => "Danh sách người dùng";
+	/// "Nhập tên người dùng"
+	@override
+	String get users_SearchHint => "Nhập tên người dùng";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

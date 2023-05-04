@@ -57,7 +57,8 @@
         "calo":"calo",
         "programList": "Danh sách chương trình tập",
         "bodyPart":"Bộ phận",
-        "description":"Mô tả"
+        "description":"Mô tả",
+        "searchHint": "Nhập tên chương trình"
     },
     "common_":{
         "actions":"Hành động",
@@ -76,7 +77,8 @@
         "programs":"Chương trình",
         "setting":"Cài đặt",
         "exercises":"Bài tập",
-        "inboxes":"Tin Nhắn"
+        "inboxes":"Tin Nhắn",
+        "users":"Người dùng"
     },
     "workoutLevel": [
         "Dễ", 
@@ -92,9 +94,23 @@
     "filter_":{
         "filter":"Bộ lọc",
         "workoutLevel": "Độ khó của chương trình"
+    },
+    "exercises_":{
+        "exerciseList": "Danh sách bài tập",
+        "searchHint":"Nhập tên bài tập",
+        "program":"Chương trình",
+        "programId":"Mã chương trình",
+        "videoUrl": "Đường dẫn video"
+    },
+    "inboxes_":{
+        "inboxList": "Danh sách tin nhắn",
+        "user": "Người dùng",
+        "message": "Tin nhắn",
+        "isSender": "Người gửi"
+    },
+    "users_":{
+        "userList": "Danh sách người dùng",
+        "searchHint": "Nhập tên người dùng"
+
     }
-    
-
-
-    
 }

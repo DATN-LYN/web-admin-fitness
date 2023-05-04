@@ -1,63 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_error.dart';
 import 'package:web_admin_fitness/global/widgets/infinity_list.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/program_item.dart';
+import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercise_item.dart';
 
-class ProgramsListView extends StatelessWidget with ClientMixin {
-  ProgramsListView({
-    super.key,
-    required this.request,
-  });
+class ExercisesListView extends StatelessWidget with ClientMixin {
+  ExercisesListView({super.key, required this.request});
 
-  final GGetProgramsReq request;
+  final GGetExercisesReq request;
 
   @override
   Widget build(BuildContext context) {
-    var getProgramsReq = request;
+    var getCategoriesReq = request;
     final i18n = I18n.of(context)!;
 
     return InfinityList(
       client: client,
       request: request,
       loadMoreRequest: (response) {
-        final data = response?.data?.getPrograms;
+        final data = response?.data?.getExercises;
         if (data != null &&
             data.meta!.currentPage!.toDouble() <
                 data.meta!.totalPages!.toDouble()) {
-          getProgramsReq = request.rebuild(
+          getCategoriesReq = request.rebuild(
             (b) => b
               ..vars.queryParams.page = (b.vars.queryParams.page! + 1)
               ..updateResult = (previous, result) =>
                   previous?.rebuild(
-                    (b) => b.getPrograms
-                      ..meta = (result?.getPrograms.meta ??
-                              previous.getPrograms.meta)!
+                    (b) => b.getExercises
+                      ..meta = (result?.getExercises.meta ??
+                              previous.getExercises.meta)!
                           .toBuilder()
-                      ..items.addAll(result?.getPrograms.items ?? []),
+                      ..items.addAll(result?.getExercises.items ?? []),
                   ) ??
                   result,
           );
-          return getProgramsReq;
+          return getCategoriesReq;
         }
         return null;
       },
       refreshRequest: () {
-        getProgramsReq = getProgramsReq.rebuild(
+        getCategoriesReq = getCategoriesReq.rebuild(
           (b) => b
             ..vars.queryParams.page = 1
             ..updateResult = ((previous, result) => result),
         );
-        return getProgramsReq;
+        return getCategoriesReq;
       },
       builder: (context, response, error) {
         if ((response?.hasErrors == true ||
-                response?.data?.getPrograms.meta?.itemCount == 0) &&
-            getProgramsReq.vars.queryParams.page != 1) {
-          getProgramsReq = getProgramsReq.rebuild(
+                response?.data?.getExercises.meta?.itemCount == 0) &&
+            getCategoriesReq.vars.queryParams.page != 1) {
+          getCategoriesReq = getCategoriesReq.rebuild(
             (b) => b..vars.queryParams.page = b.vars.queryParams.page! - 1,
           );
         }
@@ -77,25 +74,25 @@ class ProgramsListView extends StatelessWidget with ClientMixin {
             separatorBuilder: (_, __) => const SizedBox(height: 16),
           );
         }
-        final data = response!.data!.getPrograms;
+        final data = response!.data!.getExercises;
         final hasMoreData = data.meta!.currentPage!.toDouble() <
             data.meta!.totalPages!.toDouble();
-        final programs = data.items;
+        final exercises = data.items;
 
-        if (programs?.isEmpty == true) {
+        if (exercises?.isEmpty == true) {
           return FitnessEmpty(
             title: i18n.common_NotFound,
           );
         }
 
         return ListView.separated(
-          itemCount: programs!.length + (hasMoreData ? 1 : 0),
+          itemCount: exercises!.length + (hasMoreData ? 1 : 0),
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           itemBuilder: (context, index) {
-            final item = programs[index];
-            return ProgramItem(program: item);
+            final item = exercises[index];
+            return ExerciseItem(exercise: item);
           },
-          separatorBuilder: (_, __) => const SizedBox(height: 16),
+          separatorBuilder: (_, __) => const SizedBox(height: 10),
         );
       },
     );

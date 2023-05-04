@@ -56,7 +56,8 @@
         "calo":"calo",
         "programList": "Program List",
         "bodyPart":"Body Part",
-        "description":"Description"
+        "description":"Description",
+        "searchHint":"Enter program name"
     },
     "common_":{
         "actions":"Actions",
@@ -68,6 +69,7 @@
         "id":"ID",
         "name":"Name",
         "calo":"Calo"
+        
     },
     "main_":{
         "home":"Home",
@@ -75,7 +77,8 @@
         "programs":"Programs",
         "setting":"Setting",
         "exercises":"Exercises",
-        "inboxes":"Inboxes"
+        "inboxes":"Inboxes",
+        "users":"Users"
     },
     "workoutLevel": [
         "Beginner", 
@@ -91,8 +94,23 @@
     "filter_":{
         "filter":"Filter",
         "workoutLevel": "Workout Level"
+    },
+    "exercises_":{
+        "exerciseList": "Exercise List",
+        "searchHint": "Enter exercise name",
+        "program": "Program",
+        "programId":"Program ID",
+        "videoUrl": "Video URL"
+    },
+    "inboxes_":{
+        "inboxList": "Inbox List",
+        "user": "User",
+        "message": "Message",
+        "isSender": "Is Sender",
+        "searchHint": "Enter user email"
+    },
+    "users_":{
+        "userList": "User List",
+        "searchHint": "Enter user email"
     }
-
-
-
 }

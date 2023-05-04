@@ -3,7 +3,8 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
@@ -12,34 +13,34 @@ import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 
 import '../../../../../global/gen/i18n.dart';
-import '../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 
-class UsersTableView extends StatefulWidget {
-  const UsersTableView({
+class ExercisesTableView extends StatefulWidget {
+  const ExercisesTableView({
     super.key,
-    required this.getUsersReq,
+    required this.getExercisesReq,
     required this.onRequestChanged,
   });
 
-  final GGetUsersReq getUsersReq;
-  final Function(GGetUsersReq) onRequestChanged;
+  final GGetExercisesReq getExercisesReq;
+  final Function(GGetExercisesReq) onRequestChanged;
 
   @override
-  State<UsersTableView> createState() => _UsersTableViewState();
+  State<ExercisesTableView> createState() => _ExercisesTableViewState();
 }
 
-class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
+class _ExercisesTableViewState extends State<ExercisesTableView>
+    with ClientMixin {
   String? orderBy;
 
   void handleOrderBy(String fieldName) {
-    if (orderBy == 'User.$fieldName:DESC') {
-      setState(() => orderBy = 'User.$fieldName:ASC');
+    if (orderBy == 'Exercise.$fieldName:DESC') {
+      setState(() => orderBy = 'Exercise.$fieldName:ASC');
     } else {
-      setState(() => orderBy = 'User.$fieldName:DESC');
+      setState(() => orderBy = 'Exercise.$fieldName:DESC');
     }
 
     widget.onRequestChanged(
-      widget.getUsersReq.rebuild(
+      widget.getExercisesReq.rebuild(
         (b) => b
           ..vars.queryParams.orderBy = b.vars.queryParams.orderBy = orderBy
           ..updateResult = ((previous, result) => result),
@@ -50,9 +51,9 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
   Widget sortButton(String fieldName) {
     return InkWell(
       onTap: () => handleOrderBy(fieldName),
-      child: orderBy == 'User.$fieldName:DESC'
+      child: orderBy == 'Exercise.$fieldName:DESC'
           ? Assets.icons.icSortDown.svg(width: 10, height: 10)
-          : orderBy == 'User.$fieldName:ASC'
+          : orderBy == 'Exercise.$fieldName:ASC'
               ? Assets.icons.icSortUpper.svg(width: 10, height: 10)
               : Assets.icons.icSort.svg(width: 12, height: 12),
     );
@@ -62,7 +63,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
   Widget build(BuildContext context) {
     final spacing = ResponsiveWrapper.of(context).adap(16.0, 24.0);
     final i18n = I18n.of(context)!;
-    var request = widget.getUsersReq;
+    var request = widget.getExercisesReq;
 
     return Padding(
       padding: EdgeInsets.fromLTRB(spacing, 0, spacing, spacing),
@@ -70,7 +71,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
         client: client,
         request: request,
         meta: (response) {
-          return response?.data?.getUsers.meta;
+          return response?.data?.getExercises.meta;
         },
         changeLimitRequest: (response, limit) {
           request = request.rebuild(
@@ -85,11 +86,11 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
           return request;
         },
         builder: (context, response, error) {
-          final data = response?.data?.getUsers;
-          final users = data?.items?.toList() ?? <GUser>[];
+          final data = response?.data?.getExercises;
+          final exercises = data?.items?.toList() ?? <GExercise>[];
 
-          final dataSource = TableDataSource<GUser>(
-            tableData: users,
+          final dataSource = TableDataSource<GExercise>(
+            tableData: exercises,
             columnItems: [
               TableColumn(
                 label: i18n.common_Id,
@@ -97,25 +98,25 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 columnWidthMode: ColumnWidthMode.fill,
                 itemValue: (e) => e.id,
               ),
-              // TableColumn(
-              //   label: i18n.common_Name,
-              //   itemValue: (e) => e.fullName,
-              //   minimumWidth: 200,
-              //   columnWidthMode: ColumnWidthMode.fill,
-              //   action: sortButton('fullName'),
-              // ),
+              TableColumn(
+                label: i18n.common_Name,
+                itemValue: (e) => e.name,
+                minimumWidth: 200,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('name'),
+              ),
               TableColumn(
                 label: i18n.common_ImageUrl,
                 minimumWidth: 350,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('fullName'),
+                action: sortButton('imgUrl'),
                 cellBuilder: (e) {
                   return Padding(
                     padding: const EdgeInsets.all(4),
                     child: Row(
                       children: [
                         ShimmerImage(
-                          imageUrl: e.avatar ?? '',
+                          imageUrl: e.imgUrl ?? '',
                           height: 120,
                           width: 100,
                           borderRadius: BorderRadius.circular(12),
@@ -123,7 +124,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                         const SizedBox(width: 6),
                         Expanded(
                           child: Text(
-                            e.fullName ?? '-',
+                            e.imgUrl ?? '_',
                             overflow: TextOverflow.ellipsis,
                             maxLines: 3,
                             softWrap: true,
@@ -138,15 +139,29 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 label: i18n.programs_Calo,
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('email'),
-                itemValue: (e) => e.email.toString(),
+                action: sortButton('calo'),
+                itemValue: (e) => e.calo.toString(),
               ),
               TableColumn(
-                label: i18n.programs_Calo,
+                label: i18n.common_Duration,
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('age'),
-                itemValue: (e) => e.age.toString(),
+                action: sortButton('duration'),
+                itemValue: (e) => e.duration.toString(),
+              ),
+              TableColumn(
+                label: i18n.exercises_VideoUrl,
+                minimumWidth: 300,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('videoUrl'),
+                itemValue: (e) => e.videoUrl,
+              ),
+              TableColumn(
+                label: i18n.exercises_ProgramId,
+                minimumWidth: 220,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('programId'),
+                itemValue: (e) => e.programId,
               ),
               TableColumn(
                 label: i18n.common_Actions,

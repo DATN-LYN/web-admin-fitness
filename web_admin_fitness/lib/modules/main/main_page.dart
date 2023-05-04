@@ -40,6 +40,24 @@ class _MainPageState extends State<MainPage> {
         route: const ProgramsManagerRoute(),
       ),
       NavItem(
+        label: i18n.main_Exercises,
+        icon: Icons.sports_cricket_outlined,
+        selectedIcon: Icons.sports_cricket_rounded,
+        route: const ExercisesManagerRoute(),
+      ),
+      NavItem(
+        label: i18n.main_Inboxes,
+        icon: Icons.chat_bubble_outline_rounded,
+        selectedIcon: Icons.chat_bubble_outlined,
+        route: const InboxesManagerRoute(),
+      ),
+      NavItem(
+        label: i18n.main_Users,
+        icon: Icons.account_circle_outlined,
+        selectedIcon: Icons.account_circle_rounded,
+        route: const UsersManagerRoute(),
+      ),
+      NavItem(
         label: i18n.main_Setting,
         icon: Icons.settings_outlined,
         selectedIcon: Icons.settings,

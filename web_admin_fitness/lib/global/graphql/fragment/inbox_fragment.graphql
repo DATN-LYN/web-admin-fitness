@@ -1,13 +1,13 @@
-# fragment Inbox on Inbox {
-#   id
-#   message
-#   userId
-#   user {
-#     id
-#     email
-#     avatar
-#   }
-#   isSender
-#   # createdAt
-#   # updatedAt
-# }
+fragment Inbox on Inbox {
+  id
+  message
+  userId
+  user {
+    id
+    email
+    avatar
+  }
+  isSender
+  createdAt
+  updatedAt
+}

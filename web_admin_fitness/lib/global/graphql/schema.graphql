@@ -23,7 +23,6 @@ type Exercise {
   duration: Float
   videoUrl: String
   imgUrl: String
-  set: Float
   calo: Float
   programId: String!
   program: Program
@@ -61,7 +60,6 @@ type IExercise {
   duration: Float
   videoUrl: String
   imgUrl: String
-  set: Float
   calo: Float
   programId: String!
   program: Program
@@ -118,6 +116,25 @@ type IPrograms {
   items: [Program!]
 }
 
+type IUser {
+  id: String
+  email: String!
+  fullName: String
+  password: String!
+  googleId: String
+  avatar: String
+  age: Float
+  refreshToken: String
+  roleId: String
+  role: Role
+  inboxes: [Inbox!]
+}
+
+type IUsers {
+  meta: Meta
+  items: [User!]
+}
+
 input LoginInputDto {
   accessToken: String
   expiresIn: String
@@ -143,13 +160,13 @@ type Meta {
 
 type Mutation {
   upsertExercise(input: UpsertExerciseInputDto!): IExercise!
+  upsertCategory(input: UpsertCategoryInputDto!): ICategory!
+  deleteCategory(categoryId: String!): ResponseMessageBase!
+  upsertProgram(input: UpsertProgramInputDto!): IProgram!
   register(input: RegisterInputDto!): ResponseMessageBase!
   logout(userId: String!): ResponseMessageBase!
   upsertInbox(input: UpsertInboxInputDto!): IInbox!
   deleteInbox(categoryId: String!): ResponseMessageBase!
-  upsertCategory(input: UpsertCategoryInputDto!): ICategory!
-  deleteCategory(categoryId: String!): ResponseMessageBase!
-  upsertProgram(input: UpsertProgramInputDto!): IProgram!
 }
 
 type Program {
@@ -169,17 +186,18 @@ type Program {
 type Query {
   getExercise(programId: String!): IExercise!
   getExercises(queryParams: QueryFilterDto!): IExercises!
+  getCategory(categoryId: String!): ICategory!
+  getCategories(queryParams: QueryFilterDto!): ICategories!
+  getProgram(programId: String!): IProgram!
+  getPrograms(queryParams: QueryFilterDto!): IPrograms!
   loginGoogle(input: LoginInputDto!): LoginResponseDto!
   login(input: LoginInputDto!): LoginResponseDto!
   refreshToken(refreshToken: String!): RefreshTokenResponseDto!
   getInbox(categoryId: String!): IInbox!
   getInboxes(queryParams: QueryFilterDto!): IInboxes!
   getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
-  getCategory(categoryId: String!): ICategory!
-  getCategories(queryParams: QueryFilterDto!): ICategories!
-  getProgram(programId: String!): IProgram!
-  getPrograms(queryParams: QueryFilterDto!): IPrograms!
-  getABC: Float!
+  getUser(userId: String!): IUser!
+  getUsers(queryParams: QueryFilterDto!): IUsers!
 }
 
 input QueryFilterDto {
@@ -219,8 +237,8 @@ input UpsertExerciseInputDto {
   imgUrl: String!
   duration: Float!
   videoUrl: String!
-  set: Float!
   calo: Float!
+  programId: String!
 }
 
 input UpsertInboxInputDto {
@@ -244,9 +262,11 @@ input UpsertProgramInputDto {
 type User {
   id: String
   email: String!
+  fullName: String
   password: String!
   googleId: String
   avatar: String
+  age: Float
   refreshToken: String
   roleId: String
   role: Role
