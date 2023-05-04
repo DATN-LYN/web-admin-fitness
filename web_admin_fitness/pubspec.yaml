@@ -58,7 +58,7 @@ dependencies:
   cached_network_image: ^3.2.3
   cloudinary_flutter: ^0.0.4
   cloudinary_public: ^0.20.0
-  image_picker: ^0.8.6+4
+  image_picker: ^0.8.7+4
   video_player: ^2.5.2
   riverpod: ^2.3.2
   responsive_framework: ^0.2.0
@@ -79,6 +79,8 @@ dependencies:
   sentry_link: ^0.1.2
   flutter_svg: ^2.0.5
   built_value: ^8.4.4
+  image_picker_web: ^3.0.0+1
+  image_picker_for_web: ^2.1.12
 
 
 dev_dependencies:
