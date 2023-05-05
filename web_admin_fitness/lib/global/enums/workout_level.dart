@@ -8,7 +8,7 @@ enum WorkoutLevel {
   intermediate(2),
   advanced(3);
 
-  final int value;
+  final double value;
   const WorkoutLevel(this.value);
 
   static WorkoutLevel getLevel(double levelNumber) {

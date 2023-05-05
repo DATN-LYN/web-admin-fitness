@@ -244,6 +244,54 @@ class I18n implements WidgetsLocalizations {
 	String get toast_Subtitle_UpdateCategory => "You have updated a category successfully";
 	/// "You have deleted a category successfully"
 	String get toast_Subtitle_DeleteCategory => "You have deleted a category successfully";
+	/// "You have created a new program successfully"
+	String get toast_Subtitle_CreateProgram => "You have created a new program successfully";
+	/// "You have updated a program successfully"
+	String get toast_Subtitle_UpdateProgram => "You have updated a program successfully";
+	/// "You have deleted a program successfully"
+	String get toast_Subtitle_DeleteProgram => "You have deleted a program successfully";
+	/// "Create new program"
+	String get upsertProgram_CreateNewTitle => "Create new program";
+	/// "Update program"
+	String get upsertProgram_UpdateTitle => "Update program";
+	/// "Are you sure you want to create a new program?"
+	String get upsertProgram_CreateNewDes => "Are you sure you want to create a new program?";
+	/// "Are you sure you want to update this program information?"
+	String get upsertProgram_UpdateDes => "Are you sure you want to update this program information?";
+	/// "Program Name"
+	String get upsertProgram_Name => "Program Name";
+	/// "Program Image"
+	String get upsertProgram_Image => "Program Image";
+	/// "Name is required"
+	String get upsertProgram_NameIsRequired => "Name is required";
+	/// "Image is required"
+	String get upsertProgram_ImageIsRequired => "Image is required";
+	/// "Input program name"
+	String get upsertProgram_NameHint => "Input program name";
+	/// "Choose program image"
+	String get upsertProgram_ImageHint => "Choose program image";
+	/// "Program ID"
+	String get upsertProgram_ID => "Program ID";
+	/// "Level"
+	String get upsertProgram_Level => "Level";
+	/// "Body Part"
+	String get upsertProgram_BodyPart => "Body Part";
+	/// "Category"
+	String get upsertProgram_Category => "Category";
+	/// "Choose category"
+	String get upsertProgram_CategoryHint => "Choose category";
+	/// "Level is required"
+	String get upsertProgram_LevelRequired => "Level is required";
+	/// "Body part is required"
+	String get upsertProgram_BodyPartRequired => "Body part is required";
+	/// "Category is required"
+	String get upsertProgram_CategoryRequired => "Category is required";
+	/// "Description is required"
+	String get upsertProgram_DescriptionRequired => "Description is required";
+	/// "Description"
+	String get upsertProgram_Description => "Description";
+	/// "Input program description"
+	String get upsertProgram_DescriptionHint => "Input program description";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -566,6 +614,69 @@ class _I18n_vi_VN extends I18n {
 	/// "Xoá thể loại thành công"
 	@override
 	String get toast_Subtitle_DeleteCategory => "Xoá thể loại thành công";
+	/// "Tạo chương trình mới"
+	@override
+	String get upsertProgram_CreateNewTitle => "Tạo chương trình mới";
+	/// "Cập nhật chương trình"
+	@override
+	String get upsertProgram_UpdateTitle => "Cập nhật chương trình";
+	/// "Bạn có chắc chắn muốn tạo chương trình mới?"
+	@override
+	String get upsertProgram_CreateNewDes => "Bạn có chắc chắn muốn tạo chương trình mới?";
+	/// "Bạn có chắc chắn muốn cập nhật thông tin chương trình?"
+	@override
+	String get upsertProgram_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin chương trình?";
+	/// "Tên chương trình"
+	@override
+	String get upsertProgram_Name => "Tên chương trình";
+	/// "Hình ảnh"
+	@override
+	String get upsertProgram_Image => "Hình ảnh";
+	/// "Bạn chưa nhập tên"
+	@override
+	String get upsertProgram_NameIsRequired => "Bạn chưa nhập tên";
+	/// "Bạn chưa chọn hình"
+	@override
+	String get upsertProgram_ImageIsRequired => "Bạn chưa chọn hình";
+	/// "Nhập tên chương trình"
+	@override
+	String get upsertProgram_NameHint => "Nhập tên chương trình";
+	/// "Chọn hình ảnh của chương trình"
+	@override
+	String get upsertProgram_ImageHint => "Chọn hình ảnh của chương trình";
+	/// "Mã chương trình"
+	@override
+	String get upsertProgram_ID => "Mã chương trình";
+	/// "Độ khó"
+	@override
+	String get upsertProgram_Level => "Độ khó";
+	/// "Vùng cơ thể"
+	@override
+	String get upsertProgram_BodyPart => "Vùng cơ thể";
+	/// "Thể loại"
+	@override
+	String get upsertProgram_Category => "Thể loại";
+	/// "Chọn thể loại"
+	@override
+	String get upsertProgram_CategoryHint => "Chọn thể loại";
+	/// "Bạn chưa chọn độ khó"
+	@override
+	String get upsertProgram_LevelRequired => "Bạn chưa chọn độ khó";
+	/// "Bạn chưa chọn vùng cơ thể"
+	@override
+	String get upsertProgram_BodyPartRequired => "Bạn chưa chọn vùng cơ thể";
+	/// "Bạn chưa chọn thể loại"
+	@override
+	String get upsertProgram_CategoryRequired => "Bạn chưa chọn thể loại";
+	/// "Bạn chưa nhập mô tả"
+	@override
+	String get upsertProgram_DescriptionRequired => "Bạn chưa nhập mô tả";
+	/// "Mô tả"
+	@override
+	String get upsertProgram_Description => "Mô tả";
+	/// "Nhập mô tả chương trình"
+	@override
+	String get upsertProgram_DescriptionHint => "Nhập mô tả chương trình";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

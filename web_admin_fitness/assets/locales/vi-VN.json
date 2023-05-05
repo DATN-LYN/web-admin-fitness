@@ -143,5 +143,29 @@
           "updateCategory": "Cập nhật thể loại thành công",
           "deleteCategory": "Xoá thể loại thành công"
         }
-      }
+    },
+      "upsertProgram_":{
+        "createNewTitle": "Tạo chương trình mới",
+        "updateTitle": "Cập nhật chương trình",
+        "createNewDes":"Bạn có chắc chắn muốn tạo chương trình mới?",
+        "updateDes": "Bạn có chắc chắn muốn cập nhật thông tin chương trình?",
+        "name": "Tên chương trình",
+        "image": "Hình ảnh",
+        "nameIsRequired": "Bạn chưa nhập tên",
+        "imageIsRequired": "Bạn chưa chọn hình",
+        "nameHint": "Nhập tên chương trình",
+        "imageHint": "Chọn hình ảnh của chương trình",
+        "ID": "Mã chương trình",
+        "level": "Độ khó",
+        "bodyPart": "Vùng cơ thể",
+        "category": "Thể loại",
+        "categoryHint": "Chọn thể loại",
+        "levelRequired": "Bạn chưa chọn độ khó",
+        "bodyPartRequired": "Bạn chưa chọn vùng cơ thể",
+        "categoryRequired": "Bạn chưa chọn thể loại",
+        "descriptionRequired": "Bạn chưa nhập mô tả",
+        "description": "Mô tả",
+        "descriptionHint": "Nhập mô tả chương trình"
+
+    }
 }

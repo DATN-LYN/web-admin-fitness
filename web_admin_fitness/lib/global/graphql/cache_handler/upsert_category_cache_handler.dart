@@ -17,15 +17,15 @@ class UpsertCategoryCacheHandler {
 
     if (upsertData.id != null) {
       final req = GCategoryReq((b) => b..idFields = {'id': upsertData.id});
-      final oldRemote = proxy.readFragment(req);
+      final oldCategory = proxy.readFragment(req);
 
       final newData = response.data != null
           ? GCategoryData.fromJson(response.data!.upsertCategory.toJson())
           : null;
-      if (newData != null && oldRemote != null) {
-        final updatedRemote = newData;
+      if (newData != null && oldCategory != null) {
+        final updatedCategory = newData;
 
-        proxy.writeFragment(req, updatedRemote);
+        proxy.writeFragment(req, updatedCategory);
       }
     }
   };

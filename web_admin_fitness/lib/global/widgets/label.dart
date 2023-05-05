@@ -15,7 +15,7 @@ class Label extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 7, top: 18),
+      padding: const EdgeInsets.only(bottom: 8, top: 16),
       child: Text.rich(
         TextSpan(
           text: data,

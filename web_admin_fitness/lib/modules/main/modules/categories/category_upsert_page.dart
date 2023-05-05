@@ -42,7 +42,7 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
   XFile? image;
   late final isCreateNew = widget.category == null;
 
-  void handleReset() async {
+  void handleReset() {
     setState(() {
       formKey = GlobalKey<FormBuilderState>();
       image = null;
@@ -192,8 +192,9 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
                           decoration: InputDecoration(
                             constraints: const BoxConstraints(minHeight: 48),
                             errorText: field.errorText,
+                            contentPadding: const EdgeInsets.all(16),
                           ),
-                          child: InkWell(
+                          child: GestureDetector(
                             child: Text(
                               !isCreateNew && image == null
                                   ? widget.category!.imgUrl!
