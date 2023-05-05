@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
 import 'package:web_admin_fitness/global/models/exercise_filter_data.dart';
+import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercise_search_bar.dart';
 import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercises_list_view.dart';
 import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercises_overview.dart';
@@ -97,6 +99,12 @@ class _ExercisesManagerPageState extends State<ExercisesManagerPage> {
             getExercisesReq = request;
           });
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.pushRoute(ExerciseUpsertRoute());
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

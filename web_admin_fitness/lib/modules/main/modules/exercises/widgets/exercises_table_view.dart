@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -13,6 +14,7 @@ import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 
 import '../../../../../global/gen/i18n.dart';
+import '../../../../../global/routers/app_router.dart';
 
 class ExercisesTableView extends StatefulWidget {
   const ExercisesTableView({
@@ -169,8 +171,10 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                 width: 120,
                 cellBuilder: (e) {
                   return IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.remove_red_eye),
+                    onPressed: () {
+                      context.pushRoute(ExerciseUpsertRoute(exercise: e));
+                    },
+                    icon: const Icon(Icons.edit),
                     color: AppColors.grey4,
                     tooltip: i18n.common_ViewDetail,
                   );

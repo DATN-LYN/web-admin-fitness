@@ -4,6 +4,7 @@ import 'package:web_admin_fitness/modules/main/main_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/accounts/users_manager_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/categories_manager_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/category_upsert_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/exercises/exercise_upsert_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/exercises/exercises_manager_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/home_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/inboxes/inboxes_manager_page.dart';
@@ -13,6 +14,7 @@ import 'package:web_admin_fitness/modules/main/modules/setting/setting_page.dart
 import '../../modules/login/login_page.dart';
 import '../../modules/main/modules/programs/programs_manager_page.dart';
 import '../graphql/fragment/__generated__/category_fragment.data.gql.dart';
+import '../graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/program_fragment.data.gql.dart';
 import 'nested_route.dart';
 import 'right_sheet_route_builder.dart';
@@ -69,6 +71,11 @@ part 'app_router.gr.dart';
     NestedRoute(
       page: ProgramUpsertPage,
       path: 'programUpsert',
+      customRouteBuilder: rightSheetBuilder,
+    ),
+    NestedRoute(
+      page: ExerciseUpsertPage,
+      path: 'exerciseUpsert',
       customRouteBuilder: rightSheetBuilder,
     ),
     // AutoRoute(
