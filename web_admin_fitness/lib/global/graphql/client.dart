@@ -1,6 +1,7 @@
 import 'package:ferry/ferry.dart';
 import 'package:ferry_hive_store/ferry_hive_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_category_cache_handler.dart';
 
 import '../../locator.dart';
 import '../services/hive_service.dart';
@@ -62,8 +63,7 @@ class AppClient {
         OperationType.mutation: FetchPolicy.NoCache,
       },
       updateCacheHandlers: {
-        // ToggleFavoriteLocationHandler.key:
-        //     ToggleFavoriteLocationHandler.handler,
+        UpsertCategoryCacheHandler.key: UpsertCategoryCacheHandler.handler,
         // MarkReadNotificationHandler.key: MarkReadNotificationHandler.handler,
         // MarkReadMessageHandler.key: MarkReadMessageHandler.handler,
         // DeleteMessageHandler.key: DeleteMessageHandler.handler,

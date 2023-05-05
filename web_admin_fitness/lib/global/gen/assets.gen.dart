@@ -3,16 +3,23 @@
 ///  FlutterGen
 /// *****************************************************
 
+import 'package:flutter/services.dart';
 // coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter/services.dart';
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
+
+  /// File path: assets/icons/ic_fitness.svg
+  SvgGenImage get icFitness => const SvgGenImage('assets/icons/ic_fitness.svg');
+
+  /// File path: assets/icons/ic_fitness_outline.svg
+  SvgGenImage get icFitnessOutline =>
+      const SvgGenImage('assets/icons/ic_fitness_outline.svg');
 
   /// File path: assets/icons/ic_sort.svg
   SvgGenImage get icSort => const SvgGenImage('assets/icons/ic_sort.svg');
@@ -26,7 +33,8 @@ class $AssetsIconsGen {
       const SvgGenImage('assets/icons/ic_sort_upper.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [icSort, icSortDown, icSortUpper];
+  List<SvgGenImage> get values =>
+      [icFitness, icFitnessOutline, icSort, icSortDown, icSortUpper];
 }
 
 class $AssetsImagesGen {
@@ -170,7 +178,7 @@ class SvgGenImage {
       colorFilter: colorFilter,
       color: color,
       colorBlendMode: colorBlendMode,
-      clipBehavior: clipBehavior,
+      clipBehavior: clipBehavior ?? Clip.hardEdge,
       cacheColorFilter: cacheColorFilter,
     );
   }

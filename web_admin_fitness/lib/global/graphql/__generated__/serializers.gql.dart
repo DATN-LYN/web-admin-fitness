@@ -79,6 +79,12 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fra
     show GUserReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.var.gql.dart'
     show GUserVars;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_category.data.gql.dart'
+    show GUpsertCategoryData, GUpsertCategoryData_upsertCategory;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_category.req.gql.dart'
+    show GUpsertCategoryReq;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_category.var.gql.dart'
+    show GUpsertCategoryVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.data.gql.dart'
     show
         GGetCategoriesData,
@@ -253,7 +259,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GRegisterInputDto,
   GRegisterReq,
   GRegisterVars,
+  GUpsertCategoryData,
+  GUpsertCategoryData_upsertCategory,
   GUpsertCategoryInputDto,
+  GUpsertCategoryReq,
+  GUpsertCategoryVars,
   GUpsertExerciseInputDto,
   GUpsertInboxInputDto,
   GUpsertProgramInputDto,

@@ -21,7 +21,8 @@ class GridColumnLabel extends StatelessWidget {
           Expanded(
             child: Text(
               label.toUpperCase(),
-              style: textTheme.titleSmall,
+              style:
+                  textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
             ),
           ),
           if (action != null) action!,

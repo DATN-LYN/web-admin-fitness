@@ -73,8 +73,8 @@ class CategoriesListView extends StatelessWidget with ClientMixin {
           );
         }
         final data = response!.data!.getCategories;
-        final hasMoreData = data.meta!.currentPage!.toDouble() <
-            data.meta!.totalPages!.toDouble();
+        // final hasMoreData = data.meta!.currentPage!.toDouble() <
+        // data.meta!.totalPages!.toDouble();
         final categories = data.items;
 
         if (categories?.isEmpty == true) {
@@ -90,7 +90,7 @@ class CategoriesListView extends StatelessWidget with ClientMixin {
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
           ),
-          itemCount: categories!.length + (hasMoreData ? 1 : 0),
+          itemCount: categories!.length,
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           itemBuilder: (context, index) {
             final item = categories[index];

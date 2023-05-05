@@ -21,7 +21,9 @@
         "cancel": "Cancel",
         "ok": "OK",
         "apply": "Apply",
-        "confirm":"Confirm"
+        "confirm":"Confirm",
+        "reset":"Reset",
+        "save": "Save"
     },
     "setting_":{
         "title":"Setting",
@@ -63,12 +65,16 @@
         "actions":"Actions",
         "notFound":"Not Found",
         "viewDetail":"View Detail",
+        "updateData":"Update Data",
         "duration": "Duration",
         "level": "Level",
         "imageUrl": "Image URL",
         "id":"ID",
         "name":"Name",
-        "calo":"Calo"
+        "calo":"Calo",
+        "cameraPermissionRequest": "{appName} would like to use your camera for your scan document.",
+        "photoPermissionRequest": "{appName} requires access to the photo library for you to be able to upload photos for your print document.",
+        "storagePermissionRequest": "{appName} requires access to the storage for you to be able to save your print document."
         
     },
     "main_":{
@@ -112,5 +118,32 @@
     "users_":{
         "userList": "User List",
         "searchHint": "Enter user email"
+    },
+    "upsertCategory_":{
+        "createNewTitle": "Create new category",
+        "updateTitle": "Update category",
+        "createNewDes":"Are you sure you want to create a new category?",
+        "updateDes": "Are you sure you want to update this category information?",
+        "categoryName": "Category Name",
+        "categoryImage": "Category Image",
+        "nameIsRequired": "Name is required",
+        "imageIsRequired": "Image is required",
+        "nameHint": "Input category name",
+        "imageHint": "Choose category image",
+        "categoryID": "Category ID"
+    },
+    "toast_": {
+        "title_": {
+          "success": "Success",
+          "error": "Error",
+          "warning": "Warning"
+        },
+        "subtitle_": {
+          "error": "Something went wrong, please try again",
+          "invalidInformation": "Your information is not valid, please try again",
+          "createCategory": "You have created a new category successfully",
+          "updateCategory": "You have updated a category successfully",
+          "deleteCategory": "You have deleted a category successfully"
+        }
     }
 }

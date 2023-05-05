@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -13,6 +14,7 @@ import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 
 import '../../../../../global/gen/i18n.dart';
+import '../../../../../global/routers/app_router.dart';
 
 class CategoriesTableView extends StatefulWidget {
   const CategoriesTableView({
@@ -61,7 +63,7 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
 
   @override
   Widget build(BuildContext context) {
-    final spacing = ResponsiveWrapper.of(context).adap(16.0, 24.0);
+    final spacing = ResponsiveWrapper.of(context).adap(16.0, 20.0);
     final i18n = I18n.of(context)!;
     var request = widget.getCategoriesReq;
 
@@ -107,8 +109,7 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
               ),
               TableColumn(
                   label: i18n.common_ImageUrl,
-                  // itemValue: (e) => e.imgUrl,
-                  minimumWidth: 350,
+                  minimumWidth: 500,
                   columnWidthMode: ColumnWidthMode.fill,
                   action: sortButton('imgUrl'),
                   cellBuilder: (e) {
@@ -120,9 +121,9 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
                             imageUrl: e.imgUrl ?? '',
                             height: 120,
                             width: 100,
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          const SizedBox(width: 6),
+                          const SizedBox(width: 8),
                           Expanded(
                             child: Text(
                               e.imgUrl ?? '_',
@@ -138,13 +139,15 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
-                width: 110,
+                width: 120,
                 cellBuilder: (e) {
                   return IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.remove_red_eye),
+                    onPressed: () {
+                      context.pushRoute(CategoryUpsertRoute(category: e));
+                    },
+                    icon: const Icon(Icons.edit),
                     color: AppColors.grey4,
-                    tooltip: i18n.common_ViewDetail,
+                    tooltip: i18n.common_UpdateData,
                   );
                 },
               ),

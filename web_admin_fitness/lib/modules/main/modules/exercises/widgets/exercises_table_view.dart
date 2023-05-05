@@ -166,7 +166,7 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
-                width: 110,
+                width: 120,
                 cellBuilder: (e) {
                   return IconButton(
                     onPressed: () {},

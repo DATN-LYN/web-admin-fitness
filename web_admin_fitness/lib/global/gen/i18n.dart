@@ -70,6 +70,10 @@ class I18n implements WidgetsLocalizations {
 	String get button_Apply => "Apply";
 	/// "Confirm"
 	String get button_Confirm => "Confirm";
+	/// "Reset"
+	String get button_Reset => "Reset";
+	/// "Save"
+	String get button_Save => "Save";
 	/// "Setting"
 	String get setting_Title => "Setting";
 	/// "Language"
@@ -136,6 +140,8 @@ class I18n implements WidgetsLocalizations {
 	String get common_NotFound => "Not Found";
 	/// "View Detail"
 	String get common_ViewDetail => "View Detail";
+	/// "Update Data"
+	String get common_UpdateData => "Update Data";
 	/// "Duration"
 	String get common_Duration => "Duration";
 	/// "Level"
@@ -148,6 +154,12 @@ class I18n implements WidgetsLocalizations {
 	String get common_Name => "Name";
 	/// "Calo"
 	String get common_Calo => "Calo";
+	/// "${appName} would like to use your camera for your scan document."
+	String common_CameraPermissionRequest(String appName) => "${appName} would like to use your camera for your scan document.";
+	/// "${appName} requires access to the photo library for you to be able to upload photos for your print document."
+	String common_PhotoPermissionRequest(String appName) => "${appName} requires access to the photo library for you to be able to upload photos for your print document.";
+	/// "${appName} requires access to the storage for you to be able to save your print document."
+	String common_StoragePermissionRequest(String appName) => "${appName} requires access to the storage for you to be able to save your print document.";
 	/// "Home"
 	String get main_Home => "Home";
 	/// "Categories"
@@ -194,6 +206,44 @@ class I18n implements WidgetsLocalizations {
 	String get users_UserList => "User List";
 	/// "Enter user email"
 	String get users_SearchHint => "Enter user email";
+	/// "Create new category"
+	String get upsertCategory_CreateNewTitle => "Create new category";
+	/// "Update category"
+	String get upsertCategory_UpdateTitle => "Update category";
+	/// "Are you sure you want to create a new category?"
+	String get upsertCategory_CreateNewDes => "Are you sure you want to create a new category?";
+	/// "Are you sure you want to update this category information?"
+	String get upsertCategory_UpdateDes => "Are you sure you want to update this category information?";
+	/// "Category Name"
+	String get upsertCategory_CategoryName => "Category Name";
+	/// "Category Image"
+	String get upsertCategory_CategoryImage => "Category Image";
+	/// "Name is required"
+	String get upsertCategory_NameIsRequired => "Name is required";
+	/// "Image is required"
+	String get upsertCategory_ImageIsRequired => "Image is required";
+	/// "Input category name"
+	String get upsertCategory_NameHint => "Input category name";
+	/// "Choose category image"
+	String get upsertCategory_ImageHint => "Choose category image";
+	/// "Category ID"
+	String get upsertCategory_CategoryID => "Category ID";
+	/// "Success"
+	String get toast_Title_Success => "Success";
+	/// "Error"
+	String get toast_Title_Error => "Error";
+	/// "Warning"
+	String get toast_Title_Warning => "Warning";
+	/// "Something went wrong, please try again"
+	String get toast_Subtitle_Error => "Something went wrong, please try again";
+	/// "Your information is not valid, please try again"
+	String get toast_Subtitle_InvalidInformation => "Your information is not valid, please try again";
+	/// "You have created a new category successfully"
+	String get toast_Subtitle_CreateCategory => "You have created a new category successfully";
+	/// "You have updated a category successfully"
+	String get toast_Subtitle_UpdateCategory => "You have updated a category successfully";
+	/// "You have deleted a category successfully"
+	String get toast_Subtitle_DeleteCategory => "You have deleted a category successfully";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -264,6 +314,12 @@ class _I18n_vi_VN extends I18n {
 	/// "Xác nhận"
 	@override
 	String get button_Confirm => "Xác nhận";
+	/// "Đặt lại"
+	@override
+	String get button_Reset => "Đặt lại";
+	/// "Lưu"
+	@override
+	String get button_Save => "Lưu";
 	/// "Cài đặt"
 	@override
 	String get setting_Title => "Cài đặt";
@@ -363,6 +419,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Xem chi tiết"
 	@override
 	String get common_ViewDetail => "Xem chi tiết";
+	/// "Cập nhật dữ liệu"
+	@override
+	String get common_UpdateData => "Cập nhật dữ liệu";
 	/// "Thời gian"
 	@override
 	String get common_Duration => "Thời gian";
@@ -381,6 +440,15 @@ class _I18n_vi_VN extends I18n {
 	/// "Calo"
 	@override
 	String get common_Calo => "Calo";
+	/// "${appName} would like to use your camera for your scan document."
+	@override
+	String common_CameraPermissionRequest(String appName) => "${appName} would like to use your camera for your scan document.";
+	/// "${appName} requires access to the photo library for you to be able to upload photos for your print document."
+	@override
+	String common_PhotoPermissionRequest(String appName) => "${appName} requires access to the photo library for you to be able to upload photos for your print document.";
+	/// "${appName} requires access to the storage for you to be able to save your print document."
+	@override
+	String common_StoragePermissionRequest(String appName) => "${appName} requires access to the storage for you to be able to save your print document.";
 	/// "Trang chủ"
 	@override
 	String get main_Home => "Trang chủ";
@@ -447,6 +515,57 @@ class _I18n_vi_VN extends I18n {
 	/// "Nhập tên người dùng"
 	@override
 	String get users_SearchHint => "Nhập tên người dùng";
+	/// "Tạo thể loại mới"
+	@override
+	String get upsertCategory_CreateNewTitle => "Tạo thể loại mới";
+	/// "Bạn có chắc chắn muốn tạo thể loại mới?"
+	@override
+	String get upsertCategory_CreateNewDes => "Bạn có chắc chắn muốn tạo thể loại mới?";
+	/// "Tên thể loại"
+	@override
+	String get upsertCategory_CategoryName => "Tên thể loại";
+	/// "Hình ảnh thể loại"
+	@override
+	String get upsertCategory_CategoryImage => "Hình ảnh thể loại";
+	/// "Bạn chưa nhập tên"
+	@override
+	String get upsertCategory_NameIsRequired => "Bạn chưa nhập tên";
+	/// "Bạn chưa chọn hình ảnh"
+	@override
+	String get upsertCategory_ImageIsRequired => "Bạn chưa chọn hình ảnh";
+	/// "Nhập tên thể loại"
+	@override
+	String get upsertCategory_NameHint => "Nhập tên thể loại";
+	/// "Chọn hình ảnh thể loại"
+	@override
+	String get upsertCategory_ImageHint => "Chọn hình ảnh thể loại";
+	/// "Mã thể loại"
+	@override
+	String get upsertCategory_CategoryID => "Mã thể loại";
+	/// "Thành công"
+	@override
+	String get toast_Title_Success => "Thành công";
+	/// "Lỗi"
+	@override
+	String get toast_Title_Error => "Lỗi";
+	/// "Cảnh báo"
+	@override
+	String get toast_Title_Warning => "Cảnh báo";
+	/// "Đã có lỗi, hãy thử lại"
+	@override
+	String get toast_Subtitle_Error => "Đã có lỗi, hãy thử lại";
+	/// "Thông tin của bạn chưa hợp lệ, hãy kiểm tra lại"
+	@override
+	String get toast_Subtitle_InvalidInformation => "Thông tin của bạn chưa hợp lệ, hãy kiểm tra lại";
+	/// "Tạo thể loại mới thành công"
+	@override
+	String get toast_Subtitle_CreateCategory => "Tạo thể loại mới thành công";
+	/// "Cập nhật thể loại thành công"
+	@override
+	String get toast_Subtitle_UpdateCategory => "Cập nhật thể loại thành công";
+	/// "Xoá thể loại thành công"
+	@override
+	String get toast_Subtitle_DeleteCategory => "Xoá thể loại thành công";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

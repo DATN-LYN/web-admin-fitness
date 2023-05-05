@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/models/category_filter_data.dart';
+import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/widgets/categories_list_view.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/widgets/categories_table_view.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/widgets/category_search_bar.dart';
@@ -44,9 +46,11 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
 
   void handleFilterChange(GGetCategoriesReq newReq) {
     setState(
-      () => getCategoriesReq = getCategoriesReq.rebuild((b) => b
-        ..vars.queryParams.filters =
-            newReq.vars.queryParams.filters?.toBuilder()),
+      () => getCategoriesReq = getCategoriesReq.rebuild(
+        (b) => b
+          ..vars.queryParams.filters =
+              newReq.vars.queryParams.filters?.toBuilder(),
+      ),
     );
   }
 
@@ -58,12 +62,12 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
 
     return ResponsivePageBuilder(
       header: Padding(
-        padding: EdgeInsets.all(responsive.adap(16.0, 24.0)),
+        padding: EdgeInsets.all(responsive.adap(16.0, 20.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CategoriesOverview(),
-            SizedBox(height: responsive.adap(20.0, 32.0)),
+            SizedBox(height: responsive.adap(20.0, 26.0)),
             if (!isDesktopView) ...[
               Text(
                 i18n.categories_CategoryList,
@@ -84,6 +88,7 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
               ),
               initialFilter: initialFilter,
               searchField: 'Category.name',
+              title: i18n.categories_CategoryList,
             ),
           ],
         ),
@@ -97,6 +102,19 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
           setState(() {
             getCategoriesReq = request;
           });
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: 'upsertCategory',
+        child: const Icon(Icons.add),
+        onPressed: () {
+          context.pushRoute(CategoryUpsertRoute()).then(
+            (value) {
+              if (value != null) {
+                refreshHandler();
+              }
+            },
+          );
         },
       ),
     );

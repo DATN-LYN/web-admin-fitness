@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/modules/main/main_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/accounts/users_manager_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/categories_manager_page.dart';
@@ -10,7 +11,9 @@ import 'package:web_admin_fitness/modules/main/modules/setting/setting_page.dart
 
 import '../../modules/login/login_page.dart';
 import '../../modules/main/modules/programs/programs_manager_page.dart';
+import '../graphql/fragment/__generated__/category_fragment.data.gql.dart';
 import 'nested_route.dart';
+import 'right_sheet_route_builder.dart';
 
 part 'app_router.gr.dart';
 
@@ -37,12 +40,6 @@ part 'app_router.gr.dart';
         NestedRoute(
           page: CategoriesManagerPage,
           path: 'categories',
-          children: [
-            NestedRoute(
-              page: CategoryUpsertPage,
-              path: 'categoryUpsert',
-            ),
-          ],
         ),
         NestedRoute(
           page: ProgramsManagerPage,
@@ -61,6 +58,11 @@ part 'app_router.gr.dart';
           path: 'users',
         ),
       ],
+    ),
+    NestedRoute(
+      page: CategoryUpsertPage,
+      path: 'categoryUpsert',
+      customRouteBuilder: rightSheetBuilder,
     ),
     // AutoRoute(
     //   page: MainPage,

@@ -41,14 +41,14 @@ class _MainPageState extends State<MainPage> {
       ),
       NavItem(
         label: i18n.main_Exercises,
-        icon: Icons.sports_cricket_outlined,
-        selectedIcon: Icons.sports_cricket_rounded,
+        icon: Icons.video_collection_outlined,
+        selectedIcon: Icons.video_collection_rounded,
         route: const ExercisesManagerRoute(),
       ),
       NavItem(
         label: i18n.main_Inboxes,
-        icon: Icons.chat_bubble_outline_rounded,
-        selectedIcon: Icons.chat_bubble_outlined,
+        icon: Icons.message_outlined,
+        selectedIcon: Icons.message_rounded,
         route: const InboxesManagerRoute(),
       ),
       NavItem(

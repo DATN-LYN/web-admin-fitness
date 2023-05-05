@@ -21,7 +21,9 @@
         "cancel": "Huỷ bỏ",
         "ok": "Đồng ý",
         "apply": "Áp dụng",
-        "confirm":"Xác nhận"
+        "confirm":"Xác nhận",
+        "reset":"Đặt lại",
+        "save": "Lưu"
     },
     "setting_":{
         "title":"Cài đặt",
@@ -64,12 +66,16 @@
         "actions":"Hành động",
         "notFound":"Không tìm thấy",
         "viewDetail":"Xem chi tiết",
+        "updateData":"Cập nhật dữ liệu",
         "duration": "Thời gian",
         "level": "Độ khó",
         "imageUrl": "Đường dẫn hình ảnh",
         "id":"ID",
         "name":"Tên",
-        "calo":"Calo"
+        "calo":"Calo",
+        "cameraPermissionRequest": "{appName} would like to use your camera for your scan document.",
+        "photoPermissionRequest": "{appName} requires access to the photo library for you to be able to upload photos for your print document.",
+        "storagePermissionRequest": "{appName} requires access to the storage for you to be able to save your print document."
     },
     "main_":{
         "home":"Trang chủ",
@@ -112,5 +118,30 @@
         "userList": "Danh sách người dùng",
         "searchHint": "Nhập tên người dùng"
 
-    }
+    },
+    "upsertCategory_":{
+        "createNewTitle": "Tạo thể loại mới",
+        "createNewDes":"Bạn có chắc chắn muốn tạo thể loại mới?",
+        "categoryName": "Tên thể loại",
+        "categoryImage": "Hình ảnh thể loại",
+        "nameIsRequired": "Bạn chưa nhập tên",
+        "imageIsRequired": "Bạn chưa chọn hình ảnh",
+        "nameHint": "Nhập tên thể loại",
+        "imageHint": "Chọn hình ảnh thể loại",
+        "categoryID": "Mã thể loại"
+    },
+    "toast_": {
+        "title_": {
+          "success": "Thành công",
+          "error": "Lỗi",
+          "warning": "Cảnh báo"
+        },
+        "subtitle_": {
+          "error": "Đã có lỗi, hãy thử lại",
+          "invalidInformation": "Thông tin của bạn chưa hợp lệ, hãy kiểm tra lại",
+          "createCategory": "Tạo thể loại mới thành công",
+          "updateCategory": "Cập nhật thể loại thành công",
+          "deleteCategory": "Xoá thể loại thành công"
+        }
+      }
 }

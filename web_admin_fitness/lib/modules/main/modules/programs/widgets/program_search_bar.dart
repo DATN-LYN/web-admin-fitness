@@ -90,7 +90,6 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
     }
 
     // filter by status
-    print(filterData);
     newFilters.removeWhere((e) => e.field == 'Program.level');
     if (filterData.levels.isNotEmpty) {
       newFilters.add(
