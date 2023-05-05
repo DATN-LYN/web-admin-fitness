@@ -14,6 +14,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/ic_fitness.svg
+  SvgGenImage get icFitness => const SvgGenImage('assets/icons/ic_fitness.svg');
+
+  /// File path: assets/icons/ic_fitness_outline.svg
+  SvgGenImage get icFitnessOutline =>
+      const SvgGenImage('assets/icons/ic_fitness_outline.svg');
+
   /// File path: assets/icons/ic_sort.svg
   SvgGenImage get icSort => const SvgGenImage('assets/icons/ic_sort.svg');
 
@@ -26,7 +33,8 @@ class $AssetsIconsGen {
       const SvgGenImage('assets/icons/ic_sort_upper.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [icSort, icSortDown, icSortUpper];
+  List<SvgGenImage> get values =>
+      [icFitness, icFitnessOutline, icSort, icSortDown, icSortUpper];
 }
 
 class $AssetsImagesGen {

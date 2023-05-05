@@ -57,8 +57,8 @@ dependencies:
   shimmer: ^2.0.0
   cached_network_image: ^3.2.3
   cloudinary_flutter: ^0.0.4
-  cloudinary_public: ^0.20.0
-  image_picker: ^0.8.6+4
+  cloudinary_public: ^0.21.0
+  image_picker: ^0.8.7+4
   video_player: ^2.5.2
   riverpod: ^2.3.2
   responsive_framework: ^0.2.0
@@ -80,6 +80,14 @@ dependencies:
   flutter_svg: ^2.0.5
   built_value: ^8.4.4
   built_collection: ^5.1.1
+  permission_handler: ^10.2.0
+  device_info_plus: ^8.2.2
+  app_settings: ^4.2.0
+  path: ^1.8.2
+  http: ^0.13.6
+  image_picker_web: ^3.0.0+1
+  path_provider: ^2.0.14
+  
 
 
 dev_dependencies:

@@ -14,7 +14,6 @@ class CategoriesOverview extends StatelessWidget {
     final responsive = ResponsiveWrapper.of(context);
     final gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: responsive.adap(2, 4),
-      crossAxisSpacing: responsive.adap(12, 24),
       mainAxisSpacing: 10,
       mainAxisExtent: 80,
     );
@@ -25,7 +24,6 @@ class CategoriesOverview extends StatelessWidget {
       const CardOverviewWidget(),
     ];
     return GridView.builder(
-      padding: const EdgeInsets.all(16),
       gridDelegate: gridDelegate,
       shrinkWrap: true,
       itemCount: items.length,

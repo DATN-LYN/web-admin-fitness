@@ -50,11 +50,11 @@ class AppThemes {
       inputDecorationTheme: InputDecorationTheme(
         isDense: true,
         constraints: const BoxConstraints(
-          minHeight: 40,
+          minHeight: 48,
         ),
         contentPadding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 10,
+          horizontal: 16,
+          vertical: 13,
         ),
         hintStyle: const TextStyle(
           fontSize: 14,
@@ -141,6 +141,22 @@ class AppThemes {
             color: Colors.red,
             fontWeight: FontWeight.w600,
             decoration: TextDecoration.underline,
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.grey1,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: const BorderSide(color: AppColors.grey1),
+          ),
+          minimumSize: const Size(48, 48),
+          textStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: AppColors.grey1,
           ),
         ),
       ),

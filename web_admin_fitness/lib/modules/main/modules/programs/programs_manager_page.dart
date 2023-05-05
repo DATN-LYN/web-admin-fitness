@@ -58,12 +58,12 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
 
     return ResponsivePageBuilder(
       header: Padding(
-        padding: EdgeInsets.all(responsive.adap(16.0, 24.0)),
+        padding: EdgeInsets.all(responsive.adap(16.0, 20.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const ProgramsOverview(),
-            SizedBox(height: responsive.adap(20.0, 32.0)),
+            SizedBox(height: responsive.adap(20.0, 26.0)),
             if (!isDesktopView) ...[
               Text(
                 i18n.programs_ProgramList,

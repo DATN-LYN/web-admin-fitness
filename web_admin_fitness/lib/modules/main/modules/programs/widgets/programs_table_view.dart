@@ -96,20 +96,20 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
             tableData: programs,
             columnItems: [
               TableColumn(
-                label: 'id',
+                label: i18n.common_Id,
                 minimumWidth: 200,
                 columnWidthMode: ColumnWidthMode.fill,
                 itemValue: (e) => e.id,
               ),
               TableColumn(
-                label: 'Name',
+                label: i18n.common_Name,
                 itemValue: (e) => e.name,
                 minimumWidth: 200,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('name'),
               ),
               TableColumn(
-                label: 'Image URL',
+                label: i18n.common_ImageUrl,
                 // itemValue: (e) => e.imgUrl,
                 minimumWidth: 350,
                 columnWidthMode: ColumnWidthMode.fill,
@@ -123,9 +123,9 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                           imageUrl: e.imgUrl ?? '',
                           height: 120,
                           width: 100,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        const SizedBox(width: 6),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: Text(
                             e.imgUrl ?? '_',
@@ -191,7 +191,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
-                width: 110,
+                width: 120,
                 cellBuilder: (e) {
                   return IconButton(
                     onPressed: () {},
