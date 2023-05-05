@@ -6,7 +6,7 @@ part 'program_filter_data.freezed.dart';
 class ProgramFilterData with _$ProgramFilterData {
   const factory ProgramFilterData([
     String? keyword,
-    @Default([]) List<int> bodyParts,
-    @Default([]) List<int> levels,
+    @Default([]) List<double> bodyParts,
+    @Default([]) List<double> levels,
   ]) = _ProgramFilterData;
 }

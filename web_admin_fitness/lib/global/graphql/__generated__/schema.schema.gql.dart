@@ -102,6 +102,8 @@ abstract class GRegisterInputDto
 
   String? get email;
   String? get password;
+  String? get avatar;
+  double? get age;
   static Serializer<GRegisterInputDto> get serializer =>
       _$gRegisterInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -208,6 +210,7 @@ abstract class GUpsertProgramInputDto
   double get bodyPart;
   String get description;
   String get imgUrl;
+  String get categoryId;
   static Serializer<GUpsertProgramInputDto> get serializer =>
       _$gUpsertProgramInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(

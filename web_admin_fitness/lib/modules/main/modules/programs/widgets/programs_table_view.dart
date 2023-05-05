@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -16,6 +17,7 @@ import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 import 'package:web_admin_fitness/global/widgets/tag.dart';
 
 import '../../../../../global/gen/i18n.dart';
+import '../../../../../global/routers/app_router.dart';
 
 class ProgramsTableView extends StatefulWidget {
   const ProgramsTableView({
@@ -194,8 +196,10 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                 width: 120,
                 cellBuilder: (e) {
                   return IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.remove_red_eye),
+                    onPressed: () {
+                      context.pushRoute(ProgramUpsertRoute(program: e));
+                    },
+                    icon: const Icon(Icons.edit),
                     color: AppColors.grey4,
                     tooltip: i18n.common_ViewDetail,
                   );

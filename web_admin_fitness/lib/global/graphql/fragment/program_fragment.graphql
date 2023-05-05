@@ -9,4 +9,5 @@ fragment Program on Program {
   imgUrl
   createdAt
   updatedAt
+  categoryId
 }

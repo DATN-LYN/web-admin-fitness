@@ -107,6 +107,8 @@ type IProgram {
   bodyPart: Float
   description: String
   imgUrl: String
+  categoryId: String!
+  category: Category
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -160,13 +162,13 @@ type Meta {
 
 type Mutation {
   upsertExercise(input: UpsertExerciseInputDto!): IExercise!
-  upsertCategory(input: UpsertCategoryInputDto!): ICategory!
-  deleteCategory(categoryId: String!): ResponseMessageBase!
-  upsertProgram(input: UpsertProgramInputDto!): IProgram!
   register(input: RegisterInputDto!): ResponseMessageBase!
   logout(userId: String!): ResponseMessageBase!
   upsertInbox(input: UpsertInboxInputDto!): IInbox!
   deleteInbox(categoryId: String!): ResponseMessageBase!
+  upsertCategory(input: UpsertCategoryInputDto!): ICategory!
+  deleteCategory(categoryId: String!): ResponseMessageBase!
+  upsertProgram(input: UpsertProgramInputDto!): IProgram!
 }
 
 type Program {
@@ -179,6 +181,8 @@ type Program {
   bodyPart: Float
   description: String
   imgUrl: String
+  categoryId: String!
+  category: Category
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -186,16 +190,16 @@ type Program {
 type Query {
   getExercise(programId: String!): IExercise!
   getExercises(queryParams: QueryFilterDto!): IExercises!
-  getCategory(categoryId: String!): ICategory!
-  getCategories(queryParams: QueryFilterDto!): ICategories!
-  getProgram(programId: String!): IProgram!
-  getPrograms(queryParams: QueryFilterDto!): IPrograms!
   loginGoogle(input: LoginInputDto!): LoginResponseDto!
   login(input: LoginInputDto!): LoginResponseDto!
   refreshToken(refreshToken: String!): RefreshTokenResponseDto!
   getInbox(categoryId: String!): IInbox!
   getInboxes(queryParams: QueryFilterDto!): IInboxes!
   getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
+  getCategory(categoryId: String!): Category!
+  getCategories(queryParams: QueryFilterDto!): ICategories!
+  getProgram(programId: String!): IProgram!
+  getPrograms(queryParams: QueryFilterDto!): IPrograms!
   getUser(userId: String!): IUser!
   getUsers(queryParams: QueryFilterDto!): IUsers!
 }
@@ -214,6 +218,8 @@ type RefreshTokenResponseDto {
 input RegisterInputDto {
   email: String
   password: String
+  avatar: String
+  age: Float
 }
 
 type ResponseMessageBase {
@@ -257,6 +263,7 @@ input UpsertProgramInputDto {
   bodyPart: Float!
   description: String!
   imgUrl: String!
+  categoryId: String!
 }
 
 type User {

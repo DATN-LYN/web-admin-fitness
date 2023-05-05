@@ -129,7 +129,7 @@ class AppThemes {
             return null;
           }
           if (states.contains(MaterialState.selected)) {
-            return AppColors.primary;
+            return AppColors.primaryBold;
           }
           return null;
         }),
@@ -174,6 +174,13 @@ class AppThemes {
             color: AppColors.grey1,
           ),
           minimumSize: const Size(48, 48),
+        ),
+      ),
+      textTheme: const TextTheme(
+        titleMedium: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+          color: AppColors.grey1,
         ),
       ),
     );

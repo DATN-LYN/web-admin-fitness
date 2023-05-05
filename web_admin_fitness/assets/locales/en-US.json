@@ -143,7 +143,34 @@
           "invalidInformation": "Your information is not valid, please try again",
           "createCategory": "You have created a new category successfully",
           "updateCategory": "You have updated a category successfully",
-          "deleteCategory": "You have deleted a category successfully"
+          "deleteCategory": "You have deleted a category successfully",
+          "createProgram": "You have created a new program successfully",
+          "updateProgram": "You have updated a program successfully",
+          "deleteProgram": "You have deleted a program successfully"
         }
+    },
+    "upsertProgram_":{
+        "createNewTitle": "Create new program",
+        "updateTitle": "Update program",
+        "createNewDes":"Are you sure you want to create a new program?",
+        "updateDes": "Are you sure you want to update this program information?",
+        "name": "Program Name",
+        "image": "Program Image",
+        "nameIsRequired": "Name is required",
+        "imageIsRequired": "Image is required",
+        "nameHint": "Input program name",
+        "imageHint": "Choose program image",
+        "ID": "Program ID",
+        "level": "Level",
+        "bodyPart": "Body Part",
+        "category": "Category",
+        "categoryHint": "Choose category",
+        "levelRequired": "Level is required",
+        "bodyPartRequired": "Body part is required",
+        "categoryRequired": "Category is required",
+        "descriptionRequired": "Description is required",
+        "description": "Description",
+        "descriptionHint": "Input program description"
+
     }
 }
