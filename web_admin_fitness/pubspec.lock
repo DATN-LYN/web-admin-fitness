@@ -750,14 +750,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.6.3"
-  image_picker_web:
-    dependency: "direct main"
-    description:
-      name: image_picker_web
-      sha256: "1185be1cf3cf2ccd99be3f2fd451647147fe512f09db0aad894438ab95a984eb"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0+1"
   internet_connection_checker:
     dependency: "direct main"
     description:
@@ -1471,10 +1463,10 @@ packages:
     dependency: "direct main"
     description:
       name: video_player
-      sha256: "868a139229acb5018d22aded3eb9cb4767ff43a8216573c086b6c535a4957481"
+      sha256: de95f0e9405f29b5582573d4166132e71f83b3158aac14e8ee5767a54f4f1fbd
       url: "https://pub.dev"
     source: hosted
-    version: "2.6.0"
+    version: "2.6.1"
   video_player_android:
     dependency: transitive
     description:

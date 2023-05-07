@@ -14,20 +14,12 @@ class FileHelper {
     return basename(file.path);
   }
 
-  static Future<String?> uploadImage(XFile image) async {
+  static Future<String?> uploadImage(XFile image, String folderName) async {
     final cloudinary = CloudinaryPublic(
       'dltbbrtlv',
       'e9xnvbev',
       cache: false,
     );
-
-    print(image);
-
-    // var resp = await http.post(
-    //   Uri.parse(
-    //       'https://api.cloudinary.com/v1_1/dltbbrtlv/upload?file=${image.path}&upload_preset=e9xnvbev&api_key=${Constants.cloudinaryApiKey}&public_id=samples/newphoto'),
-    // );
-    // var data = json.decode(resp.body);
 
     try {
       List<int> bytes = [];
@@ -38,13 +30,14 @@ class FileHelper {
         !kIsWeb
             ? CloudinaryFile.fromFile(
                 image.path,
-                folder: 'category',
+                folder: folderName,
                 resourceType: CloudinaryResourceType.Image,
               )
             : CloudinaryFile.fromBytesData(
                 bytes,
-                folder: 'category',
+                folder: folderName,
                 identifier: image.name,
+                resourceType: CloudinaryResourceType.Image,
               ),
       );
 
@@ -54,18 +47,52 @@ class FileHelper {
       print(e.request);
     }
     return null;
-
-    // cloudinary.uploadFile(
-    //   CloudinaryFile.fromFile(
-    //     image.path,
-    //     folder: 'samples/people',
-    //   ),
-    // );
   }
 
-  static Future<void> writeToFile(ByteData data, String path) {
-    final buffer = data.buffer;
-    return File(path).writeAsBytes(
-        buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
+  static Future<String?> uploadVideo(XFile video, String folderName) async {
+    final cloudinary = CloudinaryPublic(
+      'dltbbrtlv',
+      'e9xnvbev',
+      cache: false,
+    );
+
+    try {
+      List<int> bytes = [];
+      if (kIsWeb) {
+        bytes = await video.readAsBytes();
+      }
+      CloudinaryResponse response = await cloudinary.uploadFile(
+        !kIsWeb
+            ? CloudinaryFile.fromFile(
+                video.path,
+                folder: folderName,
+                resourceType: CloudinaryResourceType.Video,
+              )
+            : CloudinaryFile.fromBytesData(
+                bytes,
+                folder: folderName,
+                identifier: video.name,
+                resourceType: CloudinaryResourceType.Video,
+              ),
+      );
+
+      return response.url;
+    } on CloudinaryException catch (e) {
+      print(e.message);
+      print(e.request);
+    }
+    return null;
+  }
+
+  static Future<XFile?> pickVideo() async {
+    return await ImagePicker().pickVideo(
+      source: ImageSource.gallery,
+    );
+  }
+
+  static Future<XFile?> pickImage() async {
+    return await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
   }
 }

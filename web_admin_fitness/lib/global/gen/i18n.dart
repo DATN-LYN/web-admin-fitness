@@ -250,6 +250,12 @@ class I18n implements WidgetsLocalizations {
 	String get toast_Subtitle_UpdateProgram => "You have updated a program successfully";
 	/// "You have deleted a program successfully"
 	String get toast_Subtitle_DeleteProgram => "You have deleted a program successfully";
+	/// "You have created a new exercise successfully"
+	String get toast_Subtitle_CreateExercise => "You have created a new exercise successfully";
+	/// "You have updated a exercise successfully"
+	String get toast_Subtitle_UpdateExercise => "You have updated a exercise successfully";
+	/// "You have deleted a exercise successfully"
+	String get toast_Subtitle_DeleteExercise => "You have deleted a exercise successfully";
 	/// "Create new program"
 	String get upsertProgram_CreateNewTitle => "Create new program";
 	/// "Update program"
@@ -292,6 +298,52 @@ class I18n implements WidgetsLocalizations {
 	String get upsertProgram_Description => "Description";
 	/// "Input program description"
 	String get upsertProgram_DescriptionHint => "Input program description";
+	/// "Create new exercise"
+	String get upsertExercise_CreateNewTitle => "Create new exercise";
+	/// "Update exercise"
+	String get upsertExercise_UpdateTitle => "Update exercise";
+	/// "Are you sure you want to create a new exercise?"
+	String get upsertExercise_CreateNewDes => "Are you sure you want to create a new exercise?";
+	/// "Are you sure you want to update this exercise information?"
+	String get upsertExercise_UpdateDes => "Are you sure you want to update this exercise information?";
+	/// "Exercise Name"
+	String get upsertExercise_Name => "Exercise Name";
+	/// "Exercise Image"
+	String get upsertExercise_Image => "Exercise Image";
+	/// "Exercise Video"
+	String get upsertExercise_Video => "Exercise Video";
+	/// "Name is required"
+	String get upsertExercise_NameIsRequired => "Name is required";
+	/// "Image is required"
+	String get upsertExercise_ImageIsRequired => "Image is required";
+	/// "Video is required"
+	String get upsertExercise_VideoIsRequired => "Video is required";
+	/// "Input exercise name"
+	String get upsertExercise_NameHint => "Input exercise name";
+	/// "Choose exercise image"
+	String get upsertExercise_ImageHint => "Choose exercise image";
+	/// "Choose exercise video"
+	String get upsertExercise_VideoHint => "Choose exercise video";
+	/// "Exercise ID"
+	String get upsertExercise_ID => "Exercise ID";
+	/// "Program"
+	String get upsertExercise_Program => "Program";
+	/// "Choose program"
+	String get upsertExercise_ProgramHint => "Choose program";
+	/// "Program is required"
+	String get upsertExercise_ProgramRequired => "Program is required";
+	/// "Duration"
+	String get upsertExercise_Duration => "Duration";
+	/// "Choose a video to see its duration"
+	String get upsertExercise_DurationHint => "Choose a video to see its duration";
+	/// "Duration is required"
+	String get upsertExercise_DurationRequired => "Duration is required";
+	/// "Calo is required"
+	String get upsertExercise_CaloRequired => "Calo is required";
+	/// "Calo"
+	String get upsertExercise_Calo => "Calo";
+	/// "Input exercise calo"
+	String get upsertExercise_CaloHint => "Input exercise calo";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -614,6 +666,24 @@ class _I18n_vi_VN extends I18n {
 	/// "Xoá thể loại thành công"
 	@override
 	String get toast_Subtitle_DeleteCategory => "Xoá thể loại thành công";
+	/// "Tạo chương trình mới thành công"
+	@override
+	String get toast_Subtitle_CreateProgram => "Tạo chương trình mới thành công";
+	/// "Cập nhật chương trình thành công"
+	@override
+	String get toast_Subtitle_UpdateProgram => "Cập nhật chương trình thành công";
+	/// "Xoá chương trình thành công"
+	@override
+	String get toast_Subtitle_DeleteProgram => "Xoá chương trình thành công";
+	/// "Tạo bài tập mới thành công"
+	@override
+	String get toast_Subtitle_CreateExercise => "Tạo bài tập mới thành công";
+	/// "Cập nhật bài tập thành công"
+	@override
+	String get toast_Subtitle_UpdateExercise => "Cập nhật bài tập thành công";
+	/// "Xoá bài tập thành công"
+	@override
+	String get toast_Subtitle_DeleteExercise => "Xoá bài tập thành công";
 	/// "Tạo chương trình mới"
 	@override
 	String get upsertProgram_CreateNewTitle => "Tạo chương trình mới";
@@ -677,6 +747,75 @@ class _I18n_vi_VN extends I18n {
 	/// "Nhập mô tả chương trình"
 	@override
 	String get upsertProgram_DescriptionHint => "Nhập mô tả chương trình";
+	/// "Tạo bài tập mới"
+	@override
+	String get upsertExercise_CreateNewTitle => "Tạo bài tập mới";
+	/// "Cập nhật bài tập"
+	@override
+	String get upsertExercise_UpdateTitle => "Cập nhật bài tập";
+	/// "Bạn có chắc chắn muốn tạo bài tập mới?"
+	@override
+	String get upsertExercise_CreateNewDes => "Bạn có chắc chắn muốn tạo bài tập mới?";
+	/// "Bạn có chắc chắn muốn cập nhật thông tin bài tập?"
+	@override
+	String get upsertExercise_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin bài tập?";
+	/// "Tên bài tập"
+	@override
+	String get upsertExercise_Name => "Tên bài tập";
+	/// "Hình ảnh"
+	@override
+	String get upsertExercise_Image => "Hình ảnh";
+	/// "Video bài tập"
+	@override
+	String get upsertExercise_Video => "Video bài tập";
+	/// "Bạn chưa nhập tên"
+	@override
+	String get upsertExercise_NameIsRequired => "Bạn chưa nhập tên";
+	/// "Bạn chưa chọn hình"
+	@override
+	String get upsertExercise_ImageIsRequired => "Bạn chưa chọn hình";
+	/// "Bạn chưa chọn video"
+	@override
+	String get upsertExercise_VideoIsRequired => "Bạn chưa chọn video";
+	/// "Nhập tên bài tập"
+	@override
+	String get upsertExercise_NameHint => "Nhập tên bài tập";
+	/// "Chọn hình ảnh của bài tập"
+	@override
+	String get upsertExercise_ImageHint => "Chọn hình ảnh của bài tập";
+	/// "Chọn video của bài tập"
+	@override
+	String get upsertExercise_VideoHint => "Chọn video của bài tập";
+	/// "Mã bài tập"
+	@override
+	String get upsertExercise_ID => "Mã bài tập";
+	/// "Chương trình"
+	@override
+	String get upsertExercise_Program => "Chương trình";
+	/// "Chọn chương trình"
+	@override
+	String get upsertExercise_ProgramHint => "Chọn chương trình";
+	/// "Bạn chưa chọn chương trình"
+	@override
+	String get upsertExercise_ProgramRequired => "Bạn chưa chọn chương trình";
+	/// "Thời gian"
+	@override
+	String get upsertExercise_Duration => "Thời gian";
+	/// "Chọn video để xem thời gian"
+	@override
+	String get upsertExercise_DurationHint => "Chọn video để xem thời gian";
+	/// "Thời gian bắt buộc"
+	@override
+	String get upsertExercise_DurationRequired => "Thời gian bắt buộc";
+	/// "Ban chưa nhập calo"
+	@override
+	String get upsertExercise_CaloRequired => "Ban chưa nhập calo";
+	/// "Calo"
+	@override
+	String get upsertExercise_Calo => "Calo";
+	/// "Nhập calo của bài tập"
+	@override
+	String get upsertExercise_CaloHint => "Nhập calo của bài tập";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

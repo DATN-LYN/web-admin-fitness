@@ -141,7 +141,13 @@
           "invalidInformation": "Thông tin của bạn chưa hợp lệ, hãy kiểm tra lại",
           "createCategory": "Tạo thể loại mới thành công",
           "updateCategory": "Cập nhật thể loại thành công",
-          "deleteCategory": "Xoá thể loại thành công"
+          "deleteCategory": "Xoá thể loại thành công",
+          "createProgram": "Tạo chương trình mới thành công",
+          "updateProgram": "Cập nhật chương trình thành công",
+          "deleteProgram": "Xoá chương trình thành công",
+          "createExercise": "Tạo bài tập mới thành công",
+          "updateExercise": "Cập nhật bài tập thành công",
+          "deleteExercise": "Xoá bài tập thành công"
         }
     },
       "upsertProgram_":{
@@ -166,6 +172,30 @@
         "descriptionRequired": "Bạn chưa nhập mô tả",
         "description": "Mô tả",
         "descriptionHint": "Nhập mô tả chương trình"
-
+    },
+    "upsertExercise_":{
+        "createNewTitle": "Tạo bài tập mới",
+        "updateTitle": "Cập nhật bài tập",
+        "createNewDes":"Bạn có chắc chắn muốn tạo bài tập mới?",
+        "updateDes": "Bạn có chắc chắn muốn cập nhật thông tin bài tập?",
+        "name": "Tên bài tập",
+        "image": "Hình ảnh",
+        "video":"Video bài tập",
+        "nameIsRequired": "Bạn chưa nhập tên",
+        "imageIsRequired": "Bạn chưa chọn hình",
+        "videoIsRequired": "Bạn chưa chọn video",
+        "nameHint": "Nhập tên bài tập",
+        "imageHint": "Chọn hình ảnh của bài tập",
+        "videoHint":"Chọn video của bài tập",
+        "ID": "Mã bài tập",
+        "program": "Chương trình",
+        "programHint": "Chọn chương trình",
+        "programRequired": "Bạn chưa chọn chương trình",
+        "duration": "Thời gian",
+        "durationHint": "Chọn video để xem thời gian",
+        "durationRequired": "Thời gian bắt buộc",
+        "caloRequired": "Ban chưa nhập calo",
+        "calo": "Calo",
+        "caloHint": "Nhập calo của bài tập"
     }
 }

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_selector/adaptive_selector.dart';
 import 'package:auto_route/auto_route.dart';
@@ -19,6 +17,8 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_c
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/utils/dialogs.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
+import 'package:web_admin_fitness/global/widgets/selected_image.dart';
+import 'package:web_admin_fitness/global/widgets/upsert_form_button.dart';
 import 'package:web_admin_fitness/modules/main/modules/selectors/category_selector.dart';
 
 import '../../../../global/gen/i18n.dart';
@@ -26,6 +26,7 @@ import '../../../../global/themes/app_colors.dart';
 import '../../../../global/utils/file_helper.dart';
 import '../../../../global/widgets/dialogs/confirmation_dialog.dart';
 import '../../../../global/widgets/label.dart';
+import '../../../../global/widgets/pick_image_field.dart';
 import '../../../../global/widgets/right_sheet_appbar.dart';
 import '../../../../global/widgets/shimmer_image.dart';
 import '../../../../global/widgets/toast/multi_toast.dart';
@@ -95,12 +96,21 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
     context.popRoute();
   }
 
+  void onPickImage() async {
+    final pickedFile = await FileHelper.pickImage();
+
+    if (pickedFile != null) {
+      setState(() => image = pickedFile);
+      formKey.currentState?.fields['imgUrl']?.didChange(image!.name);
+    }
+  }
+
   Future<GUpsertProgramInputDto> getInput() async {
     final formValue = formKey.currentState!.value;
     String? imageUrl = '';
 
     if (image != null) {
-      imageUrl = await FileHelper.uploadImage(image!);
+      imageUrl = await FileHelper.uploadImage(image!, 'program');
     } else {
       imageUrl = widget.program?.imgUrl;
     }
@@ -233,63 +243,17 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                       ),
                       initialValue: widget.program?.imgUrl,
                       builder: (field) {
-                        return InputDecorator(
-                          decoration: InputDecoration(
-                            constraints: const BoxConstraints(minHeight: 48),
-                            errorText: field.errorText,
-                            contentPadding: const EdgeInsets.all(16),
-                          ),
-                          child: GestureDetector(
-                            child: Text(
-                              !isCreateNew && image == null
-                                  ? widget.program!.imgUrl!
-                                  : image != null
-                                      ? image!.name
-                                      : i18n.upsertProgram_ImageHint,
-                              style: TextStyle(
-                                color: image != null || !isCreateNew
-                                    ? AppColors.grey1
-                                    : AppColors.grey4,
-                              ),
-                            ),
-                            onTap: () async {
-                              final pickedFile = await ImagePicker().pickImage(
-                                source: ImageSource.gallery,
-                              );
-                              if (pickedFile != null) {
-                                setState(
-                                  () {
-                                    image = pickedFile;
-                                  },
-                                );
-                                field.didChange(image!.name);
-                              }
-                            },
-                          ),
+                        return PickImageField(
+                          errorText: field.errorText,
+                          onPickImage: onPickImage,
+                          initialData: widget.program?.imgUrl,
+                          isCreateNew: isCreateNew,
                         );
                       },
                     ),
                     if (image != null) ...[
                       const SizedBox(height: 12),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: !kIsWeb
-                            ? Image.file(
-                                File(image!.path),
-                                fit: BoxFit.fitWidth,
-                              )
-                            : FutureBuilder(
-                                future: image!.readAsBytes(),
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasData) {
-                                    final bytes = snapshot.data;
-                                    return Image.memory(bytes!);
-                                  } else {
-                                    return const CircularProgressIndicator();
-                                  }
-                                },
-                              ),
-                      ),
+                      SelectedImage(image: image!),
                     ],
                     if (!isCreateNew && image == null) ...[
                       const SizedBox(height: 12),
@@ -414,29 +378,13 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 26),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: isCreateNew ? handleReset : handleCancel,
-                      child: Text(
-                        isCreateNew ? i18n.button_Reset : i18n.button_Cancel,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: handleSubmit,
-                      child: Text(
-                        isCreateNew ? i18n.button_Confirm : i18n.button_Save,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            UpsertFormButton(
+              onPressPositiveButton: handleSubmit,
+              onPressNegativeButton: isCreateNew ? handleReset : handleCancel,
+              positiveButtonText:
+                  isCreateNew ? i18n.button_Confirm : i18n.button_Save,
+              negativeButtonText:
+                  isCreateNew ? i18n.button_Reset : i18n.button_Cancel,
             ),
           ],
         ),

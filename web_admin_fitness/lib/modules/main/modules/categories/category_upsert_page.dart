@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -18,11 +15,14 @@ import 'package:web_admin_fitness/global/utils/dialogs.dart';
 import 'package:web_admin_fitness/global/widgets/dialogs/confirmation_dialog.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
 import 'package:web_admin_fitness/global/widgets/right_sheet_appbar.dart';
+import 'package:web_admin_fitness/global/widgets/selected_image.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 
 import '../../../../global/utils/file_helper.dart';
 import '../../../../global/widgets/label.dart';
+import '../../../../global/widgets/pick_image_field.dart';
 import '../../../../global/widgets/toast/multi_toast.dart';
+import '../../../../global/widgets/upsert_form_button.dart';
 
 class CategoryUpsertPage extends StatefulWidget {
   const CategoryUpsertPage({
@@ -53,6 +53,15 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
     context.popRoute();
   }
 
+  void onPickImage() async {
+    final pickedFile = await FileHelper.pickImage();
+
+    if (pickedFile != null) {
+      setState(() => image = pickedFile);
+      formKey.currentState?.fields['imgUrl']?.didChange(image!.name);
+    }
+  }
+
   void handleSubmit() {
     final i18n = I18n.of(context)!;
 
@@ -75,7 +84,7 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
               String? imageUrl = '';
 
               if (image != null) {
-                imageUrl = await FileHelper.uploadImage(image!);
+                imageUrl = await FileHelper.uploadImage(image!, 'category');
               } else {
                 imageUrl = widget.category?.imgUrl;
               }
@@ -188,63 +197,16 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
                       ),
                       initialValue: widget.category?.imgUrl,
                       builder: (field) {
-                        return InputDecorator(
-                          decoration: InputDecoration(
-                            constraints: const BoxConstraints(minHeight: 48),
-                            errorText: field.errorText,
-                            contentPadding: const EdgeInsets.all(16),
-                          ),
-                          child: GestureDetector(
-                            child: Text(
-                              !isCreateNew && image == null
-                                  ? widget.category!.imgUrl!
-                                  : image != null
-                                      ? image!.name
-                                      : i18n.upsertCategory_ImageHint,
-                              style: TextStyle(
-                                color: image != null || !isCreateNew
-                                    ? AppColors.grey1
-                                    : AppColors.grey4,
-                              ),
-                            ),
-                            onTap: () async {
-                              final pickedFile = await ImagePicker().pickImage(
-                                source: ImageSource.gallery,
-                              );
-                              if (pickedFile != null) {
-                                setState(
-                                  () {
-                                    image = pickedFile;
-                                    field.didChange(image!.name);
-                                  },
-                                );
-                              }
-                            },
-                          ),
+                        return PickImageField(
+                          errorText: field.errorText,
+                          onPickImage: onPickImage,
+                          initialData: widget.category?.imgUrl,
+                          isCreateNew: isCreateNew,
                         );
                       },
                     ),
                     const SizedBox(height: 16),
-                    if (image != null)
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: !kIsWeb
-                            ? Image.file(
-                                File(image!.path),
-                                fit: BoxFit.fitWidth,
-                              )
-                            : FutureBuilder(
-                                future: image!.readAsBytes(),
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasData) {
-                                    final bytes = snapshot.data;
-                                    return Image.memory(bytes!);
-                                  } else {
-                                    return const CircularProgressIndicator();
-                                  }
-                                },
-                              ),
-                      ),
+                    if (image != null) SelectedImage(image: image!),
                     if (!isCreateNew && image == null)
                       ShimmerImage(
                         imageUrl: widget.category!.imgUrl!,
@@ -254,29 +216,13 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: isCreateNew ? handleReset : handleCancel,
-                      child: Text(
-                        isCreateNew ? i18n.button_Reset : i18n.button_Cancel,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: handleSubmit,
-                      child: Text(
-                        isCreateNew ? i18n.button_Confirm : i18n.button_Save,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            UpsertFormButton(
+              onPressPositiveButton: handleSubmit,
+              onPressNegativeButton: isCreateNew ? handleReset : handleCancel,
+              positiveButtonText:
+                  isCreateNew ? i18n.button_Confirm : i18n.button_Save,
+              negativeButtonText:
+                  isCreateNew ? i18n.button_Reset : i18n.button_Cancel,
             ),
           ],
         ),

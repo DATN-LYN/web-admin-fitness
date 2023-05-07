@@ -8,6 +8,7 @@ import '../../locator.dart';
 import '../services/hive_service.dart';
 import '../utils/constants.dart';
 import 'auth/__generated__/query_refresh_token.req.gql.dart';
+import 'cache_handler/upsert_exercise_cache_handler.dart';
 import 'http_auth_link.dart';
 
 class AppClient {
@@ -66,7 +67,7 @@ class AppClient {
       updateCacheHandlers: {
         UpsertCategoryCacheHandler.key: UpsertCategoryCacheHandler.handler,
         UpsertProgramCacheHandler.key: UpsertProgramCacheHandler.handler,
-        // MarkReadMessageHandler.key: MarkReadMessageHandler.handler,
+        UpsertExerciseCacheHandler.key: UpsertExerciseCacheHandler.handler,
         // DeleteMessageHandler.key: DeleteMessageHandler.handler,
         // MarkReadEventHandler.key: MarkReadEventHandler.handler,
       },

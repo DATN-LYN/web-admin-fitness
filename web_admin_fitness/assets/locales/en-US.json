@@ -146,7 +146,10 @@
           "deleteCategory": "You have deleted a category successfully",
           "createProgram": "You have created a new program successfully",
           "updateProgram": "You have updated a program successfully",
-          "deleteProgram": "You have deleted a program successfully"
+          "deleteProgram": "You have deleted a program successfully",
+          "createExercise": "You have created a new exercise successfully",
+          "updateExercise": "You have updated a exercise successfully",
+          "deleteExercise": "You have deleted a exercise successfully"
         }
     },
     "upsertProgram_":{
@@ -172,5 +175,30 @@
         "description": "Description",
         "descriptionHint": "Input program description"
 
+    },
+    "upsertExercise_":{
+        "createNewTitle": "Create new exercise",
+        "updateTitle": "Update exercise",
+        "createNewDes":"Are you sure you want to create a new exercise?",
+        "updateDes": "Are you sure you want to update this exercise information?",
+        "name": "Exercise Name",
+        "image": "Exercise Image",
+        "video":"Exercise Video",
+        "nameIsRequired": "Name is required",
+        "imageIsRequired": "Image is required",
+        "videoIsRequired": "Video is required",
+        "nameHint": "Input exercise name",
+        "imageHint": "Choose exercise image",
+        "videoHint": "Choose exercise video",
+        "ID": "Exercise ID",
+        "program": "Program",
+        "programHint": "Choose program",
+        "programRequired": "Program is required",
+        "duration": "Duration",
+        "durationHint": "Choose a video to see its duration",
+        "durationRequired": "Duration is required",
+        "caloRequired": "Calo is required",
+        "calo": "Calo",
+        "caloHint": "Input exercise calo"
     }
 }
