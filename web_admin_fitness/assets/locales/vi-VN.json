@@ -23,7 +23,9 @@
         "apply": "Áp dụng",
         "confirm":"Xác nhận",
         "reset":"Đặt lại",
-        "save": "Lưu"
+        "save": "Lưu",
+        "delete":"Xoá",
+        "edit":"Sửa"
     },
     "setting_":{
         "title":"Cài đặt",
@@ -197,5 +199,21 @@
         "caloRequired": "Ban chưa nhập calo",
         "calo": "Calo",
         "caloHint": "Nhập calo của bài tập"
+    },
+    "deleteCategory_":{
+        "title":"Xoá thể loại",
+        "des": "Bạn có chắc chắn muốn xoá thể loại?"
+    },
+    "deleteExercise_":{
+        "title":"Xoá bài tập",
+        "des": "Bạn có chắc chắn muốn xoá bài tập?"
+    },
+    "deleteProgram_":{
+        "title":"Xoá chương trình",
+        "des": "Bạn có chắc chắn muốn xoá chương trình?"
+    },
+    "deleteUser_":{
+        "title":"Xoá người dùng",
+        "des": "Bạn có chắc chắn muốn xoá người dùng?"
     }
 }

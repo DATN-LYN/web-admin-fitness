@@ -11,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_exercise.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_exercise.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_program.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
@@ -60,20 +61,25 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
   @override
   void initState() {
     initData();
+
     super.initState();
   }
 
   initData() async {
     if (!isCreateNew) {
-      await getProgram();
-      setState(
-        () {
-          Uri initialUri = Uri.parse(widget.exercise!.videoUrl!);
-          Uri replaceUri = initialUri.replace(scheme: 'https');
-          _controller = VideoPlayerController.network(replaceUri.toString());
-        },
-      );
-      await _controller!.initialize();
+      try {
+        await getProgram();
+        setState(
+          () {
+            Uri initialUri = Uri.parse(widget.exercise!.videoUrl!);
+            Uri replaceUri = initialUri.replace(scheme: 'https');
+            _controller = VideoPlayerController.network(replaceUri.toString());
+          },
+        );
+        await _controller!.initialize();
+      } catch (e) {
+        setState(() => loading = false);
+      }
     }
     setState(() => loading = false);
   }
@@ -105,8 +111,43 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
     });
   }
 
-  void handleCancel() {
-    context.popRoute();
+  void handleDelete() {
+    final i18n = I18n.of(context)!;
+
+    showAlertDialog(
+      context: context,
+      builder: (dialogContext, child) {
+        return ConfirmationDialog(
+          titleText: i18n.deleteExercise_Title,
+          contentText: i18n.deleteExercise_Des,
+          onTapPositiveButton: () async {
+            dialogContext.popRoute();
+            setState(() => loading = true);
+
+            final request = GDeleteExerciseReq(
+              (b) => b..vars.exerciseId = widget.exercise?.id,
+            );
+
+            final response = await client.request(request).first;
+            setState(() => loading = false);
+            if (response.hasErrors) {
+              if (mounted) {
+                showErrorToast(
+                  context,
+                  response.graphqlErrors?.first.message,
+                );
+                // DialogUtils.showError(context: context, response: response);
+              }
+            } else {
+              if (mounted) {
+                showSuccessToast(context, i18n.toast_Subtitle_DeleteExercise);
+                context.popRoute(response);
+              }
+            }
+          },
+        );
+      },
+    );
   }
 
   void setDuration() {
@@ -421,11 +462,13 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
             ),
             UpsertFormButton(
               onPressPositiveButton: handleSubmit,
-              onPressNegativeButton: isCreateNew ? handleReset : handleCancel,
+              onPressNegativeButton: isCreateNew ? handleReset : handleDelete,
               positiveButtonText:
                   isCreateNew ? i18n.button_Confirm : i18n.button_Save,
               negativeButtonText:
-                  isCreateNew ? i18n.button_Reset : i18n.button_Cancel,
+                  isCreateNew ? i18n.button_Reset : i18n.button_Delete,
+              negativeButtonColor:
+                  isCreateNew ? AppColors.grey6 : AppColors.deleteButton,
             ),
           ],
         ),

@@ -1,0 +1,6 @@
+mutation DeleteProgram($programId: String!) {
+  deleteProgram(programId: $programId) {
+    message
+    success
+  }
+}

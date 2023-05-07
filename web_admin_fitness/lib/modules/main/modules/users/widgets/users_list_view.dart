@@ -5,30 +5,39 @@ import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_error.dart';
 import 'package:web_admin_fitness/global/widgets/infinity_list.dart';
-import 'package:web_admin_fitness/modules/main/modules/accounts/widgets/user_item.dart';
+import 'package:web_admin_fitness/modules/main/modules/users/widgets/user_item.dart';
 
-class UsersListView extends StatelessWidget with ClientMixin {
-  UsersListView({
+import '../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
+
+class UsersListView extends StatefulWidget {
+  const UsersListView({
     super.key,
     required this.request,
+    required this.handleDelete,
   });
 
   final GGetUsersReq request;
+  final Function(GUser user) handleDelete;
 
   @override
+  State<UsersListView> createState() => _UsersListViewState();
+}
+
+class _UsersListViewState extends State<UsersListView> with ClientMixin {
+  @override
   Widget build(BuildContext context) {
-    var getUsersReq = request;
+    var getUsersReq = widget.request;
     final i18n = I18n.of(context)!;
 
     return InfinityList(
       client: client,
-      request: request,
+      request: widget.request,
       loadMoreRequest: (response) {
         final data = response?.data?.getUsers;
         if (data != null &&
             data.meta!.currentPage!.toDouble() <
                 data.meta!.totalPages!.toDouble()) {
-          getUsersReq = request.rebuild(
+          getUsersReq = widget.request.rebuild(
             (b) => b
               ..vars.queryParams.page = (b.vars.queryParams.page! + 1)
               ..updateResult = (previous, result) =>
@@ -93,7 +102,10 @@ class UsersListView extends StatelessWidget with ClientMixin {
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           itemBuilder: (context, index) {
             final item = users[index];
-            return UserItem(user: item);
+            return UserItem(
+              user: item,
+              handleDelete: () => widget.handleDelete(item),
+            );
           },
           separatorBuilder: (_, __) => const SizedBox(height: 10),
         );

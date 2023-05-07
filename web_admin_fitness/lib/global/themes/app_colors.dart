@@ -28,4 +28,5 @@ class AppColors {
   static const warning = Color(0xFFFF802C);
   static const pendingSoft = Color(0xFFF4E7FF);
   static const pending = Color(0xFF9624F0);
+  static const deleteButton = Color(0xFFF98B8B);
 }

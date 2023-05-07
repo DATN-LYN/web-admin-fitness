@@ -86,6 +86,7 @@ dependencies:
   path: ^1.8.2
   http: ^0.13.6
   path_provider: ^2.0.14
+  flutter_slidable: ^3.0.0
   
 
 
