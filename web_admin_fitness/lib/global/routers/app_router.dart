@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/modules/main/main_page.dart';
-import 'package:web_admin_fitness/modules/main/modules/accounts/users_manager_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/categories_manager_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/categories/category_upsert_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/exercises/exercise_upsert_page.dart';
@@ -10,6 +9,7 @@ import 'package:web_admin_fitness/modules/main/modules/home/home_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/inboxes/inboxes_manager_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/programs/program_upsert_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/setting/setting_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/users/users_manager_page.dart';
 
 import '../../modules/login/login_page.dart';
 import '../../modules/main/modules/programs/programs_manager_page.dart';

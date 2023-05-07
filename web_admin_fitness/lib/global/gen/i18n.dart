@@ -74,6 +74,10 @@ class I18n implements WidgetsLocalizations {
 	String get button_Reset => "Reset";
 	/// "Save"
 	String get button_Save => "Save";
+	/// "Delete"
+	String get button_Delete => "Delete";
+	/// "Edit"
+	String get button_Edit => "Edit";
 	/// "Setting"
 	String get setting_Title => "Setting";
 	/// "Language"
@@ -344,6 +348,22 @@ class I18n implements WidgetsLocalizations {
 	String get upsertExercise_Calo => "Calo";
 	/// "Input exercise calo"
 	String get upsertExercise_CaloHint => "Input exercise calo";
+	/// "Delete Category"
+	String get deleteCategory_Title => "Delete Category";
+	/// "Are you sure you want to delete this category?"
+	String get deleteCategory_Des => "Are you sure you want to delete this category?";
+	/// "Delete Exercise"
+	String get deleteExercise_Title => "Delete Exercise";
+	/// "Are you sure you want to delete this exercise?"
+	String get deleteExercise_Des => "Are you sure you want to delete this exercise?";
+	/// "Delete Program"
+	String get deleteProgram_Title => "Delete Program";
+	/// "Are you sure you want to delete this program?"
+	String get deleteProgram_Des => "Are you sure you want to delete this program?";
+	/// "Delete User"
+	String get deleteUser_Title => "Delete User";
+	/// "Are you sure you want to delete this user?"
+	String get deleteUser_Des => "Are you sure you want to delete this user?";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -420,6 +440,12 @@ class _I18n_vi_VN extends I18n {
 	/// "Lưu"
 	@override
 	String get button_Save => "Lưu";
+	/// "Xoá"
+	@override
+	String get button_Delete => "Xoá";
+	/// "Sửa"
+	@override
+	String get button_Edit => "Sửa";
 	/// "Cài đặt"
 	@override
 	String get setting_Title => "Cài đặt";
@@ -816,6 +842,30 @@ class _I18n_vi_VN extends I18n {
 	/// "Nhập calo của bài tập"
 	@override
 	String get upsertExercise_CaloHint => "Nhập calo của bài tập";
+	/// "Xoá thể loại"
+	@override
+	String get deleteCategory_Title => "Xoá thể loại";
+	/// "Bạn có chắc chắn muốn xoá thể loại?"
+	@override
+	String get deleteCategory_Des => "Bạn có chắc chắn muốn xoá thể loại?";
+	/// "Xoá bài tập"
+	@override
+	String get deleteExercise_Title => "Xoá bài tập";
+	/// "Bạn có chắc chắn muốn xoá bài tập?"
+	@override
+	String get deleteExercise_Des => "Bạn có chắc chắn muốn xoá bài tập?";
+	/// "Xoá chương trình"
+	@override
+	String get deleteProgram_Title => "Xoá chương trình";
+	/// "Bạn có chắc chắn muốn xoá chương trình?"
+	@override
+	String get deleteProgram_Des => "Bạn có chắc chắn muốn xoá chương trình?";
+	/// "Xoá người dùng"
+	@override
+	String get deleteUser_Title => "Xoá người dùng";
+	/// "Bạn có chắc chắn muốn xoá người dùng?"
+	@override
+	String get deleteUser_Des => "Bạn có chắc chắn muốn xoá người dùng?";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();
