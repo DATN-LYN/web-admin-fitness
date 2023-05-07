@@ -20,7 +20,7 @@ scalar DateTime
 type Exercise {
   id: ID
   name: String
-  duration: Float
+  duration: String
   videoUrl: String
   imgUrl: String
   calo: Float
@@ -57,7 +57,7 @@ type ICategory {
 type IExercise {
   id: ID
   name: String
-  duration: Float
+  duration: String
   videoUrl: String
   imgUrl: String
   calo: Float
@@ -198,7 +198,7 @@ type Query {
   getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
   getCategory(categoryId: String!): Category!
   getCategories(queryParams: QueryFilterDto!): ICategories!
-  getProgram(programId: String!): IProgram!
+  getProgram(programId: String!): Program!
   getPrograms(queryParams: QueryFilterDto!): IPrograms!
   getUser(userId: String!): IUser!
   getUsers(queryParams: QueryFilterDto!): IUsers!
@@ -241,7 +241,7 @@ input UpsertExerciseInputDto {
   id: ID
   name: String!
   imgUrl: String!
-  duration: Float!
+  duration: String!
   videoUrl: String!
   calo: Float!
   programId: String!

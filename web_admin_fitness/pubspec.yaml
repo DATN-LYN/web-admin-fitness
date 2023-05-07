@@ -85,7 +85,6 @@ dependencies:
   app_settings: ^4.2.0
   path: ^1.8.2
   http: ^0.13.6
-  image_picker_web: ^3.0.0+1
   path_provider: ^2.0.14
   
 

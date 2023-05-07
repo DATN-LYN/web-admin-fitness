@@ -60,12 +60,12 @@ class _ExercisesManagerPageState extends State<ExercisesManagerPage> {
 
     return ResponsivePageBuilder(
       header: Padding(
-        padding: EdgeInsets.all(responsive.adap(16.0, 24.0)),
+        padding: EdgeInsets.all(responsive.adap(16.0, 20.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const ExercisesOverview(),
-            SizedBox(height: responsive.adap(20.0, 32.0)),
+            SizedBox(height: responsive.adap(16.0, 24.0)),
             if (!isDesktopView) ...[
               Text(
                 i18n.exercises_ExerciseList,
@@ -102,7 +102,9 @@ class _ExercisesManagerPageState extends State<ExercisesManagerPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.pushRoute(ExerciseUpsertRoute());
+          context
+              .pushRoute(ExerciseUpsertRoute())
+              .then((value) => refreshHandler());
         },
         child: const Icon(Icons.add),
       ),

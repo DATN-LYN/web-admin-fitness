@@ -67,7 +67,7 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CategoriesOverview(),
-            SizedBox(height: responsive.adap(20.0, 26.0)),
+            SizedBox(height: responsive.adap(16.0, 24.0)),
             if (!isDesktopView) ...[
               Text(
                 i18n.categories_CategoryList,

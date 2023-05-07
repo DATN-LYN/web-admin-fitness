@@ -152,7 +152,7 @@ abstract class GUpsertExerciseInputDto
   String? get id;
   String get name;
   String get imgUrl;
-  double get duration;
+  String get duration;
   String get videoUrl;
   double get calo;
   String get programId;
