@@ -100,10 +100,11 @@ abstract class GRegisterInputDto
   factory GRegisterInputDto([Function(GRegisterInputDtoBuilder b) updates]) =
       _$GRegisterInputDto;
 
-  String? get email;
-  String? get password;
+  String get email;
+  String get password;
   String? get avatar;
-  double? get age;
+  double get age;
+  String get fullName;
   static Serializer<GRegisterInputDto> get serializer =>
       _$gRegisterInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -218,6 +219,31 @@ abstract class GUpsertProgramInputDto
   static GUpsertProgramInputDto? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GUpsertProgramInputDto.serializer,
+        json,
+      );
+}
+
+abstract class GUpsertUserInputDto
+    implements Built<GUpsertUserInputDto, GUpsertUserInputDtoBuilder> {
+  GUpsertUserInputDto._();
+
+  factory GUpsertUserInputDto(
+      [Function(GUpsertUserInputDtoBuilder b) updates]) = _$GUpsertUserInputDto;
+
+  String? get id;
+  String get fullName;
+  String get avatar;
+  String get email;
+  double get age;
+  static Serializer<GUpsertUserInputDto> get serializer =>
+      _$gUpsertUserInputDtoSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GUpsertUserInputDto.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GUpsertUserInputDto? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GUpsertUserInputDto.serializer,
         json,
       );
 }

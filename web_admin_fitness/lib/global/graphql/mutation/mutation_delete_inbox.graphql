@@ -1,0 +1,6 @@
+mutation DeleteInbox($inboxId: String!) {
+  deleteInbox(inboxId: $inboxId) {
+    message
+    success
+  }
+}

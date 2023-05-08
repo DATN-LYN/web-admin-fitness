@@ -18,7 +18,8 @@ import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql
         GUpsertCategoryInputDto,
         GUpsertExerciseInputDto,
         GUpsertInboxInputDto,
-        GUpsertProgramInputDto;
+        GUpsertProgramInputDto,
+        GUpsertUserInputDto;
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_logout.data.gql.dart'
     show GLogoutData, GLogoutData_logout;
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_logout.req.gql.dart'
@@ -91,6 +92,12 @@ import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation
     show GDeleteExerciseReq;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_exercise.var.gql.dart'
     show GDeleteExerciseVars;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_inbox.data.gql.dart'
+    show GDeleteInboxData, GDeleteInboxData_deleteInbox;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_inbox.req.gql.dart'
+    show GDeleteInboxReq;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_inbox.var.gql.dart'
+    show GDeleteInboxVars;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_program.data.gql.dart'
     show GDeleteProgramData, GDeleteProgramData_deleteProgram;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_program.req.gql.dart'
@@ -121,6 +128,12 @@ import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation
     show GUpsertProgramReq;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_program.var.gql.dart'
     show GUpsertProgramVars;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_user.data.gql.dart'
+    show GUpsertUserData, GUpsertUserData_upsertUser;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_user.req.gql.dart'
+    show GUpsertUserReq;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_user.var.gql.dart'
+    show GUpsertUserVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.data.gql.dart'
     show
         GGetCategoriesData,
@@ -218,6 +231,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GDeleteExerciseData_deleteExercise,
   GDeleteExerciseReq,
   GDeleteExerciseVars,
+  GDeleteInboxData,
+  GDeleteInboxData_deleteInbox,
+  GDeleteInboxReq,
+  GDeleteInboxVars,
   GDeleteProgramData,
   GDeleteProgramData_deleteProgram,
   GDeleteProgramReq,
@@ -327,6 +344,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpsertProgramInputDto,
   GUpsertProgramReq,
   GUpsertProgramVars,
+  GUpsertUserData,
+  GUpsertUserData_upsertUser,
+  GUpsertUserInputDto,
+  GUpsertUserReq,
+  GUpsertUserVars,
   GUserData,
   GUserReq,
   GUserVars,
