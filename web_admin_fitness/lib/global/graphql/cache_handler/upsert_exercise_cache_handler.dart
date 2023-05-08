@@ -1,9 +1,9 @@
 import 'package:ferry/ferry.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
-import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
-import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_exercise.data.gql.dart';
 
+import '../fragment/__generated__/exercise_fragment.data.gql.dart';
+import '../fragment/__generated__/exercise_fragment.req.gql.dart';
 import '../mutation/__generated__/mutation_upsert_exercise.var.gql.dart';
 
 class UpsertExerciseCacheHandler {

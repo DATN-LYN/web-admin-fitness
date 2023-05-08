@@ -20,7 +20,7 @@ scalar DateTime
 type Exercise {
   id: ID
   name: String
-  duration: String
+  duration: Float
   videoUrl: String
   imgUrl: String
   calo: Float
@@ -57,7 +57,7 @@ type ICategory {
 type IExercise {
   id: ID
   name: String
-  duration: String
+  duration: Float
   videoUrl: String
   imgUrl: String
   calo: Float
@@ -100,8 +100,6 @@ type Inbox {
 type IProgram {
   id: ID
   name: String
-  duration: Float
-  calo: Float
   level: Float
   view: Float
   bodyPart: Float
@@ -177,8 +175,6 @@ type Mutation {
 type Program {
   id: ID
   name: String
-  duration: Float
-  calo: Float
   level: Float
   view: Float
   bodyPart: Float
@@ -244,7 +240,7 @@ input UpsertExerciseInputDto {
   id: ID
   name: String!
   imgUrl: String!
-  duration: String!
+  duration: Float!
   videoUrl: String!
   calo: Float!
   programId: String!
@@ -260,8 +256,6 @@ input UpsertInboxInputDto {
 input UpsertProgramInputDto {
   id: ID
   name: String!
-  duration: Float!
-  calo: Float!
   level: Float!
   bodyPart: Float!
   description: String!

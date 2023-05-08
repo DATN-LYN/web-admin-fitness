@@ -7,7 +7,6 @@ import 'package:web_admin_fitness/global/models/program_filter_data.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/modules/main/modules/programs/widgets/program_search_bar.dart';
 import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_list_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_overview.dart';
 import 'package:web_admin_fitness/modules/main/modules/programs/widgets/programs_table_view.dart';
 
 import '../../../../../../../global/extensions/responsive_wrapper.dart';
@@ -64,8 +63,6 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const ProgramsOverview(),
-            SizedBox(height: responsive.adap(16.0, 24.0)),
             if (!isDesktopView) ...[
               Text(
                 i18n.programs_ProgramList,

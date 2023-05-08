@@ -12,7 +12,6 @@ import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql
 import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_program_cache_handler.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
-import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_program.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_program.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_category.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
@@ -93,45 +92,6 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
     });
   }
 
-  void handleDelete() {
-    final i18n = I18n.of(context)!;
-
-    showAlertDialog(
-      context: context,
-      builder: (dialogContext, child) {
-        return ConfirmationDialog(
-          titleText: i18n.deleteProgram_Title,
-          contentText: i18n.deleteProgram_Des,
-          onTapPositiveButton: () async {
-            dialogContext.popRoute();
-            setState(() => loading = true);
-
-            final request = GDeleteProgramReq(
-              (b) => b..vars.programId = widget.program?.id,
-            );
-
-            final response = await client.request(request).first;
-            setState(() => loading = false);
-            if (response.hasErrors) {
-              if (mounted) {
-                showErrorToast(
-                  context,
-                  response.graphqlErrors?.first.message,
-                );
-                // DialogUtils.showError(context: context, response: response);
-              }
-            } else {
-              if (mounted) {
-                showSuccessToast(context, i18n.toast_Subtitle_DeleteProgram);
-                context.popRoute(response);
-              }
-            }
-          },
-        );
-      },
-    );
-  }
-
   void onPickImage() async {
     final pickedFile = await FileHelper.pickImage();
 
@@ -157,9 +117,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
         ..name = formValue['name']
         ..imgUrl = imageUrl
         ..bodyPart = formValue['bodyPart']
-        ..calo = isCreateNew ? 0 : widget.program!.calo
         ..description = formValue['description']
-        ..duration = isCreateNew ? 0 : widget.program!.calo
         ..level = formValue['level']
         ..categoryId = formValue['categoryId'],
     );
@@ -235,7 +193,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
           title: Text(
             isCreateNew
                 ? i18n.upsertProgram_CreateNewTitle
-                : i18n.upsertProgram_UpdateTitle,
+                : i18n.upsertProgram_ProgramDetail,
           ),
         ),
         body: Column(
@@ -282,8 +240,14 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                         return PickImageField(
                           errorText: field.errorText,
                           onPickImage: onPickImage,
-                          initialData: widget.program?.imgUrl,
-                          isCreateNew: isCreateNew,
+                          fieldValue: !isCreateNew && image == null
+                              ? widget.program?.imgUrl ?? ''
+                              : image != null
+                                  ? image!.name
+                                  : i18n.upsertExercise_ImageHint,
+                          textColor: image != null || !isCreateNew
+                              ? AppColors.grey1
+                              : AppColors.grey4,
                         );
                       },
                     ),
@@ -416,13 +380,10 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
             ),
             UpsertFormButton(
               onPressPositiveButton: handleSubmit,
-              onPressNegativeButton: isCreateNew ? handleReset : handleDelete,
+              onPressNegativeButton: handleReset,
               positiveButtonText:
                   isCreateNew ? i18n.button_Confirm : i18n.button_Save,
-              negativeButtonText:
-                  isCreateNew ? i18n.button_Reset : i18n.button_Delete,
-              negativeButtonColor:
-                  isCreateNew ? AppColors.grey6 : AppColors.deleteButton,
+              negativeButtonText: i18n.button_Reset,
             ),
           ],
         ),

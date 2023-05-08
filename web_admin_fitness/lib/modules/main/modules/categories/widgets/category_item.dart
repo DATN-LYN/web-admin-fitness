@@ -7,22 +7,25 @@ import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 
 import '../../../../../global/widgets/label_text_row.dart';
+import '../../../../../global/widgets/slidable_wrapper.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({
     super.key,
     required this.category,
+    required this.handleDelete,
   });
 
   final GCategory category;
+  final VoidCallback handleDelete;
 
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
-    return GestureDetector(
-      onTap: () {
-        context.pushRoute(CategoryUpsertRoute(category: category));
-      },
+    return SlidableWrapper(
+      handleDelete: handleDelete,
+      handleEdit: () =>
+          context.pushRoute(CategoryUpsertRoute(category: category)),
       child: ShadowWrapper(
         padding: const EdgeInsets.all(12),
         margin: const EdgeInsets.symmetric(vertical: 6),
@@ -30,14 +33,12 @@ class CategoryItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: ShimmerImage(
-                imageUrl: category.imgUrl ?? '',
-                width: double.infinity,
-                height: 120,
-                fit: BoxFit.fill,
-                borderRadius: BorderRadius.circular(12),
-              ),
+            ShimmerImage(
+              imageUrl: category.imgUrl ?? '',
+              width: double.infinity,
+              height: 170,
+              fit: BoxFit.fill,
+              borderRadius: BorderRadius.circular(12),
             ),
             const SizedBox(height: 12),
             LabelTextRow(

@@ -152,7 +152,7 @@ abstract class GUpsertExerciseInputDto
   String? get id;
   String get name;
   String get imgUrl;
-  String get duration;
+  double get duration;
   String get videoUrl;
   double get calo;
   String get programId;
@@ -204,8 +204,6 @@ abstract class GUpsertProgramInputDto
 
   String? get id;
   String get name;
-  double get duration;
-  double get calo;
   double get level;
   double get bodyPart;
   String get description;

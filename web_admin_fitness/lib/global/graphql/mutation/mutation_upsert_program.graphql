@@ -2,8 +2,6 @@ mutation UpsertProgram($input: UpsertProgramInputDto!) {
   upsertProgram(input: $input) {
     id
     name
-    duration
-    calo
     level
     bodyPart
     description

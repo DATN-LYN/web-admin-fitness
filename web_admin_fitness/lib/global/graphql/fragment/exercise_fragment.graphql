@@ -10,7 +10,7 @@ fragment Exercise on Exercise {
   programId
   createdAt
   updatedAt
-  program{
+  program {
     ...Program
   }
 }

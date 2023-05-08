@@ -122,10 +122,11 @@
         "searchHint": "Enter user email"
     },
     "upsertCategory_":{
-        "createNewTitle": "Create new category",
-        "updateTitle": "Update category",
+        "createNewTitle": "Create New Category",
+        "updateTitle": "Update Category",
         "createNewDes":"Are you sure you want to create a new category?",
         "updateDes": "Are you sure you want to update this category information?",
+        "categoryDetail": "Category Detail",
         "categoryName": "Category Name",
         "categoryImage": "Category Image",
         "nameIsRequired": "Name is required",
@@ -155,10 +156,11 @@
         }
     },
     "upsertProgram_":{
-        "createNewTitle": "Create new program",
-        "updateTitle": "Update program",
+        "createNewTitle": "Create New Program",
+        "updateTitle": "Update Program",
         "createNewDes":"Are you sure you want to create a new program?",
         "updateDes": "Are you sure you want to update this program information?",
+        "programDetail": "Program detail",
         "name": "Program Name",
         "image": "Program Image",
         "nameIsRequired": "Name is required",
@@ -179,10 +181,11 @@
 
     },
     "upsertExercise_":{
-        "createNewTitle": "Create new exercise",
-        "updateTitle": "Update exercise",
+        "createNewTitle": "Create New Exercise",
+        "updateTitle": "Update Exercise",
         "createNewDes":"Are you sure you want to create a new exercise?",
         "updateDes": "Are you sure you want to update this exercise information?",
+        "exerciseDetail": "Exercise Detail",
         "name": "Exercise Name",
         "image": "Exercise Image",
         "video":"Exercise Video",

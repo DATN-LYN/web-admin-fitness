@@ -7,19 +7,27 @@ import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/widgets/label_text_row.dart';
 import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
+import 'package:web_admin_fitness/global/widgets/slidable_wrapper.dart';
+
+import '../../../../../global/utils/duration_time.dart';
 
 class ExerciseItem extends StatelessWidget {
-  const ExerciseItem({super.key, required this.exercise});
+  const ExerciseItem({
+    super.key,
+    required this.exercise,
+    required this.handleDelete,
+  });
 
   final GExercise exercise;
+  final VoidCallback handleDelete;
 
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
-    return GestureDetector(
-      onTap: () {
-        context.pushRoute(ExerciseUpsertRoute(exercise: exercise));
-      },
+    return SlidableWrapper(
+      handleDelete: handleDelete,
+      handleEdit: () =>
+          context.pushRoute(ExerciseUpsertRoute(exercise: exercise)),
       child: ShadowWrapper(
         margin: EdgeInsets.zero,
         child: Row(
@@ -45,7 +53,11 @@ class ExerciseItem extends StatelessWidget {
                   const SizedBox(height: 6),
                   LabelTextRow(
                     label: i18n.common_Duration,
-                    value: exercise.duration.toString(),
+                    value: DurationTime.totalDurationFormat(
+                      Duration(
+                        seconds: exercise.duration!.toInt(),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 6),
                   LabelTextRow(

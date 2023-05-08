@@ -15,6 +15,7 @@ import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 import 'package:web_admin_fitness/global/widgets/tag.dart';
+import 'package:web_admin_fitness/modules/main/modules/programs/helper/program_helper.dart';
 
 import '../../../../../global/gen/i18n.dart';
 import '../../../../../global/routers/app_router.dart';
@@ -36,6 +37,7 @@ class ProgramsTableView extends StatefulWidget {
 class _ProgramsTableViewState extends State<ProgramsTableView>
     with ClientMixin {
   String? orderBy;
+  bool loading = false;
 
   void handleOrderBy(String fieldName) {
     if (orderBy == 'Program.$fieldName:DESC') {
@@ -64,15 +66,38 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
     );
   }
 
+  void handleDelete(GProgram exercise) async {
+    setState(() => loading = true);
+    await ProgramHelper().handleDelete(context, exercise);
+    setState(() => loading = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     final spacing = ResponsiveWrapper.of(context).adap(16.0, 24.0);
     final i18n = I18n.of(context)!;
     var request = widget.getProgramsReq;
 
+    void goToUpsertPage(GProgram program) {
+      context.pushRoute(ProgramUpsertRoute(program: program)).then(
+        (value) {
+          if (value != null) {
+            request = request.rebuild(
+              (b) => b
+                ..vars.queryParams.page = 1
+                ..updateResult = ((previous, result) => result),
+            );
+
+            client.requestController.add(request);
+          }
+        },
+      );
+    }
+
     return Padding(
       padding: EdgeInsets.fromLTRB(spacing, 0, spacing, spacing),
       child: DataTableBuilder(
+        loading: loading,
         client: client,
         request: request,
         meta: (response) {
@@ -141,20 +166,20 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                   );
                 },
               ),
-              TableColumn(
-                label: i18n.programs_Calo,
-                minimumWidth: 100,
-                columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('calo'),
-                itemValue: (e) => e.calo.toString(),
-              ),
-              TableColumn(
-                label: i18n.common_Duration,
-                minimumWidth: 130,
-                columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('duration'),
-                itemValue: (e) => e.duration.toString(),
-              ),
+              // TableColumn(
+              //   label: i18n.programs_Calo,
+              //   minimumWidth: 100,
+              //   columnWidthMode: ColumnWidthMode.fill,
+              //   action: sortButton('calo'),
+              //   itemValue: (e) => e.calo.toString(),
+              // ),
+              // TableColumn(
+              //   label: i18n.common_Duration,
+              //   minimumWidth: 130,
+              //   columnWidthMode: ColumnWidthMode.fill,
+              //   action: sortButton('duration'),
+              //   itemValue: (e) => e.duration.toString(),
+              // ),
               TableColumn(
                 label: i18n.common_Level,
                 minimumWidth: 130,
@@ -183,25 +208,33 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                       ),
                     );
                   }),
-              TableColumn(
-                label: i18n.programs_Description,
-                minimumWidth: 150,
-                columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('description'),
-                itemValue: (e) => e.calo.toString(),
-              ),
+              // TableColumn(
+              //   label: i18n.programs_Description,
+              //   minimumWidth: 150,
+              //   columnWidthMode: ColumnWidthMode.fill,
+              //   action: sortButton('description'),
+              //   itemValue: (e) => e.calo.toString(),
+              // ),
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
                 width: 120,
                 cellBuilder: (e) {
-                  return IconButton(
-                    onPressed: () {
-                      context.pushRoute(ProgramUpsertRoute(program: e));
-                    },
-                    icon: const Icon(Icons.edit),
-                    color: AppColors.grey4,
-                    tooltip: i18n.common_ViewDetail,
+                  return Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => goToUpsertPage(e),
+                        icon: const Icon(Icons.visibility),
+                        color: AppColors.grey4,
+                        tooltip: i18n.common_ViewDetail,
+                      ),
+                      IconButton(
+                        onPressed: () => handleDelete(e),
+                        icon: const Icon(Icons.delete_outline),
+                        color: AppColors.error,
+                        tooltip: i18n.button_Delete,
+                      ),
+                    ],
                   );
                 },
               ),

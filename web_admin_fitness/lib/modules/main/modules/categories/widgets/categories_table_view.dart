@@ -15,6 +15,7 @@ import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 
 import '../../../../../global/gen/i18n.dart';
 import '../../../../../global/routers/app_router.dart';
+import '../helper/category_helper.dart';
 
 class CategoriesTableView extends StatefulWidget {
   const CategoriesTableView({
@@ -33,6 +34,7 @@ class CategoriesTableView extends StatefulWidget {
 class _CategoriesTableViewState extends State<CategoriesTableView>
     with ClientMixin {
   String? orderBy;
+  bool loading = false;
 
   void handleOrderBy(String fieldName) {
     if (orderBy == 'Category.$fieldName:DESC') {
@@ -61,15 +63,45 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
     );
   }
 
+  void handleDelete(GCategory category) async {
+    setState(() => loading = true);
+    await CategoryHelper().handleDelete(context, category);
+    setState(() => loading = false);
+    if (mounted) {
+      context.popRoute('delete');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final spacing = ResponsiveWrapper.of(context).adap(16.0, 20.0);
     final i18n = I18n.of(context)!;
     var request = widget.getCategoriesReq;
 
+    void refreshHandler() {
+      request = request.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..updateResult = ((previous, result) => result),
+      );
+
+      client.requestController.add(request);
+    }
+
+    void goToUpsertPage(GCategory category) {
+      context.pushRoute(CategoryUpsertRoute(category: category)).then(
+        (value) {
+          if (value != null) {
+            refreshHandler();
+          }
+        },
+      );
+    }
+
     return Padding(
       padding: EdgeInsets.fromLTRB(spacing, 0, spacing, spacing),
       child: DataTableBuilder(
+        loading: loading,
         client: client,
         request: request,
         meta: (response) {
@@ -103,13 +135,13 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
               TableColumn(
                 label: i18n.common_Name,
                 itemValue: (e) => e.name,
-                minimumWidth: 100,
+                minimumWidth: 220,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('name'),
               ),
               TableColumn(
                   label: i18n.common_ImageUrl,
-                  minimumWidth: 500,
+                  minimumWidth: 400,
                   columnWidthMode: ColumnWidthMode.fill,
                   action: sortButton('imgUrl'),
                   cellBuilder: (e) {
@@ -139,15 +171,23 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
-                width: 120,
+                width: 130,
                 cellBuilder: (e) {
-                  return IconButton(
-                    onPressed: () {
-                      context.pushRoute(CategoryUpsertRoute(category: e));
-                    },
-                    icon: const Icon(Icons.edit),
-                    color: AppColors.grey4,
-                    tooltip: i18n.common_UpdateData,
+                  return Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => goToUpsertPage(e),
+                        icon: const Icon(Icons.visibility),
+                        color: AppColors.grey4,
+                        tooltip: i18n.common_ViewDetail,
+                      ),
+                      IconButton(
+                        onPressed: () => handleDelete(e),
+                        icon: const Icon(Icons.delete_outline),
+                        color: AppColors.error,
+                        tooltip: i18n.common_UpdateData,
+                      ),
+                    ],
                   );
                 },
               ),

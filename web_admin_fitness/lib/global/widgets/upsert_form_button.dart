@@ -9,14 +9,12 @@ class UpsertFormButton extends StatelessWidget {
     required this.onPressNegativeButton,
     required this.positiveButtonText,
     required this.negativeButtonText,
-    this.negativeButtonColor = AppColors.grey6,
   });
 
   final VoidCallback onPressPositiveButton;
   final VoidCallback onPressNegativeButton;
   final String positiveButtonText;
   final String negativeButtonText;
-  final Color negativeButtonColor;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class UpsertFormButton extends StatelessWidget {
           Expanded(
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: negativeButtonColor,
+                backgroundColor: AppColors.grey6,
               ),
               onPressed: onPressNegativeButton,
               child: Text(negativeButtonText),
