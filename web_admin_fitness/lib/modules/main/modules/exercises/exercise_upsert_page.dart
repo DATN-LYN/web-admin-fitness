@@ -11,7 +11,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
-import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_exercise.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_exercise.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_program.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
@@ -54,7 +53,7 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
   XFile? image;
   XFile? video;
   late final isCreateNew = widget.exercise == null;
-  VideoPlayerController? _controller;
+  VideoPlayerController? controller;
   GProgram? initialProgram;
   var key = GlobalKey();
 
@@ -73,10 +72,10 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
           () {
             Uri initialUri = Uri.parse(widget.exercise!.videoUrl!);
             Uri replaceUri = initialUri.replace(scheme: 'https');
-            _controller = VideoPlayerController.network(replaceUri.toString());
+            controller = VideoPlayerController.network(replaceUri.toString());
           },
         );
-        await _controller!.initialize();
+        await controller!.initialize();
       } catch (e) {
         setState(() => loading = false);
       }
@@ -107,53 +106,14 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
     setState(() {
       formKey = GlobalKey<FormBuilderState>();
       image = null;
-      _controller = null;
+      controller = null;
     });
-  }
-
-  void handleDelete() {
-    final i18n = I18n.of(context)!;
-
-    showAlertDialog(
-      context: context,
-      builder: (dialogContext, child) {
-        return ConfirmationDialog(
-          titleText: i18n.deleteExercise_Title,
-          contentText: i18n.deleteExercise_Des,
-          onTapPositiveButton: () async {
-            dialogContext.popRoute();
-            setState(() => loading = true);
-
-            final request = GDeleteExerciseReq(
-              (b) => b..vars.exerciseId = widget.exercise?.id,
-            );
-
-            final response = await client.request(request).first;
-            setState(() => loading = false);
-            if (response.hasErrors) {
-              if (mounted) {
-                showErrorToast(
-                  context,
-                  response.graphqlErrors?.first.message,
-                );
-                // DialogUtils.showError(context: context, response: response);
-              }
-            } else {
-              if (mounted) {
-                showSuccessToast(context, i18n.toast_Subtitle_DeleteExercise);
-                context.popRoute(response);
-              }
-            }
-          },
-        );
-      },
-    );
   }
 
   void setDuration() {
     formKey.currentState?.fields['duration']?.didChange(
       DurationTime.totalDurationFormat(
-        _controller!.value.duration,
+        controller!.value.duration,
       ),
     );
   }
@@ -179,7 +139,7 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
         ..name = formValue['name']
         ..id = widget.exercise?.id
         ..imgUrl = imageUrl
-        ..duration = formValue['duration']
+        ..duration = controller!.value.duration.inSeconds.toDouble()
         ..calo = double.parse(formValue['calo'])
         ..videoUrl = videoUrl
         ..programId = formValue['programId'],
@@ -187,31 +147,31 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
   }
 
   void onPickVideo() async {
-    if (_controller != null) {
-      await _controller!.pause();
-      await _controller!.seekTo(Duration.zero);
+    if (controller != null) {
+      await controller!.pause();
+      await controller!.seekTo(Duration.zero);
     }
 
     final pickedFile = await FileHelper.pickVideo();
 
     if (pickedFile != null) {
-      if (_controller != null) {
-        await _controller!.dispose();
+      if (controller != null) {
+        await controller!.dispose();
       }
       setState(() => video = pickedFile);
       formKey.currentState?.fields['videoUrl']?.didChange(video!.name);
 
       if (kIsWeb) {
         setState(
-          () => _controller = VideoPlayerController.network(video!.path),
+          () => controller = VideoPlayerController.network(video!.path),
         );
       } else {
         setState(
-          () => _controller = VideoPlayerController.file(File(video!.path)),
+          () => controller = VideoPlayerController.file(File(video!.path)),
         );
       }
 
-      await _controller!.initialize();
+      await controller!.initialize();
       setDuration();
       key = GlobalKey();
     }
@@ -292,8 +252,8 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
 
   @override
   void dispose() {
-    if (_controller != null) {
-      _controller!.dispose();
+    if (controller != null) {
+      controller!.dispose();
     }
     super.dispose();
   }
@@ -310,7 +270,7 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
           title: Text(
             isCreateNew
                 ? i18n.upsertExercise_CreateNewTitle
-                : i18n.upsertExercise_UpdateTitle,
+                : i18n.upsertExercise_ExerciseDetail,
           ),
         ),
         body: Column(
@@ -338,7 +298,7 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
                       name: 'name',
                       initialValue: widget.exercise?.name,
                       decoration: InputDecoration(
-                        hintText: i18n.upsertCategory_NameHint,
+                        hintText: i18n.upsertExercise_NameHint,
                       ),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: FormBuilderValidators.required(
@@ -390,8 +350,14 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
                         return PickImageField(
                           errorText: field.errorText,
                           onPickImage: onPickImage,
-                          initialData: widget.exercise?.imgUrl,
-                          isCreateNew: isCreateNew,
+                          fieldValue: !isCreateNew && image == null
+                              ? widget.exercise?.imgUrl ?? ''
+                              : image != null
+                                  ? image!.name
+                                  : i18n.upsertExercise_ImageHint,
+                          textColor: image != null || !isCreateNew
+                              ? AppColors.grey1
+                              : AppColors.grey4,
                         );
                       },
                     ),
@@ -440,14 +406,17 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
                       },
                     ),
                     if ((video != null || !isCreateNew && video == null) &&
-                        _controller != null) ...[
-                      ExerciseVideo(key: key, controller: _controller!)
+                        controller != null) ...[
+                      ExerciseVideo(key: key, controller: controller!)
                     ],
                     Label(i18n.upsertExercise_Duration),
                     FormBuilderTextField(
                       name: 'duration',
                       readOnly: true,
-                      initialValue: widget.exercise?.duration,
+                      initialValue: widget.exercise?.duration != null
+                          ? DurationTime.totalDurationFormat(Duration(
+                              seconds: widget.exercise!.duration!.toInt()))
+                          : null,
                       decoration: InputDecoration(
                         hintText: i18n.upsertExercise_DurationHint,
                       ),
@@ -462,13 +431,10 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
             ),
             UpsertFormButton(
               onPressPositiveButton: handleSubmit,
-              onPressNegativeButton: isCreateNew ? handleReset : handleDelete,
+              onPressNegativeButton: handleReset,
               positiveButtonText:
                   isCreateNew ? i18n.button_Confirm : i18n.button_Save,
-              negativeButtonText:
-                  isCreateNew ? i18n.button_Reset : i18n.button_Delete,
-              negativeButtonColor:
-                  isCreateNew ? AppColors.grey6 : AppColors.deleteButton,
+              negativeButtonText: i18n.button_Reset,
             ),
           ],
         ),

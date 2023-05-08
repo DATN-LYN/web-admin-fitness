@@ -4,7 +4,6 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.req.gql.dart';
 import 'package:web_admin_fitness/global/models/inbox_filter_data.dart';
 import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inboxes_list_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inboxes_overview.dart';
 import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inboxes_search_bar.dart';
 import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inboxes_table_view.dart';
 
@@ -62,8 +61,6 @@ class _InboxesManagerPageState extends State<InboxesManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const InboxesOverview(),
-            SizedBox(height: responsive.adap(20.0, 32.0)),
             if (!isDesktopView) ...[
               Text(
                 i18n.inboxes_InboxList,

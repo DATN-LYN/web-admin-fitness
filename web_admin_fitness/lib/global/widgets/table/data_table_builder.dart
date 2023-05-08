@@ -17,6 +17,7 @@ class DataTableBuilder<TData, TVars> extends StatefulWidget {
     this.listener,
     required this.meta,
     required this.changeLimitRequest,
+    this.loading,
   }) : super(key: key);
 
   final OperationRequest<TData, TVars> request;
@@ -32,6 +33,7 @@ class DataTableBuilder<TData, TVars> extends StatefulWidget {
   final OperationResponseBuilder<TData, TVars> builder;
   final void Function(OperationResponse<TData, TVars>)? listener;
   final Client client;
+  final bool? loading;
 
   @override
   State<DataTableBuilder<TData, TVars>> createState() =>
@@ -70,6 +72,9 @@ class _DataTableBuilderState<TData, TVars>
         });
         showLoading();
       });
+    }
+    if (widget.loading != null && widget.loading != oldWidget.loading) {
+      setState(() => loading = widget.loading!);
     }
     super.didUpdateWidget(oldWidget);
   }

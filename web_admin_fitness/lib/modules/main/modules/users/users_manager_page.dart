@@ -6,7 +6,6 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart';
 import 'package:web_admin_fitness/global/models/user_filter_data.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
-import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercises_overview.dart';
 import 'package:web_admin_fitness/modules/main/modules/users/widgets/user_search_bar.dart';
 import 'package:web_admin_fitness/modules/main/modules/users/widgets/users_list_view.dart';
 import 'package:web_admin_fitness/modules/main/modules/users/widgets/users_table_view.dart';
@@ -105,8 +104,6 @@ class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const ExercisesOverview(),
-            SizedBox(height: responsive.adap(20.0, 32.0)),
             if (!isDesktopView) ...[
               Text(
                 i18n.exercises_ExerciseList,

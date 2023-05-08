@@ -7,10 +7,12 @@ class LoadingOverlay extends StatelessWidget {
     super.key,
     required this.child,
     required this.loading,
+    this.isDark = true,
   });
 
   final Widget child;
   final bool loading;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +20,10 @@ class LoadingOverlay extends StatelessWidget {
       children: [
         child,
         if (loading)
-          const SizedBox.expand(
+          SizedBox.expand(
             child: ColoredBox(
-              color: Colors.black26,
-              child: Center(
+              color: isDark ? Colors.black26 : Colors.white38,
+              child: const Center(
                 child: CircularProgressIndicator(
                   color: AppColors.primary,
                 ),

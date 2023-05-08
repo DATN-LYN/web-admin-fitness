@@ -13,7 +13,6 @@ import '../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../global/gen/i18n.dart';
 import '../../../../global/utils/constants.dart';
 import '../../../../global/widgets/responsive/responsive_page_builder.dart';
-import 'widgets/categories_overview.dart';
 
 class CategoriesManagerPage extends StatefulWidget {
   const CategoriesManagerPage({super.key});
@@ -66,8 +65,6 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CategoriesOverview(),
-            SizedBox(height: responsive.adap(16.0, 24.0)),
             if (!isDesktopView) ...[
               Text(
                 i18n.categories_CategoryList,

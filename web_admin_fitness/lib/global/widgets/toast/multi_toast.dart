@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
 
 import '../../gen/i18n.dart';
 import '../../models/toast_item.dart';
@@ -127,8 +127,10 @@ class MultiToast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = ResponsiveWrapper.of(context);
+    final isDesktopView = responsive.isLargerThan(MOBILE);
     return Align(
-      alignment: kIsWeb ? Alignment.topRight : Alignment.bottomRight,
+      alignment: isDesktopView ? Alignment.topRight : Alignment.bottomRight,
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.85 > 400
             ? 500

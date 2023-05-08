@@ -8,15 +8,18 @@ import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/widgets/label_text_row.dart';
 import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
+import 'package:web_admin_fitness/global/widgets/slidable_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/tag.dart';
 
 class ProgramItem extends StatelessWidget {
   const ProgramItem({
     super.key,
     required this.program,
+    required this.handleDelete,
   });
 
   final GProgram program;
+  final VoidCallback handleDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +27,9 @@ class ProgramItem extends StatelessWidget {
     final level = WorkoutLevel.getLevel(program.level ?? 0);
     final bodyPart = WorkoutBodyPart.getBodyPart(program.bodyPart ?? 0);
 
-    return GestureDetector(
-      onTap: () {
-        context.pushRoute(ProgramUpsertRoute(program: program));
-      },
+    return SlidableWrapper(
+      handleDelete: handleDelete,
+      handleEdit: () => context.pushRoute(ProgramUpsertRoute(program: program)),
       child: ShadowWrapper(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -65,15 +67,15 @@ class ProgramItem extends StatelessWidget {
                         value: program.name,
                       ),
                       const SizedBox(height: 6),
-                      LabelTextRow(
-                        label: i18n.common_Calo,
-                        value: program.calo.toString(),
-                      ),
-                      const SizedBox(height: 6),
-                      LabelTextRow(
-                        label: i18n.common_Duration,
-                        value: program.duration.toString(),
-                      ),
+                      // LabelTextRow(
+                      //   label: i18n.common_Calo,
+                      //   value: program.calo.toString(),
+                      // ),
+                      // const SizedBox(height: 6),
+                      // LabelTextRow(
+                      //   label: i18n.common_Duration,
+                      //   value: program.duration.toString(),
+                      // ),
                       const SizedBox(height: 6),
                       LabelTextRow(
                         label: i18n.common_Id,

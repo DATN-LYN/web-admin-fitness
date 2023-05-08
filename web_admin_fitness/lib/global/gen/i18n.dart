@@ -210,14 +210,16 @@ class I18n implements WidgetsLocalizations {
 	String get users_UserList => "User List";
 	/// "Enter user email"
 	String get users_SearchHint => "Enter user email";
-	/// "Create new category"
-	String get upsertCategory_CreateNewTitle => "Create new category";
-	/// "Update category"
-	String get upsertCategory_UpdateTitle => "Update category";
+	/// "Create New Category"
+	String get upsertCategory_CreateNewTitle => "Create New Category";
+	/// "Update Category"
+	String get upsertCategory_UpdateTitle => "Update Category";
 	/// "Are you sure you want to create a new category?"
 	String get upsertCategory_CreateNewDes => "Are you sure you want to create a new category?";
 	/// "Are you sure you want to update this category information?"
 	String get upsertCategory_UpdateDes => "Are you sure you want to update this category information?";
+	/// "Category Detail"
+	String get upsertCategory_CategoryDetail => "Category Detail";
 	/// "Category Name"
 	String get upsertCategory_CategoryName => "Category Name";
 	/// "Category Image"
@@ -260,14 +262,16 @@ class I18n implements WidgetsLocalizations {
 	String get toast_Subtitle_UpdateExercise => "You have updated a exercise successfully";
 	/// "You have deleted a exercise successfully"
 	String get toast_Subtitle_DeleteExercise => "You have deleted a exercise successfully";
-	/// "Create new program"
-	String get upsertProgram_CreateNewTitle => "Create new program";
-	/// "Update program"
-	String get upsertProgram_UpdateTitle => "Update program";
+	/// "Create New Program"
+	String get upsertProgram_CreateNewTitle => "Create New Program";
+	/// "Update Program"
+	String get upsertProgram_UpdateTitle => "Update Program";
 	/// "Are you sure you want to create a new program?"
 	String get upsertProgram_CreateNewDes => "Are you sure you want to create a new program?";
 	/// "Are you sure you want to update this program information?"
 	String get upsertProgram_UpdateDes => "Are you sure you want to update this program information?";
+	/// "Program detail"
+	String get upsertProgram_ProgramDetail => "Program detail";
 	/// "Program Name"
 	String get upsertProgram_Name => "Program Name";
 	/// "Program Image"
@@ -302,14 +306,16 @@ class I18n implements WidgetsLocalizations {
 	String get upsertProgram_Description => "Description";
 	/// "Input program description"
 	String get upsertProgram_DescriptionHint => "Input program description";
-	/// "Create new exercise"
-	String get upsertExercise_CreateNewTitle => "Create new exercise";
-	/// "Update exercise"
-	String get upsertExercise_UpdateTitle => "Update exercise";
+	/// "Create New Exercise"
+	String get upsertExercise_CreateNewTitle => "Create New Exercise";
+	/// "Update Exercise"
+	String get upsertExercise_UpdateTitle => "Update Exercise";
 	/// "Are you sure you want to create a new exercise?"
 	String get upsertExercise_CreateNewDes => "Are you sure you want to create a new exercise?";
 	/// "Are you sure you want to update this exercise information?"
 	String get upsertExercise_UpdateDes => "Are you sure you want to update this exercise information?";
+	/// "Exercise Detail"
+	String get upsertExercise_ExerciseDetail => "Exercise Detail";
 	/// "Exercise Name"
 	String get upsertExercise_Name => "Exercise Name";
 	/// "Exercise Image"
@@ -644,9 +650,18 @@ class _I18n_vi_VN extends I18n {
 	/// "Tạo thể loại mới"
 	@override
 	String get upsertCategory_CreateNewTitle => "Tạo thể loại mới";
+	/// "Cập nhật thể loại"
+	@override
+	String get upsertCategory_UpdateTitle => "Cập nhật thể loại";
 	/// "Bạn có chắc chắn muốn tạo thể loại mới?"
 	@override
 	String get upsertCategory_CreateNewDes => "Bạn có chắc chắn muốn tạo thể loại mới?";
+	/// "Bạn có chắc chắn muốn cập nhật thông tin thể loại?"
+	@override
+	String get upsertCategory_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin thể loại?";
+	/// "Chi tiết thể loại"
+	@override
+	String get upsertCategory_CategoryDetail => "Chi tiết thể loại";
 	/// "Tên thể loại"
 	@override
 	String get upsertCategory_CategoryName => "Tên thể loại";
@@ -722,6 +737,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Bạn có chắc chắn muốn cập nhật thông tin chương trình?"
 	@override
 	String get upsertProgram_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin chương trình?";
+	/// "Chi tiết chương trình"
+	@override
+	String get upsertProgram_ProgramDetail => "Chi tiết chương trình";
 	/// "Tên chương trình"
 	@override
 	String get upsertProgram_Name => "Tên chương trình";
@@ -785,6 +803,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Bạn có chắc chắn muốn cập nhật thông tin bài tập?"
 	@override
 	String get upsertExercise_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin bài tập?";
+	/// "Chi tiết bài tập"
+	@override
+	String get upsertExercise_ExerciseDetail => "Chi tiết bài tập";
 	/// "Tên bài tập"
 	@override
 	String get upsertExercise_Name => "Tên bài tập";

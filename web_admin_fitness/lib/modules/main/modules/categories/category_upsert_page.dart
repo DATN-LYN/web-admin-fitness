@@ -8,7 +8,6 @@ import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_category_cache_handler.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.data.gql.dart';
-import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_category.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_category.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
@@ -47,45 +46,6 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
       formKey = GlobalKey<FormBuilderState>();
       image = null;
     });
-  }
-
-  void handleDelete() {
-    final i18n = I18n.of(context)!;
-
-    showAlertDialog(
-      context: context,
-      builder: (dialogContext, child) {
-        return ConfirmationDialog(
-          titleText: i18n.deleteCategory_Title,
-          contentText: i18n.deleteCategory_Des,
-          onTapPositiveButton: () async {
-            dialogContext.popRoute();
-            setState(() => loading = true);
-
-            final request = GDeleteCategoryReq(
-              (b) => b..vars.categoryId = widget.category?.id,
-            );
-
-            final response = await client.request(request).first;
-            setState(() => loading = false);
-            if (response.hasErrors) {
-              if (mounted) {
-                showErrorToast(
-                  context,
-                  response.graphqlErrors?.first.message,
-                );
-                // DialogUtils.showError(context: context, response: response);
-              }
-            } else {
-              if (mounted) {
-                showSuccessToast(context, i18n.toast_Subtitle_DeleteCategory);
-                context.popRoute(response);
-              }
-            }
-          },
-        );
-      },
-    );
   }
 
   void onPickImage() async {
@@ -188,7 +148,7 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
           title: Text(
             isCreateNew
                 ? i18n.upsertCategory_CreateNewTitle
-                : i18n.upsertCategory_UpdateTitle,
+                : i18n.upsertCategory_CategoryDetail,
           ),
         ),
         body: Column(
@@ -235,8 +195,14 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
                         return PickImageField(
                           errorText: field.errorText,
                           onPickImage: onPickImage,
-                          initialData: widget.category?.imgUrl,
-                          isCreateNew: isCreateNew,
+                          fieldValue: !isCreateNew && image == null
+                              ? widget.category?.imgUrl ?? ''
+                              : image != null
+                                  ? image!.name
+                                  : i18n.upsertExercise_ImageHint,
+                          textColor: image != null || !isCreateNew
+                              ? AppColors.grey1
+                              : AppColors.grey4,
                         );
                       },
                     ),
@@ -253,13 +219,10 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
             ),
             UpsertFormButton(
               onPressPositiveButton: handleSubmit,
-              onPressNegativeButton: isCreateNew ? handleReset : handleDelete,
+              onPressNegativeButton: handleReset,
               positiveButtonText:
                   isCreateNew ? i18n.button_Confirm : i18n.button_Save,
-              negativeButtonText:
-                  isCreateNew ? i18n.button_Reset : i18n.button_Delete,
-              negativeButtonColor:
-                  isCreateNew ? AppColors.grey6 : AppColors.deleteButton,
+              negativeButtonText: i18n.button_Reset,
             ),
           ],
         ),

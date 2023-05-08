@@ -1,8 +1,6 @@
 fragment Program on Program {
   id
   name
-  duration
-  calo
   level
   bodyPart
   description

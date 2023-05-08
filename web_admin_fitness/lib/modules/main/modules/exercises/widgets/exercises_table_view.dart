@@ -8,6 +8,7 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/utils/duration_time.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
@@ -15,6 +16,7 @@ import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 
 import '../../../../../global/gen/i18n.dart';
 import '../../../../../global/routers/app_router.dart';
+import '../helper/exercise_helper.dart';
 
 class ExercisesTableView extends StatefulWidget {
   const ExercisesTableView({
@@ -33,6 +35,7 @@ class ExercisesTableView extends StatefulWidget {
 class _ExercisesTableViewState extends State<ExercisesTableView>
     with ClientMixin {
   String? orderBy;
+  bool loading = false;
 
   void handleOrderBy(String fieldName) {
     if (orderBy == 'Exercise.$fieldName:DESC') {
@@ -61,15 +64,42 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
     );
   }
 
+  void handleDelete(GExercise exercise) async {
+    setState(() => loading = true);
+    await ExerciseHelper().handleDelete(context, exercise);
+    setState(() => loading = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     final spacing = ResponsiveWrapper.of(context).adap(16.0, 24.0);
     final i18n = I18n.of(context)!;
     var request = widget.getExercisesReq;
 
+    void refreshHandler() {
+      request = request.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..updateResult = ((previous, result) => result),
+      );
+
+      client.requestController.add(request);
+    }
+
+    void goToUpsertPage(GExercise exercise) {
+      context.pushRoute(ExerciseUpsertRoute(exercise: exercise)).then(
+        (value) {
+          if (value != null) {
+            refreshHandler();
+          }
+        },
+      );
+    }
+
     return Padding(
       padding: EdgeInsets.fromLTRB(spacing, 0, spacing, spacing),
       child: DataTableBuilder(
+        loading: loading,
         client: client,
         request: request,
         meta: (response) {
@@ -149,7 +179,11 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('duration'),
-                itemValue: (e) => e.duration.toString(),
+                itemValue: (e) => DurationTime.totalDurationFormat(
+                  Duration(
+                    seconds: e.duration!.toInt(),
+                  ),
+                ),
               ),
               TableColumn(
                 label: i18n.exercises_VideoUrl,
@@ -168,15 +202,23 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
-                width: 120,
+                width: 125,
                 cellBuilder: (e) {
-                  return IconButton(
-                    onPressed: () {
-                      context.pushRoute(ExerciseUpsertRoute(exercise: e));
-                    },
-                    icon: const Icon(Icons.edit),
-                    color: AppColors.grey4,
-                    tooltip: i18n.common_ViewDetail,
+                  return Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => goToUpsertPage(e),
+                        icon: const Icon(Icons.edit),
+                        color: AppColors.grey4,
+                        tooltip: i18n.button_Edit,
+                      ),
+                      IconButton(
+                        onPressed: () => handleDelete(e),
+                        icon: const Icon(Icons.delete_outline),
+                        color: AppColors.error,
+                        tooltip: i18n.button_Delete,
+                      ),
+                    ],
                   );
                 },
               ),
