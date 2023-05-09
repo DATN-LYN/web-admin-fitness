@@ -123,19 +123,6 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
             tableData: programs,
             columnItems: [
               TableColumn(
-                label: i18n.common_Id,
-                minimumWidth: 200,
-                columnWidthMode: ColumnWidthMode.fill,
-                itemValue: (e) => e.id,
-              ),
-              TableColumn(
-                label: i18n.common_Name,
-                itemValue: (e) => e.name,
-                minimumWidth: 200,
-                columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('name'),
-              ),
-              TableColumn(
                 label: i18n.common_ImageUrl,
                 // itemValue: (e) => e.imgUrl,
                 minimumWidth: 350,
@@ -152,7 +139,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                           width: 100,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 12),
                         Expanded(
                           child: Text(
                             e.imgUrl ?? '_',
@@ -167,19 +154,18 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                 },
               ),
               // TableColumn(
-              //   label: i18n.programs_Calo,
-              //   minimumWidth: 100,
+              //   label: i18n.common_Id,
+              //   minimumWidth: 200,
               //   columnWidthMode: ColumnWidthMode.fill,
-              //   action: sortButton('calo'),
-              //   itemValue: (e) => e.calo.toString(),
+              //   itemValue: (e) => e.id,
               // ),
-              // TableColumn(
-              //   label: i18n.common_Duration,
-              //   minimumWidth: 130,
-              //   columnWidthMode: ColumnWidthMode.fill,
-              //   action: sortButton('duration'),
-              //   itemValue: (e) => e.duration.toString(),
-              // ),
+              TableColumn(
+                label: i18n.common_Name,
+                itemValue: (e) => e.name,
+                minimumWidth: 200,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('name'),
+              ),
               TableColumn(
                 label: i18n.common_Level,
                 minimumWidth: 130,
@@ -208,17 +194,24 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                       ),
                     );
                   }),
-              // TableColumn(
-              //   label: i18n.programs_Description,
-              //   minimumWidth: 150,
-              //   columnWidthMode: ColumnWidthMode.fill,
-              //   action: sortButton('description'),
-              //   itemValue: (e) => e.calo.toString(),
-              // ),
+              TableColumn(
+                label: i18n.programs_Description,
+                minimumWidth: 220,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('description'),
+                itemValue: (e) => e.description.toString(),
+              ),
+              TableColumn(
+                label: i18n.upsertProgram_Category,
+                minimumWidth: 200,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('categoryId'),
+                itemValue: (e) => e.categoryId,
+              ),
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
-                width: 120,
+                width: 125,
                 cellBuilder: (e) {
                   return Row(
                     children: [

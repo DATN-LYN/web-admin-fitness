@@ -263,7 +263,7 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                           InputDecoration(hintText: i18n.upsertUser_EmailHint),
                       enabled: isCreateNew ? true : false,
                     ),
-                    const Label('Full name'),
+                    Label(i18n.upsertUser_FullName),
                     FormBuilderTextField(
                       name: 'fullName',
                       initialValue: widget.user?.fullName,

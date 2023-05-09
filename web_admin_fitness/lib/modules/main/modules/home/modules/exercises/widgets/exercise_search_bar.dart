@@ -115,7 +115,7 @@ class _ExerciseSearchBarState extends State<ExerciseSearchBar> {
       children: [
         if (isDesktopView)
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Text(
               i18n.exercises_ExerciseList,
               style: const TextStyle(

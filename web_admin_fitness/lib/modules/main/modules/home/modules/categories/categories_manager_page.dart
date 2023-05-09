@@ -65,6 +65,7 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (isDesktopView) const SizedBox(height: 16),
             if (!isDesktopView) ...[
               Text(
                 i18n.categories_CategoryList,

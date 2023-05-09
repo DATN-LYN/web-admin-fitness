@@ -125,21 +125,8 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
             tableData: exercises,
             columnItems: [
               TableColumn(
-                label: i18n.common_Id,
-                minimumWidth: 220,
-                columnWidthMode: ColumnWidthMode.fill,
-                itemValue: (e) => e.id,
-              ),
-              TableColumn(
-                label: i18n.common_Name,
-                itemValue: (e) => e.name,
-                minimumWidth: 200,
-                columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('name'),
-              ),
-              TableColumn(
                 label: i18n.common_ImageUrl,
-                minimumWidth: 350,
+                minimumWidth: 380,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('imgUrl'),
                 cellBuilder: (e) {
@@ -153,7 +140,7 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                           width: 100,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        const SizedBox(width: 6),
+                        const SizedBox(width: 12),
                         Expanded(
                           child: Text(
                             e.imgUrl ?? '_',
@@ -166,6 +153,19 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                     ),
                   );
                 },
+              ),
+              // TableColumn(
+              //   label: i18n.common_Id,
+              //   minimumWidth: 220,
+              //   columnWidthMode: ColumnWidthMode.fill,
+              //   itemValue: (e) => e.id,
+              // ),
+              TableColumn(
+                label: i18n.common_Name,
+                itemValue: (e) => e.name,
+                minimumWidth: 200,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('name'),
               ),
               TableColumn(
                 label: i18n.programs_Calo,

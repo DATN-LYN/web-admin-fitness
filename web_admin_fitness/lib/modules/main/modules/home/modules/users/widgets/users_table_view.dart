@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart';
+import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
@@ -91,12 +93,12 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
           final dataSource = TableDataSource<GUser>(
             tableData: users,
             columnItems: [
-              TableColumn(
-                label: i18n.common_Id,
-                minimumWidth: 220,
-                columnWidthMode: ColumnWidthMode.fill,
-                itemValue: (e) => e.id,
-              ),
+              // TableColumn(
+              //   label: i18n.common_Id,
+              //   minimumWidth: 220,
+              //   columnWidthMode: ColumnWidthMode.fill,
+              //   itemValue: (e) => e.id,
+              // ),
               // TableColumn(
               //   label: i18n.common_Name,
               //   itemValue: (e) => e.fullName,
@@ -106,7 +108,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               // ),
               TableColumn(
                 label: i18n.common_ImageUrl,
-                minimumWidth: 350,
+                minimumWidth: 400,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('fullName'),
                 cellBuilder: (e) {
@@ -120,10 +122,10 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                           width: 100,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        const SizedBox(width: 6),
+                        const SizedBox(width: 12),
                         Expanded(
                           child: Text(
-                            e.fullName ?? '-',
+                            e.avatar ?? '-',
                             overflow: TextOverflow.ellipsis,
                             maxLines: 3,
                             softWrap: true,
@@ -135,14 +137,21 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 },
               ),
               TableColumn(
-                label: i18n.programs_Calo,
-                minimumWidth: 150,
+                label: i18n.login_Email,
+                minimumWidth: 200,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('email'),
                 itemValue: (e) => e.email.toString(),
               ),
               TableColumn(
-                label: i18n.programs_Calo,
+                label: i18n.upsertUser_FullName,
+                minimumWidth: 200,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('fullName'),
+                itemValue: (e) => e.fullName ?? '-',
+              ),
+              TableColumn(
+                label: i18n.upsertUser_Age,
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('age'),
@@ -151,10 +160,11 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
-                width: 110,
+                width: 125,
                 cellBuilder: (e) {
                   return IconButton(
-                    onPressed: () {},
+                    onPressed: () =>
+                        context.pushRoute(UserUpsertRoute(user: e)),
                     icon: const Icon(Icons.remove_red_eye),
                     color: AppColors.grey4,
                     tooltip: i18n.common_ViewDetail,

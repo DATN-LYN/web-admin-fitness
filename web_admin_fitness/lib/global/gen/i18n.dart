@@ -202,10 +202,16 @@ class I18n implements WidgetsLocalizations {
 	String get inboxes_User => "User";
 	/// "Message"
 	String get inboxes_Message => "Message";
-	/// "Is Sender"
-	String get inboxes_IsSender => "Is Sender";
-	/// "Enter user email"
-	String get inboxes_SearchHint => "Enter user email";
+	/// "Bot"
+	String get inboxes_Bot => "Bot";
+	/// "From"
+	String get inboxes_From => "From";
+	/// "Created At"
+	String get inboxes_CreatedAt => "Created At";
+	/// "Inbox Detail"
+	String get inboxes_InboxDetail => "Inbox Detail";
+	/// "User ID"
+	String get inboxes_UserId => "User ID";
 	/// "User List"
 	String get users_UserList => "User List";
 	/// "Enter user email"
@@ -376,6 +382,10 @@ class I18n implements WidgetsLocalizations {
 	String get deleteUser_Title => "Delete User";
 	/// "Are you sure you want to delete this user?"
 	String get deleteUser_Des => "Are you sure you want to delete this user?";
+	/// "Delete Inbox"
+	String get deleteInbox_Title => "Delete Inbox";
+	/// "Are you sure you want to delete this inbox?"
+	String get deleteInbox_Des => "Are you sure you want to delete this inbox?";
 	/// "Create New User"
 	String get upsertUser_CreateNewTitle => "Create New User";
 	/// "Update User"
@@ -676,9 +686,21 @@ class _I18n_vi_VN extends I18n {
 	/// "Tin nhắn"
 	@override
 	String get inboxes_Message => "Tin nhắn";
-	/// "Người gửi"
+	/// "Bot"
 	@override
-	String get inboxes_IsSender => "Người gửi";
+	String get inboxes_Bot => "Bot";
+	/// "Gửi từ"
+	@override
+	String get inboxes_From => "Gửi từ";
+	/// "Tạo lúc"
+	@override
+	String get inboxes_CreatedAt => "Tạo lúc";
+	/// "Chi tiết tin nhắn"
+	@override
+	String get inboxes_InboxDetail => "Chi tiết tin nhắn";
+	/// "Mã người dùng"
+	@override
+	String get inboxes_UserId => "Mã người dùng";
 	/// "Danh sách người dùng"
 	@override
 	String get users_UserList => "Danh sách người dùng";
@@ -934,6 +956,12 @@ class _I18n_vi_VN extends I18n {
 	/// "Bạn có chắc chắn muốn xoá người dùng?"
 	@override
 	String get deleteUser_Des => "Bạn có chắc chắn muốn xoá người dùng?";
+	/// "Xoá tin nhắn"
+	@override
+	String get deleteInbox_Title => "Xoá tin nhắn";
+	/// "Bạn có chắc chắn muốn xoá tin nhắn?"
+	@override
+	String get deleteInbox_Des => "Bạn có chắc chắn muốn xoá tin nhắn?";
 	/// "Tạo người dùng mới"
 	@override
 	String get upsertUser_CreateNewTitle => "Tạo người dùng mới";

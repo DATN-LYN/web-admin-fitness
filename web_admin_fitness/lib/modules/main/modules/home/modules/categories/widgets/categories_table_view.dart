@@ -67,9 +67,6 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
     setState(() => loading = true);
     await CategoryHelper().handleDelete(context, category);
     setState(() => loading = false);
-    if (mounted) {
-      context.popRoute('delete');
-    }
   }
 
   @override
@@ -127,11 +124,41 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
             tableData: categories,
             columnItems: [
               TableColumn(
-                label: i18n.common_Id,
-                minimumWidth: 200,
+                label: i18n.common_ImageUrl,
+                minimumWidth: 450,
                 columnWidthMode: ColumnWidthMode.fill,
-                itemValue: (e) => e.id,
+                action: sortButton('imgUrl'),
+                cellBuilder: (e) {
+                  return Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Row(
+                      children: [
+                        ShimmerImage(
+                          imageUrl: e.imgUrl ?? '',
+                          height: 120,
+                          width: 100,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            e.imgUrl ?? '_',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
+                            softWrap: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
+              // TableColumn(
+              //   label: i18n.common_Id,
+              //   minimumWidth: 200,
+              //   columnWidthMode: ColumnWidthMode.fill,
+              //   itemValue: (e) => e.id,
+              // ),
               TableColumn(
                 label: i18n.common_Name,
                 itemValue: (e) => e.name,
@@ -139,35 +166,6 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('name'),
               ),
-              TableColumn(
-                  label: i18n.common_ImageUrl,
-                  minimumWidth: 400,
-                  columnWidthMode: ColumnWidthMode.fill,
-                  action: sortButton('imgUrl'),
-                  cellBuilder: (e) {
-                    return Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: Row(
-                        children: [
-                          ShimmerImage(
-                            imageUrl: e.imgUrl ?? '',
-                            height: 120,
-                            width: 100,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              e.imgUrl ?? '_',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 3,
-                              softWrap: true,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,

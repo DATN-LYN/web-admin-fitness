@@ -105,6 +105,7 @@ class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (isDesktopView) const SizedBox(height: 16),
             if (!isDesktopView) ...[
               Text(
                 i18n.exercises_ExerciseList,

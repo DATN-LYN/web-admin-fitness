@@ -63,6 +63,7 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (isDesktopView) const SizedBox(height: 16),
             if (!isDesktopView) ...[
               Text(
                 i18n.programs_ProgramList,

@@ -117,7 +117,7 @@ class _CategorySearchBarState extends State<CategorySearchBar> {
       children: [
         if (isDesktopView)
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Text(
               widget.title ?? 'List',
               style: const TextStyle(

@@ -114,12 +114,15 @@
         "inboxList": "Danh sách tin nhắn",
         "user": "Người dùng",
         "message": "Tin nhắn",
-        "isSender": "Người gửi"
+        "bot":"Bot",
+        "from": "Gửi từ",
+        "createdAt": "Tạo lúc",
+        "inboxDetail": "Chi tiết tin nhắn",
+        "userId": "Mã người dùng"
     },
     "users_":{
         "userList": "Danh sách người dùng",
         "searchHint": "Nhập tên người dùng"
-
     },
     "upsertCategory_":{
         "createNewTitle": "Tạo thể loại mới",
@@ -223,6 +226,10 @@
     "deleteUser_":{
         "title":"Xoá người dùng",
         "des": "Bạn có chắc chắn muốn xoá người dùng?"
+    },
+    "deleteInbox_":{
+        "title":"Xoá tin nhắn",
+        "des": "Bạn có chắc chắn muốn xoá tin nhắn?"
     },
     "upsertUser_":{
         "createNewTitle": "Tạo người dùng mới",

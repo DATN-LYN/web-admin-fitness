@@ -114,8 +114,11 @@
         "inboxList": "Inbox List",
         "user": "User",
         "message": "Message",
-        "isSender": "Is Sender",
-        "searchHint": "Enter user email"
+        "bot":"Bot",
+        "from": "From",
+        "createdAt": "Created At",
+        "inboxDetail": "Inbox Detail",
+        "userId": "User ID"
     },
     "users_":{
         "userList": "User List",
@@ -224,6 +227,10 @@
     "deleteUser_":{
         "title":"Delete User",
         "des": "Are you sure you want to delete this user?"
+    },
+    "deleteInbox_":{
+        "title":"Delete Inbox",
+        "des": "Are you sure you want to delete this inbox?"
     },
     "upsertUser_":{
         "createNewTitle": "Create New User",
