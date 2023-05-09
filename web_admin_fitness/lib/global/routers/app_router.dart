@@ -1,21 +1,23 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/modules/main/main_page.dart';
-import 'package:web_admin_fitness/modules/main/modules/categories/categories_manager_page.dart';
-import 'package:web_admin_fitness/modules/main/modules/categories/category_upsert_page.dart';
-import 'package:web_admin_fitness/modules/main/modules/exercises/exercise_upsert_page.dart';
-import 'package:web_admin_fitness/modules/main/modules/exercises/exercises_manager_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/modules/categories/categories_manager_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/modules/categories/category_upsert_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/modules/exercises/exercise_upsert_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/modules/exercises/exercises_manager_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/home_page.dart';
-import 'package:web_admin_fitness/modules/main/modules/inboxes/inboxes_manager_page.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/program_upsert_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/modules/inboxes/inboxes_manager_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/program_upsert_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/setting/setting_page.dart';
-import 'package:web_admin_fitness/modules/main/modules/users/users_manager_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/modules/users/user_upsert_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/modules/users/users_manager_page.dart';
 
 import '../../modules/login/login_page.dart';
-import '../../modules/main/modules/programs/programs_manager_page.dart';
+import '../../modules/main/modules/home/modules/programs/programs_manager_page.dart';
 import '../graphql/fragment/__generated__/category_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/program_fragment.data.gql.dart';
+import '../graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import 'nested_route.dart';
 import 'right_sheet_route_builder.dart';
 
@@ -76,6 +78,11 @@ part 'app_router.gr.dart';
     NestedRoute(
       page: ExerciseUpsertPage,
       path: 'exerciseUpsert',
+      customRouteBuilder: rightSheetBuilder,
+    ),
+    NestedRoute(
+      page: UserUpsertPage,
+      path: 'userUpsert',
       customRouteBuilder: rightSheetBuilder,
     ),
     // AutoRoute(

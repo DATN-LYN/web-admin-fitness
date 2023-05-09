@@ -262,6 +262,12 @@ class I18n implements WidgetsLocalizations {
 	String get toast_Subtitle_UpdateExercise => "You have updated a exercise successfully";
 	/// "You have deleted a exercise successfully"
 	String get toast_Subtitle_DeleteExercise => "You have deleted a exercise successfully";
+	/// "You have created a new user successfully"
+	String get toast_Subtitle_CreateUser => "You have created a new user successfully";
+	/// "You have updated a user successfully"
+	String get toast_Subtitle_UpdateUser => "You have updated a user successfully";
+	/// "You have deleted a user successfully"
+	String get toast_Subtitle_DeleteUser => "You have deleted a user successfully";
 	/// "Create New Program"
 	String get upsertProgram_CreateNewTitle => "Create New Program";
 	/// "Update Program"
@@ -370,6 +376,38 @@ class I18n implements WidgetsLocalizations {
 	String get deleteUser_Title => "Delete User";
 	/// "Are you sure you want to delete this user?"
 	String get deleteUser_Des => "Are you sure you want to delete this user?";
+	/// "Create New User"
+	String get upsertUser_CreateNewTitle => "Create New User";
+	/// "Update User"
+	String get upsertUser_UpdateTitle => "Update User";
+	/// "Are you sure you want to create a new user?"
+	String get upsertUser_CreateNewDes => "Are you sure you want to create a new user?";
+	/// "Are you sure you want to update this user information?"
+	String get upsertUser_UpdateDes => "Are you sure you want to update this user information?";
+	/// "User Detail"
+	String get upsertUser_UserDetail => "User Detail";
+	/// "Full Name"
+	String get upsertUser_FullName => "Full Name";
+	/// "Enter user full name"
+	String get upsertUser_FullNameHint => "Enter user full name";
+	/// "Full name is required"
+	String get upsertUser_FullNameRequired => "Full name is required";
+	/// "Enter user email"
+	String get upsertUser_EmailHint => "Enter user email";
+	/// "Enter password"
+	String get upsertUser_PasswordHint => "Enter password";
+	/// "Age"
+	String get upsertUser_Age => "Age";
+	/// "Enter user age"
+	String get upsertUser_AgeHint => "Enter user age";
+	/// "Age is required"
+	String get upsertUser_AgeRequired => "Age is required";
+	/// "Enter confirm password"
+	String get upsertUser_ConfirmPasswordHint => "Enter confirm password";
+	/// "Confirm password is required"
+	String get upsertUser_ConfirmPasswordRequired => "Confirm password is required";
+	/// "Confirm password"
+	String get upsertUser_ConfirmPassword => "Confirm password";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -725,6 +763,15 @@ class _I18n_vi_VN extends I18n {
 	/// "Xoá bài tập thành công"
 	@override
 	String get toast_Subtitle_DeleteExercise => "Xoá bài tập thành công";
+	/// "Tạo người dùng mới thành công"
+	@override
+	String get toast_Subtitle_CreateUser => "Tạo người dùng mới thành công";
+	/// "Cập nhật thông tin người dùng thành công"
+	@override
+	String get toast_Subtitle_UpdateUser => "Cập nhật thông tin người dùng thành công";
+	/// "Xoá người dùng thành công"
+	@override
+	String get toast_Subtitle_DeleteUser => "Xoá người dùng thành công";
 	/// "Tạo chương trình mới"
 	@override
 	String get upsertProgram_CreateNewTitle => "Tạo chương trình mới";
@@ -887,6 +934,54 @@ class _I18n_vi_VN extends I18n {
 	/// "Bạn có chắc chắn muốn xoá người dùng?"
 	@override
 	String get deleteUser_Des => "Bạn có chắc chắn muốn xoá người dùng?";
+	/// "Tạo người dùng mới"
+	@override
+	String get upsertUser_CreateNewTitle => "Tạo người dùng mới";
+	/// "Cập nhật thông tin người dùng"
+	@override
+	String get upsertUser_UpdateTitle => "Cập nhật thông tin người dùng";
+	/// "Bạn có chắc chắn muốn tạo một người dùng mới?"
+	@override
+	String get upsertUser_CreateNewDes => "Bạn có chắc chắn muốn tạo một người dùng mới?";
+	/// "Bạn có chắc chắn muốn cập nhật thông tin của người dùng này?"
+	@override
+	String get upsertUser_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin của người dùng này?";
+	/// "Thông tin người dùng"
+	@override
+	String get upsertUser_UserDetail => "Thông tin người dùng";
+	/// "Họ và tên"
+	@override
+	String get upsertUser_FullName => "Họ và tên";
+	/// "Nhập họ và tên"
+	@override
+	String get upsertUser_FullNameHint => "Nhập họ và tên";
+	/// "Bạn chưa nhập họ và tên"
+	@override
+	String get upsertUser_FullNameRequired => "Bạn chưa nhập họ và tên";
+	/// "Nhập email"
+	@override
+	String get upsertUser_EmailHint => "Nhập email";
+	/// "Nhập mật khẩu"
+	@override
+	String get upsertUser_PasswordHint => "Nhập mật khẩu";
+	/// "Tuổi"
+	@override
+	String get upsertUser_Age => "Tuổi";
+	/// "Nhập tuổi"
+	@override
+	String get upsertUser_AgeHint => "Nhập tuổi";
+	/// "Bạn chưa nhập tuổi"
+	@override
+	String get upsertUser_AgeRequired => "Bạn chưa nhập tuổi";
+	/// "Nhập lại mật khẩu"
+	@override
+	String get upsertUser_ConfirmPasswordHint => "Nhập lại mật khẩu";
+	/// "Bạn chưa xác nhận mật khẩu"
+	@override
+	String get upsertUser_ConfirmPasswordRequired => "Bạn chưa xác nhận mật khẩu";
+	/// "Xác nhận mật khẩu"
+	@override
+	String get upsertUser_ConfirmPassword => "Xác nhận mật khẩu";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

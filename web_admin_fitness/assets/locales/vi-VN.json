@@ -152,7 +152,10 @@
           "deleteProgram": "Xoá chương trình thành công",
           "createExercise": "Tạo bài tập mới thành công",
           "updateExercise": "Cập nhật bài tập thành công",
-          "deleteExercise": "Xoá bài tập thành công"
+          "deleteExercise": "Xoá bài tập thành công",
+          "createUser": "Tạo người dùng mới thành công",
+          "updateUser": "Cập nhật thông tin người dùng thành công",
+          "deleteUser": "Xoá người dùng thành công"
         }
     },
       "upsertProgram_":{
@@ -220,5 +223,23 @@
     "deleteUser_":{
         "title":"Xoá người dùng",
         "des": "Bạn có chắc chắn muốn xoá người dùng?"
+    },
+    "upsertUser_":{
+        "createNewTitle": "Tạo người dùng mới",
+        "updateTitle": "Cập nhật thông tin người dùng",
+        "createNewDes":"Bạn có chắc chắn muốn tạo một người dùng mới?",
+        "updateDes": "Bạn có chắc chắn muốn cập nhật thông tin của người dùng này?",
+        "userDetail": "Thông tin người dùng",
+        "fullName": "Họ và tên",
+        "fullNameHint":"Nhập họ và tên",
+        "fullNameRequired":"Bạn chưa nhập họ và tên",
+        "emailHint": "Nhập email",
+        "passwordHint":"Nhập mật khẩu",
+        "age": "Tuổi",
+        "ageHint": "Nhập tuổi",
+        "ageRequired":"Bạn chưa nhập tuổi",
+        "confirmPasswordHint":"Nhập lại mật khẩu",
+        "confirmPasswordRequired":"Bạn chưa xác nhận mật khẩu",
+        "confirmPassword":"Xác nhận mật khẩu"
     }
 }

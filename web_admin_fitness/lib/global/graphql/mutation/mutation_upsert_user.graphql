@@ -1,0 +1,9 @@
+mutation UpsertUser($input: UpsertUserInputDto!) {
+  upsertUser(input: $input) {
+    id
+    email
+    fullName
+    avatar
+    age
+  }
+}
