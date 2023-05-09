@@ -93,6 +93,11 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
       ),
       listView: CategoriesListView(
         request: getCategoriesReq,
+        onRequestChanged: (request) {
+          setState(() {
+            getCategoriesReq = request;
+          });
+        },
       ),
       tableView: CategoriesTableView(
         getCategoriesReq: getCategoriesReq,
@@ -106,13 +111,9 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
         heroTag: 'upsertCategory',
         child: const Icon(Icons.add),
         onPressed: () {
-          context.pushRoute(CategoryUpsertRoute()).then(
-            (value) {
-              if (value != null) {
-                refreshHandler();
-              }
-            },
-          );
+          context.pushRoute(CategoryUpsertRoute()).then((value) {
+            if (value != null) refreshHandler();
+          });
         },
       ),
     );

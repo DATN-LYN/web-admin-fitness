@@ -1,10 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 import 'package:web_admin_fitness/global/widgets/slidable_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/tag.dart';
+
+import '../../../../../../../global/routers/app_router.dart';
 
 class InboxItem extends StatelessWidget {
   const InboxItem({
@@ -18,9 +22,13 @@ class InboxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n.of(context)!;
     return SlidableWrapper(
-      handleDelete: () {},
-      handleEdit: () {},
+      handleDelete: handleDelete,
+      handleEdit: () => context.pushRoute(
+        InboxDetailRoute(inbox: inbox),
+      ),
+      isView: true,
       child: ShadowWrapper(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,10 +54,12 @@ class InboxItem extends StatelessWidget {
                             style: const TextStyle(fontWeight: FontWeight.w600),
                           ),
                           Tag(
-                            text: inbox.isSender ? 'Sender' : 'Receiver',
+                            text: inbox.isSender
+                                ? i18n.inboxes_User
+                                : i18n.inboxes_Bot,
                             color: inbox.isSender
                                 ? AppColors.success
-                                : AppColors.error,
+                                : AppColors.alert,
                             fontSize: 12,
                           )
                         ],

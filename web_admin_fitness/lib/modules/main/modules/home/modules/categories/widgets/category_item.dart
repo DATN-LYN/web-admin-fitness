@@ -1,8 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.data.gql.dart';
-import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 
@@ -14,18 +12,19 @@ class CategoryItem extends StatelessWidget {
     super.key,
     required this.category,
     required this.handleDelete,
+    required this.handleEdit,
   });
 
   final GCategory category;
   final VoidCallback handleDelete;
+  final VoidCallback handleEdit;
 
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
     return SlidableWrapper(
       handleDelete: handleDelete,
-      handleEdit: () =>
-          context.pushRoute(CategoryUpsertRoute(category: category)),
+      handleEdit: handleEdit,
       child: ShadowWrapper(
         padding: const EdgeInsets.all(12),
         margin: const EdgeInsets.symmetric(vertical: 6),

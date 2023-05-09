@@ -87,6 +87,11 @@ class _InboxesManagerPageState extends State<InboxesManagerPage> {
       ),
       listView: InboxesListView(
         request: getInboxesReq,
+        onRequestChanged: (request) {
+          setState(() {
+            getInboxesReq = request;
+          });
+        },
       ),
       tableView: InboxesTableView(
         getInboxesReq: getInboxesReq,

@@ -89,6 +89,11 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
       ),
       listView: ProgramsListView(
         request: getProgramsReq,
+        onRequestChanged: (request) {
+          setState(() {
+            getProgramsReq = request;
+          });
+        },
       ),
       tableView: ProgramsTableView(
         getProgramsReq: getProgramsReq,

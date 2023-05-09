@@ -78,6 +78,8 @@ class I18n implements WidgetsLocalizations {
 	String get button_Delete => "Delete";
 	/// "Edit"
 	String get button_Edit => "Edit";
+	/// "View"
+	String get button_View => "View";
 	/// "Setting"
 	String get setting_Title => "Setting";
 	/// "Language"
@@ -216,6 +218,8 @@ class I18n implements WidgetsLocalizations {
 	String get users_UserList => "User List";
 	/// "Enter user email"
 	String get users_SearchHint => "Enter user email";
+	/// "Avatar"
+	String get users_Avatar => "Avatar";
 	/// "Create New Category"
 	String get upsertCategory_CreateNewTitle => "Create New Category";
 	/// "Update Category"
@@ -500,6 +504,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Sửa"
 	@override
 	String get button_Edit => "Sửa";
+	/// "Xem"
+	@override
+	String get button_View => "Xem";
 	/// "Cài đặt"
 	@override
 	String get setting_Title => "Cài đặt";
@@ -707,6 +714,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Nhập tên người dùng"
 	@override
 	String get users_SearchHint => "Nhập tên người dùng";
+	/// "Ảnh đại diện"
+	@override
+	String get users_Avatar => "Ảnh đại diện";
 	/// "Tạo thể loại mới"
 	@override
 	String get upsertCategory_CreateNewTitle => "Tạo thể loại mới";

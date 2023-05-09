@@ -25,7 +25,8 @@
         "reset":"Reset",
         "save": "Save",
         "delete":"Delete",
-        "edit":"Edit"
+        "edit":"Edit",
+        "view":"View"
     },
     "setting_":{
         "title":"Setting",
@@ -122,7 +123,8 @@
     },
     "users_":{
         "userList": "User List",
-        "searchHint": "Enter user email"
+        "searchHint": "Enter user email",
+        "avatar": "Avatar"
     },
     "upsertCategory_":{
         "createNewTitle": "Create New Category",

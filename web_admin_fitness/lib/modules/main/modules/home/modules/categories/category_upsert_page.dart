@@ -207,7 +207,10 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
                       },
                     ),
                     const SizedBox(height: 16),
-                    if (image != null) SelectedImage(image: image!),
+                    if (image != null)
+                      SelectedImage(
+                        image: image!,
+                      ),
                     if (!isCreateNew && image == null)
                       ShimmerImage(
                         imageUrl: widget.category!.imgUrl!,

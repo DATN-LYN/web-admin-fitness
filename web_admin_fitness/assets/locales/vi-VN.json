@@ -25,7 +25,8 @@
         "reset":"Đặt lại",
         "save": "Lưu",
         "delete":"Xoá",
-        "edit":"Sửa"
+        "edit":"Sửa",
+        "view":"Xem"
     },
     "setting_":{
         "title":"Cài đặt",
@@ -122,7 +123,8 @@
     },
     "users_":{
         "userList": "Danh sách người dùng",
-        "searchHint": "Nhập tên người dùng"
+        "searchHint": "Nhập tên người dùng",
+        "avatar": "Ảnh đại diện"
     },
     "upsertCategory_":{
         "createNewTitle": "Tạo thể loại mới",

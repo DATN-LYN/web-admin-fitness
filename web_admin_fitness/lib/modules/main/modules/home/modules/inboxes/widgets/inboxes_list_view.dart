@@ -14,9 +14,11 @@ class InboxesListView extends StatefulWidget {
   const InboxesListView({
     super.key,
     required this.request,
+    required this.onRequestChanged,
   });
 
   final GGetInboxesReq request;
+  final Function(GGetInboxesReq) onRequestChanged;
 
   @override
   State<InboxesListView> createState() => _InboxesListViewState();
@@ -27,7 +29,18 @@ class _InboxesListViewState extends State<InboxesListView> with ClientMixin {
   void handleDelete(GInbox inbox) async {
     setState(() => loading = true);
     await InboxHelper().handleDelete(context, inbox);
+    refreshHandler();
     setState(() => loading = false);
+  }
+
+  void refreshHandler() {
+    widget.onRequestChanged(
+      widget.request.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..updateResult = ((previous, result) => result),
+      ),
+    );
   }
 
   @override

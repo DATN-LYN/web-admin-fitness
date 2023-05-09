@@ -64,10 +64,31 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
     );
   }
 
+  void refreshHandler() {
+    widget.onRequestChanged(
+      widget.getExercisesReq.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..updateResult = ((previous, result) => result),
+      ),
+    );
+  }
+
   void handleDelete(GExercise exercise) async {
     setState(() => loading = true);
     await ExerciseHelper().handleDelete(context, exercise);
+    refreshHandler();
     setState(() => loading = false);
+  }
+
+  void goToUpsertPage(GExercise exercise) {
+    context.pushRoute(ExerciseUpsertRoute(exercise: exercise)).then(
+      (value) {
+        if (value != null) {
+          refreshHandler();
+        }
+      },
+    );
   }
 
   @override
@@ -75,26 +96,6 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
     final spacing = ResponsiveWrapper.of(context).adap(16.0, 24.0);
     final i18n = I18n.of(context)!;
     var request = widget.getExercisesReq;
-
-    void refreshHandler() {
-      request = request.rebuild(
-        (b) => b
-          ..vars.queryParams.page = 1
-          ..updateResult = ((previous, result) => result),
-      );
-
-      client.requestController.add(request);
-    }
-
-    void goToUpsertPage(GExercise exercise) {
-      context.pushRoute(ExerciseUpsertRoute(exercise: exercise)).then(
-        (value) {
-          if (value != null) {
-            refreshHandler();
-          }
-        },
-      );
-    }
 
     return Padding(
       padding: EdgeInsets.fromLTRB(spacing, 0, spacing, spacing),
@@ -136,8 +137,8 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                       children: [
                         ShimmerImage(
                           imageUrl: e.imgUrl ?? '',
-                          height: 120,
-                          width: 100,
+                          height: 100,
+                          width: 120,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         const SizedBox(width: 12),
@@ -228,7 +229,7 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
           return SfDataGrid(
             source: dataSource,
             shrinkWrapRows: true,
-            rowHeight: 120,
+            rowHeight: 125,
             headerRowHeight: 42,
             footerFrozenColumnsCount: 1,
             headerGridLinesVisibility: GridLinesVisibility.none,

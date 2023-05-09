@@ -1,4 +1,3 @@
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +11,9 @@ import 'package:web_admin_fitness/modules/main/modules/home/modules/users/widget
 
 import '../../../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../../../global/gen/i18n.dart';
-import '../../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
-import '../../../../../../global/graphql/mutation/__generated__/mutation_delete_user.req.gql.dart';
 import '../../../../../../global/routers/app_router.dart';
 import '../../../../../../global/utils/constants.dart';
-import '../../../../../../global/widgets/dialogs/confirmation_dialog.dart';
 import '../../../../../../global/widgets/responsive/responsive_page_builder.dart';
-import '../../../../../../global/widgets/toast/multi_toast.dart';
 
 class UsersManagerPage extends StatefulWidget {
   const UsersManagerPage({super.key});
@@ -53,43 +48,6 @@ class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
       () => getUsersReq = getUsersReq.rebuild((b) => b
         ..vars.queryParams.filters =
             newReq.vars.queryParams.filters?.toBuilder()),
-    );
-  }
-
-  void handleDelete(GUser user) {
-    final i18n = I18n.of(context)!;
-
-    showAlertDialog(
-      context: context,
-      builder: (dialogContext, child) {
-        return ConfirmationDialog(
-          titleText: i18n.deleteUser_Title,
-          contentText: i18n.deleteUser_Des,
-          onTapPositiveButton: () async {
-            dialogContext.popRoute();
-
-            final request = GDeleteUserReq(
-              (b) => b..vars.userId = user.id,
-            );
-
-            final response = await client.request(request).first;
-            if (response.hasErrors) {
-              if (mounted) {
-                showErrorToast(
-                  context,
-                  response.graphqlErrors?.first.message,
-                );
-                // DialogUtils.showError(context: context, response: response);
-              }
-            } else {
-              if (mounted) {
-                showSuccessToast(context, 'Delete Successfully');
-                refreshHandler();
-              }
-            }
-          },
-        );
-      },
     );
   }
 
@@ -130,7 +88,11 @@ class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
       ),
       listView: UsersListView(
         request: getUsersReq,
-        handleDelete: handleDelete,
+        onRequestChanged: (request) {
+          setState(() {
+            getUsersReq = request;
+          });
+        },
       ),
       tableView: UsersTableView(
         getUsersReq: getUsersReq,

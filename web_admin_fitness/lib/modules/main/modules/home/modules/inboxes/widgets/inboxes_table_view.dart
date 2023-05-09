@@ -55,7 +55,18 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
   void handleDelete(GInbox inbox) async {
     setState(() => loading = true);
     await InboxHelper().handleDelete(context, inbox);
+    refreshHandler();
     setState(() => loading = false);
+  }
+
+  void refreshHandler() {
+    widget.onRequestChanged(
+      widget.getInboxesReq.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..updateResult = ((previous, result) => result),
+      ),
+    );
   }
 
   Widget sortButton(String fieldName) {

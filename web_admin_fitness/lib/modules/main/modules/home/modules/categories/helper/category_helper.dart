@@ -15,7 +15,7 @@ class CategoryHelper with ClientMixin {
   Future handleDelete(BuildContext context, GCategory? category) async {
     final i18n = I18n.of(context)!;
 
-    showAlertDialog(
+    return showAlertDialog(
       context: context,
       builder: (dialogContext, child) {
         return ConfirmationDialog(

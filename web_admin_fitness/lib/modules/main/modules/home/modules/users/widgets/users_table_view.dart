@@ -5,16 +5,17 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart';
-import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/modules/users/helper/user_helper.dart';
 
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
+import '../../../../../../../global/routers/app_router.dart';
 
 class UsersTableView extends StatefulWidget {
   const UsersTableView({
@@ -33,6 +34,7 @@ class UsersTableView extends StatefulWidget {
 class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
   String? orderBy;
 
+  bool loading = false;
   void handleOrderBy(String fieldName) {
     if (orderBy == 'User.$fieldName:DESC') {
       setState(() => orderBy = 'User.$fieldName:ASC');
@@ -60,6 +62,29 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
     );
   }
 
+  void refreshHandler() {
+    widget.onRequestChanged(
+      widget.getUsersReq.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..updateResult = ((previous, result) => result),
+      ),
+    );
+  }
+
+  void handleDelete(GUser user) async {
+    setState(() => loading = true);
+    await UserHelper().handleDelete(context, user);
+    refreshHandler();
+    setState(() => loading = false);
+  }
+
+  void goToUpsertPage(GUser user) {
+    context
+        .pushRoute(UserUpsertRoute(user: user))
+        .then((value) => refreshHandler());
+  }
+
   @override
   Widget build(BuildContext context) {
     final spacing = ResponsiveWrapper.of(context).adap(16.0, 24.0);
@@ -69,6 +94,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
     return Padding(
       padding: EdgeInsets.fromLTRB(spacing, 0, spacing, spacing),
       child: DataTableBuilder(
+        loading: loading,
         client: client,
         request: request,
         meta: (response) {
@@ -107,10 +133,10 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               //   action: sortButton('fullName'),
               // ),
               TableColumn(
-                label: i18n.common_ImageUrl,
-                minimumWidth: 400,
+                label: i18n.users_Avatar,
+                minimumWidth: 50,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('fullName'),
+                action: sortButton('avatar'),
                 cellBuilder: (e) {
                   return Padding(
                     padding: const EdgeInsets.all(4),
@@ -118,19 +144,19 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                       children: [
                         ShimmerImage(
                           imageUrl: e.avatar ?? '',
-                          height: 120,
-                          width: 100,
-                          borderRadius: BorderRadius.circular(12),
+                          height: 70,
+                          width: 70,
+                          borderRadius: BorderRadius.circular(100),
                         ),
                         const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            e.avatar ?? '-',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                            softWrap: true,
-                          ),
-                        ),
+                        // Expanded(
+                        //   child: Text(
+                        //     e.avatar ?? '-',
+                        //     overflow: TextOverflow.ellipsis,
+                        //     maxLines: 3,
+                        //     softWrap: true,
+                        //   ),
+                        // ),
                       ],
                     ),
                   );
@@ -162,12 +188,21 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 align: Alignment.center,
                 width: 125,
                 cellBuilder: (e) {
-                  return IconButton(
-                    onPressed: () =>
-                        context.pushRoute(UserUpsertRoute(user: e)),
-                    icon: const Icon(Icons.remove_red_eye),
-                    color: AppColors.grey4,
-                    tooltip: i18n.common_ViewDetail,
+                  return Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => goToUpsertPage(e),
+                        icon: const Icon(Icons.remove_red_eye),
+                        color: AppColors.grey4,
+                        tooltip: i18n.common_ViewDetail,
+                      ),
+                      IconButton(
+                        onPressed: () => handleDelete(e),
+                        icon: const Icon(Icons.delete_outline),
+                        color: AppColors.error,
+                        tooltip: i18n.button_Delete,
+                      ),
+                    ],
                   );
                 },
               ),
@@ -177,7 +212,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
           return SfDataGrid(
             source: dataSource,
             shrinkWrapRows: true,
-            rowHeight: 120,
+            rowHeight: 100,
             headerRowHeight: 42,
             footerFrozenColumnsCount: 1,
             headerGridLinesVisibility: GridLinesVisibility.none,

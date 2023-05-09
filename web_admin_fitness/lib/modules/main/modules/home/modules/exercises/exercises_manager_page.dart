@@ -89,6 +89,11 @@ class _ExercisesManagerPageState extends State<ExercisesManagerPage> {
       ),
       listView: ExercisesListView(
         request: getExercisesReq,
+        onRequestChanged: (request) {
+          setState(() {
+            getExercisesReq = request;
+          });
+        },
       ),
       tableView: ExercisesTableView(
         getExercisesReq: getExercisesReq,
