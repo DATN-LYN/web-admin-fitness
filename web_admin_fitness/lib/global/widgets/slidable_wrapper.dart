@@ -10,11 +10,13 @@ class SlidableWrapper extends StatelessWidget {
     required this.handleDelete,
     required this.child,
     required this.handleEdit,
+    this.isView = false,
   });
 
   final VoidCallback handleDelete;
   final VoidCallback handleEdit;
   final Widget child;
+  final bool isView;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class SlidableWrapper extends StatelessWidget {
         endActionPane: ActionPane(
           motion: const ScrollMotion(),
           children: [
-            const SizedBox(width: 4),
+            const SizedBox(width: 8),
             SlidableAction(
               onPressed: (context) => handleDelete(),
               icon: Icons.delete_outline,
@@ -37,8 +39,8 @@ class SlidableWrapper extends StatelessWidget {
             const SizedBox(width: 8),
             SlidableAction(
               onPressed: (context) => handleEdit(),
-              icon: Icons.edit_outlined,
-              label: i18n.button_Edit,
+              icon: isView ? Icons.visibility_outlined : Icons.edit_outlined,
+              label: isView ? i18n.button_View : i18n.button_Edit,
               spacing: 10,
               backgroundColor: AppColors.primary,
               foregroundColor: AppColors.grey1,

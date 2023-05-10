@@ -78,6 +78,8 @@ class I18n implements WidgetsLocalizations {
 	String get button_Delete => "Delete";
 	/// "Edit"
 	String get button_Edit => "Edit";
+	/// "View"
+	String get button_View => "View";
 	/// "Setting"
 	String get setting_Title => "Setting";
 	/// "Language"
@@ -202,14 +204,22 @@ class I18n implements WidgetsLocalizations {
 	String get inboxes_User => "User";
 	/// "Message"
 	String get inboxes_Message => "Message";
-	/// "Is Sender"
-	String get inboxes_IsSender => "Is Sender";
-	/// "Enter user email"
-	String get inboxes_SearchHint => "Enter user email";
+	/// "Bot"
+	String get inboxes_Bot => "Bot";
+	/// "From"
+	String get inboxes_From => "From";
+	/// "Created At"
+	String get inboxes_CreatedAt => "Created At";
+	/// "Inbox Detail"
+	String get inboxes_InboxDetail => "Inbox Detail";
+	/// "User ID"
+	String get inboxes_UserId => "User ID";
 	/// "User List"
 	String get users_UserList => "User List";
 	/// "Enter user email"
 	String get users_SearchHint => "Enter user email";
+	/// "Avatar"
+	String get users_Avatar => "Avatar";
 	/// "Create New Category"
 	String get upsertCategory_CreateNewTitle => "Create New Category";
 	/// "Update Category"
@@ -376,6 +386,10 @@ class I18n implements WidgetsLocalizations {
 	String get deleteUser_Title => "Delete User";
 	/// "Are you sure you want to delete this user?"
 	String get deleteUser_Des => "Are you sure you want to delete this user?";
+	/// "Delete Inbox"
+	String get deleteInbox_Title => "Delete Inbox";
+	/// "Are you sure you want to delete this inbox?"
+	String get deleteInbox_Des => "Are you sure you want to delete this inbox?";
 	/// "Create New User"
 	String get upsertUser_CreateNewTitle => "Create New User";
 	/// "Update User"
@@ -490,6 +504,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Sửa"
 	@override
 	String get button_Edit => "Sửa";
+	/// "Xem"
+	@override
+	String get button_View => "Xem";
 	/// "Cài đặt"
 	@override
 	String get setting_Title => "Cài đặt";
@@ -676,15 +693,30 @@ class _I18n_vi_VN extends I18n {
 	/// "Tin nhắn"
 	@override
 	String get inboxes_Message => "Tin nhắn";
-	/// "Người gửi"
+	/// "Bot"
 	@override
-	String get inboxes_IsSender => "Người gửi";
+	String get inboxes_Bot => "Bot";
+	/// "Gửi từ"
+	@override
+	String get inboxes_From => "Gửi từ";
+	/// "Tạo lúc"
+	@override
+	String get inboxes_CreatedAt => "Tạo lúc";
+	/// "Chi tiết tin nhắn"
+	@override
+	String get inboxes_InboxDetail => "Chi tiết tin nhắn";
+	/// "Mã người dùng"
+	@override
+	String get inboxes_UserId => "Mã người dùng";
 	/// "Danh sách người dùng"
 	@override
 	String get users_UserList => "Danh sách người dùng";
 	/// "Nhập tên người dùng"
 	@override
 	String get users_SearchHint => "Nhập tên người dùng";
+	/// "Ảnh đại diện"
+	@override
+	String get users_Avatar => "Ảnh đại diện";
 	/// "Tạo thể loại mới"
 	@override
 	String get upsertCategory_CreateNewTitle => "Tạo thể loại mới";
@@ -934,6 +966,12 @@ class _I18n_vi_VN extends I18n {
 	/// "Bạn có chắc chắn muốn xoá người dùng?"
 	@override
 	String get deleteUser_Des => "Bạn có chắc chắn muốn xoá người dùng?";
+	/// "Xoá tin nhắn"
+	@override
+	String get deleteInbox_Title => "Xoá tin nhắn";
+	/// "Bạn có chắc chắn muốn xoá tin nhắn?"
+	@override
+	String get deleteInbox_Des => "Bạn có chắc chắn muốn xoá tin nhắn?";
 	/// "Tạo người dùng mới"
 	@override
 	String get upsertUser_CreateNewTitle => "Tạo người dùng mới";

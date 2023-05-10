@@ -65,6 +65,7 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (isDesktopView) const SizedBox(height: 16),
             if (!isDesktopView) ...[
               Text(
                 i18n.categories_CategoryList,
@@ -92,6 +93,11 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
       ),
       listView: CategoriesListView(
         request: getCategoriesReq,
+        onRequestChanged: (request) {
+          setState(() {
+            getCategoriesReq = request;
+          });
+        },
       ),
       tableView: CategoriesTableView(
         getCategoriesReq: getCategoriesReq,
@@ -105,13 +111,9 @@ class _CategoriesManagerPageState extends State<CategoriesManagerPage> {
         heroTag: 'upsertCategory',
         child: const Icon(Icons.add),
         onPressed: () {
-          context.pushRoute(CategoryUpsertRoute()).then(
-            (value) {
-              if (value != null) {
-                refreshHandler();
-              }
-            },
-          );
+          context.pushRoute(CategoryUpsertRoute()).then((value) {
+            if (value != null) refreshHandler();
+          });
         },
       ),
     );

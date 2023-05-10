@@ -115,7 +115,7 @@ class _InboxSearchBarState extends State<InboxSearchBar> {
       children: [
         if (isDesktopView)
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Text(
               i18n.inboxes_InboxList,
               style: const TextStyle(
@@ -127,7 +127,7 @@ class _InboxSearchBarState extends State<InboxSearchBar> {
         Expanded(
           flex: 1,
           child: FilterTextField(
-            hintText: i18n.exercises_SearchHint,
+            hintText: i18n.upsertUser_EmailHint,
             onTextChange: (text) => handleFilter(
               filter.copyWith(keyword: text),
             ),

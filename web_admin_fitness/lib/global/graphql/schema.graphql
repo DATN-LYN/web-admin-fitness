@@ -161,16 +161,16 @@ type Meta {
 type Mutation {
   upsertExercise(input: UpsertExerciseInputDto!): IExercise!
   deleteExercise(exerciseId: String!): ResponseMessageBase!
-  register(input: RegisterInputDto!): ResponseMessageBase!
-  logout(userId: String!): ResponseMessageBase!
+  upsertInbox(input: UpsertInboxInputDto!): IInbox!
+  deleteInbox(inboxId: String!): ResponseMessageBase!
   upsertCategory(input: UpsertCategoryInputDto!): ICategory!
   deleteCategory(categoryId: String!): ResponseMessageBase!
   upsertProgram(input: UpsertProgramInputDto!): IProgram!
   deleteProgram(programId: String!): ResponseMessageBase!
+  register(input: RegisterInputDto!): ResponseMessageBase!
+  logout(userId: String!): ResponseMessageBase!
   deleteUser(userId: String!): ResponseMessageBase!
   upsertUser(input: UpsertUserInputDto!): IUser!
-  upsertInbox(input: UpsertInboxInputDto!): IInbox!
-  deleteInbox(inboxId: String!): ResponseMessageBase!
 }
 
 type Program {
@@ -190,18 +190,18 @@ type Program {
 type Query {
   getExercise(programId: String!): IExercise!
   getExercises(queryParams: QueryFilterDto!): IExercises!
-  loginGoogle(input: LoginInputDto!): LoginResponseDto!
-  login(input: LoginInputDto!): LoginResponseDto!
-  refreshToken(refreshToken: String!): RefreshTokenResponseDto!
+  getInbox(categoryId: String!): IInbox!
+  getInboxes(queryParams: QueryFilterDto!): IInboxes!
+  getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
   getCategory(categoryId: String!): Category!
   getCategories(queryParams: QueryFilterDto!): ICategories!
   getProgram(programId: String!): Program!
   getPrograms(queryParams: QueryFilterDto!): IPrograms!
+  loginGoogle(input: LoginInputDto!): LoginResponseDto!
+  login(input: LoginInputDto!): LoginResponseDto!
+  refreshToken(refreshToken: String!): RefreshTokenResponseDto!
   getUser(userId: String!): IUser!
   getUsers(queryParams: QueryFilterDto!): IUsers!
-  getInbox(categoryId: String!): IInbox!
-  getInboxes(queryParams: QueryFilterDto!): IInboxes!
-  getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
 }
 
 input QueryFilterDto {

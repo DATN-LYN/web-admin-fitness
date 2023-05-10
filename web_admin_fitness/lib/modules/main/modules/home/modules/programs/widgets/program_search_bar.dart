@@ -121,7 +121,7 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
       children: [
         if (isDesktopView)
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Text(
               i18n.programs_ProgramList,
               style: const TextStyle(

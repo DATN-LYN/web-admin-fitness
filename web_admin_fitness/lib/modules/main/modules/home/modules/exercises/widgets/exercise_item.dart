@@ -1,8 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
-import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/widgets/label_text_row.dart';
 import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
@@ -16,18 +14,19 @@ class ExerciseItem extends StatelessWidget {
     super.key,
     required this.exercise,
     required this.handleDelete,
+    required this.handleEdit,
   });
 
   final GExercise exercise;
   final VoidCallback handleDelete;
+  final VoidCallback handleEdit;
 
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
     return SlidableWrapper(
       handleDelete: handleDelete,
-      handleEdit: () =>
-          context.pushRoute(ExerciseUpsertRoute(exercise: exercise)),
+      handleEdit: handleEdit,
       child: ShadowWrapper(
         margin: EdgeInsets.zero,
         child: Row(

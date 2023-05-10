@@ -74,7 +74,7 @@ class _DataTableBuilderState<TData, TVars>
       });
     }
     if (widget.loading != null && widget.loading != oldWidget.loading) {
-      setState(() => loading = widget.loading!);
+      loading = widget.loading!;
     }
     super.didUpdateWidget(oldWidget);
   }

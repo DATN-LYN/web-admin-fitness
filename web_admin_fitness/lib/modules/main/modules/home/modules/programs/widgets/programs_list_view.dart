@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
@@ -10,13 +11,17 @@ import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/helper/program_helper.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/widgets/program_item.dart';
 
+import '../../../../../../../global/routers/app_router.dart';
+
 class ProgramsListView extends StatefulWidget {
   const ProgramsListView({
     super.key,
     required this.request,
+    required this.onRequestChanged,
   });
 
   final GGetProgramsReq request;
+  final Function(GGetProgramsReq) onRequestChanged;
 
   @override
   State<ProgramsListView> createState() => _ProgramsListViewState();
@@ -25,10 +30,31 @@ class ProgramsListView extends StatefulWidget {
 class _ProgramsListViewState extends State<ProgramsListView> with ClientMixin {
   bool loading = false;
 
+  void refreshHandler() {
+    widget.onRequestChanged(
+      widget.request.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..updateResult = ((previous, result) => result),
+      ),
+    );
+  }
+
   void handleDelete(GProgram program) async {
     setState(() => loading = true);
     await ProgramHelper().handleDelete(context, program);
+    refreshHandler();
     setState(() => loading = false);
+  }
+
+  void goToUpsertPage(GProgram program) {
+    context.pushRoute(ProgramUpsertRoute(program: program)).then(
+      (value) {
+        if (value != null) {
+          refreshHandler();
+        }
+      },
+    );
   }
 
   @override
@@ -115,6 +141,7 @@ class _ProgramsListViewState extends State<ProgramsListView> with ClientMixin {
               return ProgramItem(
                 program: item,
                 handleDelete: () => handleDelete(item),
+                handleEdit: () => goToUpsertPage(item),
               );
             },
             separatorBuilder: (_, __) => const SizedBox(height: 16),

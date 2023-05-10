@@ -115,7 +115,7 @@ class _UserSearchBarState extends State<UserSearchBar> {
       children: [
         if (isDesktopView)
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Text(
               i18n.users_UserList,
               style: const TextStyle(

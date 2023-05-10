@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -10,9 +11,11 @@ import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/modules/users/helper/user_helper.dart';
 
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
+import '../../../../../../../global/routers/app_router.dart';
 
 class UsersTableView extends StatefulWidget {
   const UsersTableView({
@@ -31,6 +34,7 @@ class UsersTableView extends StatefulWidget {
 class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
   String? orderBy;
 
+  bool loading = false;
   void handleOrderBy(String fieldName) {
     if (orderBy == 'User.$fieldName:DESC') {
       setState(() => orderBy = 'User.$fieldName:ASC');
@@ -58,6 +62,29 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
     );
   }
 
+  void refreshHandler() {
+    widget.onRequestChanged(
+      widget.getUsersReq.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..updateResult = ((previous, result) => result),
+      ),
+    );
+  }
+
+  void handleDelete(GUser user) async {
+    setState(() => loading = true);
+    await UserHelper().handleDelete(context, user);
+    refreshHandler();
+    setState(() => loading = false);
+  }
+
+  void goToUpsertPage(GUser user) {
+    context
+        .pushRoute(UserUpsertRoute(user: user))
+        .then((value) => refreshHandler());
+  }
+
   @override
   Widget build(BuildContext context) {
     final spacing = ResponsiveWrapper.of(context).adap(16.0, 24.0);
@@ -67,6 +94,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
     return Padding(
       padding: EdgeInsets.fromLTRB(spacing, 0, spacing, spacing),
       child: DataTableBuilder(
+        loading: loading,
         client: client,
         request: request,
         meta: (response) {
@@ -91,12 +119,12 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
           final dataSource = TableDataSource<GUser>(
             tableData: users,
             columnItems: [
-              TableColumn(
-                label: i18n.common_Id,
-                minimumWidth: 220,
-                columnWidthMode: ColumnWidthMode.fill,
-                itemValue: (e) => e.id,
-              ),
+              // TableColumn(
+              //   label: i18n.common_Id,
+              //   minimumWidth: 220,
+              //   columnWidthMode: ColumnWidthMode.fill,
+              //   itemValue: (e) => e.id,
+              // ),
               // TableColumn(
               //   label: i18n.common_Name,
               //   itemValue: (e) => e.fullName,
@@ -105,10 +133,10 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               //   action: sortButton('fullName'),
               // ),
               TableColumn(
-                label: i18n.common_ImageUrl,
-                minimumWidth: 350,
+                label: i18n.users_Avatar,
+                minimumWidth: 50,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('fullName'),
+                action: sortButton('avatar'),
                 cellBuilder: (e) {
                   return Padding(
                     padding: const EdgeInsets.all(4),
@@ -116,33 +144,40 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                       children: [
                         ShimmerImage(
                           imageUrl: e.avatar ?? '',
-                          height: 120,
-                          width: 100,
-                          borderRadius: BorderRadius.circular(12),
+                          height: 70,
+                          width: 70,
+                          borderRadius: BorderRadius.circular(100),
                         ),
-                        const SizedBox(width: 6),
-                        Expanded(
-                          child: Text(
-                            e.fullName ?? '-',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                            softWrap: true,
-                          ),
-                        ),
+                        const SizedBox(width: 12),
+                        // Expanded(
+                        //   child: Text(
+                        //     e.avatar ?? '-',
+                        //     overflow: TextOverflow.ellipsis,
+                        //     maxLines: 3,
+                        //     softWrap: true,
+                        //   ),
+                        // ),
                       ],
                     ),
                   );
                 },
               ),
               TableColumn(
-                label: i18n.programs_Calo,
-                minimumWidth: 150,
+                label: i18n.login_Email,
+                minimumWidth: 200,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('email'),
                 itemValue: (e) => e.email.toString(),
               ),
               TableColumn(
-                label: i18n.programs_Calo,
+                label: i18n.upsertUser_FullName,
+                minimumWidth: 200,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('fullName'),
+                itemValue: (e) => e.fullName ?? '-',
+              ),
+              TableColumn(
+                label: i18n.upsertUser_Age,
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('age'),
@@ -151,13 +186,23 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
-                width: 110,
+                width: 125,
                 cellBuilder: (e) {
-                  return IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.remove_red_eye),
-                    color: AppColors.grey4,
-                    tooltip: i18n.common_ViewDetail,
+                  return Row(
+                    children: [
+                      IconButton(
+                        onPressed: () => goToUpsertPage(e),
+                        icon: const Icon(Icons.remove_red_eye),
+                        color: AppColors.grey4,
+                        tooltip: i18n.common_ViewDetail,
+                      ),
+                      IconButton(
+                        onPressed: () => handleDelete(e),
+                        icon: const Icon(Icons.delete_outline),
+                        color: AppColors.error,
+                        tooltip: i18n.button_Delete,
+                      ),
+                    ],
                   );
                 },
               ),
@@ -167,7 +212,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
           return SfDataGrid(
             source: dataSource,
             shrinkWrapRows: true,
-            rowHeight: 120,
+            rowHeight: 100,
             headerRowHeight: 42,
             footerFrozenColumnsCount: 1,
             headerGridLinesVisibility: GridLinesVisibility.none,

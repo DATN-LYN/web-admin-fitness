@@ -63,6 +63,7 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (isDesktopView) const SizedBox(height: 16),
             if (!isDesktopView) ...[
               Text(
                 i18n.programs_ProgramList,
@@ -88,6 +89,11 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
       ),
       listView: ProgramsListView(
         request: getProgramsReq,
+        onRequestChanged: (request) {
+          setState(() {
+            getProgramsReq = request;
+          });
+        },
       ),
       tableView: ProgramsTableView(
         getProgramsReq: getProgramsReq,

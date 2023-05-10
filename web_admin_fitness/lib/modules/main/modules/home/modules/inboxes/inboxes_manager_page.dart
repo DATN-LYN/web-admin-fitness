@@ -61,6 +61,7 @@ class _InboxesManagerPageState extends State<InboxesManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (isDesktopView) const SizedBox(height: 16),
             if (!isDesktopView) ...[
               Text(
                 i18n.inboxes_InboxList,
@@ -86,6 +87,11 @@ class _InboxesManagerPageState extends State<InboxesManagerPage> {
       ),
       listView: InboxesListView(
         request: getInboxesReq,
+        onRequestChanged: (request) {
+          setState(() {
+            getInboxesReq = request;
+          });
+        },
       ),
       tableView: InboxesTableView(
         getInboxesReq: getInboxesReq,

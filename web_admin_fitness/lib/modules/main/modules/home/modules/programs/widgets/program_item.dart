@@ -1,10 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/enums/workout_body_part.dart';
 import 'package:web_admin_fitness/global/enums/workout_level.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
-import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/widgets/label_text_row.dart';
 import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
@@ -16,10 +14,12 @@ class ProgramItem extends StatelessWidget {
     super.key,
     required this.program,
     required this.handleDelete,
+    required this.handleEdit,
   });
 
   final GProgram program;
   final VoidCallback handleDelete;
+  final VoidCallback handleEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class ProgramItem extends StatelessWidget {
 
     return SlidableWrapper(
       handleDelete: handleDelete,
-      handleEdit: () => context.pushRoute(ProgramUpsertRoute(program: program)),
+      handleEdit: handleEdit,
       child: ShadowWrapper(
         padding: const EdgeInsets.all(10),
         child: Column(

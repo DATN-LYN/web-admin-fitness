@@ -63,13 +63,31 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
     );
   }
 
+  void refreshHandler() {
+    widget.onRequestChanged(
+      widget.getCategoriesReq.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..updateResult = ((previous, result) => result),
+      ),
+    );
+  }
+
+  void goToUpsertPage(GCategory category) {
+    context.pushRoute(CategoryUpsertRoute(category: category)).then(
+      (value) {
+        if (value != null) {
+          refreshHandler();
+        }
+      },
+    );
+  }
+
   void handleDelete(GCategory category) async {
     setState(() => loading = true);
     await CategoryHelper().handleDelete(context, category);
+    refreshHandler();
     setState(() => loading = false);
-    if (mounted) {
-      context.popRoute('delete');
-    }
   }
 
   @override
@@ -77,26 +95,6 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
     final spacing = ResponsiveWrapper.of(context).adap(16.0, 20.0);
     final i18n = I18n.of(context)!;
     var request = widget.getCategoriesReq;
-
-    void refreshHandler() {
-      request = request.rebuild(
-        (b) => b
-          ..vars.queryParams.page = 1
-          ..updateResult = ((previous, result) => result),
-      );
-
-      client.requestController.add(request);
-    }
-
-    void goToUpsertPage(GCategory category) {
-      context.pushRoute(CategoryUpsertRoute(category: category)).then(
-        (value) {
-          if (value != null) {
-            refreshHandler();
-          }
-        },
-      );
-    }
 
     return Padding(
       padding: EdgeInsets.fromLTRB(spacing, 0, spacing, spacing),
@@ -127,11 +125,41 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
             tableData: categories,
             columnItems: [
               TableColumn(
-                label: i18n.common_Id,
-                minimumWidth: 200,
+                label: i18n.common_ImageUrl,
+                minimumWidth: 450,
                 columnWidthMode: ColumnWidthMode.fill,
-                itemValue: (e) => e.id,
+                action: sortButton('imgUrl'),
+                cellBuilder: (e) {
+                  return Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Row(
+                      children: [
+                        ShimmerImage(
+                          imageUrl: e.imgUrl ?? '',
+                          height: 100,
+                          width: 120,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            e.imgUrl ?? '_',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
+                            softWrap: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
+              // TableColumn(
+              //   label: i18n.common_Id,
+              //   minimumWidth: 200,
+              //   columnWidthMode: ColumnWidthMode.fill,
+              //   itemValue: (e) => e.id,
+              // ),
               TableColumn(
                 label: i18n.common_Name,
                 itemValue: (e) => e.name,
@@ -139,35 +167,6 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('name'),
               ),
-              TableColumn(
-                  label: i18n.common_ImageUrl,
-                  minimumWidth: 400,
-                  columnWidthMode: ColumnWidthMode.fill,
-                  action: sortButton('imgUrl'),
-                  cellBuilder: (e) {
-                    return Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: Row(
-                        children: [
-                          ShimmerImage(
-                            imageUrl: e.imgUrl ?? '',
-                            height: 120,
-                            width: 100,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              e.imgUrl ?? '_',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 3,
-                              softWrap: true,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
@@ -197,7 +196,7 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
           return SfDataGrid(
             source: dataSource,
             shrinkWrapRows: true,
-            rowHeight: 120,
+            rowHeight: 125,
             headerRowHeight: 42,
             footerFrozenColumnsCount: 1,
             headerGridLinesVisibility: GridLinesVisibility.none,

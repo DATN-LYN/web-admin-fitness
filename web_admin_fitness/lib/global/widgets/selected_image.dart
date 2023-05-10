@@ -9,15 +9,15 @@ class SelectedImage extends StatelessWidget {
     super.key,
     required this.image,
     this.borderRadius = 8,
-    this.width = double.infinity,
-    this.height = 250,
+    this.width,
+    this.height,
     this.fit = BoxFit.fitWidth,
   });
 
   final XFile image;
   final double borderRadius;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final BoxFit fit;
 
   @override

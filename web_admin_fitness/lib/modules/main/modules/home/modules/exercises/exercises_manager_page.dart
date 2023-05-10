@@ -63,6 +63,7 @@ class _ExercisesManagerPageState extends State<ExercisesManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (isDesktopView) const SizedBox(height: 16),
             if (!isDesktopView) ...[
               Text(
                 i18n.exercises_ExerciseList,
@@ -88,6 +89,11 @@ class _ExercisesManagerPageState extends State<ExercisesManagerPage> {
       ),
       listView: ExercisesListView(
         request: getExercisesReq,
+        onRequestChanged: (request) {
+          setState(() {
+            getExercisesReq = request;
+          });
+        },
       ),
       tableView: ExercisesTableView(
         getExercisesReq: getExercisesReq,

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
@@ -10,10 +11,17 @@ import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/modules/exercises/helper/exercise_helper.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/modules/exercises/widgets/exercise_item.dart';
 
+import '../../../../../../../global/routers/app_router.dart';
+
 class ExercisesListView extends StatefulWidget {
-  const ExercisesListView({super.key, required this.request});
+  const ExercisesListView({
+    super.key,
+    required this.request,
+    required this.onRequestChanged,
+  });
 
   final GGetExercisesReq request;
+  final Function(GGetExercisesReq) onRequestChanged;
 
   @override
   State<ExercisesListView> createState() => _ExercisesListViewState();
@@ -22,10 +30,31 @@ class ExercisesListView extends StatefulWidget {
 class _ExercisesListViewState extends State<ExercisesListView>
     with ClientMixin {
   bool loading = false;
+  void refreshHandler() {
+    widget.onRequestChanged(
+      widget.request.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..updateResult = ((previous, result) => result),
+      ),
+    );
+  }
+
   void handleDelete(GExercise exercise) async {
     setState(() => loading = true);
     await ExerciseHelper().handleDelete(context, exercise);
+    refreshHandler();
     setState(() => loading = false);
+  }
+
+  void goToUpsertPage(GExercise exercise) {
+    context.pushRoute(ExerciseUpsertRoute(exercise: exercise)).then(
+      (value) {
+        if (value != null) {
+          refreshHandler();
+        }
+      },
+    );
   }
 
   @override
@@ -112,6 +141,7 @@ class _ExercisesListViewState extends State<ExercisesListView>
               return ExerciseItem(
                 exercise: item,
                 handleDelete: () => handleDelete(item),
+                handleEdit: () => goToUpsertPage(item),
               );
             },
             separatorBuilder: (_, __) => const SizedBox(height: 10),

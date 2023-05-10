@@ -15,12 +15,12 @@ class InboxHelper with ClientMixin {
   Future handleDelete(BuildContext context, GInbox? inbox) async {
     final i18n = I18n.of(context)!;
 
-    showAlertDialog(
+    return showAlertDialog(
       context: context,
       builder: (dialogContext, child) {
         return ConfirmationDialog(
-          titleText: i18n.deleteProgram_Title,
-          contentText: i18n.deleteProgram_Des,
+          titleText: i18n.deleteInbox_Title,
+          contentText: i18n.deleteInbox_Des,
           onTapPositiveButton: () async {
             dialogContext.popRoute();
 

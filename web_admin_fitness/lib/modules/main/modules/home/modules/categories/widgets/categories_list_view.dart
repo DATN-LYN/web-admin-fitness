@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
@@ -8,12 +9,18 @@ import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/modules/categories/widgets/category_item.dart';
 
 import '../../../../../../../global/graphql/fragment/__generated__/category_fragment.data.gql.dart';
+import '../../../../../../../global/routers/app_router.dart';
 import '../helper/category_helper.dart';
 
 class CategoriesListView extends StatefulWidget {
-  const CategoriesListView({super.key, required this.request});
+  const CategoriesListView({
+    super.key,
+    required this.request,
+    required this.onRequestChanged,
+  });
 
   final GGetCategoriesReq request;
+  final Function(GGetCategoriesReq) onRequestChanged;
 
   @override
   State<CategoriesListView> createState() => _CategoriesListViewState();
@@ -22,15 +29,35 @@ class CategoriesListView extends StatefulWidget {
 class _CategoriesListViewState extends State<CategoriesListView>
     with ClientMixin {
   bool loading = false;
+
+  void refreshHandler() {
+    widget.onRequestChanged(widget.request.rebuild(
+      (b) => b
+        ..vars.queryParams.page = 1
+        ..updateResult = ((previous, result) => result),
+    ));
+  }
+
+  void handleDelete(GCategory category) async {
+    setState(() => loading = true);
+    await CategoryHelper().handleDelete(context, category);
+    refreshHandler();
+    setState(() => loading = false);
+  }
+
+  void goToUpsertPage(GCategory category) {
+    context.pushRoute(CategoryUpsertRoute(category: category)).then(
+      (value) {
+        if (value != null) {
+          refreshHandler();
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var getCategoriesReq = widget.request;
-
-    void handleDelete(GCategory category) async {
-      setState(() => loading = true);
-      await CategoryHelper().handleDelete(context, category);
-      setState(() => loading = false);
-    }
 
     return LoadingOverlay(
       loading: loading,
@@ -104,12 +131,6 @@ class _CategoriesListViewState extends State<CategoriesListView>
           }
 
           return ListView.builder(
-            // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            //   crossAxisCount: 2,
-            //   childAspectRatio: 1 / 1.2,
-            //   mainAxisSpacing: 8,
-            //   crossAxisSpacing: 8,
-            // ),
             itemCount: categories!.length,
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
             itemBuilder: (context, index) {
@@ -117,6 +138,7 @@ class _CategoriesListViewState extends State<CategoriesListView>
               return CategoryItem(
                 category: item,
                 handleDelete: () => handleDelete(item),
+                handleEdit: () => goToUpsertPage(item),
               );
             },
           );
