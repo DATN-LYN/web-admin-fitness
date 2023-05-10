@@ -26,7 +26,7 @@ class SlidableWrapper extends StatelessWidget {
         endActionPane: ActionPane(
           motion: const ScrollMotion(),
           children: [
-            const SizedBox(width: 4),
+            const SizedBox(width: 8),
             SlidableAction(
               onPressed: (context) => handleDelete(),
               icon: Icons.delete_outline,

@@ -22,34 +22,37 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
-    return SlidableWrapper(
-      handleDelete: handleDelete,
-      handleEdit: handleEdit,
-      child: ShadowWrapper(
-        padding: const EdgeInsets.all(12),
-        margin: const EdgeInsets.symmetric(vertical: 6),
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ShimmerImage(
-              imageUrl: category.imgUrl ?? '',
-              width: double.infinity,
-              height: 170,
-              fit: BoxFit.fill,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            const SizedBox(height: 12),
-            LabelTextRow(
-              label: i18n.common_Name,
-              value: category.name,
-            ),
-            const SizedBox(height: 8),
-            LabelTextRow(
-              label: i18n.common_Id,
-              value: category.id,
-            ),
-          ],
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      child: SlidableWrapper(
+        handleDelete: handleDelete,
+        handleEdit: handleEdit,
+        child: ShadowWrapper(
+          padding: const EdgeInsets.all(12),
+          margin: EdgeInsets.zero,
+          borderRadius: BorderRadius.circular(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ShimmerImage(
+                imageUrl: category.imgUrl ?? '',
+                width: double.infinity,
+                height: 170,
+                fit: BoxFit.fill,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              const SizedBox(height: 12),
+              LabelTextRow(
+                label: i18n.common_Name,
+                value: category.name,
+              ),
+              const SizedBox(height: 8),
+              LabelTextRow(
+                label: i18n.common_Id,
+                value: category.id,
+              ),
+            ],
+          ),
         ),
       ),
     );

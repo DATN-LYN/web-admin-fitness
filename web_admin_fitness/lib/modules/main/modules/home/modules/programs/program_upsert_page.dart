@@ -348,7 +348,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                     Label(i18n.upsertProgram_Category),
                     FormBuilderField<String>(
                       name: 'categoryId',
-                      initialValue: isCreateNew ? null : initalCategory!.id,
+                      initialValue: isCreateNew ? null : initalCategory?.id,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertProgram_CategoryRequired,
