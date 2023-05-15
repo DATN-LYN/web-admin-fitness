@@ -9,15 +9,14 @@ import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/query_login.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/query_login.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/widgets/toast/multi_toast.dart';
 
 import '../../global/gen/assets.gen.dart';
 import '../../global/gen/i18n.dart';
 import '../../global/graphql/__generated__/schema.schema.gql.dart';
-import '../../global/models/hive/user.dart';
 import '../../global/providers/auth_provider.dart';
 import '../../global/routers/app_router.dart';
 import '../../global/themes/app_colors.dart';
-import '../../global/utils/dialogs.dart';
 import '../../global/widgets/elevated_button_opacity.dart';
 import '../../global/widgets/label.dart';
 
@@ -34,8 +33,6 @@ class _LoginPageState extends State<LoginPage> with ClientMixin {
   bool isLoading = false;
 
   void login() async {
-    AutoRouter.of(context).replaceAll([const MainRoute()]);
-
     if (formKey.currentState!.saveAndValidate()) {
       FocusManager.instance.primaryFocus?.unfocus();
       final loginReq = GLoginReq(
@@ -48,13 +45,13 @@ class _LoginPageState extends State<LoginPage> with ClientMixin {
       final response = await client.request(loginReq).first;
       setState(() => isLoading = false);
 
-      if (mounted) {
-        AutoRouter.of(context).replaceAll([const MainRoute()]);
-      }
-
       if (response.hasErrors) {
         if (mounted) {
-          DialogUtils.showError(context: context, response: response);
+          showErrorToast(
+            context,
+            response.graphqlErrors?.first.message ??
+                'Login failed. Please try again',
+          );
         }
       } else {
         handleLoginSuccess(response.data!.login);
@@ -63,20 +60,10 @@ class _LoginPageState extends State<LoginPage> with ClientMixin {
   }
 
   void handleLoginSuccess(GLoginData_login response) async {
-    print(response.user);
-    await context.read<AuthProvider>().login(
-          token: response.accessToken!,
-          //refreshToken: response.refreshToken,
-          user: User.fromJson(response.user!.toJson()),
-        );
+    await context.read<AuthProvider>().login(data: response);
 
     if (!mounted) return;
 
-    // if (AutoRouter.of(context).canPop()) {
-    //   AutoRouter.of(context).pop();
-    // } else {
-    //   AutoRouter.of(context).replaceAll([const MainRoute()]);
-    // }
     AutoRouter.of(context).replaceAll([const MainRoute()]);
   }
 

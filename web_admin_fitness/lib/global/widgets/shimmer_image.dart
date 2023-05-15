@@ -13,7 +13,7 @@ class ShimmerImage extends StatelessWidget {
     this.width,
     this.height,
     this.errorWidget,
-    this.borderImage,
+    this.borderImage = 100,
     this.borderRadius,
   });
 
@@ -23,13 +23,13 @@ class ShimmerImage extends StatelessWidget {
   final double iconErrorSize;
   final BoxFit fit;
   final Widget? errorWidget;
-  final double? borderImage;
+  final double borderImage;
   final BorderRadiusGeometry? borderRadius;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: borderRadius ?? BorderRadius.circular(borderImage ?? 0),
+      borderRadius: borderRadius ?? BorderRadius.circular(borderImage),
       child: CachedNetworkImage(
         imageUrl: imageUrl,
         width: width,

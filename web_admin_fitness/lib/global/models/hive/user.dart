@@ -6,9 +6,11 @@ part 'user.g.dart';
 @freezed
 class User with _$User {
   factory User({
-    required String id,
-    required String email,
-    required String fullName,
+    String? id,
+    String? email,
+    String? fullName,
+    double? age,
+    String? avatar,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

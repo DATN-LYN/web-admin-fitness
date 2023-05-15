@@ -4,6 +4,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:web_admin_fitness/global/routers/auth_guard.dart';
 
 import '../global/gen/i18n.dart';
 import '../global/providers/app_settings_provider.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  final _appRouter = AppRouter();
+  final _appRouter = AppRouter(authGuard: AuthGuard());
 
   @override
   Widget build(BuildContext context) {

@@ -8,6 +8,7 @@ part 'user_credentials.g.dart';
 @freezed
 class UserCredentials with _$UserCredentials {
   factory UserCredentials({
+    String? id,
     String? accessToken,
     String? refreshToken,
     User? user,

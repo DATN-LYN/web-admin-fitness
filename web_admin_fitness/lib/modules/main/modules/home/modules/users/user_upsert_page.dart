@@ -6,6 +6,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_register.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_user_cache_handler.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_user.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
@@ -144,8 +145,14 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
 
               final upsertData = await getInputUpdate();
 
-              final request =
-                  GUpsertUserReq((b) => b..vars.input.replace(upsertData));
+              final request = GUpsertUserReq(
+                (b) => b
+                  ..vars.input.replace(upsertData)
+                  ..updateCacheHandlerKey = UpsertUserCacheHandler.key
+                  ..updateCacheHandlerContext = {
+                    'upsertData': upsertData,
+                  },
+              );
 
               final response = await client.request(request).first;
 

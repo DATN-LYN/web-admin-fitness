@@ -138,27 +138,23 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('avatar'),
                 cellBuilder: (e) {
-                  return Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Row(
-                      children: [
-                        ShimmerImage(
-                          imageUrl: e.avatar ?? '',
-                          height: 70,
-                          width: 70,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        const SizedBox(width: 12),
-                        // Expanded(
-                        //   child: Text(
-                        //     e.avatar ?? '-',
-                        //     overflow: TextOverflow.ellipsis,
-                        //     maxLines: 3,
-                        //     softWrap: true,
-                        //   ),
-                        // ),
-                      ],
-                    ),
+                  return Row(
+                    children: [
+                      ShimmerImage(
+                        imageUrl: e.avatar ?? '',
+                        height: 70,
+                        width: 70,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      // Expanded(
+                      //   child: Text(
+                      //     e.avatar ?? '-',
+                      //     overflow: TextOverflow.ellipsis,
+                      //     maxLines: 3,
+                      //     softWrap: true,
+                      //   ),
+                      // ),
+                    ],
                   );
                 },
               ),

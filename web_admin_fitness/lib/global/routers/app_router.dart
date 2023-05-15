@@ -10,6 +10,7 @@ import 'package:web_admin_fitness/modules/main/modules/home/modules/inboxes/inbo
 import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/program_upsert_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/modules/users/user_upsert_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/modules/users/users_manager_page.dart';
+import 'package:web_admin_fitness/modules/main/modules/setting/edit_profile_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/setting/setting_page.dart';
 
 import '../../modules/login/login_page.dart';
@@ -20,6 +21,7 @@ import '../graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/inbox_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/program_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/user_fragment.data.gql.dart';
+import 'auth_guard.dart';
 import 'nested_route.dart';
 import 'right_sheet_route_builder.dart';
 
@@ -36,6 +38,7 @@ part 'app_router.gr.dart';
     AutoRoute(
       path: '/main',
       page: MainPage,
+      guards: [AuthGuard],
       children: [
         NestedRoute(
           page: HomePage,
@@ -70,11 +73,13 @@ part 'app_router.gr.dart';
     NestedRoute(
       page: CategoryUpsertPage,
       path: 'categoryUpsert',
+      guards: [AuthGuard],
       customRouteBuilder: rightSheetBuilder,
     ),
     NestedRoute(
       page: ProgramUpsertPage,
       path: 'programUpsert',
+      guards: [AuthGuard],
       customRouteBuilder: rightSheetBuilder,
     ),
     NestedRoute(
@@ -84,12 +89,20 @@ part 'app_router.gr.dart';
     ),
     NestedRoute(
       page: UserUpsertPage,
+      guards: [AuthGuard],
       path: 'userUpsert',
       customRouteBuilder: rightSheetBuilder,
     ),
     NestedRoute(
       page: InboxDetailPage,
+      guards: [AuthGuard],
       path: 'inboxDetail',
+      customRouteBuilder: rightSheetBuilder,
+    ),
+    NestedRoute(
+      path: '/editProfile',
+      page: EditProfilePage,
+      guards: [AuthGuard],
       customRouteBuilder: rightSheetBuilder,
     ),
     // AutoRoute(
@@ -110,4 +123,17 @@ part 'app_router.gr.dart';
     RedirectRoute(path: '*', redirectTo: '/'),
   ],
 )
-class AppRouter extends _$AppRouter {}
+class AppRouter extends _$AppRouter {
+  AppRouter({
+    required super.authGuard,
+  });
+}
+
+class RightSheetRouter extends StatelessWidget {
+  const RightSheetRouter({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.shrink(child: AutoRouter());
+  }
+}
