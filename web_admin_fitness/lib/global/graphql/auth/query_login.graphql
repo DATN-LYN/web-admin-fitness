@@ -3,6 +3,9 @@ query Login($input: LoginInputDto!) {
     id
     user {
       email
+      fullName
+      avatar
+      age
     }
     accessToken
     refreshToken

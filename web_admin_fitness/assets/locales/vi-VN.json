@@ -250,5 +250,11 @@
         "confirmPasswordHint":"Nhập lại mật khẩu",
         "confirmPasswordRequired":"Bạn chưa xác nhận mật khẩu",
         "confirmPassword":"Xác nhận mật khẩu"
+    },
+    "editProfile_":{
+        "title": "Cập nhật thông tin",
+        "editDes": "Bạn có chắc chắn muốn cập nhật thông tin cá nhân?",
+        "updateSuccess": "Thông tin của bạn đã được cập nhật thành công"
+  
     }
 }

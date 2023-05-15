@@ -3,6 +3,7 @@ import 'package:ferry_hive_store/ferry_hive_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_category_cache_handler.dart';
 import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_program_cache_handler.dart';
+import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_user_cache_handler.dart';
 
 import '../../locator.dart';
 import '../services/hive_service.dart';
@@ -68,6 +69,8 @@ class AppClient {
         UpsertCategoryCacheHandler.key: UpsertCategoryCacheHandler.handler,
         UpsertProgramCacheHandler.key: UpsertProgramCacheHandler.handler,
         UpsertExerciseCacheHandler.key: UpsertExerciseCacheHandler.handler,
+        UpsertUserCacheHandler.key: UpsertUserCacheHandler.handler,
+
         // DeleteMessageHandler.key: DeleteMessageHandler.handler,
         // MarkReadEventHandler.key: MarkReadEventHandler.handler,
       },

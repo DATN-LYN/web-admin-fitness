@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 
 import '../../../../global/enums/app_locale.dart';
 import '../../../../global/gen/i18n.dart';
+import '../../../../global/graphql/auth/__generated__/mutation_logout.req.gql.dart';
 import '../../../../global/providers/app_settings_provider.dart';
 import '../../../../global/providers/auth_provider.dart';
 import '../../../../global/routers/app_router.dart';
@@ -24,7 +27,7 @@ class SettingPage extends StatefulWidget {
   State<SettingPage> createState() => _SettingPageState();
 }
 
-class _SettingPageState extends State<SettingPage> {
+class _SettingPageState extends State<SettingPage> with ClientMixin {
   void changeLanguage(AppSettingsProvider provider, I18n i18n) async {
     final data = await showDialog(
       context: context,
@@ -57,6 +60,8 @@ class _SettingPageState extends State<SettingPage> {
 
   void logOut() {
     final i18n = I18n.of(context)!;
+    final user = hiveService.getUserCredentials();
+
     showDialog(
       context: context,
       builder: (context) => ConfirmationDialog(
@@ -64,9 +69,17 @@ class _SettingPageState extends State<SettingPage> {
         contentText: i18n.setting_ConfirmLogoutDes,
         positiveButtonText: i18n.button_Ok,
         onTapPositiveButton: () async {
-          context.read<AuthProvider>().logout();
-          Navigator.pop(context);
-          AutoRouter.of(context).push(const LoginRoute());
+          final loginReq = GLogoutReq((b) => b.vars.userId = user.id);
+
+          final response = await client.request(loginReq).first;
+
+          if (response.data?.logout.success == true) {
+            if (mounted) {
+              context.read<AuthProvider>().logout();
+              Navigator.pop(context);
+              AutoRouter.of(context).push(const LoginRoute());
+            }
+          }
         },
       ),
     );
@@ -91,30 +104,86 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
+  void goToEditProfile() {
+    context
+        .pushRoute(const EditProfileRoute())
+        .then((value) => setState(() {}));
+  }
+
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
+    final user = hiveService.getUserCredentials().user;
 
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        const Center(
-          child: Avatar(
-            size: 80,
-            name: 'Nhi',
+        Center(
+          child: ShimmerImage(
+            width: 100,
+            height: 100,
+            borderRadius: BorderRadius.circular(100),
+            errorWidget: Avatar(
+              name: user?.fullName,
+              size: 100,
+            ),
+            imageUrl: user?.avatar ?? '_',
           ),
         ),
         const SizedBox(height: 16),
-        const Center(
+        Center(
           child: Text(
-            'Nhi',
-            style: TextStyle(
+            user?.fullName ?? '_',
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 20,
             ),
           ),
         ),
+        const SizedBox(height: 8),
+        Center(
+          child: Text(
+            user?.email ?? '_',
+          ),
+        ),
         const SizedBox(height: 20),
+        ShadowWrapper(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 16,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                i18n.setting_Account,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 16),
+              SettingTile(
+                icon: Icons.account_circle_outlined,
+                title: 'Edit Profile',
+                onTap: goToEditProfile,
+              ),
+              const Divider(height: 12),
+              SettingTile(
+                icon: Icons.password,
+                title: i18n.setting_ChangePassword,
+                onTap: changePasswordHandler,
+              ),
+              const Divider(height: 12),
+              SettingTile(
+                icon: Icons.logout,
+                title: i18n.setting_Logout,
+                onTap: logOut,
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
         ShadowWrapper(
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
@@ -175,37 +244,6 @@ class _SettingPageState extends State<SettingPage> {
                 icon: Icons.note_outlined,
                 title: i18n.setting_TermsAndConditions,
                 onTap: openTermsAndConditionsUrl,
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 16),
-        ShadowWrapper(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 16,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                i18n.setting_Account,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 16),
-              SettingTile(
-                icon: Icons.password,
-                title: i18n.setting_ChangePassword,
-                onTap: changePasswordHandler,
-              ),
-              const Divider(height: 12),
-              SettingTile(
-                icon: Icons.logout,
-                title: i18n.setting_Logout,
-                onTap: logOut,
               ),
             ],
           ),

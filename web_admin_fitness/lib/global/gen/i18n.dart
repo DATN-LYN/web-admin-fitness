@@ -422,6 +422,12 @@ class I18n implements WidgetsLocalizations {
 	String get upsertUser_ConfirmPasswordRequired => "Confirm password is required";
 	/// "Confirm password"
 	String get upsertUser_ConfirmPassword => "Confirm password";
+	/// "Update Profile"
+	String get editProfile_Title => "Update Profile";
+	/// "Are you sure you want to update your profile?"
+	String get editProfile_EditDes => "Are you sure you want to update your profile?";
+	/// "Your profile has been updated successfully."
+	String get editProfile_UpdateSuccess => "Your profile has been updated successfully.";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -1020,6 +1026,15 @@ class _I18n_vi_VN extends I18n {
 	/// "Xác nhận mật khẩu"
 	@override
 	String get upsertUser_ConfirmPassword => "Xác nhận mật khẩu";
+	/// "Cập nhật thông tin"
+	@override
+	String get editProfile_Title => "Cập nhật thông tin";
+	/// "Bạn có chắc chắn muốn cập nhật thông tin cá nhân?"
+	@override
+	String get editProfile_EditDes => "Bạn có chắc chắn muốn cập nhật thông tin cá nhân?";
+	/// "Thông tin của bạn đã được cập nhật thành công"
+	@override
+	String get editProfile_UpdateSuccess => "Thông tin của bạn đã được cập nhật thành công";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();
