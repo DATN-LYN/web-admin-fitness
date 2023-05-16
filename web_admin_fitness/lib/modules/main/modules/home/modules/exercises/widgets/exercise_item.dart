@@ -27,54 +27,57 @@ class ExerciseItem extends StatelessWidget {
     return SlidableWrapper(
       handleDelete: handleDelete,
       handleEdit: handleEdit,
-      child: ShadowWrapper(
-        margin: EdgeInsets.zero,
-        child: Row(
-          children: [
-            ShimmerImage(
-              imageUrl: exercise.imgUrl ?? '_',
-              height: 100,
-              width: 100,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  LabelTextRow(
-                    label: i18n.common_Name,
-                    value: exercise.name,
-                  ),
-                  const SizedBox(height: 6),
-                  LabelTextRow(
-                    label: i18n.common_Calo,
-                    value: exercise.calo.toString(),
-                  ),
-                  const SizedBox(height: 6),
-                  LabelTextRow(
-                    label: i18n.common_Duration,
-                    value: DurationTime.totalDurationFormat(
-                      Duration(
-                        seconds: exercise.duration!.toInt(),
+      child: GestureDetector(
+        onTap: handleEdit,
+        child: ShadowWrapper(
+          margin: EdgeInsets.zero,
+          child: Row(
+            children: [
+              ShimmerImage(
+                imageUrl: exercise.imgUrl ?? '_',
+                height: 100,
+                width: 100,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    LabelTextRow(
+                      label: i18n.common_Name,
+                      value: exercise.name,
+                    ),
+                    const SizedBox(height: 6),
+                    LabelTextRow(
+                      label: i18n.common_Calo,
+                      value: exercise.calo.toString(),
+                    ),
+                    const SizedBox(height: 6),
+                    LabelTextRow(
+                      label: i18n.common_Duration,
+                      value: DurationTime.totalDurationFormat(
+                        Duration(
+                          seconds: exercise.duration!.toInt(),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 6),
-                  LabelTextRow(
-                    label: i18n.exercises_Program,
-                    value: exercise.program?.name,
-                  ),
-                ],
+                    const SizedBox(height: 6),
+                    LabelTextRow(
+                      label: i18n.exercises_Program,
+                      value: exercise.program?.name,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: AppColors.primarySoft,
-              ),
-              child: const Icon(Icons.play_arrow_rounded),
-            )
-          ],
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: AppColors.primarySoft,
+                ),
+                child: const Icon(Icons.play_arrow_rounded),
+              )
+            ],
+          ),
         ),
       ),
     );

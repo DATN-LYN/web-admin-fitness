@@ -27,31 +27,34 @@ class CategoryItem extends StatelessWidget {
       child: SlidableWrapper(
         handleDelete: handleDelete,
         handleEdit: handleEdit,
-        child: ShadowWrapper(
-          padding: const EdgeInsets.all(12),
-          margin: EdgeInsets.zero,
-          borderRadius: BorderRadius.circular(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ShimmerImage(
-                imageUrl: category.imgUrl ?? '',
-                width: double.infinity,
-                height: 170,
-                fit: BoxFit.fill,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              const SizedBox(height: 12),
-              LabelTextRow(
-                label: i18n.common_Name,
-                value: category.name,
-              ),
-              const SizedBox(height: 8),
-              LabelTextRow(
-                label: i18n.common_Id,
-                value: category.id,
-              ),
-            ],
+        child: GestureDetector(
+          onTap: handleEdit,
+          child: ShadowWrapper(
+            padding: const EdgeInsets.all(12),
+            margin: EdgeInsets.zero,
+            borderRadius: BorderRadius.circular(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ShimmerImage(
+                  imageUrl: category.imgUrl ?? '',
+                  width: double.infinity,
+                  height: 170,
+                  fit: BoxFit.fill,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                const SizedBox(height: 12),
+                LabelTextRow(
+                  label: i18n.common_Name,
+                  value: category.name,
+                ),
+                const SizedBox(height: 8),
+                LabelTextRow(
+                  label: i18n.common_Id,
+                  value: category.id,
+                ),
+              ],
+            ),
           ),
         ),
       ),

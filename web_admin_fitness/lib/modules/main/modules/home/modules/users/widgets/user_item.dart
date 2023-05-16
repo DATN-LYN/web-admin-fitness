@@ -25,42 +25,45 @@ class UserItem extends StatelessWidget with ClientMixin {
     return SlidableWrapper(
       handleDelete: handleDelete,
       handleEdit: handleEdit,
-      child: ShadowWrapper(
-        child: Row(
-          children: [
-            ShimmerImage(
-              imageUrl: user.avatar ?? '-',
-              width: 50,
-              height: 50,
-              borderRadius: BorderRadius.circular(100),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text.rich(
-                    TextSpan(
-                      text: user.fullName ?? '_',
-                      children: [
-                        TextSpan(
-                          text: ' - ${user.age}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      ],
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
+      child: GestureDetector(
+        onTap: handleEdit,
+        child: ShadowWrapper(
+          child: Row(
+            children: [
+              ShimmerImage(
+                imageUrl: user.avatar ?? '-',
+                width: 50,
+                height: 50,
+                borderRadius: BorderRadius.circular(100),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text.rich(
+                      TextSpan(
+                        text: user.fullName ?? '_',
+                        children: [
+                          TextSpan(
+                            text: ' - ${user.age}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                            ),
+                          )
+                        ],
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(user.email),
-                ],
+                    const SizedBox(height: 8),
+                    Text(user.email),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

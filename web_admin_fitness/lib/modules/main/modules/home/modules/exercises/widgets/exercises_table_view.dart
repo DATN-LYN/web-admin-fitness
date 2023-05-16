@@ -198,7 +198,20 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                 minimumWidth: 220,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('programId'),
-                itemValue: (e) => e.programId,
+                cellBuilder: (e) {
+                  return Row(
+                    children: [
+                      ShimmerImage(
+                        height: 90,
+                        width: 100,
+                        borderRadius: BorderRadius.circular(8),
+                        imageUrl: e.program?.imgUrl ?? '_',
+                      ),
+                      const SizedBox(width: 14),
+                      Text(e.program?.name ?? '_')
+                    ],
+                  );
+                },
               ),
               TableColumn(
                 label: i18n.common_Actions,

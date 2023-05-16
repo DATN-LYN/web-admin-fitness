@@ -17,6 +17,13 @@ class GFILTER_OPERATOR extends EnumClass {
 
   static const GFILTER_OPERATOR like = _$gFILTEROPERATORlike;
 
+  @BuiltValueEnumConst(wireName: 'in')
+  static const GFILTER_OPERATOR Gin = _$gFILTEROPERATORGin;
+
+  static const GFILTER_OPERATOR lt = _$gFILTEROPERATORlt;
+
+  static const GFILTER_OPERATOR gt = _$gFILTEROPERATORgt;
+
   static Serializer<GFILTER_OPERATOR> get serializer =>
       _$gFILTEROPERATORSerializer;
   static BuiltSet<GFILTER_OPERATOR> get values => _$gFILTEROPERATORValues;
@@ -223,6 +230,31 @@ abstract class GUpsertProgramInputDto
       );
 }
 
+abstract class GUpsertUserExerciseInputDto
+    implements
+        Built<GUpsertUserExerciseInputDto, GUpsertUserExerciseInputDtoBuilder> {
+  GUpsertUserExerciseInputDto._();
+
+  factory GUpsertUserExerciseInputDto(
+          [Function(GUpsertUserExerciseInputDtoBuilder b) updates]) =
+      _$GUpsertUserExerciseInputDto;
+
+  String? get id;
+  String get userId;
+  String get exerciseId;
+  static Serializer<GUpsertUserExerciseInputDto> get serializer =>
+      _$gUpsertUserExerciseInputDtoSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GUpsertUserExerciseInputDto.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GUpsertUserExerciseInputDto? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GUpsertUserExerciseInputDto.serializer,
+        json,
+      );
+}
+
 abstract class GUpsertUserInputDto
     implements Built<GUpsertUserInputDto, GUpsertUserInputDtoBuilder> {
   GUpsertUserInputDto._();
@@ -244,6 +276,59 @@ abstract class GUpsertUserInputDto
   static GUpsertUserInputDto? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GUpsertUserInputDto.serializer,
+        json,
+      );
+}
+
+abstract class GUpsertUserProgramInputDto
+    implements
+        Built<GUpsertUserProgramInputDto, GUpsertUserProgramInputDtoBuilder> {
+  GUpsertUserProgramInputDto._();
+
+  factory GUpsertUserProgramInputDto(
+          [Function(GUpsertUserProgramInputDtoBuilder b) updates]) =
+      _$GUpsertUserProgramInputDto;
+
+  String? get id;
+  String get userId;
+  String get programId;
+  static Serializer<GUpsertUserProgramInputDto> get serializer =>
+      _$gUpsertUserProgramInputDtoSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GUpsertUserProgramInputDto.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GUpsertUserProgramInputDto? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GUpsertUserProgramInputDto.serializer,
+        json,
+      );
+}
+
+abstract class GUpsertUserStatisticsInputDto
+    implements
+        Built<GUpsertUserStatisticsInputDto,
+            GUpsertUserStatisticsInputDtoBuilder> {
+  GUpsertUserStatisticsInputDto._();
+
+  factory GUpsertUserStatisticsInputDto(
+          [Function(GUpsertUserStatisticsInputDtoBuilder b) updates]) =
+      _$GUpsertUserStatisticsInputDto;
+
+  String? get id;
+  String get userId;
+  double get programCount;
+  double get caloCount;
+  double get durationCount;
+  static Serializer<GUpsertUserStatisticsInputDto> get serializer =>
+      _$gUpsertUserStatisticsInputDtoSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GUpsertUserStatisticsInputDto.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GUpsertUserStatisticsInputDto? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GUpsertUserStatisticsInputDto.serializer,
         json,
       );
 }

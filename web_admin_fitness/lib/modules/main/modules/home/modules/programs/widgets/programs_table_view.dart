@@ -211,7 +211,21 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                 minimumWidth: 200,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('categoryId'),
-                itemValue: (e) => e.categoryId,
+                cellBuilder: (e) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ShimmerImage(
+                        height: 70,
+                        width: 70,
+                        // borderRadius: BorderRadius.circular(8),
+                        imageUrl: e.category?.imgUrl ?? '_',
+                      ),
+                      const SizedBox(height: 8),
+                      Text(e.category?.name ?? '_')
+                    ],
+                  );
+                },
               ),
               TableColumn(
                 label: i18n.common_Actions,

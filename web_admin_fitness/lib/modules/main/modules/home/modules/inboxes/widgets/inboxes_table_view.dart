@@ -145,7 +145,7 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
                                   const TextStyle(fontWeight: FontWeight.w600),
                             ),
                             const SizedBox(height: 12),
-                            Text(e.userId),
+                            Text(e.user?.fullName ?? '_'),
                           ],
                         ),
                       )

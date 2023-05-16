@@ -14,7 +14,7 @@ import 'package:web_admin_fitness/modules/main/modules/setting/edit_profile_page
 import 'package:web_admin_fitness/modules/main/modules/setting/setting_page.dart';
 
 import '../../modules/login/login_page.dart';
-import '../../modules/main/modules/home/modules/inboxes/widgets/inbox_detail_page.dart';
+import '../../modules/main/modules/home/modules/inboxes/inbox_detail_page.dart';
 import '../../modules/main/modules/home/modules/programs/programs_manager_page.dart';
 import '../graphql/fragment/__generated__/category_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
