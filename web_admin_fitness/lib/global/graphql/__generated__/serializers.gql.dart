@@ -19,7 +19,10 @@ import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql
         GUpsertExerciseInputDto,
         GUpsertInboxInputDto,
         GUpsertProgramInputDto,
-        GUpsertUserInputDto;
+        GUpsertUserExerciseInputDto,
+        GUpsertUserInputDto,
+        GUpsertUserProgramInputDto,
+        GUpsertUserStatisticsInputDto;
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_logout.data.gql.dart'
     show GLogoutData, GLogoutData_logout;
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_logout.req.gql.dart'
@@ -51,7 +54,7 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.var.gql.dart'
     show GCategoryVars;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.data.gql.dart'
-    show GExerciseData, GExerciseData_program;
+    show GExerciseData, GExerciseData_program, GExerciseData_program_category;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.req.gql.dart'
     show GExerciseReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.var.gql.dart'
@@ -69,7 +72,7 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/meta_fra
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/meta_fragment.var.gql.dart'
     show GMetaVars;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart'
-    show GProgramData;
+    show GProgramData, GProgramData_category;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.req.gql.dart'
     show GProgramReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.var.gql.dart'
@@ -162,6 +165,7 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_e
         GGetExercisesData_getExercises,
         GGetExercisesData_getExercises_items,
         GGetExercisesData_getExercises_items_program,
+        GGetExercisesData_getExercises_items_program_category,
         GGetExercisesData_getExercises_meta;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart'
     show GGetExercisesReq;
@@ -185,7 +189,10 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_i
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.var.gql.dart'
     show GGetInboxesVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_program.data.gql.dart'
-    show GGetProgramData, GGetProgramData_getProgram;
+    show
+        GGetProgramData,
+        GGetProgramData_getProgram,
+        GGetProgramData_getProgram_category;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_program.req.gql.dart'
     show GGetProgramReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_program.var.gql.dart'
@@ -195,6 +202,7 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_p
         GGetProgramsData,
         GGetProgramsData_getPrograms,
         GGetProgramsData_getPrograms_items,
+        GGetProgramsData_getPrograms_items_category,
         GGetProgramsData_getPrograms_meta;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart'
     show GGetProgramsReq;
@@ -245,6 +253,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GDeleteUserVars,
   GExerciseData,
   GExerciseData_program,
+  GExerciseData_program_category,
   GExerciseReq,
   GExerciseVars,
   GFILTER_OPERATOR,
@@ -267,6 +276,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetExercisesData_getExercises,
   GGetExercisesData_getExercises_items,
   GGetExercisesData_getExercises_items_program,
+  GGetExercisesData_getExercises_items_program_category,
   GGetExercisesData_getExercises_meta,
   GGetExercisesReq,
   GGetExercisesVars,
@@ -284,11 +294,13 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetInboxesVars,
   GGetProgramData,
   GGetProgramData_getProgram,
+  GGetProgramData_getProgram_category,
   GGetProgramReq,
   GGetProgramVars,
   GGetProgramsData,
   GGetProgramsData_getPrograms,
   GGetProgramsData_getPrograms_items,
+  GGetProgramsData_getPrograms_items_category,
   GGetProgramsData_getPrograms_meta,
   GGetProgramsReq,
   GGetProgramsVars,
@@ -316,6 +328,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GMetaReq,
   GMetaVars,
   GProgramData,
+  GProgramData_category,
   GProgramReq,
   GProgramVars,
   GQueryFilterDto,
@@ -346,8 +359,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpsertProgramVars,
   GUpsertUserData,
   GUpsertUserData_upsertUser,
+  GUpsertUserExerciseInputDto,
   GUpsertUserInputDto,
+  GUpsertUserProgramInputDto,
   GUpsertUserReq,
+  GUpsertUserStatisticsInputDto,
   GUpsertUserVars,
   GUserData,
   GUserReq,

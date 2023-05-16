@@ -28,31 +28,37 @@ class ShimmerImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: borderRadius ?? BorderRadius.circular(borderImage),
-      child: CachedNetworkImage(
-        imageUrl: imageUrl,
-        width: width,
-        height: height,
-        fit: fit,
-        placeholder: (context, url) => ShimmerWrapper(
-          child: Container(
-            height: width,
-            width: height,
-            color: AppColors.grey6,
-          ),
-        ),
-        errorWidget: (context, url, error) =>
-            errorWidget ??
-            Container(
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.grey6),
+        borderRadius: borderRadius ?? BorderRadius.circular(borderImage),
+      ),
+      child: ClipRRect(
+        borderRadius: borderRadius ?? BorderRadius.circular(borderImage),
+        child: CachedNetworkImage(
+          imageUrl: imageUrl,
+          width: width,
+          height: height,
+          fit: fit,
+          placeholder: (context, url) => ShimmerWrapper(
+            child: Container(
               height: width,
               width: height,
               color: AppColors.grey6,
-              child: Icon(
-                Icons.error,
-                size: iconErrorSize,
-              ),
             ),
+          ),
+          errorWidget: (context, url, error) =>
+              errorWidget ??
+              Container(
+                height: width,
+                width: height,
+                color: AppColors.grey6,
+                child: Icon(
+                  Icons.error,
+                  size: iconErrorSize,
+                ),
+              ),
+        ),
       ),
     );
   }

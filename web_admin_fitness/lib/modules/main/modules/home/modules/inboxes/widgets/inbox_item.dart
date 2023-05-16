@@ -29,56 +29,60 @@ class InboxItem extends StatelessWidget {
         InboxDetailRoute(inbox: inbox),
       ),
       isView: true,
-      child: ShadowWrapper(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                ShimmerImage(
-                  imageUrl: inbox.user?.avatar ?? '_',
-                  width: 46,
-                  height: 46,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            inbox.user?.email ?? '_',
-                            style: const TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                          Tag(
-                            text: inbox.isSender
-                                ? i18n.inboxes_User
-                                : i18n.inboxes_Bot,
-                            color: inbox.isSender
-                                ? AppColors.success
-                                : AppColors.alert,
-                            fontSize: 12,
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        inbox.userId,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: const TextStyle(color: AppColors.grey3),
-                      )
-                    ],
+      child: GestureDetector(
+        onTap: () => context.pushRoute(InboxDetailRoute(inbox: inbox)),
+        child: ShadowWrapper(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  ShimmerImage(
+                    imageUrl: inbox.user?.avatar ?? '_',
+                    width: 46,
+                    height: 46,
+                    borderRadius: BorderRadius.circular(100),
                   ),
-                )
-              ],
-            ),
-            const SizedBox(height: 14),
-            Text(inbox.message ?? '_'),
-          ],
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              inbox.user?.email ?? '_',
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                            Tag(
+                              text: inbox.isSender
+                                  ? i18n.inboxes_User
+                                  : i18n.inboxes_Bot,
+                              color: inbox.isSender
+                                  ? AppColors.success
+                                  : AppColors.alert,
+                              fontSize: 12,
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          inbox.user?.fullName ?? '_',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: const TextStyle(color: AppColors.grey3),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(height: 14),
+              Text(inbox.message ?? '_'),
+            ],
+          ),
         ),
       ),
     );

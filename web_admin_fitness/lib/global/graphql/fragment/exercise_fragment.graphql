@@ -1,4 +1,4 @@
-#import 'program_fragment.graphql'
+#import './program_fragment.graphql'
 
 fragment Exercise on Exercise {
   id

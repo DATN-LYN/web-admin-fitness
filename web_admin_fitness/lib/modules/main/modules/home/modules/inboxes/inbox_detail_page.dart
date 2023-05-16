@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/widgets/label.dart';
 
-import '../../../../../../../global/gen/i18n.dart';
-import '../../../../../../../global/themes/app_colors.dart';
-import '../../../../../../../global/widgets/right_sheet_appbar.dart';
-import '../../../../../../../global/widgets/tag.dart';
+import '../../../../../../global/gen/i18n.dart';
+import '../../../../../../global/themes/app_colors.dart';
+import '../../../../../../global/widgets/right_sheet_appbar.dart';
+import '../../../../../../global/widgets/tag.dart';
 
 class InboxDetailPage extends StatelessWidget {
   const InboxDetailPage({
@@ -34,16 +34,16 @@ class InboxDetailPage extends StatelessWidget {
           ),
           Label(i18n.upsertUser_FullName),
           TextFormField(
-            initialValue: inbox.user?.fullName,
+            initialValue: inbox.user?.fullName ?? '__',
           ),
           Label(i18n.login_Email),
           TextFormField(
-            initialValue: inbox.user?.email,
+            initialValue: inbox.user?.email ?? '__',
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(i18n.inboxes_Message),
-              const SizedBox(width: 12),
               Tag(
                 color: inbox.isSender ? AppColors.success : AppColors.alert,
                 text: inbox.isSender ? i18n.inboxes_User : i18n.inboxes_Bot,

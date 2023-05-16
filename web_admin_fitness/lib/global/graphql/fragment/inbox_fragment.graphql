@@ -1,12 +1,11 @@
+#import './user_fragment.graphql'
+
 fragment Inbox on Inbox {
   id
   message
   userId
   user {
-    id
-    email
-    avatar
-    fullName
+    ...User
   }
   isSender
   createdAt

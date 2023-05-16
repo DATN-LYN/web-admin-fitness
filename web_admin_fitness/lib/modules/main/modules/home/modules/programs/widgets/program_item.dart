@@ -30,63 +30,66 @@ class ProgramItem extends StatelessWidget {
     return SlidableWrapper(
       handleDelete: handleDelete,
       handleEdit: handleEdit,
-      child: ShadowWrapper(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Tag(
-                  text: level.label(i18n),
-                  color: level.color(),
-                ),
-                Text(
-                  bodyPart.label(i18n),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
+      child: GestureDetector(
+        onTap: handleEdit,
+        child: ShadowWrapper(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Tag(
+                    text: level.label(i18n),
+                    color: level.color(),
                   ),
-                ),
-              ],
-            ),
-            const Divider(),
-            Row(
-              children: [
-                ShimmerImage(
-                  imageUrl: program.imgUrl ?? '_',
-                  width: 100,
-                  height: 100,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    children: [
-                      LabelTextRow(
-                        label: i18n.common_Name,
-                        value: program.name,
-                      ),
-                      const SizedBox(height: 6),
-                      // LabelTextRow(
-                      //   label: i18n.common_Calo,
-                      //   value: program.calo.toString(),
-                      // ),
-                      // const SizedBox(height: 6),
-                      // LabelTextRow(
-                      //   label: i18n.common_Duration,
-                      //   value: program.duration.toString(),
-                      // ),
-                      const SizedBox(height: 6),
-                      LabelTextRow(
-                        label: i18n.common_Id,
-                        value: program.id,
-                      ),
-                    ],
+                  Text(
+                    bodyPart.label(i18n),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+              const Divider(),
+              Row(
+                children: [
+                  ShimmerImage(
+                    imageUrl: program.imgUrl ?? '_',
+                    width: 100,
+                    height: 100,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        LabelTextRow(
+                          label: i18n.common_Name,
+                          value: program.name,
+                        ),
+                        const SizedBox(height: 6),
+                        // LabelTextRow(
+                        //   label: i18n.common_Calo,
+                        //   value: program.calo.toString(),
+                        // ),
+                        // const SizedBox(height: 6),
+                        // LabelTextRow(
+                        //   label: i18n.common_Duration,
+                        //   value: program.duration.toString(),
+                        // ),
+                        const SizedBox(height: 6),
+                        LabelTextRow(
+                          label: i18n.common_Id,
+                          value: program.id,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
