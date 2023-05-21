@@ -8,10 +8,10 @@ import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_error.dart';
 import 'package:web_admin_fitness/global/widgets/infinity_list.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/helper/program_helper.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/widgets/program_item.dart';
 
 import '../../../../../../../global/routers/app_router.dart';
+import '../helper/program_helper.dart';
+import 'program_item.dart';
 
 class ProgramsListView extends StatefulWidget {
   const ProgramsListView({

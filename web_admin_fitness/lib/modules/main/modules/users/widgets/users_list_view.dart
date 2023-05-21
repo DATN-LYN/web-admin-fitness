@@ -7,11 +7,11 @@ import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_error.dart';
 import 'package:web_admin_fitness/global/widgets/infinity_list.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/users/widgets/user_item.dart';
 
 import '../../../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import '../../../../../../../global/routers/app_router.dart';
 import '../helper/user_helper.dart';
+import 'user_item.dart';
 
 class UsersListView extends StatefulWidget {
   const UsersListView({

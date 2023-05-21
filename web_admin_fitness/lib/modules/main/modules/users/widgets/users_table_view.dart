@@ -11,11 +11,11 @@ import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/users/helper/user_helper.dart';
 
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import '../../../../../../../global/routers/app_router.dart';
+import '../helper/user_helper.dart';
 
 class UsersTableView extends StatefulWidget {
   const UsersTableView({
@@ -177,7 +177,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('age'),
-                itemValue: (e) => e.age.toString(),
+                itemValue: (e) => e.age?.toInt().toString(),
               ),
               TableColumn(
                 label: i18n.common_Actions,

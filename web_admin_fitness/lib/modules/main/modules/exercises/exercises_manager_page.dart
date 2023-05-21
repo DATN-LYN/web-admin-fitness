@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/models/exercise_filter_data.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/exercises/widgets/exercise_search_bar.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/exercises/widgets/exercises_list_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/exercises/widgets/exercises_table_view.dart';
 
 import '../../../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../../../global/gen/i18n.dart';
 import '../../../../../../global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
 import '../../../../../../global/utils/constants.dart';
 import '../../../../../../global/widgets/responsive/responsive_page_builder.dart';
+import 'widgets/exercise_search_bar.dart';
+import 'widgets/exercises_list_view.dart';
+import 'widgets/exercises_table_view.dart';
 
 class ExercisesManagerPage extends StatefulWidget {
   const ExercisesManagerPage({super.key});

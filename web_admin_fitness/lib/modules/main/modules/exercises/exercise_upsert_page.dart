@@ -17,8 +17,6 @@ import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
 import 'package:web_admin_fitness/global/widgets/pick_image_field.dart';
 import 'package:web_admin_fitness/global/widgets/selected_image.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/exercises/widgets/exercise_video.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/selectors/program_selector.dart';
 
 import '../../../../../../global/gen/i18n.dart';
 import '../../../../../../global/graphql/cache_handler/upsert_exercise_cache_handler.dart';
@@ -33,6 +31,8 @@ import '../../../../../../global/widgets/right_sheet_appbar.dart';
 import '../../../../../../global/widgets/shimmer_image.dart';
 import '../../../../../../global/widgets/toast/multi_toast.dart';
 import '../../../../../../global/widgets/upsert_form_button.dart';
+import 'widgets/exercise_video.dart';
+import 'widgets/program_selector.dart';
 
 class ExerciseUpsertPage extends StatefulWidget {
   const ExerciseUpsertPage({

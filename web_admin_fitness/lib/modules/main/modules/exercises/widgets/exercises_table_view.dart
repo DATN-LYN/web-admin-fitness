@@ -2,52 +2,50 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import 'package:web_admin_fitness/global/enums/workout_body_part.dart';
-import 'package:web_admin_fitness/global/enums/workout_level.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
-import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/utils/duration_time.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
-import 'package:web_admin_fitness/global/widgets/tag.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/helper/program_helper.dart';
 
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/routers/app_router.dart';
+import '../helper/exercise_helper.dart';
 
-class ProgramsTableView extends StatefulWidget {
-  const ProgramsTableView({
+class ExercisesTableView extends StatefulWidget {
+  const ExercisesTableView({
     super.key,
-    required this.getProgramsReq,
+    required this.getExercisesReq,
     required this.onRequestChanged,
   });
 
-  final GGetProgramsReq getProgramsReq;
-  final Function(GGetProgramsReq) onRequestChanged;
+  final GGetExercisesReq getExercisesReq;
+  final Function(GGetExercisesReq) onRequestChanged;
 
   @override
-  State<ProgramsTableView> createState() => _ProgramsTableViewState();
+  State<ExercisesTableView> createState() => _ExercisesTableViewState();
 }
 
-class _ProgramsTableViewState extends State<ProgramsTableView>
+class _ExercisesTableViewState extends State<ExercisesTableView>
     with ClientMixin {
   String? orderBy;
   bool loading = false;
 
   void handleOrderBy(String fieldName) {
-    if (orderBy == 'Program.$fieldName:DESC') {
-      setState(() => orderBy = 'Program.$fieldName:ASC');
+    if (orderBy == 'Exercise.$fieldName:DESC') {
+      setState(() => orderBy = 'Exercise.$fieldName:ASC');
     } else {
-      setState(() => orderBy = 'Program.$fieldName:DESC');
+      setState(() => orderBy = 'Exercise.$fieldName:DESC');
     }
 
     widget.onRequestChanged(
-      widget.getProgramsReq.rebuild(
+      widget.getExercisesReq.rebuild(
         (b) => b
           ..vars.queryParams.orderBy = b.vars.queryParams.orderBy = orderBy
           ..updateResult = ((previous, result) => result),
@@ -58,9 +56,9 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
   Widget sortButton(String fieldName) {
     return InkWell(
       onTap: () => handleOrderBy(fieldName),
-      child: orderBy == 'Program.$fieldName:DESC'
+      child: orderBy == 'Exercise.$fieldName:DESC'
           ? Assets.icons.icSortDown.svg(width: 10, height: 10)
-          : orderBy == 'Program.$fieldName:ASC'
+          : orderBy == 'Exercise.$fieldName:ASC'
               ? Assets.icons.icSortUpper.svg(width: 10, height: 10)
               : Assets.icons.icSort.svg(width: 12, height: 12),
     );
@@ -68,7 +66,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
 
   void refreshHandler() {
     widget.onRequestChanged(
-      widget.getProgramsReq.rebuild(
+      widget.getExercisesReq.rebuild(
         (b) => b
           ..vars.queryParams.page = 1
           ..updateResult = ((previous, result) => result),
@@ -76,15 +74,15 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
     );
   }
 
-  void handleDelete(GProgram program) async {
+  void handleDelete(GExercise exercise) async {
     setState(() => loading = true);
-    await ProgramHelper().handleDelete(context, program);
+    await ExerciseHelper().handleDelete(context, exercise);
     refreshHandler();
     setState(() => loading = false);
   }
 
-  void goToUpsertPage(GProgram program) {
-    context.pushRoute(ProgramUpsertRoute(program: program)).then(
+  void goToUpsertPage(GExercise exercise) {
+    context.pushRoute(ExerciseUpsertRoute(exercise: exercise)).then(
       (value) {
         if (value != null) {
           refreshHandler();
@@ -97,7 +95,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
   Widget build(BuildContext context) {
     final spacing = ResponsiveWrapper.of(context).adap(16.0, 24.0);
     final i18n = I18n.of(context)!;
-    var request = widget.getProgramsReq;
+    var request = widget.getExercisesReq;
 
     return Padding(
       padding: EdgeInsets.fromLTRB(spacing, 0, spacing, spacing),
@@ -106,7 +104,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
         client: client,
         request: request,
         meta: (response) {
-          return response?.data?.getPrograms.meta;
+          return response?.data?.getExercises.meta;
         },
         changeLimitRequest: (response, limit) {
           request = request.rebuild(
@@ -121,16 +119,15 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
           return request;
         },
         builder: (context, response, error) {
-          final data = response?.data?.getPrograms;
-          final programs = data?.items?.toList() ?? <GProgram>[];
+          final data = response?.data?.getExercises;
+          final exercises = data?.items?.toList() ?? <GExercise>[];
 
-          final dataSource = TableDataSource<GProgram>(
-            tableData: programs,
+          final dataSource = TableDataSource<GExercise>(
+            tableData: exercises,
             columnItems: [
               TableColumn(
                 label: i18n.common_ImageUrl,
-                // itemValue: (e) => e.imgUrl,
-                minimumWidth: 350,
+                minimumWidth: 380,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('imgUrl'),
                 cellBuilder: (e) {
@@ -142,7 +139,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                           imageUrl: e.imgUrl ?? '',
                           height: 100,
                           width: 120,
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                         const SizedBox(width: 12),
                         Expanded(
@@ -160,7 +157,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
               ),
               // TableColumn(
               //   label: i18n.common_Id,
-              //   minimumWidth: 200,
+              //   minimumWidth: 220,
               //   columnWidthMode: ColumnWidthMode.fill,
               //   itemValue: (e) => e.id,
               // ),
@@ -172,58 +169,52 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                 action: sortButton('name'),
               ),
               TableColumn(
-                label: i18n.common_Level,
-                minimumWidth: 130,
+                label: i18n.programs_Calo,
+                minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('level'),
-                cellBuilder: (e) {
-                  final level = WorkoutLevel.getLevel(e.level ?? 0);
-                  return Tag(
-                    text: level.label(i18n),
-                    color: level.color(),
-                  );
-                },
+                action: sortButton('calo'),
+                itemValue: (e) => e.calo.toString(),
               ),
               TableColumn(
-                  label: i18n.programs_BodyPart,
-                  minimumWidth: 150,
-                  columnWidthMode: ColumnWidthMode.fill,
-                  action: sortButton('bodyPart'),
-                  cellBuilder: (e) {
-                    final bodyPart =
-                        WorkoutBodyPart.getBodyPart(e.bodyPart ?? 0);
-                    return Text(
-                      bodyPart.label(i18n),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                      ),
-                    );
-                  }),
+                label: i18n.common_Duration,
+                minimumWidth: 150,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('duration'),
+                itemValue: (e) => DurationTime.totalDurationFormat(
+                  Duration(
+                    seconds: e.duration!.toInt(),
+                  ),
+                ),
+              ),
               TableColumn(
-                label: i18n.programs_Description,
+                label: i18n.exercises_VideoUrl,
+                minimumWidth: 300,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('videoUrl'),
+                itemValue: (e) => e.videoUrl,
+              ),
+              TableColumn(
+                label: i18n.exercises_ProgramId,
                 minimumWidth: 220,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('description'),
-                itemValue: (e) => e.description.toString(),
-              ),
-              TableColumn(
-                label: i18n.upsertProgram_Category,
-                minimumWidth: 200,
-                columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('categoryId'),
+                action: sortButton('programId'),
                 cellBuilder: (e) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ShimmerImage(
-                        height: 70,
-                        width: 70,
-                        // borderRadius: BorderRadius.circular(8),
-                        imageUrl: e.category?.imgUrl ?? '_',
-                      ),
-                      const SizedBox(height: 8),
-                      Text(e.category?.name ?? '_')
-                    ],
+                  return GestureDetector(
+                    onTap: () => context.pushRoute(
+                      ProgramUpsertRoute(program: e.program),
+                    ),
+                    child: Row(
+                      children: [
+                        ShimmerImage(
+                          height: 90,
+                          width: 100,
+                          borderRadius: BorderRadius.circular(8),
+                          imageUrl: e.program?.imgUrl ?? '_',
+                        ),
+                        const SizedBox(width: 14),
+                        Text(e.program?.name ?? '_')
+                      ],
+                    ),
                   );
                 },
               ),
@@ -236,9 +227,9 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                     children: [
                       IconButton(
                         onPressed: () => goToUpsertPage(e),
-                        icon: const Icon(Icons.visibility),
+                        icon: const Icon(Icons.edit),
                         color: AppColors.grey4,
-                        tooltip: i18n.common_ViewDetail,
+                        tooltip: i18n.button_Edit,
                       ),
                       IconButton(
                         onPressed: () => handleDelete(e),

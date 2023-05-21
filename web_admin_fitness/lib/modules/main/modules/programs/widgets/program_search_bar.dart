@@ -7,12 +7,12 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:side_sheet/side_sheet.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
 import 'package:web_admin_fitness/global/models/program_filter_data.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/widgets/program_filter_sheet.dart';
 
 import '../../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
 import '../../../../../../../../global/themes/app_colors.dart';
 import '../../../../../../../../global/widgets/filter/filter_text_field.dart';
+import 'program_filter_sheet.dart';
 
 class ProgramSearchBar extends StatefulWidget {
   const ProgramSearchBar({
