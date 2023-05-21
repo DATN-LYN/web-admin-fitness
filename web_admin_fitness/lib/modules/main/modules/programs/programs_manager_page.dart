@@ -1,39 +1,41 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.req.gql.dart';
-import 'package:web_admin_fitness/global/models/inbox_filter_data.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/inboxes/widgets/inboxes_list_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/inboxes/widgets/inboxes_search_bar.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/inboxes/widgets/inboxes_table_view.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
+import 'package:web_admin_fitness/global/models/program_filter_data.dart';
+import 'package:web_admin_fitness/global/routers/app_router.dart';
 
 import '../../../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../../../global/gen/i18n.dart';
 import '../../../../../../global/utils/constants.dart';
 import '../../../../../../global/widgets/responsive/responsive_page_builder.dart';
+import 'widgets/program_search_bar.dart';
+import 'widgets/programs_list_view.dart';
+import 'widgets/programs_table_view.dart';
 
-class InboxesManagerPage extends StatefulWidget {
-  const InboxesManagerPage({super.key});
+class ProgramsManagerPage extends StatefulWidget {
+  const ProgramsManagerPage({super.key});
 
   @override
-  State<InboxesManagerPage> createState() => _InboxesManagerPageState();
+  State<ProgramsManagerPage> createState() => _ProgramsManagerPageState();
 }
 
-class _InboxesManagerPageState extends State<InboxesManagerPage> {
-  final initialFilter = const InboxFilterData();
+class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
+  final initialFilter = const ProgramFilterData();
 
-  late var getInboxesReq = GGetInboxesReq(
+  late var getProgramsReq = GGetProgramsReq(
     (b) => b
-      ..requestId = '@getInboxesReq'
+      ..requestId = '@getProgramsRequestId'
       ..fetchPolicy = FetchPolicy.CacheAndNetwork
       ..vars.queryParams.page = 1
       ..vars.queryParams.limit = Constants.defaultLimit
-      ..vars.queryParams.orderBy = 'Inbox.createdAt:DESC',
+      ..vars.queryParams.orderBy = 'Program.createdAt:DESC',
   );
 
   void refreshHandler() {
     setState(() {
-      getInboxesReq = getInboxesReq.rebuild(
+      getProgramsReq = getProgramsReq.rebuild(
         (b) => b
           ..vars.queryParams.page = 1
           ..updateResult = ((previous, result) => result),
@@ -41,9 +43,9 @@ class _InboxesManagerPageState extends State<InboxesManagerPage> {
     });
   }
 
-  void handleFilterChange(GGetInboxesReq newReq) {
+  void handleFilterChange(GGetProgramsReq newReq) {
     setState(
-      () => getInboxesReq = getInboxesReq.rebuild((b) => b
+      () => getProgramsReq = getProgramsReq.rebuild((b) => b
         ..vars.queryParams.filters =
             newReq.vars.queryParams.filters?.toBuilder()),
     );
@@ -57,14 +59,14 @@ class _InboxesManagerPageState extends State<InboxesManagerPage> {
 
     return ResponsivePageBuilder(
       header: Padding(
-        padding: EdgeInsets.all(responsive.adap(16.0, 24.0)),
+        padding: EdgeInsets.all(responsive.adap(16.0, 20.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (isDesktopView) const SizedBox(height: 16),
             if (!isDesktopView) ...[
               Text(
-                i18n.inboxes_InboxList,
+                i18n.programs_ProgramList,
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -72,34 +74,46 @@ class _InboxesManagerPageState extends State<InboxesManagerPage> {
               ),
               const SizedBox(height: 16),
             ],
-            InboxSearchBar(
+            ProgramSearchBar(
               onChanged: (newReq) => handleFilterChange(newReq),
-              request: GGetInboxesReq(
+              request: GGetProgramsReq(
                 (b) => b
                   ..vars.queryParams =
-                      getInboxesReq.vars.queryParams.toBuilder(),
+                      getProgramsReq.vars.queryParams.toBuilder(),
               ),
               initialFilter: initialFilter,
-              searchField: 'Exercise.name',
+              searchField: 'Program.name',
             ),
           ],
         ),
       ),
-      listView: InboxesListView(
-        request: getInboxesReq,
+      listView: ProgramsListView(
+        request: getProgramsReq,
         onRequestChanged: (request) {
           setState(() {
-            getInboxesReq = request;
+            getProgramsReq = request;
           });
         },
       ),
-      tableView: InboxesTableView(
-        getInboxesReq: getInboxesReq,
+      tableView: ProgramsTableView(
+        getProgramsReq: getProgramsReq,
         onRequestChanged: (request) {
           setState(() {
-            getInboxesReq = request;
+            getProgramsReq = request;
           });
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.pushRoute(ProgramUpsertRoute()).then(
+            (value) {
+              if (value != null) {
+                refreshHandler();
+              }
+            },
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

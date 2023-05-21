@@ -131,12 +131,16 @@ type IUser {
   roleId: String
   role: Role
   inboxes: [Inbox!]
+  userPrograms: [UserProgram!]
+  userExercises: [UserExercise!]
 }
 
 type IUserExercise {
   id: ID
   userId: String!
   exerciseId: String!
+  user: User
+  exercise: Exercise
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -150,6 +154,8 @@ type IUserProgram {
   id: ID
   userId: String!
   programId: String!
+  user: User
+  program: Program
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -261,6 +267,7 @@ type Query {
   getProgram(programId: String!): Program!
   getPrograms(queryParams: QueryFilterDto!): IPrograms!
   getUser(userId: String!): IUser!
+  getCurrentUser: IUser!
   getUsers(queryParams: QueryFilterDto!): IUsers!
 }
 
@@ -290,6 +297,7 @@ type ResponseMessageBase {
 
 type Role {
   id: String!
+  name: String!
 }
 
 input UpsertCategoryInputDto {
@@ -323,6 +331,7 @@ input UpsertProgramInputDto {
   description: String!
   imgUrl: String!
   categoryId: String!
+  view: Float!
 }
 
 input UpsertUserExerciseInputDto {
@@ -365,12 +374,16 @@ type User {
   roleId: String
   role: Role
   inboxes: [Inbox!]
+  userPrograms: [UserProgram!]
+  userExercises: [UserExercise!]
 }
 
 type UserExercise {
   id: ID
   userId: String!
   exerciseId: String!
+  user: User
+  exercise: Exercise
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -379,6 +392,8 @@ type UserProgram {
   id: ID
   userId: String!
   programId: String!
+  user: User
+  program: Program
   createdAt: DateTime
   updatedAt: DateTime
 }

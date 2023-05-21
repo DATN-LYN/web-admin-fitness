@@ -2,40 +2,40 @@ import 'package:auto_route/auto_route.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
-import 'package:web_admin_fitness/global/models/program_filter_data.dart';
-import 'package:web_admin_fitness/global/routers/app_router.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/widgets/program_search_bar.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/widgets/programs_list_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/programs/widgets/programs_table_view.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart';
+import 'package:web_admin_fitness/global/models/user_filter_data.dart';
+import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 
 import '../../../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../../../global/gen/i18n.dart';
+import '../../../../../../global/routers/app_router.dart';
 import '../../../../../../global/utils/constants.dart';
 import '../../../../../../global/widgets/responsive/responsive_page_builder.dart';
+import 'widgets/user_search_bar.dart';
+import 'widgets/users_list_view.dart';
+import 'widgets/users_table_view.dart';
 
-class ProgramsManagerPage extends StatefulWidget {
-  const ProgramsManagerPage({super.key});
+class UsersManagerPage extends StatefulWidget {
+  const UsersManagerPage({super.key});
 
   @override
-  State<ProgramsManagerPage> createState() => _ProgramsManagerPageState();
+  State<UsersManagerPage> createState() => _UsersManagerPageState();
 }
 
-class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
-  final initialFilter = const ProgramFilterData();
+class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
+  final initialFilter = const UserFilterData();
 
-  late var getProgramsReq = GGetProgramsReq(
+  late var getUsersReq = GGetUsersReq(
     (b) => b
-      ..requestId = '@getProgramsRequestId'
+      ..requestId = '@getUsersReq'
       ..fetchPolicy = FetchPolicy.CacheAndNetwork
       ..vars.queryParams.page = 1
-      ..vars.queryParams.limit = Constants.defaultLimit
-      ..vars.queryParams.orderBy = 'Program.createdAt:DESC',
+      ..vars.queryParams.limit = Constants.defaultLimit,
   );
 
   void refreshHandler() {
     setState(() {
-      getProgramsReq = getProgramsReq.rebuild(
+      getUsersReq = getUsersReq.rebuild(
         (b) => b
           ..vars.queryParams.page = 1
           ..updateResult = ((previous, result) => result),
@@ -43,9 +43,9 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
     });
   }
 
-  void handleFilterChange(GGetProgramsReq newReq) {
+  void handleFilterChange(GGetUsersReq newReq) {
     setState(
-      () => getProgramsReq = getProgramsReq.rebuild((b) => b
+      () => getUsersReq = getUsersReq.rebuild((b) => b
         ..vars.queryParams.filters =
             newReq.vars.queryParams.filters?.toBuilder()),
     );
@@ -59,14 +59,14 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
 
     return ResponsivePageBuilder(
       header: Padding(
-        padding: EdgeInsets.all(responsive.adap(16.0, 20.0)),
+        padding: EdgeInsets.all(responsive.adap(16.0, 24.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (isDesktopView) const SizedBox(height: 16),
             if (!isDesktopView) ...[
               Text(
-                i18n.programs_ProgramList,
+                i18n.exercises_ExerciseList,
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -74,46 +74,43 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
               ),
               const SizedBox(height: 16),
             ],
-            ProgramSearchBar(
+            UserSearchBar(
               onChanged: (newReq) => handleFilterChange(newReq),
-              request: GGetProgramsReq(
+              request: GGetUsersReq(
                 (b) => b
-                  ..vars.queryParams =
-                      getProgramsReq.vars.queryParams.toBuilder(),
+                  ..vars.queryParams = getUsersReq.vars.queryParams.toBuilder(),
               ),
               initialFilter: initialFilter,
-              searchField: 'Program.name',
+              searchField: 'User.fullName',
             ),
           ],
         ),
       ),
-      listView: ProgramsListView(
-        request: getProgramsReq,
+      listView: UsersListView(
+        request: getUsersReq,
         onRequestChanged: (request) {
           setState(() {
-            getProgramsReq = request;
+            getUsersReq = request;
           });
         },
       ),
-      tableView: ProgramsTableView(
-        getProgramsReq: getProgramsReq,
+      tableView: UsersTableView(
+        getUsersReq: getUsersReq,
         onRequestChanged: (request) {
           setState(() {
-            getProgramsReq = request;
+            getUsersReq = request;
           });
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.pushRoute(ProgramUpsertRoute()).then(
-            (value) {
-              if (value != null) {
-                refreshHandler();
-              }
-            },
-          );
-        },
         child: const Icon(Icons.add),
+        onPressed: () {
+          context.pushRoute(UserUpsertRoute()).then((value) {
+            if (value != null) {
+              refreshHandler();
+            }
+          });
+        },
       ),
     );
   }

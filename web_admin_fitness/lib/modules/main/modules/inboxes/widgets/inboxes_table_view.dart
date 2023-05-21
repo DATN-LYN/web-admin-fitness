@@ -13,10 +13,10 @@ import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 import 'package:web_admin_fitness/global/widgets/tag.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/inboxes/helper/inbox_helper.dart';
 
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/routers/app_router.dart';
+import '../helper/inbox_helper.dart';
 
 class InboxesTableView extends StatefulWidget {
   const InboxesTableView({
@@ -125,31 +125,36 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
                 minimumWidth: 350,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
-                  return Row(
-                    children: [
-                      ShimmerImage(
-                        imageUrl: e.user?.avatar ?? '_',
-                        width: 50,
-                        height: 50,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              e.user?.email ?? '_',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w600),
-                            ),
-                            const SizedBox(height: 12),
-                            Text(e.user?.fullName ?? '_'),
-                          ],
+                  return GestureDetector(
+                    onTap: () => context.pushRoute(
+                      UserUpsertRoute(user: e.user),
+                    ),
+                    child: Row(
+                      children: [
+                        ShimmerImage(
+                          imageUrl: e.user?.avatar ?? '_',
+                          width: 50,
+                          height: 50,
+                          borderRadius: BorderRadius.circular(100),
                         ),
-                      )
-                    ],
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                e.user?.email ?? '_',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              const SizedBox(height: 12),
+                              Text(e.user?.fullName ?? '_'),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   );
                 },
                 action: sortButton('userId'),

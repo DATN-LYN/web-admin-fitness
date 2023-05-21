@@ -217,6 +217,7 @@ abstract class GUpsertProgramInputDto
   String get description;
   String get imgUrl;
   String get categoryId;
+  double get view;
   static Serializer<GUpsertProgramInputDto> get serializer =>
       _$gUpsertProgramInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(

@@ -1,35 +1,39 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
-import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.data.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_error.dart';
 import 'package:web_admin_fitness/global/widgets/infinity_list.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/exercises/helper/exercise_helper.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/exercises/widgets/exercise_item.dart';
 
-import '../../../../../../../global/routers/app_router.dart';
+import '../helper/inbox_helper.dart';
+import 'inbox_item.dart';
 
-class ExercisesListView extends StatefulWidget {
-  const ExercisesListView({
+class InboxesListView extends StatefulWidget {
+  const InboxesListView({
     super.key,
     required this.request,
     required this.onRequestChanged,
   });
 
-  final GGetExercisesReq request;
-  final Function(GGetExercisesReq) onRequestChanged;
+  final GGetInboxesReq request;
+  final Function(GGetInboxesReq) onRequestChanged;
 
   @override
-  State<ExercisesListView> createState() => _ExercisesListViewState();
+  State<InboxesListView> createState() => _InboxesListViewState();
 }
 
-class _ExercisesListViewState extends State<ExercisesListView>
-    with ClientMixin {
+class _InboxesListViewState extends State<InboxesListView> with ClientMixin {
   bool loading = false;
+  void handleDelete(GInbox inbox) async {
+    setState(() => loading = true);
+    await InboxHelper().handleDelete(context, inbox);
+    refreshHandler();
+    setState(() => loading = false);
+  }
+
   void refreshHandler() {
     widget.onRequestChanged(
       widget.request.rebuild(
@@ -40,26 +44,9 @@ class _ExercisesListViewState extends State<ExercisesListView>
     );
   }
 
-  void handleDelete(GExercise exercise) async {
-    setState(() => loading = true);
-    await ExerciseHelper().handleDelete(context, exercise);
-    refreshHandler();
-    setState(() => loading = false);
-  }
-
-  void goToUpsertPage(GExercise exercise) {
-    context.pushRoute(ExerciseUpsertRoute(exercise: exercise)).then(
-      (value) {
-        if (value != null) {
-          refreshHandler();
-        }
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    var getCategoriesReq = widget.request;
+    var getProgramsReq = widget.request;
     final i18n = I18n.of(context)!;
 
     return LoadingOverlay(
@@ -69,40 +56,40 @@ class _ExercisesListViewState extends State<ExercisesListView>
         client: client,
         request: widget.request,
         loadMoreRequest: (response) {
-          final data = response?.data?.getExercises;
+          final data = response?.data?.getInboxes;
           if (data != null &&
               data.meta!.currentPage!.toDouble() <
                   data.meta!.totalPages!.toDouble()) {
-            getCategoriesReq = widget.request.rebuild(
+            getProgramsReq = widget.request.rebuild(
               (b) => b
                 ..vars.queryParams.page = (b.vars.queryParams.page! + 1)
                 ..updateResult = (previous, result) =>
                     previous?.rebuild(
-                      (b) => b.getExercises
-                        ..meta = (result?.getExercises.meta ??
-                                previous.getExercises.meta)!
+                      (b) => b.getInboxes
+                        ..meta = (result?.getInboxes.meta ??
+                                previous.getInboxes.meta)!
                             .toBuilder()
-                        ..items.addAll(result?.getExercises.items ?? []),
+                        ..items.addAll(result?.getInboxes.items ?? []),
                     ) ??
                     result,
             );
-            return getCategoriesReq;
+            return getProgramsReq;
           }
           return null;
         },
         refreshRequest: () {
-          getCategoriesReq = getCategoriesReq.rebuild(
+          getProgramsReq = getProgramsReq.rebuild(
             (b) => b
               ..vars.queryParams.page = 1
               ..updateResult = ((previous, result) => result),
           );
-          return getCategoriesReq;
+          return getProgramsReq;
         },
         builder: (context, response, error) {
           if ((response?.hasErrors == true ||
-                  response?.data?.getExercises.meta?.itemCount == 0) &&
-              getCategoriesReq.vars.queryParams.page != 1) {
-            getCategoriesReq = getCategoriesReq.rebuild(
+                  response?.data?.getInboxes.meta?.itemCount == 0) &&
+              getProgramsReq.vars.queryParams.page != 1) {
+            getProgramsReq = getProgramsReq.rebuild(
               (b) => b..vars.queryParams.page = b.vars.queryParams.page! - 1,
             );
           }
@@ -122,29 +109,28 @@ class _ExercisesListViewState extends State<ExercisesListView>
               separatorBuilder: (_, __) => const SizedBox(height: 16),
             );
           }
-          final data = response!.data!.getExercises;
+          final data = response!.data!.getInboxes;
           final hasMoreData = data.meta!.currentPage!.toDouble() <
               data.meta!.totalPages!.toDouble();
-          final exercises = data.items;
+          final inboxes = data.items;
 
-          if (exercises?.isEmpty == true) {
+          if (inboxes?.isEmpty == true) {
             return FitnessEmpty(
               title: i18n.common_NotFound,
             );
           }
 
           return ListView.separated(
-            itemCount: exercises!.length + (hasMoreData ? 1 : 0),
+            itemCount: inboxes!.length + (hasMoreData ? 1 : 0),
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
             itemBuilder: (context, index) {
-              final item = exercises[index];
-              return ExerciseItem(
-                exercise: item,
+              final item = inboxes[index];
+              return InboxItem(
+                inbox: item,
                 handleDelete: () => handleDelete(item),
-                handleEdit: () => goToUpsertPage(item),
               );
             },
-            separatorBuilder: (_, __) => const SizedBox(height: 10),
+            separatorBuilder: (_, __) => const SizedBox(height: 16),
           );
         },
       ),

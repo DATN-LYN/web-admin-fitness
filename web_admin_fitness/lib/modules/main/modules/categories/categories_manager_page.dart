@@ -5,14 +5,14 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/models/category_filter_data.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/categories/widgets/categories_list_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/categories/widgets/categories_table_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/categories/widgets/category_search_bar.dart';
 
 import '../../../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../../../global/gen/i18n.dart';
 import '../../../../../../global/utils/constants.dart';
 import '../../../../../../global/widgets/responsive/responsive_page_builder.dart';
+import 'widgets/categories_list_view.dart';
+import 'widgets/categories_table_view.dart';
+import 'widgets/category_search_bar.dart';
 
 class CategoriesManagerPage extends StatefulWidget {
   const CategoriesManagerPage({super.key});

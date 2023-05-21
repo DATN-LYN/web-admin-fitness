@@ -14,7 +14,7 @@ class AppColors {
   static const grey6 = Color(0xFFE8E9E9);
   static const neutral20 = Color(0xFFF5F5F5);
   static const primary = Color(0xFFAFD1FD);
-  static const primarySoft = Color(0xFFADCEFF);
+  static const primarySoft = Color(0xFFD8E9FD);
   static const primaryBold = Color(0xFF0462DC);
   static const informationSoft = Color(0xFFE5EDFE);
   static const information = Color(0xFF5487F5);

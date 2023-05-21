@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
@@ -114,10 +115,13 @@ class _SettingPageState extends State<SettingPage> with ClientMixin {
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
     final user = hiveService.getUserCredentials().user;
+    final responsive = ResponsiveWrapper.of(context);
+    final isDesktopView = responsive.isLargerThan(MOBILE);
 
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
+        if (isDesktopView) const SizedBox(height: 20),
         Center(
           child: ShimmerImage(
             width: 100,

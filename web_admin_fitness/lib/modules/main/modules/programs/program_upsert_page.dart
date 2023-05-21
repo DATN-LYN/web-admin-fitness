@@ -1,11 +1,11 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:adaptive_selector/adaptive_selector.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:web_admin_fitness/global/enums/workout_body_part.dart';
 import 'package:web_admin_fitness/global/enums/workout_level.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
@@ -19,7 +19,6 @@ import 'package:web_admin_fitness/global/utils/dialogs.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
 import 'package:web_admin_fitness/global/widgets/selected_image.dart';
 import 'package:web_admin_fitness/global/widgets/upsert_form_button.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/selectors/category_selector.dart';
 
 import '../../../../../../global/gen/i18n.dart';
 import '../../../../../../global/themes/app_colors.dart';
@@ -30,6 +29,7 @@ import '../../../../../../global/widgets/pick_image_field.dart';
 import '../../../../../../global/widgets/right_sheet_appbar.dart';
 import '../../../../../../global/widgets/shimmer_image.dart';
 import '../../../../../../global/widgets/toast/multi_toast.dart';
+import 'widgets/category_selector.dart';
 
 class ProgramUpsertPage extends StatefulWidget {
   const ProgramUpsertPage({
@@ -49,7 +49,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
   bool loading = true;
   late final isCreateNew = widget.program == null;
   XFile? image;
-  GCategory? initalCategory;
+  late GCategory initialCategory;
 
   @override
   void initState() {
@@ -58,15 +58,15 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
   }
 
   initData() async {
-    if (!isCreateNew) {
-      await Future.wait([
-        getCategory(),
-      ]);
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!isCreateNew) {
+        getCategory();
+      }
+    });
     setState(() => loading = false);
   }
 
-  Future getCategory() async {
+  void getCategory() async {
     final request = GGetCategoryReq(
       (b) => b..vars.categoryId = widget.program!.categoryId,
     );
@@ -80,7 +80,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
       }
     } else {
       setState(() {
-        initalCategory = response.data!.getCategory;
+        initialCategory = response.data!.getCategory;
       });
     }
   }
@@ -119,7 +119,8 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
         ..bodyPart = formValue['bodyPart']
         ..description = formValue['description']
         ..level = formValue['level']
-        ..categoryId = formValue['categoryId'],
+        ..categoryId = formValue['categoryId']
+        ..view = widget.program?.view ?? 0,
     );
   }
 
@@ -186,6 +187,8 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
     final theme = Theme.of(context);
+    final responsive = ResponsiveWrapper.of(context);
+    final isDesktopView = responsive.isLargerThan(MOBILE);
 
     return LoadingOverlay(
       loading: loading,
@@ -286,7 +289,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                         }
                         return AdaptiveSelector(
                           options: options,
-                          type: kIsWeb
+                          type: isDesktopView
                               ? SelectorType.menu
                               : SelectorType.bottomSheet,
                           initialOption: !isCreateNew
@@ -327,7 +330,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                         }
                         return AdaptiveSelector(
                           options: options,
-                          type: kIsWeb
+                          type: isDesktopView
                               ? SelectorType.menu
                               : SelectorType.bottomSheet,
                           initialOption: !isCreateNew
@@ -348,14 +351,14 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                     Label(i18n.upsertProgram_Category),
                     FormBuilderField<String>(
                       name: 'categoryId',
-                      initialValue: isCreateNew ? null : initalCategory?.id,
+                      initialValue: initialCategory.id,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertProgram_CategoryRequired,
                       ),
                       builder: (field) {
                         return CategorySelector(
-                          initial: isCreateNew ? const [] : [initalCategory!],
+                          initial: isCreateNew ? const [] : [initialCategory],
                           hintText: i18n.upsertProgram_CategoryHint,
                           errorText: field.errorText,
                           onChanged: (option) {

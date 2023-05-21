@@ -1,56 +1,53 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:collection/collection.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
-import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.data.gql.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 
-import '../../../../../../global/gen/i18n.dart';
-import '../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
-import '../../../../../../global/utils/constants.dart';
-import '../../../../../../global/widgets/bottom_sheet_selector/bottom_sheet_selector.dart';
-import '../../../../../../global/widgets/dialogs/dialog_selector.dart';
-import '../../../../../../global/widgets/infinity_list.dart';
+import '../../../../../../../global/gen/i18n.dart';
+import '../../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
+import '../../../../../../../global/utils/constants.dart';
+import '../../../../../../../global/widgets/bottom_sheet_selector/bottom_sheet_selector.dart';
+import '../../../../../../../global/widgets/dialogs/dialog_selector.dart';
+import '../../../../../../../global/widgets/infinity_list.dart';
 
-extension GCategoryExt on GCategory {
-  Option<GCategory> get option => Option(
+extension GProgramExt on GProgram {
+  Option<GProgram> get option => Option(
         label: name ?? '_',
         key: id!,
         value: this,
       );
 }
 
-class CategorySelector extends StatefulWidget {
-  const CategorySelector({
+class ProgramSelector extends StatefulWidget {
+  const ProgramSelector({
     super.key,
     required this.initial,
-    this.excludeIds,
     this.onChanged,
     this.errorText,
     this.hintText,
   });
 
-  final List<GCategory> initial;
-  final List<String>? excludeIds;
-  final void Function(List<Option<GCategory>> option)? onChanged;
+  final List<GProgram> initial;
+  final void Function(List<Option<GProgram>> option)? onChanged;
   final String? errorText;
   final String? hintText;
 
   @override
-  State<CategorySelector> createState() => _CategorySelectorState();
+  State<ProgramSelector> createState() => _ProgramSelectorState();
 }
 
-class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
-  late List<Option<GCategory>> selectedOptions =
+class _ProgramSelectorState extends State<ProgramSelector> with ClientMixin {
+  late List<Option<GProgram>> selectedOptions =
       widget.initial.map((e) => e.option).toList();
 
   void showBottomSheet() {
-    var req = GGetCategoriesReq(
+    var req = GGetProgramsReq(
       (b) => b
-        ..requestId = '@getCategoriesRequestId'
+        ..requestId = '@getProgramsRequestId'
         ..vars.queryParams.page = 1
         ..vars.queryParams.limit = Constants.defaultLimit,
     );
@@ -70,7 +67,7 @@ class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
           return req;
         },
         loadMoreRequest: (response) {
-          final data = response!.data!.getCategories;
+          final data = response!.data!.getPrograms;
           final hasMoreData = data.meta!.currentPage! < data.meta!.totalPages!;
           if (hasMoreData) {
             req = req.rebuild(
@@ -78,11 +75,11 @@ class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
                 ..vars.queryParams.page = (b.vars.queryParams.page! + 1)
                 ..updateResult = (previous, result) {
                   return previous?.rebuild(
-                        (b) => b.getCategories
-                          ..meta = (result?.getCategories.meta ??
-                                  previous.getCategories.meta)!
+                        (b) => b.getPrograms
+                          ..meta = (result?.getPrograms.meta ??
+                                  previous.getPrograms.meta)!
                               .toBuilder()
-                          ..items.addAll(result?.getCategories.items ?? []),
+                          ..items.addAll(result?.getPrograms.items ?? []),
                       ) ??
                       result;
                 },
@@ -93,11 +90,11 @@ class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
         },
         builder: (context, response, error) {
           final i18n = I18n.of(context)!;
-          final data = response?.data?.getCategories;
+          final data = response?.data?.getPrograms;
           final hasMoreData = data != null
               ? data.meta!.currentPage! < data.meta!.totalPages!
               : false;
-          return DialogSelector<GCategory>(
+          return DialogSelector<GProgram>(
             initial: selectedOptions,
             isMultiple: false,
             decoration: const InputDecoration(
@@ -105,13 +102,9 @@ class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
             ),
             response: response as OperationResponse,
             hasMoreData: hasMoreData,
-            tileBuilder: (option) =>
-                CategorySelectorTile(category: option.value),
-            options: response?.data?.getCategories.items!
+            tileBuilder: (option) => ProgramSelectorTile(program: option.value),
+            options: response?.data?.getPrograms.items!
                     .map((p0) => p0.option)
-                    .toList()
-                    .whereNot(
-                        (e) => widget.excludeIds?.contains(e.value.id) ?? false)
                     .toList() ??
                 [],
             onChanged: (options) {
@@ -128,7 +121,7 @@ class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
                   ..vars.queryParams.filters = ListBuilder([
                     GFilterDto(
                       (b) => b
-                        ..field = 'Category.name'
+                        ..field = 'Program.name'
                         ..data = keyword
                         ..operator = GFILTER_OPERATOR.like,
                     ),
@@ -172,13 +165,13 @@ class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
   }
 }
 
-class CategorySelectorTile extends StatelessWidget {
-  const CategorySelectorTile({
+class ProgramSelectorTile extends StatelessWidget {
+  const ProgramSelectorTile({
     super.key,
-    required this.category,
+    required this.program,
   });
 
-  final GCategory category;
+  final GProgram program;
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +180,7 @@ class CategorySelectorTile extends StatelessWidget {
       child: Row(
         children: [
           ShimmerImage(
-            imageUrl: category.imgUrl ?? '_',
+            imageUrl: program.imgUrl ?? '_',
             width: 40,
             height: 40,
             borderRadius: BorderRadius.circular(100),
@@ -199,12 +192,12 @@ class CategorySelectorTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  category.name ?? '_',
+                  program.name ?? '_',
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  category.id ?? '_',
+                  program.id ?? '_',
                   style: const TextStyle(
                     fontSize: 12,
                     color: AppColors.grey3,

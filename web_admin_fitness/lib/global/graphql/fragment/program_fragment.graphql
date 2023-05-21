@@ -13,4 +13,5 @@ fragment Program on Program {
   category{
     ...Category
   }
+  view
 }

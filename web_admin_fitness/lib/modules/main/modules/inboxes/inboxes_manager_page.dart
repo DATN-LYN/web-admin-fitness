@@ -1,41 +1,39 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart';
-import 'package:web_admin_fitness/global/models/user_filter_data.dart';
-import 'package:web_admin_fitness/global/utils/client_mixin.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/users/widgets/user_search_bar.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/users/widgets/users_list_view.dart';
-import 'package:web_admin_fitness/modules/main/modules/home/modules/users/widgets/users_table_view.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.req.gql.dart';
+import 'package:web_admin_fitness/global/models/inbox_filter_data.dart';
 
 import '../../../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../../../global/gen/i18n.dart';
-import '../../../../../../global/routers/app_router.dart';
 import '../../../../../../global/utils/constants.dart';
 import '../../../../../../global/widgets/responsive/responsive_page_builder.dart';
+import 'widgets/inboxes_list_view.dart';
+import 'widgets/inboxes_search_bar.dart';
+import 'widgets/inboxes_table_view.dart';
 
-class UsersManagerPage extends StatefulWidget {
-  const UsersManagerPage({super.key});
+class InboxesManagerPage extends StatefulWidget {
+  const InboxesManagerPage({super.key});
 
   @override
-  State<UsersManagerPage> createState() => _UsersManagerPageState();
+  State<InboxesManagerPage> createState() => _InboxesManagerPageState();
 }
 
-class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
-  final initialFilter = const UserFilterData();
+class _InboxesManagerPageState extends State<InboxesManagerPage> {
+  final initialFilter = const InboxFilterData();
 
-  late var getUsersReq = GGetUsersReq(
+  late var getInboxesReq = GGetInboxesReq(
     (b) => b
-      ..requestId = '@getUsersReq'
+      ..requestId = '@getInboxesReq'
       ..fetchPolicy = FetchPolicy.CacheAndNetwork
       ..vars.queryParams.page = 1
-      ..vars.queryParams.limit = Constants.defaultLimit,
+      ..vars.queryParams.limit = Constants.defaultLimit
+      ..vars.queryParams.orderBy = 'Inbox.createdAt:DESC',
   );
 
   void refreshHandler() {
     setState(() {
-      getUsersReq = getUsersReq.rebuild(
+      getInboxesReq = getInboxesReq.rebuild(
         (b) => b
           ..vars.queryParams.page = 1
           ..updateResult = ((previous, result) => result),
@@ -43,9 +41,9 @@ class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
     });
   }
 
-  void handleFilterChange(GGetUsersReq newReq) {
+  void handleFilterChange(GGetInboxesReq newReq) {
     setState(
-      () => getUsersReq = getUsersReq.rebuild((b) => b
+      () => getInboxesReq = getInboxesReq.rebuild((b) => b
         ..vars.queryParams.filters =
             newReq.vars.queryParams.filters?.toBuilder()),
     );
@@ -66,7 +64,7 @@ class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
             if (isDesktopView) const SizedBox(height: 16),
             if (!isDesktopView) ...[
               Text(
-                i18n.exercises_ExerciseList,
+                i18n.inboxes_InboxList,
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
@@ -74,41 +72,32 @@ class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
               ),
               const SizedBox(height: 16),
             ],
-            UserSearchBar(
+            InboxSearchBar(
               onChanged: (newReq) => handleFilterChange(newReq),
-              request: GGetUsersReq(
+              request: GGetInboxesReq(
                 (b) => b
-                  ..vars.queryParams = getUsersReq.vars.queryParams.toBuilder(),
+                  ..vars.queryParams =
+                      getInboxesReq.vars.queryParams.toBuilder(),
               ),
               initialFilter: initialFilter,
-              searchField: 'User.fullName',
+              searchField: 'Exercise.name',
             ),
           ],
         ),
       ),
-      listView: UsersListView(
-        request: getUsersReq,
+      listView: InboxesListView(
+        request: getInboxesReq,
         onRequestChanged: (request) {
           setState(() {
-            getUsersReq = request;
+            getInboxesReq = request;
           });
         },
       ),
-      tableView: UsersTableView(
-        getUsersReq: getUsersReq,
+      tableView: InboxesTableView(
+        getInboxesReq: getInboxesReq,
         onRequestChanged: (request) {
           setState(() {
-            getUsersReq = request;
-          });
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          context.pushRoute(UserUpsertRoute()).then((value) {
-            if (value != null) {
-              refreshHandler();
-            }
+            getInboxesReq = request;
           });
         },
       ),
