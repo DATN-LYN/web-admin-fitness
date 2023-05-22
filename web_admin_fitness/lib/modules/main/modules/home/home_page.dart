@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> with ClientMixin {
               child: Column(
                 children: [
                   const Label('Top Users Program'),
-                  ListView.builder(
+                  ListView.separated(
                     itemCount: users.length > 10 ? 10 : users.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -134,6 +134,9 @@ class _HomePageState extends State<HomePage> with ClientMixin {
                         user: user,
                       );
                     },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: 10);
+                    },
                   ),
                 ],
               ),
@@ -142,7 +145,7 @@ class _HomePageState extends State<HomePage> with ClientMixin {
               child: Column(
                 children: [
                   const Label('Top Users Inbox'),
-                  ListView.builder(
+                  ListView.separated(
                     itemCount: users.length > 10 ? 10 : users.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -151,6 +154,9 @@ class _HomePageState extends State<HomePage> with ClientMixin {
                       return UserItem(
                         user: user,
                       );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: 10);
                     },
                   )
                 ],
