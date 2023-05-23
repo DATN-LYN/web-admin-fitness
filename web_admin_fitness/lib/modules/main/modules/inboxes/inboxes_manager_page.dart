@@ -61,17 +61,6 @@ class _InboxesManagerPageState extends State<InboxesManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (isDesktopView) const SizedBox(height: 16),
-            if (!isDesktopView) ...[
-              Text(
-                i18n.inboxes_InboxList,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                ),
-              ),
-              const SizedBox(height: 16),
-            ],
             InboxSearchBar(
               onChanged: (newReq) => handleFilterChange(newReq),
               request: GGetInboxesReq(

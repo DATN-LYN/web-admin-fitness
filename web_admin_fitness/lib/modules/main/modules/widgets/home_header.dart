@@ -11,7 +11,6 @@ import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 
 import '../../../../global/enums/app_locale.dart';
-import '../../../../global/gen/assets.gen.dart';
 import '../../../../global/gen/i18n.dart';
 import '../../../../global/providers/app_settings_provider.dart';
 import '../../../../global/providers/auth_provider.dart';
@@ -29,9 +28,7 @@ class HomeHeader extends StatelessWidget {
     final isDesktopView = responsive.isLargerThan(MOBILE);
     final textTheme = Theme.of(context).textTheme;
     return AppBar(
-      title: isDesktopView
-          ? Text(title, style: textTheme.headlineSmall)
-          : Assets.images.logoContainer.image(height: 36),
+      title: Text(title, style: textTheme.headlineSmall),
       titleSpacing: responsive.adap(0, 24),
       toolbarHeight: responsive.adap(null, 80),
       centerTitle: false,

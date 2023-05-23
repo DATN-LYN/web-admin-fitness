@@ -113,17 +113,6 @@ class _InboxSearchBarState extends State<InboxSearchBar> {
 
     return Row(
       children: [
-        if (isDesktopView)
-          Expanded(
-            flex: 2,
-            child: Text(
-              i18n.inboxes_InboxList,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          ),
         Expanded(
           flex: 1,
           child: FilterTextField(

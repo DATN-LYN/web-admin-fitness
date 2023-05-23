@@ -63,17 +63,7 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (isDesktopView) const SizedBox(height: 16),
-            if (!isDesktopView) ...[
-              Text(
-                i18n.programs_ProgramList,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                ),
-              ),
-              const SizedBox(height: 16),
-            ],
+            
             ProgramSearchBar(
               onChanged: (newReq) => handleFilterChange(newReq),
               request: GGetProgramsReq(

@@ -6,6 +6,7 @@ import 'package:web_admin_fitness/global/gen/i18n.dart';
 import '../../global/models/nav_item.dart';
 import '../../global/routers/app_router.dart';
 import 'modules/widgets/home_header.dart';
+import 'modules/widgets/menu_drawer.dart';
 import 'modules/widgets/menu_rail.dart';
 
 class MainPage extends StatefulWidget {
@@ -25,19 +26,18 @@ class _MainPageState extends State<MainPage> {
     final autoRoute = AutoRouter.of(context);
     String? genHeaderTitle() {
       final titles = {
-        '/main/categories': i18n.main_Categories,
-        '/main/setting': i18n.main_Setting,
-        '/main/users': i18n.main_Users,
-        '/main/programs': i18n.main_Programs,
-        '/main/exercises': i18n.main_Programs,
-        '/main/inboxes': i18n.main_Inboxes,
         '/main/home': i18n.main_Home,
+        '/main/categories': i18n.main_Categories,
+        '/main/programs': i18n.main_Programs,
+        '/main/exercises': i18n.main_Exercises,
+        '/main/inboxes': i18n.main_Inboxes,
+        '/main/users': i18n.main_Users,
+        '/main/setting': i18n.main_Setting,
       };
       for (final key in titles.keys) {
         if (autoRoute.currentUrl.contains(key)) {
           return titles[key];
         }
-        return null;
       }
       return null;
     }
@@ -92,22 +92,17 @@ class _MainPageState extends State<MainPage> {
       builder: (context, child, animation) {
         final tabsRouter = AutoTabsRouter.of(context);
         final title = genHeaderTitle();
+        print(title);
 
         return Scaffold(
-          appBar: isMobileView
-              ? AppBar(
-                  leading: Builder(
-                    builder: (context) {
-                      return IconButton(
-                        icon: const Icon(Icons.menu),
-                        onPressed: () {
-                          Scaffold.of(context).openDrawer();
-                        },
-                      );
-                    },
-                  ),
-                )
-              : null,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          drawer: isDesktopView
+              ? null
+              : MenuDrawer(
+                  selectedIndex: tabsRouter.activeIndex,
+                  onDestinationSelected: tabsRouter.setActiveIndex,
+                  navItems: navItems,
+                ),
           body: Row(
             children: [
               if (isDesktopView)
@@ -131,21 +126,6 @@ class _MainPageState extends State<MainPage> {
               ),
             ],
           ),
-          drawer: isDesktopView
-              ? null
-              : Drawer(
-                  child: SafeArea(
-                    child: MenuRail(
-                      selectedIndex: tabsRouter.activeIndex,
-                      onDestinationSelected: (index) {
-                        tabsRouter.setActiveIndex(index);
-                        context.popRoute();
-                      },
-                      navItems: navItems,
-                      isMobile: true,
-                    ),
-                  ),
-                ),
         );
       },
     );

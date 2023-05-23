@@ -113,17 +113,6 @@ class _ExerciseSearchBarState extends State<ExerciseSearchBar> {
 
     return Row(
       children: [
-        if (isDesktopView)
-          Expanded(
-            flex: 2,
-            child: Text(
-              i18n.exercises_ExerciseList,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          ),
         Expanded(
           flex: 1,
           child: FilterTextField(

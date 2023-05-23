@@ -64,16 +64,6 @@ class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (isDesktopView) const SizedBox(height: 16),
-            if (!isDesktopView) ...[
-              Text(
-                i18n.exercises_ExerciseList,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                ),
-              ),
-              const SizedBox(height: 16),
-            ],
             UserSearchBar(
               onChanged: (newReq) => handleFilterChange(newReq),
               request: GGetUsersReq(
