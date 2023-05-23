@@ -32,7 +32,7 @@ class _MenuRailState extends State<MenuRail> {
     const duration = Duration(milliseconds: 150);
 
     return AnimatedContainer(
-      width: isExpand ? 240.0 : 70.0,
+      width: isExpand ? 250.0 : 90.0,
       duration: duration,
       height: double.maxFinite,
       color: Theme.of(context).canvasColor,
@@ -42,16 +42,18 @@ class _MenuRailState extends State<MenuRail> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: widget.isMobile ? 50 : 30),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () => AutoRouter.of(context).push(const MainRoute()),
-                child: Center(
-                  child: Assets.images.logoContainer.image(
-                    height: 50,
-                    width: 50,
-                    fit: BoxFit.contain,
-                  ),
+            const SizedBox(height: 12),
+            InkWell(
+              onTap: () => AutoRouter.of(context).push(const HomeRoute()),
+              splashFactory: NoSplash.splashFactory,
+              child: Container(
+                padding: const EdgeInsets.only(left: 15),
+                alignment: Alignment.centerLeft,
+                child: Image.asset(
+                  Assets.images.logoContainer.path,
+                  height: 50,
+                  alignment: Alignment.centerLeft,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

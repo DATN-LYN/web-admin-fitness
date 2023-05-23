@@ -5,6 +5,7 @@ import 'package:web_admin_fitness/global/gen/i18n.dart';
 
 import '../../global/models/nav_item.dart';
 import '../../global/routers/app_router.dart';
+import 'modules/widgets/home_header.dart';
 import 'modules/widgets/menu_rail.dart';
 
 class MainPage extends StatefulWidget {
@@ -20,6 +21,27 @@ class _MainPageState extends State<MainPage> {
     final responsive = ResponsiveWrapper.of(context);
     final isMobileView = responsive.isSmallerThan(TABLET);
     final i18n = I18n.of(context)!;
+    final isDesktopView = responsive.isLargerThan(MOBILE);
+    final autoRoute = AutoRouter.of(context);
+    String? genHeaderTitle() {
+      final titles = {
+        '/main/categories': i18n.main_Categories,
+        '/main/setting': i18n.main_Setting,
+        '/main/users': i18n.main_Users,
+        '/main/programs': i18n.main_Programs,
+        '/main/exercises': i18n.main_Programs,
+        '/main/inboxes': i18n.main_Inboxes,
+        '/main/home': i18n.main_Home,
+      };
+      for (final key in titles.keys) {
+        if (autoRoute.currentUrl.contains(key)) {
+          return titles[key];
+        }
+        return null;
+      }
+      return null;
+    }
+
     final navItems = [
       NavItem(
         label: i18n.main_Home,
@@ -69,6 +91,8 @@ class _MainPageState extends State<MainPage> {
       routes: navItems.map((e) => e.route).toList(),
       builder: (context, child, animation) {
         final tabsRouter = AutoTabsRouter.of(context);
+        final title = genHeaderTitle();
+
         return Scaffold(
           appBar: isMobileView
               ? AppBar(
@@ -86,29 +110,42 @@ class _MainPageState extends State<MainPage> {
               : null,
           body: Row(
             children: [
-              ResponsiveVisibility(
-                visible: false,
-                visibleWhen: const [Condition.largerThan(name: MOBILE)],
-                child: MenuRail(
+              if (isDesktopView)
+                MenuRail(
                   selectedIndex: tabsRouter.activeIndex,
                   onDestinationSelected: tabsRouter.setActiveIndex,
                   navItems: navItems,
                 ),
+              Expanded(
+                child: Column(
+                  children: [
+                    if (title != null) HomeHeader(title: title),
+                    Expanded(
+                      child: FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              Expanded(child: child),
             ],
           ),
-          drawer: Drawer(
-            child: MenuRail(
-              selectedIndex: tabsRouter.activeIndex,
-              onDestinationSelected: (index) {
-                tabsRouter.setActiveIndex(index);
-                context.popRoute();
-              },
-              navItems: navItems,
-              isMobile: true,
-            ),
-          ),
+          drawer: isDesktopView
+              ? null
+              : Drawer(
+                  child: SafeArea(
+                    child: MenuRail(
+                      selectedIndex: tabsRouter.activeIndex,
+                      onDestinationSelected: (index) {
+                        tabsRouter.setActiveIndex(index);
+                        context.popRoute();
+                      },
+                      navItems: navItems,
+                      isMobile: true,
+                    ),
+                  ),
+                ),
         );
       },
     );

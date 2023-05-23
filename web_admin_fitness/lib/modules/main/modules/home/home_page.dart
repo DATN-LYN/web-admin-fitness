@@ -1,5 +1,6 @@
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
@@ -100,6 +101,10 @@ class _HomePageState extends State<HomePage> with ClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = ResponsiveWrapper.of(context);
+
+    final isDesktopView = responsive.isLargerThan(MOBILE);
+
     return ListView(
       children: [
         const HomeOverview(),
@@ -167,8 +172,8 @@ class _HomePageState extends State<HomePage> with ClientMixin {
         const SizedBox(height: 20),
         const Label('Most Viewed Programs'),
         GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: isDesktopView ? 4 : 2,
             crossAxisSpacing: 24,
             mainAxisSpacing: 10,
             mainAxisExtent: 310,

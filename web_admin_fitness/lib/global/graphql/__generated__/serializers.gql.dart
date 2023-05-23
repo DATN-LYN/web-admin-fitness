@@ -153,6 +153,21 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_c
     show GGetCategoryReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_category.var.gql.dart'
     show GGetCategoryVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_current_user.data.gql.dart'
+    show
+        GGetCurrentUserData,
+        GGetCurrentUserData_getCurrentUser,
+        GGetCurrentUserData_getCurrentUser_userExercises,
+        GGetCurrentUserData_getCurrentUser_userExercises_exercise,
+        GGetCurrentUserData_getCurrentUser_userExercises_exercise_program,
+        GGetCurrentUserData_getCurrentUser_userExercises_exercise_program_category,
+        GGetCurrentUserData_getCurrentUser_userPrograms,
+        GGetCurrentUserData_getCurrentUser_userPrograms_program,
+        GGetCurrentUserData_getCurrentUser_userPrograms_program_category;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_current_user.req.gql.dart'
+    show GGetCurrentUserReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_current_user.var.gql.dart'
+    show GGetCurrentUserVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercise.data.gql.dart'
     show GGetExerciseData, GGetExerciseData_getExercise;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercise.req.gql.dart'
@@ -268,6 +283,17 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetCategoryData_getCategory,
   GGetCategoryReq,
   GGetCategoryVars,
+  GGetCurrentUserData,
+  GGetCurrentUserData_getCurrentUser,
+  GGetCurrentUserData_getCurrentUser_userExercises,
+  GGetCurrentUserData_getCurrentUser_userExercises_exercise,
+  GGetCurrentUserData_getCurrentUser_userExercises_exercise_program,
+  GGetCurrentUserData_getCurrentUser_userExercises_exercise_program_category,
+  GGetCurrentUserData_getCurrentUser_userPrograms,
+  GGetCurrentUserData_getCurrentUser_userPrograms_program,
+  GGetCurrentUserData_getCurrentUser_userPrograms_program_category,
+  GGetCurrentUserReq,
+  GGetCurrentUserVars,
   GGetExerciseData,
   GGetExerciseData_getExercise,
   GGetExerciseReq,
