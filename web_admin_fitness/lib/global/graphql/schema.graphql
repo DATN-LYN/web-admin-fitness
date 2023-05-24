@@ -119,9 +119,32 @@ type IPrograms {
   items: [Program!]
 }
 
+type ISummary {
+  userCnt: Float
+  programCnt: Float
+  exerciseCnt: Float
+  categoryCnt: Float
+}
+
+type ISupport {
+  id: String!
+  userId: String
+  email: String!
+  description: String!
+  imgUrl: String!
+  isRead: Boolean!
+}
+
+type ISupports {
+  meta: Meta
+  items: [Support!]
+}
+
 type IUser {
   id: String!
   email: String!
+  countProgram: Float
+  countInbox: Float
   fullName: String
   password: String!
   googleId: String
@@ -210,6 +233,8 @@ type Meta {
 }
 
 type Mutation {
+  upsertSupport(input: UpsertSupportInputDto!): ISupport!
+  deleteSupport(supportId: String!): ResponseMessageBase!
   upsertUserProgram(input: UpsertUserProgramInputDto!): IUserProgram!
   deleteUserProgram(id: String!): ResponseMessageBase!
   upsertUserExercise(input: UpsertUserExerciseInputDto!): IUserExercise!
@@ -224,10 +249,10 @@ type Mutation {
   deleteInbox(inboxId: String!): ResponseMessageBase!
   upsertCategory(input: UpsertCategoryInputDto!): ICategory!
   deleteCategory(categoryId: String!): ResponseMessageBase!
-  upsertProgram(input: UpsertProgramInputDto!): IProgram!
-  deleteProgram(programId: String!): ResponseMessageBase!
   deleteUser(userId: String!): ResponseMessageBase!
   upsertUser(input: UpsertUserInputDto!): IUser!
+  upsertProgram(input: UpsertProgramInputDto!): IProgram!
+  deleteProgram(programId: String!): ResponseMessageBase!
 }
 
 type Program {
@@ -245,6 +270,9 @@ type Program {
 }
 
 type Query {
+  getSupport(supportId: String!): ISupport!
+  getSupports(queryParams: QueryFilterDto!): ISupports!
+  getMySupports(queryParams: QueryFilterDto!): ISupports!
   getUserProgram(id: String!): IUserProgram!
   getUserPrograms(queryParams: QueryFilterDto!): IUserPrograms!
   getMyUserPrograms(queryParams: QueryFilterDto!): IUserPrograms!
@@ -264,11 +292,13 @@ type Query {
   getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
   getCategory(categoryId: String!): Category!
   getCategories(queryParams: QueryFilterDto!): ICategories!
-  getProgram(programId: String!): Program!
-  getPrograms(queryParams: QueryFilterDto!): IPrograms!
   getUser(userId: String!): IUser!
   getCurrentUser: IUser!
   getUsers(queryParams: QueryFilterDto!): IUsers!
+  getTopUsersProgram(queryParams: QueryFilterDto!): IUsers!
+  getProgram(programId: String!): Program!
+  getHomeOverView: ISummary!
+  getPrograms(queryParams: QueryFilterDto!): IPrograms!
 }
 
 input QueryFilterDto {
@@ -298,6 +328,15 @@ type ResponseMessageBase {
 type Role {
   id: String!
   name: String!
+}
+
+type Support {
+  id: String!
+  userId: String
+  email: String!
+  description: String!
+  imgUrl: String!
+  isRead: Boolean!
 }
 
 input UpsertCategoryInputDto {
@@ -334,6 +373,13 @@ input UpsertProgramInputDto {
   view: Float!
 }
 
+input UpsertSupportInputDto {
+  id: ID
+  email: String!
+  description: String!
+  imgUrl: String!
+}
+
 input UpsertUserExerciseInputDto {
   id: ID
   userId: String!
@@ -365,6 +411,8 @@ input UpsertUserStatisticsInputDto {
 type User {
   id: String!
   email: String!
+  countProgram: Float
+  countInbox: Float
   fullName: String
   password: String!
   googleId: String

@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +5,6 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_current_user.req.gql.dart';
-import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 
@@ -26,9 +24,16 @@ class HomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final responsive = ResponsiveWrapper.of(context);
     final isDesktopView = responsive.isLargerThan(MOBILE);
-    final textTheme = Theme.of(context).textTheme;
+
     return AppBar(
-      title: Text(title, style: textTheme.headlineSmall),
+      automaticallyImplyLeading: false,
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
+        ),
+      ),
       titleSpacing: responsive.adap(0, 24),
       toolbarHeight: responsive.adap(null, 80),
       centerTitle: false,
@@ -40,6 +45,12 @@ class HomeHeader extends StatelessWidget {
               const SizedBox(width: 24),
             ]
           : [],
+      leading: isDesktopView
+          ? null
+          : IconButton(
+              onPressed: Scaffold.of(context).openDrawer,
+              icon: const Icon(Icons.menu),
+            ),
     );
   }
 }
@@ -105,6 +116,7 @@ class _ProfileAction extends StatelessWidget with ClientMixin {
         final user = response?.data?.getCurrentUser;
 
         return PopupMenuButton(
+          position: PopupMenuPosition.under,
           child: isDesktopView
               ? Row(
                   children: [
@@ -154,15 +166,6 @@ class _ProfileAction extends StatelessWidget with ClientMixin {
                   ),
                 ),
           itemBuilder: (BuildContext context) => [
-            PopupMenuItem(
-              child: popupMenuItemChild(
-                icon: Icons.person,
-                title: i18n.editProfile_Title,
-              ),
-              onTap: () {
-                context.pushRoute(const EditProfileRoute());
-              },
-            ),
             PopupMenuItem(
               child: popupMenuItemChild(
                 icon: Icons.language_outlined,

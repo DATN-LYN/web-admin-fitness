@@ -4,12 +4,14 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/label.dart';
 import 'package:web_admin_fitness/global/widgets/program/program_item_large.dart';
 import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/toast/multi_toast.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/widgets/home_overview.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/widgets/user_item_home.dart';
 
 import '../../../../global/graphql/query/__generated__/query_get_users.req.gql.dart';
 import '../users/widgets/user_item.dart';
@@ -25,6 +27,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with ClientMixin {
   Map<int, int> ages = {};
   List<GUser> users = [];
+  List<GUser> topUsersProgram = [];
   List<GProgram> programs = [];
 
   @override
@@ -32,6 +35,7 @@ class _HomePageState extends State<HomePage> with ClientMixin {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       getUsers();
       getPrograms();
+      getTopUsersProgram();
     });
     super.initState();
   }
@@ -68,6 +72,34 @@ class _HomePageState extends State<HomePage> with ClientMixin {
         // setState(() {
         //   ages = mapData.entries.map((e) => e.value).toList();
         // });
+      }
+    }
+  }
+
+  void getTopUsersProgram() async {
+    var getUsersReq = GGetTopUsersProgramReq(
+      (b) => b
+        ..requestId = '@getTopUsersProgramReq'
+        ..fetchPolicy = FetchPolicy.CacheAndNetwork
+        ..vars.queryParams.limit = 100
+        ..vars.queryParams.orderBy = 'User.countProgram',
+    );
+
+    final response = await client.request(getUsersReq).first;
+
+    if (response.hasErrors) {
+      if (mounted) {
+        showErrorToast(
+          context,
+          response.graphqlErrors?.first.message,
+        );
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          topUsersProgram =
+              response.data!.getTopUsersProgram.items!.map((p0) => p0).toList();
+        });
       }
     }
   }
@@ -130,12 +162,14 @@ class _HomePageState extends State<HomePage> with ClientMixin {
                 children: [
                   const Label('Top Users Program'),
                   ListView.separated(
-                    itemCount: users.length > 10 ? 10 : users.length,
+                    itemCount: topUsersProgram.length > 10
+                        ? 10
+                        : topUsersProgram.length,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       final user = users[index];
-                      return UserItem(
+                      return UserItemHome(
                         user: user,
                       );
                     },

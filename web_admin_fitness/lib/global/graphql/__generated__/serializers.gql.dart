@@ -19,6 +19,7 @@ import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql
         GUpsertExerciseInputDto,
         GUpsertInboxInputDto,
         GUpsertProgramInputDto,
+        GUpsertSupportInputDto,
         GUpsertUserExerciseInputDto,
         GUpsertUserInputDto,
         GUpsertUserProgramInputDto,
@@ -186,6 +187,12 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_e
     show GGetExercisesReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.var.gql.dart'
     show GGetExercisesVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_summary.data.gql.dart'
+    show GGetHomeOverViewData, GGetHomeOverViewData_getHomeOverView;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_summary.req.gql.dart'
+    show GGetHomeOverViewReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_summary.var.gql.dart'
+    show GGetHomeOverViewVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inbox.data.gql.dart'
     show GGetInboxData, GGetInboxData_getInbox, GGetInboxData_getInbox_user;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inbox.req.gql.dart'
@@ -223,6 +230,16 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_p
     show GGetProgramsReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.var.gql.dart'
     show GGetProgramsVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.data.gql.dart'
+    show
+        GGetTopUsersProgramData,
+        GGetTopUsersProgramData_getTopUsersProgram,
+        GGetTopUsersProgramData_getTopUsersProgram_items,
+        GGetTopUsersProgramData_getTopUsersProgram_meta;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.req.gql.dart'
+    show GGetTopUsersProgramReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.var.gql.dart'
+    show GGetTopUsersProgramVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.data.gql.dart'
     show
         GGetUsersData,
@@ -306,6 +323,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetExercisesData_getExercises_meta,
   GGetExercisesReq,
   GGetExercisesVars,
+  GGetHomeOverViewData,
+  GGetHomeOverViewData_getHomeOverView,
+  GGetHomeOverViewReq,
+  GGetHomeOverViewVars,
   GGetInboxData,
   GGetInboxData_getInbox,
   GGetInboxData_getInbox_user,
@@ -330,6 +351,12 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetProgramsData_getPrograms_meta,
   GGetProgramsReq,
   GGetProgramsVars,
+  GGetTopUsersProgramData,
+  GGetTopUsersProgramData_getTopUsersProgram,
+  GGetTopUsersProgramData_getTopUsersProgram_items,
+  GGetTopUsersProgramData_getTopUsersProgram_meta,
+  GGetTopUsersProgramReq,
+  GGetTopUsersProgramVars,
   GGetUsersData,
   GGetUsersData_getUsers,
   GGetUsersData_getUsers_items,
@@ -383,6 +410,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpsertProgramInputDto,
   GUpsertProgramReq,
   GUpsertProgramVars,
+  GUpsertSupportInputDto,
   GUpsertUserData,
   GUpsertUserData_upsertUser,
   GUpsertUserExerciseInputDto,

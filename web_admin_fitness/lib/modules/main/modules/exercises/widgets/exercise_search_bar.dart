@@ -7,7 +7,6 @@ import 'package:web_admin_fitness/global/models/exercise_filter_data.dart';
 
 import '../../../../../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
-import '../../../../../../../../../../../global/themes/app_colors.dart';
 import '../../../../../../../../../../../global/widgets/filter/filter_text_field.dart';
 
 class ExerciseSearchBar extends StatefulWidget {
@@ -123,48 +122,6 @@ class _ExerciseSearchBarState extends State<ExerciseSearchBar> {
           ),
         ),
         const SizedBox(width: 12),
-        Material(
-          borderRadius: BorderRadius.circular(12),
-          clipBehavior: Clip.hardEdge,
-          color: AppColors.grey6,
-          child: IconButton(
-            onPressed: () async {
-              // final newFilter = await SideSheet.right(
-              //   body: RemoteFilterSheet(initialFilters: filter),
-              //   context: context,
-              //   width: min(
-              //     MediaQuery.of(context).size.width * 0.8,
-              //     400,
-              //   ),
-              // );
-
-              // * (Optional) show dialog on mobile
-              // await showDialog(
-              //   context: context,
-              //   builder: (context) => Padding(
-              //     padding: const EdgeInsets.all(16),
-              //     child: Material(
-              //       clipBehavior: Clip.hardEdge,
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(12),
-              //       ),
-              //       child: RemoteFilterSheet(initialFilters: filter),
-              //     ),
-              //   ),
-              // )
-
-              // if (newFilter is RemoteFilterData) {
-              //   handleFilter(newFilter);
-              // }
-            },
-            icon: const Icon(
-              Icons.sort,
-              color: AppColors.grey3,
-              size: 16,
-            ),
-            hoverColor: AppColors.grey6,
-          ),
-        ),
       ],
     );
   }

@@ -49,7 +49,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
   bool loading = true;
   late final isCreateNew = widget.program == null;
   XFile? image;
-  late GCategory initialCategory;
+  GCategory? initialCategory;
 
   @override
   void initState() {
@@ -63,7 +63,9 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
         getCategory();
       }
     });
-    setState(() => loading = false);
+    if (mounted) {
+      setState(() => loading = false);
+    }
   }
 
   void getCategory() async {
@@ -79,9 +81,11 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
         );
       }
     } else {
-      setState(() {
-        initialCategory = response.data!.getCategory;
-      });
+      if (mounted) {
+        setState(() {
+          initialCategory = response.data!.getCategory;
+        });
+      }
     }
   }
 
@@ -351,14 +355,16 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                     Label(i18n.upsertProgram_Category),
                     FormBuilderField<String>(
                       name: 'categoryId',
-                      initialValue: initialCategory.id,
+                      initialValue: initialCategory?.id,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertProgram_CategoryRequired,
                       ),
                       builder: (field) {
                         return CategorySelector(
-                          initial: isCreateNew ? const [] : [initialCategory],
+                          initial: initialCategory == null
+                              ? const []
+                              : [initialCategory!],
                           hintText: i18n.upsertProgram_CategoryHint,
                           errorText: field.errorText,
                           onChanged: (option) {

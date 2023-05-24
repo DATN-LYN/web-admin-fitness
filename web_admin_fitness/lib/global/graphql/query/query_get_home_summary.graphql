@@ -1,0 +1,8 @@
+query GetHomeOverView(){
+    getHomeOverView{
+        userCnt
+        programCnt
+        exerciseCnt
+        categoryCnt
+    }
+}
