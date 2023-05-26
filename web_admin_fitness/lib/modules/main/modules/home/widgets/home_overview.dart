@@ -3,8 +3,9 @@ import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_summary.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_overview.req.gql.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
+import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_error.dart';
 
@@ -22,7 +23,7 @@ class HomeOverview extends StatefulWidget {
 }
 
 class _HomeOverviewState extends State<HomeOverview> with ClientMixin {
-  var request = GGetHomeOverViewReq();
+  var request = GGetHomeOverviewReq();
 
   @override
   void initState() {
@@ -72,28 +73,43 @@ class _HomeOverviewState extends State<HomeOverview> with ClientMixin {
           );
         }
 
-        final myRemoteSummary = response?.data?.getHomeOverView;
+        final myRemoteSummary = response?.data?.getHomeOverview;
 
         final items = [
           CardOverviewWidget(
             title: i18n.main_Categories,
             total: myRemoteSummary?.categoryCnt ?? 0,
-            icon: Icons.category_outlined,
+            icon: const Icon(
+              Icons.category_outlined,
+              color: AppColors.alert,
+            ),
+            backgroundColor: AppColors.alertSoft,
           ),
           CardOverviewWidget(
             title: i18n.main_Programs,
             total: myRemoteSummary?.programCnt ?? 0,
-            icon: Icons.view_list_outlined,
+            icon: const Icon(
+              Icons.view_list_outlined,
+              color: AppColors.primaryBold,
+            ),
           ),
           CardOverviewWidget(
             title: i18n.main_Exercises,
             total: myRemoteSummary?.exerciseCnt ?? 0,
-            icon: Icons.video_collection_outlined,
+            icon: const Icon(
+              Icons.video_collection_outlined,
+              color: AppColors.success,
+            ),
+            backgroundColor: AppColors.successSoft,
           ),
           CardOverviewWidget(
             title: i18n.main_Users,
             total: myRemoteSummary?.userCnt ?? 0,
-            icon: Icons.account_circle_outlined,
+            icon: const Icon(
+              Icons.account_circle_outlined,
+              color: AppColors.error,
+            ),
+            backgroundColor: AppColors.errorSoft,
           ),
         ];
 

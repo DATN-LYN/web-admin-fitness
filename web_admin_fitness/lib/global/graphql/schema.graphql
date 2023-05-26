@@ -129,10 +129,12 @@ type ISummary {
 type ISupport {
   id: String!
   userId: String
-  email: String!
-  description: String!
+  user: User
+  content: String!
   imgUrl: String!
   isRead: Boolean!
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 type ISupports {
@@ -249,10 +251,10 @@ type Mutation {
   deleteInbox(inboxId: String!): ResponseMessageBase!
   upsertCategory(input: UpsertCategoryInputDto!): ICategory!
   deleteCategory(categoryId: String!): ResponseMessageBase!
-  deleteUser(userId: String!): ResponseMessageBase!
-  upsertUser(input: UpsertUserInputDto!): IUser!
   upsertProgram(input: UpsertProgramInputDto!): IProgram!
   deleteProgram(programId: String!): ResponseMessageBase!
+  deleteUser(userId: String!): ResponseMessageBase!
+  upsertUser(input: UpsertUserInputDto!): IUser!
 }
 
 type Program {
@@ -292,13 +294,13 @@ type Query {
   getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
   getCategory(categoryId: String!): Category!
   getCategories(queryParams: QueryFilterDto!): ICategories!
+  getProgram(programId: String!): Program!
+  getHomeOverview: ISummary!
+  getPrograms(queryParams: QueryFilterDto!): IPrograms!
   getUser(userId: String!): IUser!
   getCurrentUser: IUser!
   getUsers(queryParams: QueryFilterDto!): IUsers!
   getTopUsersProgram(queryParams: QueryFilterDto!): IUsers!
-  getProgram(programId: String!): Program!
-  getHomeOverView: ISummary!
-  getPrograms(queryParams: QueryFilterDto!): IPrograms!
 }
 
 input QueryFilterDto {
@@ -333,10 +335,12 @@ type Role {
 type Support {
   id: String!
   userId: String
-  email: String!
-  description: String!
+  user: User
+  content: String!
   imgUrl: String!
   isRead: Boolean!
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 input UpsertCategoryInputDto {
@@ -375,9 +379,10 @@ input UpsertProgramInputDto {
 
 input UpsertSupportInputDto {
   id: ID
-  email: String!
-  description: String!
-  imgUrl: String!
+  userId: String
+  content: String
+  imgUrl: String
+  isRead: Boolean
 }
 
 input UpsertUserExerciseInputDto {

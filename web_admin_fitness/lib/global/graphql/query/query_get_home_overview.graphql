@@ -1,5 +1,5 @@
-query GetHomeOverView(){
-    getHomeOverView{
+query GetHomeOverview(){
+    getHomeOverview{
         userCnt
         programCnt
         exerciseCnt

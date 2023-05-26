@@ -8,12 +8,14 @@ class CardOverviewWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.total,
-    required this.icon,
+    this.icon,
+    this.backgroundColor,
   });
 
   final String title;
   final double total;
-  final IconData icon;
+  final Widget? icon;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +26,14 @@ class CardOverviewWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: AppColors.primarySoft,
+              color: backgroundColor ?? AppColors.primarySoft,
               borderRadius: BorderRadius.circular(100),
             ),
-            child: Icon(
-              icon,
-              color: AppColors.grey1,
-            ),
+            child: icon ??
+                const Icon(
+                  Icons.category,
+                  color: AppColors.grey1,
+                ),
           ),
           const SizedBox(width: 10),
           Expanded(

@@ -187,12 +187,12 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_e
     show GGetExercisesReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.var.gql.dart'
     show GGetExercisesVars;
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_summary.data.gql.dart'
-    show GGetHomeOverViewData, GGetHomeOverViewData_getHomeOverView;
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_summary.req.gql.dart'
-    show GGetHomeOverViewReq;
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_summary.var.gql.dart'
-    show GGetHomeOverViewVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_overview.data.gql.dart'
+    show GGetHomeOverviewData, GGetHomeOverviewData_getHomeOverview;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_overview.req.gql.dart'
+    show GGetHomeOverviewReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_home_overview.var.gql.dart'
+    show GGetHomeOverviewVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inbox.data.gql.dart'
     show GGetInboxData, GGetInboxData_getInbox, GGetInboxData_getInbox_user;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inbox.req.gql.dart'
@@ -323,10 +323,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetExercisesData_getExercises_meta,
   GGetExercisesReq,
   GGetExercisesVars,
-  GGetHomeOverViewData,
-  GGetHomeOverViewData_getHomeOverView,
-  GGetHomeOverViewReq,
-  GGetHomeOverViewVars,
+  GGetHomeOverviewData,
+  GGetHomeOverviewData_getHomeOverview,
+  GGetHomeOverviewReq,
+  GGetHomeOverviewVars,
   GGetInboxData,
   GGetInboxData_getInbox,
   GGetInboxData_getInbox_user,
