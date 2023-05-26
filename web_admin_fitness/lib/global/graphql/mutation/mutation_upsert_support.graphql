@@ -1,0 +1,5 @@
+mutation UpsertSupport($input: UpsertSupportInputDto!) {
+  upsertSupport(input: $input) {
+    id 
+  }
+}

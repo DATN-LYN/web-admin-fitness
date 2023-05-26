@@ -16,12 +16,15 @@ import '../../modules/main/modules/inboxes/inbox_detail_page.dart';
 import '../../modules/main/modules/inboxes/inboxes_manager_page.dart';
 import '../../modules/main/modules/programs/program_upsert_page.dart';
 import '../../modules/main/modules/programs/programs_manager_page.dart';
+import '../../modules/main/modules/support/support_list_page.dart';
+import '../../modules/main/modules/support/support_upsert_page.dart';
 import '../../modules/main/modules/users/user_upsert_page.dart';
 import '../../modules/main/modules/users/users_manager_page.dart';
 import '../graphql/fragment/__generated__/category_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/exercise_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/inbox_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/program_fragment.data.gql.dart';
+import '../graphql/fragment/__generated__/support_fragment.data.gql.dart';
 import '../graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import 'auth_guard.dart';
 import 'nested_route.dart';
@@ -40,6 +43,23 @@ part 'app_router.gr.dart';
     AutoRoute(
       page: LoginPage,
       path: '/login',
+    ),
+    AutoRoute(
+      page: EmptyRouterPage,
+      path: 'supports',
+      name: 'SupportsRoute',
+      children: [
+        NestedRoute(
+          page: SupportListPage,
+          path: '',
+          initial: true,
+        ),
+        NestedRoute(
+          page: SupportUpsertPage,
+          path: 'upsert',
+          customRouteBuilder: rightSheetBuilder,
+        ),
+      ],
     ),
     AutoRoute(
       path: '/main',
