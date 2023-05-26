@@ -1,12 +1,21 @@
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:web_admin_fitness/global/themes/app_colors.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/widgets/label.dart';
+import 'package:web_admin_fitness/global/widgets/program/program_item_large.dart';
 import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/toast/multi_toast.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/widgets/home_overview.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/widgets/user_item_home.dart';
 
 import '../../../../global/graphql/query/__generated__/query_get_users.req.gql.dart';
+import '../users/widgets/user_item.dart';
+import 'widgets/ages_chart.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,6 +26,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with ClientMixin {
   Map<int, int> ages = {};
+  List<GUser> users = [];
+  List<GUser> topUsersProgram = [];
+  List<GProgram> programs = [];
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      getUsers();
+      getPrograms();
+      getTopUsersProgram();
+    });
+    super.initState();
+  }
 
   void getUsers() async {
     var getUsersReq = GGetUsersReq(
@@ -36,13 +58,12 @@ class _HomePageState extends State<HomePage> with ClientMixin {
         );
       }
     } else {
-      final data = response.data!.getUsers.items!
-          .map((e) => e.age?.toInt() ?? 0)
-          .toList();
+      users = response.data!.getUsers.items!.map((p0) => p0).toList();
+      final userAges = users.map((e) => e.age?.toInt() ?? 0).toList();
 
       if (mounted) {
         setState(() {
-          ages = data.fold<Map<int, int>>({}, (map, element) {
+          ages = userAges.fold<Map<int, int>>({}, (map, element) {
             map[element] = (map[element] ?? 0) + 1;
             return map;
           });
@@ -55,43 +76,151 @@ class _HomePageState extends State<HomePage> with ClientMixin {
     }
   }
 
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      getUsers();
-    });
-    super.initState();
+  void getTopUsersProgram() async {
+    var getUsersReq = GGetTopUsersProgramReq(
+      (b) => b
+        ..requestId = '@getTopUsersProgramReq'
+        ..fetchPolicy = FetchPolicy.CacheAndNetwork
+        ..vars.queryParams.limit = 100
+        ..vars.queryParams.orderBy = 'User.countProgram',
+    );
+
+    final response = await client.request(getUsersReq).first;
+
+    if (response.hasErrors) {
+      if (mounted) {
+        showErrorToast(
+          context,
+          response.graphqlErrors?.first.message,
+        );
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          topUsersProgram =
+              response.data!.getTopUsersProgram.items!.map((p0) => p0).toList();
+        });
+      }
+    }
+  }
+
+  void getPrograms() async {
+    var getProgramsReq = GGetProgramsReq(
+      (b) => b
+        ..requestId = '@getProgramsReq'
+        ..fetchPolicy = FetchPolicy.CacheAndNetwork
+        ..vars.queryParams.limit = 100
+        ..vars.queryParams.orderBy = 'Program.view',
+    );
+
+    final response = await client.request(getProgramsReq).first;
+
+    if (response.hasErrors) {
+      if (mounted) {
+        showErrorToast(
+          context,
+          response.graphqlErrors?.first.message,
+        );
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          programs = response.data!.getPrograms.items!.map((p0) => p0).toList();
+        });
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final responsive = ResponsiveWrapper.of(context);
+
+    final isDesktopView = responsive.isLargerThan(MOBILE);
+
     return ListView(
       children: [
-        SizedBox(
-          width: 400,
-          child: ShadowWrapper(
-            child: _buildDefaultPieChart(),
-          ),
+        const HomeOverview(),
+        Row(
+          children: [
+            Expanded(
+              child: ShadowWrapper(
+                child: AgesChart(ages: ages),
+              ),
+            ),
+            // Expanded(
+            //   child: ShadowWrapper(
+            //     child: AgesChart(ages: ages),
+            //   ),
+            // ),
+          ],
         ),
-      ],
-    );
-  }
-
-  SfCircularChart _buildDefaultPieChart() {
-    return SfCircularChart(
-      title: ChartTitle(text: 'Age Users'),
-      legend: Legend(isVisible: true),
-      series: [
-        PieSeries<int, String>(
-          dataSource: ages.entries.map((e) => e.value).toList(),
-          xValueMapper: (data, index) => ages.keys.elementAt(index).toString(),
-          yValueMapper: (data, _) => data,
-          // dataLabelMapper: (data, _) => data.toString(),
-          startAngle: 90,
-          endAngle: 90,
-          strokeColor: AppColors.white,
-          strokeWidth: 0.2,
-          dataLabelSettings: const DataLabelSettings(isVisible: true),
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  const Label('Top Users Program'),
+                  ListView.separated(
+                    itemCount: topUsersProgram.length > 10
+                        ? 10
+                        : topUsersProgram.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final user = users[index];
+                      return UserItemHome(
+                        user: user,
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: 10);
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  const Label('Top Users Inbox'),
+                  ListView.separated(
+                    itemCount: users.length > 10 ? 10 : users.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final user = users[index];
+                      return UserItem(
+                        user: user,
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(height: 10);
+                    },
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+        const SizedBox(height: 20),
+        const Label('Most Viewed Programs'),
+        GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: isDesktopView ? 4 : 2,
+            crossAxisSpacing: 24,
+            mainAxisSpacing: 10,
+            mainAxisExtent: 310,
+          ),
+          shrinkWrap: true,
+          itemCount: programs.length > 10 ? 10 : programs.length,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            final program = programs[index];
+            return ProgramItemLarge(
+              program: program,
+            );
+          },
         ),
       ],
     );

@@ -1,0 +1,13 @@
+#import '../fragment/meta_fragment.graphql'
+#import '../fragment/user_fragment.graphql'
+
+query GetTopUsersProgram($queryParams: QueryFilterDto!) {
+  getTopUsersProgram(queryParams: $queryParams) {
+    meta {
+      ...Meta
+    }
+    items {
+      ...User
+    }
+  }
+}

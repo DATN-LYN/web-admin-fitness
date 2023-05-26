@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> with ClientMixin {
       Future.delayed(const Duration(seconds: 1), () {
         final user = locator.get<HiveService>().getUserCredentials();
         if (user.accessToken != null) {
-          AutoRouter.of(context).push(const MainRoute());
+          AutoRouter.of(context).replaceAll([const MainRoute()]);
         } else {
           AutoRouter.of(context).push(const LoginRoute());
         }

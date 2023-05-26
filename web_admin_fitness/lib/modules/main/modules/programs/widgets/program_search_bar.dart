@@ -119,17 +119,6 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
 
     return Row(
       children: [
-        if (isDesktopView)
-          Expanded(
-            flex: 2,
-            child: Text(
-              i18n.programs_ProgramList,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          ),
         Expanded(
           flex: 1,
           child: FilterTextField(
@@ -145,6 +134,7 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
           clipBehavior: Clip.hardEdge,
           color: AppColors.grey6,
           child: IconButton(
+            padding: EdgeInsets.zero,
             onPressed: () async {
               final newFilter = await SideSheet.right(
                 body: ProgramFilterSheet(programFilterData: filter),

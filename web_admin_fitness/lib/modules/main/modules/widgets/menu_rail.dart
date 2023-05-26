@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:web_admin_fitness/global/themes/app_colors.dart';
 
 import '../../../../global/gen/assets.gen.dart';
 import '../../../../global/models/nav_item.dart';
 import '../../../../global/routers/app_router.dart';
+import 'menu_nav_tile.dart';
 
 class MenuRail extends StatefulWidget {
   const MenuRail({
@@ -32,7 +32,7 @@ class _MenuRailState extends State<MenuRail> {
     const duration = Duration(milliseconds: 150);
 
     return AnimatedContainer(
-      width: isExpand ? 240.0 : 70.0,
+      width: isExpand ? 250.0 : 90.0,
       duration: duration,
       height: double.maxFinite,
       color: Theme.of(context).canvasColor,
@@ -42,16 +42,18 @@ class _MenuRailState extends State<MenuRail> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: widget.isMobile ? 50 : 30),
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () => AutoRouter.of(context).push(const MainRoute()),
-                child: Center(
-                  child: Assets.images.logoContainer.image(
-                    height: 50,
-                    width: 50,
-                    fit: BoxFit.contain,
-                  ),
+            const SizedBox(height: 12),
+            InkWell(
+              onTap: () => AutoRouter.of(context).push(const HomeRoute()),
+              splashFactory: NoSplash.splashFactory,
+              child: Container(
+                padding: const EdgeInsets.only(left: 15),
+                alignment: Alignment.centerLeft,
+                child: Image.asset(
+                  Assets.images.logoContainer.path,
+                  height: 50,
+                  alignment: Alignment.centerLeft,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -60,7 +62,7 @@ class _MenuRailState extends State<MenuRail> {
               child: ListView(
                 children: List.generate(
                   widget.navItems.length,
-                  (index) => _RailItem(
+                  (index) => MenuNavTile(
                     item: widget.navItems[index],
                     duration: duration,
                     isExpand: isExpand,
@@ -81,77 +83,6 @@ class _MenuRailState extends State<MenuRail> {
                 ),
               ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _RailItem extends StatelessWidget {
-  const _RailItem({
-    Key? key,
-    required this.item,
-    required this.duration,
-    required this.isExpand,
-    required this.onTap,
-    required this.isSelected,
-  }) : super(key: key);
-
-  final NavItem item;
-  final Duration duration;
-  final bool isExpand;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 4,
-      ),
-      child: Material(
-        borderRadius: BorderRadius.circular(8),
-        color: isSelected
-            ? Theme.of(context).primaryColor.withOpacity(0.9)
-            : Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(8),
-          onTap: onTap,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 50,
-                height: 50,
-                child: Center(
-                  child: isSelected
-                      ? Icon(item.selectedIcon, color: AppColors.grey1)
-                      : Icon(item.icon),
-                ),
-              ),
-              Expanded(
-                child: AnimatedSwitcher(
-                  duration: duration,
-                  child: isExpand
-                      ? Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            item.label,
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: isSelected ? AppColors.grey1 : null,
-                              height: 1,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            textAlign: TextAlign.left,
-                          ),
-                        )
-                      : const SizedBox(),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

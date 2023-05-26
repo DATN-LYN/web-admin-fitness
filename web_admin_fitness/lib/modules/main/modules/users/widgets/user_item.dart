@@ -10,13 +10,13 @@ class UserItem extends StatelessWidget with ClientMixin {
   UserItem({
     super.key,
     required this.user,
-    required this.handleDelete,
-    required this.handleEdit,
+    this.handleDelete,
+    this.handleEdit,
   });
 
   final GUser user;
-  final VoidCallback handleDelete;
-  final VoidCallback handleEdit;
+  final VoidCallback? handleDelete;
+  final VoidCallback? handleEdit;
 
   @override
   Widget build(BuildContext context) {

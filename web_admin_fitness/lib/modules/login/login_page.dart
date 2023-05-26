@@ -47,6 +47,7 @@ class _LoginPageState extends State<LoginPage> with ClientMixin {
 
       if (response.hasErrors) {
         if (mounted) {
+          print(response.linkException);
           showErrorToast(
             context,
             response.graphqlErrors?.first.message ??

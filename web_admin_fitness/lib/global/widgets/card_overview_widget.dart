@@ -6,7 +6,16 @@ import 'shadow_wrapper.dart';
 class CardOverviewWidget extends StatelessWidget {
   const CardOverviewWidget({
     super.key,
+    required this.title,
+    required this.total,
+    this.icon,
+    this.backgroundColor,
   });
+
+  final String title;
+  final double total;
+  final Widget? icon;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -15,28 +24,29 @@ class CardOverviewWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: AppColors.primarySoft,
+              color: backgroundColor ?? AppColors.primarySoft,
               borderRadius: BorderRadius.circular(100),
             ),
-            child: const Icon(
-              Icons.dangerous,
-              color: AppColors.grey1,
-            ),
+            child: icon ??
+                const Icon(
+                  Icons.category,
+                  color: AppColors.grey1,
+                ),
           ),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
-                  'dkaskdkajjhjhjghhggdkajsd',
+                  title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-                SizedBox(height: 8),
-                Text('12'),
+                const SizedBox(height: 8),
+                Text(total.toInt().toString()),
               ],
             ),
           ),

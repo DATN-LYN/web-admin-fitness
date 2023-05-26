@@ -15,6 +15,7 @@ import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import '../../../../../../../global/routers/app_router.dart';
+import '../../../../../global/widgets/avatar.dart';
 import '../helper/user_helper.dart';
 
 class UsersTableView extends StatefulWidget {
@@ -145,15 +146,11 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                         height: 70,
                         width: 70,
                         borderRadius: BorderRadius.circular(100),
+                        errorWidget: Avatar(
+                          name: e.fullName,
+                          size: 100,
+                        ),
                       ),
-                      // Expanded(
-                      //   child: Text(
-                      //     e.avatar ?? '-',
-                      //     overflow: TextOverflow.ellipsis,
-                      //     maxLines: 3,
-                      //     softWrap: true,
-                      //   ),
-                      // ),
                     ],
                   );
                 },

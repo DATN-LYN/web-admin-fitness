@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/modules/main/main_page.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/home_page.dart';
@@ -48,83 +49,112 @@ part 'app_router.gr.dart';
         NestedRoute(
           page: HomePage,
           path: 'home',
+          initial: true,
         ),
         NestedRoute(
-          page: SettingPage,
-          path: 'setting',
+          page: EmptyRouterPage,
+          path: 'settings',
+          name: 'SettingsRoute',
+          children: [
+            NestedRoute(
+              page: SettingPage,
+              path: '',
+              initial: true,
+            ),
+            NestedRoute(
+              path: 'profile',
+              page: EditProfilePage,
+              customRouteBuilder: rightSheetBuilder,
+            ),
+          ],
         ),
         NestedRoute(
-          page: CategoriesManagerPage,
+          page: EmptyRouterPage,
           path: 'categories',
+          name: 'CategoriesRoute',
+          children: [
+            NestedRoute(
+              page: CategoriesManagerPage,
+              path: '',
+              initial: true,
+            ),
+            NestedRoute(
+              page: CategoryUpsertPage,
+              path: 'upsert',
+              customRouteBuilder: rightSheetBuilder,
+            ),
+          ],
         ),
         NestedRoute(
-          page: ProgramsManagerPage,
+          page: EmptyRouterPage,
           path: 'programs',
+          name: 'ProgramsRoute',
+          children: [
+            NestedRoute(
+              page: ProgramsManagerPage,
+              path: '',
+              initial: true,
+            ),
+            NestedRoute(
+              page: ProgramUpsertPage,
+              path: 'upsert',
+              customRouteBuilder: rightSheetBuilder,
+            ),
+          ],
         ),
         NestedRoute(
-          page: ExercisesManagerPage,
+          page: EmptyRouterPage,
           path: 'exercises',
+          name: 'ExercisesRoute',
+          children: [
+            NestedRoute(
+              page: ExercisesManagerPage,
+              path: '',
+              initial: true,
+            ),
+            NestedRoute(
+              page: ExerciseUpsertPage,
+              path: 'upsert',
+              customRouteBuilder: rightSheetBuilder,
+            ),
+          ],
         ),
         NestedRoute(
-          page: InboxesManagerPage,
+          page: EmptyRouterPage,
           path: 'inboxes',
+          name: 'InboxesRoute',
+          children: [
+            NestedRoute(
+              page: InboxesManagerPage,
+              path: '',
+              initial: true,
+            ),
+            NestedRoute(
+              page: InboxDetailPage,
+              path: 'detail',
+              customRouteBuilder: rightSheetBuilder,
+            ),
+          ],
         ),
         NestedRoute(
-          page: UsersManagerPage,
+          page: EmptyRouterPage,
           path: 'users',
+          name: 'UsersRoute',
+          children: [
+            NestedRoute(
+              page: UsersManagerPage,
+              path: '',
+              initial: true,
+            ),
+            NestedRoute(
+              page: UserUpsertPage,
+              path: 'upsert',
+              customRouteBuilder: rightSheetBuilder,
+            ),
+          ],
         ),
       ],
     ),
-    NestedRoute(
-      page: CategoryUpsertPage,
-      path: 'categoryUpsert',
-      guards: [AuthGuard],
-      customRouteBuilder: rightSheetBuilder,
-    ),
-    NestedRoute(
-      page: ProgramUpsertPage,
-      path: 'programUpsert',
-      guards: [AuthGuard],
-      customRouteBuilder: rightSheetBuilder,
-    ),
-    NestedRoute(
-      page: ExerciseUpsertPage,
-      path: 'exerciseUpsert',
-      customRouteBuilder: rightSheetBuilder,
-    ),
-    NestedRoute(
-      page: UserUpsertPage,
-      guards: [AuthGuard],
-      path: 'userUpsert',
-      customRouteBuilder: rightSheetBuilder,
-    ),
-    NestedRoute(
-      page: InboxDetailPage,
-      guards: [AuthGuard],
-      path: 'inboxDetail',
-      customRouteBuilder: rightSheetBuilder,
-    ),
-    NestedRoute(
-      path: '/editProfile',
-      page: EditProfilePage,
-      guards: [AuthGuard],
-      customRouteBuilder: rightSheetBuilder,
-    ),
-    // AutoRoute(
-    //   page: MainPage,
-    //   path: '/main',
-    //   initial: true,
-    // ),
-    // AutoRoute(
-    //   page: HomePage,
-    //   path: '/home',
-    //   initial: true,
-    // ),
-    // AutoRoute(
-    //   page: SettingPage,
-    //   path: '/setting',
-    //   initial: true,
-    // ),
     RedirectRoute(path: '*', redirectTo: '/'),
   ],
 )
