@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_supports.req.gql.dart';
@@ -19,6 +21,8 @@ class SupportListPage extends StatefulWidget {
 class _SupportListPageState extends State<SupportListPage> with ClientMixin {
   var getSupportsReq = GGetSupportsReq(
     (b) => b
+      ..requestId = '@getSupportsRequestId'
+      ..fetchPolicy = FetchPolicy.CacheAndNetwork
       ..vars.queryParams.page = 1
       ..vars.queryParams.limit = Constants.defaultLimit
       ..vars.queryParams.orderBy = 'Support.createdAt:DESC',
@@ -29,6 +33,12 @@ class _SupportListPageState extends State<SupportListPage> with ClientMixin {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Support'),
+        leading: IconButton(
+          onPressed: context.popRoute,
+          icon: const Icon(
+            Icons.arrow_back_ios_outlined,
+          ),
+        ),
       ),
       body: InfinityList(
         client: client,

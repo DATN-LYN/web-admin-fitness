@@ -139,7 +139,7 @@ class _SupportUpsertPageState extends State<SupportUpsertPage>
       loading: loading,
       child: Scaffold(
         appBar: RightSheetAppBar(
-          title: const Text('Support Details'),
+          title: Text(i18n.support_SupportDetails),
         ),
         body: Column(
           children: [
@@ -156,7 +156,7 @@ class _SupportUpsertPageState extends State<SupportUpsertPage>
                       readOnly: true,
                       initialValue: widget.support.user?.email,
                     ),
-                    const Label('i18n.upsertProgram_ID'),
+                    Label(i18n.support_Content),
                     FormBuilderTextField(
                       name: 'content',
                       enabled: false,
@@ -176,7 +176,7 @@ class _SupportUpsertPageState extends State<SupportUpsertPage>
                       height: 300,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    const Label('status'),
+                    Label(i18n.support_Status),
                     FormBuilderField(
                       name: 'status',
                       initialValue: widget.support.status,

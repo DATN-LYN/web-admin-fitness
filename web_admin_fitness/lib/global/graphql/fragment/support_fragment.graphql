@@ -9,7 +9,6 @@ fragment Support on Support {
   content
   imgUrl
   isRead
-#   isSender
   status
   createdAt
   updatedAt

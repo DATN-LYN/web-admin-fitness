@@ -145,7 +145,10 @@ import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_program.var.gql.dart'
     show GUpsertProgramVars;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_support.data.gql.dart'
-    show GUpsertSupportData, GUpsertSupportData_upsertSupport;
+    show
+        GUpsertSupportData,
+        GUpsertSupportData_upsertSupport,
+        GUpsertSupportData_upsertSupport_user;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_support.req.gql.dart'
     show GUpsertSupportReq;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_support.var.gql.dart'
@@ -470,6 +473,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpsertProgramVars,
   GUpsertSupportData,
   GUpsertSupportData_upsertSupport,
+  GUpsertSupportData_upsertSupport_user,
   GUpsertSupportInputDto,
   GUpsertSupportReq,
   GUpsertSupportVars,

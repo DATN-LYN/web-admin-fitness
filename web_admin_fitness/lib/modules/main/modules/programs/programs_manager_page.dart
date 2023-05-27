@@ -3,8 +3,8 @@ import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
-import 'package:web_admin_fitness/global/models/program_filter_data.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
+import 'package:web_admin_fitness/modules/main/modules/programs/models/program_filter_data.dart';
 
 import '../../../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../../../global/gen/i18n.dart';
@@ -63,7 +63,6 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
             ProgramSearchBar(
               onChanged: (newReq) => handleFilterChange(newReq),
               request: GGetProgramsReq(

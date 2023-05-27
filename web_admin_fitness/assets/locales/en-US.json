@@ -256,6 +256,17 @@
         "title": "Update Profile",
         "editDes": "Are you sure you want to update your profile?",
         "updateSuccess": "Your profile has been updated successfully."
+    },
+    "support_":{
+        "content": "Content",
+        "status": "Status",
+        "supportStatus":[
+            "Waiting",
+            "Solving",
+            "Done"
+        ],
+        "supportDetails": "Support Request Details",
+        "title": "Support"
     }
     
 }

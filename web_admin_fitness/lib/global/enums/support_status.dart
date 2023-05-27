@@ -19,13 +19,13 @@ enum SupportStatus {
   String label(I18n i18n) {
     switch (this) {
       case waiting:
-        return 'i18n.workoutLevel[0];';
+        return i18n.support_SupportStatus[0];
       case solving:
-        return 'i18n.workoutLevel[1];';
+        return i18n.support_SupportStatus[1];
       case done:
-        return 'i18n.workoutLevel[2];';
+        return i18n.support_SupportStatus[2];
       default:
-        return 'i18n.workoutLevel[0];';
+        return i18n.support_SupportStatus[0];
     }
   }
 

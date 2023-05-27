@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:side_sheet/side_sheet.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.req.gql.dart';
-import 'package:web_admin_fitness/global/models/inbox_filter_data.dart';
+import 'package:web_admin_fitness/modules/main/modules/inboxes/models/inbox_filter_data.dart';
+import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inbox_filter_sheet.dart';
 
 import '../../../../../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
@@ -35,41 +39,6 @@ class _InboxSearchBarState extends State<InboxSearchBar> {
     filter = filterData;
     final newFilters = widget.request.vars.queryParams.filters?.toList() ?? [];
 
-    // filter by schedule mode
-    // newFilters.removeWhere((e) => e.field == 'Remote.isSchedule');
-    // if (filterData.isSchedule != null) {
-    //   newFilters.add(
-    //       // GFilterDto(
-    //       //   (b) => b
-    //       //     ..field = 'Remote.isSchedule'
-    //       //     ..operator = GQUERY_OPERATOR.eq
-    //       //     ..data = filterData.isSchedule.toString(),
-    //       // ),
-    //       );
-    // }
-
-    // filter by startDate and endDate
-    // newFilters.removeWhere((e) => e.field == 'Remote.startDate');
-    // newFilters.removeWhere((e) => e.field == 'Remote.endDate');
-    // if (filterData.rangeType != null &&
-    //     filterData.startDate != null &&
-    //     filterData.endDate != null) {
-    //   newFilters.addAll([
-    // GFilterDto(
-    //   (b) => b
-    //     ..field = 'Remote.startDate'
-    //     ..operator = GQUERY_OPERATOR.gte
-    //     ..data = filterData.startDate.toString(),
-    // ),
-    // GFilterDto(
-    //   (b) => b
-    //     ..field = 'Remote.endDate'
-    //     ..operator = GQUERY_OPERATOR.lte
-    //     ..data = filterData.endDate.toString(),
-    // )
-    //   ]);
-    // }
-
     // filter by keyword
     // newFilters.removeWhere((e) => e.field == widget.searchMode.key);
     if (filterData.keyword?.isNotEmpty ?? false) {
@@ -85,23 +54,25 @@ class _InboxSearchBarState extends State<InboxSearchBar> {
       newFilters.clear();
     }
 
-    // filter by status
-    // newFilters.removeWhere((e) => e.field == 'Remote.status');
-    // if (filterData.status.isNotEmpty) {
-    //   newFilters.add(
-    //     GFilterDto((b) => b
-    //       ..field = 'Remote.status'
-    //       ..operator = GFILTER_OPERATOR.eq
-    //       ..data = filterData.status.map((e) => e.name).join(',')),
-    //   );
-    // }
+    // filter by sender
+    newFilters.removeWhere((e) => e.field == 'Inbox.isSender');
+    if (filterData.senders.isNotEmpty) {
+      newFilters.add(
+        GFilterDto((b) => b
+          ..field = 'Inbox.isSender'
+          ..operator = GFILTER_OPERATOR.Gin
+          ..data = filterData.senders.map((e) => e).join(',')),
+      );
+    }
 
-    widget.onChanged(widget.request.rebuild(
-      (b) => b
-        ..vars.queryParams.page = 1
-        ..vars.queryParams.filters = ListBuilder(newFilters)
-        ..updateResult = (previous, result) => result,
-    ));
+    widget.onChanged(
+      widget.request.rebuild(
+        (b) => b
+          ..vars.queryParams.page = 1
+          ..vars.queryParams.filters = ListBuilder(newFilters)
+          ..updateResult = (previous, result) => result,
+      ),
+    );
   }
 
   @override
@@ -129,14 +100,14 @@ class _InboxSearchBarState extends State<InboxSearchBar> {
           color: AppColors.grey6,
           child: IconButton(
             onPressed: () async {
-              // final newFilter = await SideSheet.right(
-              //   body: RemoteFilterSheet(initialFilters: filter),
-              //   context: context,
-              //   width: min(
-              //     MediaQuery.of(context).size.width * 0.8,
-              //     400,
-              //   ),
-              // );
+              final newFilter = await SideSheet.right(
+                body: InboxFilterSheet(inboxFilterData: filter),
+                context: context,
+                width: min(
+                  MediaQuery.of(context).size.width * 0.8,
+                  400,
+                ),
+              );
 
               // * (Optional) show dialog on mobile
               // await showDialog(
@@ -153,9 +124,9 @@ class _InboxSearchBarState extends State<InboxSearchBar> {
               //   ),
               // )
 
-              // if (newFilter is RemoteFilterData) {
-              //   handleFilter(newFilter);
-              // }
+              if (newFilter is InboxFilterData) {
+                handleFilter(newFilter);
+              }
             },
             icon: const Icon(
               Icons.sort,

@@ -1,31 +1,30 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:web_admin_fitness/global/enums/workout_level.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/widgets/filter/filter_sheet_wrapper.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/models/program_filter_data.dart';
+import 'package:web_admin_fitness/modules/main/modules/inboxes/models/inbox_filter_data.dart';
 
 import '../../../../../../../global/themes/app_colors.dart';
 
-class ProgramFilterSheet extends StatefulWidget {
-  const ProgramFilterSheet({
+class InboxFilterSheet extends StatefulWidget {
+  const InboxFilterSheet({
     super.key,
-    required this.programFilterData,
+    required this.inboxFilterData,
   });
 
-  final ProgramFilterData programFilterData;
+  final InboxFilterData inboxFilterData;
 
   @override
-  State<ProgramFilterSheet> createState() => _ProgramFilterSheetState();
+  State<InboxFilterSheet> createState() => _InboxFilterSheetState();
 }
 
-class _ProgramFilterSheetState extends State<ProgramFilterSheet> {
-  late ProgramFilterData filter = widget.programFilterData;
+class _InboxFilterSheetState extends State<InboxFilterSheet> {
+  late InboxFilterData filter = widget.inboxFilterData;
 
   void handleClearFilter() {
     setState(() {
-      filter = const ProgramFilterData();
+      filter = const InboxFilterData();
     });
   }
 
@@ -52,21 +51,19 @@ class _ProgramFilterSheetState extends State<ProgramFilterSheet> {
           ),
         ),
         const SizedBox(height: 10),
-        ...WorkoutLevel.values.map(
+        ...[true, false].map(
           (e) => CheckboxListTile(
-            value: filter.levels.contains(e.value),
-            title: Text(e.label(i18n)),
+            value: filter.senders.contains(e),
+            title: Text(e ? i18n.inboxes_User : i18n.inboxes_Bot),
             onChanged: (value) {
               setState(
                 () {
                   if (value == true) {
-                    filter =
-                        filter.copyWith(levels: [...filter.levels, e.value]);
+                    filter = filter.copyWith(senders: [...filter.senders, e]);
                   } else {
                     filter = filter.copyWith(
-                      levels: filter.levels
-                          .whereNot((item) => item == e.value)
-                          .toList(),
+                      senders:
+                          filter.senders.whereNot((item) => item == e).toList(),
                     );
                   }
                 },
