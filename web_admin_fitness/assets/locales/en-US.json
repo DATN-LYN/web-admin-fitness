@@ -263,7 +263,8 @@
         "supportStatus":[
             "Waiting",
             "Solving",
-            "Done"
+            "Done",
+            "Cancelled"
         ],
         "supportDetails": "Support Request Details",
         "title": "Support"

@@ -6,6 +6,7 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_s
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/utils/constants.dart';
 import 'package:web_admin_fitness/global/widgets/infinity_list.dart';
+import 'package:web_admin_fitness/modules/main/modules/support/widgets/shimmer_support_tile.dart';
 import 'package:web_admin_fitness/modules/main/modules/support/widgets/support_tile.dart';
 
 import '../../../../global/widgets/fitness_empty.dart';
@@ -32,7 +33,7 @@ class _SupportListPageState extends State<SupportListPage> with ClientMixin {
     final i18n = I18n.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Support'),
+        title: Text(i18n.support_Title),
         leading: IconButton(
           onPressed: context.popRoute,
           icon: const Icon(
@@ -95,8 +96,7 @@ class _SupportListPageState extends State<SupportListPage> with ClientMixin {
               itemCount: 3,
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               itemBuilder: (context, index) {
-                // return const ShimmerRemoteTile();
-                return const SizedBox();
+                return const ShimmerSupportTile();
               },
               separatorBuilder: (_, __) => const SizedBox(height: 16),
             );

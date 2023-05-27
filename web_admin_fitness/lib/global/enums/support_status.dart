@@ -6,7 +6,8 @@ import '../themes/app_colors.dart';
 enum SupportStatus {
   waiting(1),
   solving(2),
-  done(3);
+  done(3),
+  cancelled(2);
 
   final double value;
   const SupportStatus(this.value);
@@ -24,6 +25,8 @@ enum SupportStatus {
         return i18n.support_SupportStatus[1];
       case done:
         return i18n.support_SupportStatus[2];
+      case cancelled:
+        return i18n.support_SupportStatus[3];
       default:
         return i18n.support_SupportStatus[0];
     }
@@ -37,6 +40,8 @@ enum SupportStatus {
         return AppColors.information;
       case done:
         return AppColors.success;
+      case cancelled:
+        return AppColors.grey1;
       default:
         return AppColors.warning;
     }

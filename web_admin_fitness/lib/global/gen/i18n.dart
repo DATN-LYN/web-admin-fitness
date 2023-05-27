@@ -432,8 +432,8 @@ class I18n implements WidgetsLocalizations {
 	String get support_Content => "Content";
 	/// "Status"
 	String get support_Status => "Status";
-	/// ["Waiting", "Solving", "Done"]
-	List<String> get support_SupportStatus => ["Waiting", "Solving", "Done"];
+	/// ["Waiting", "Solving", "Done", "Cancelled"]
+	List<String> get support_SupportStatus => ["Waiting", "Solving", "Done", "Cancelled"];
 	/// "Support Request Details"
 	String get support_SupportDetails => "Support Request Details";
 	/// "Support"
@@ -1051,9 +1051,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Trạng thái"
 	@override
 	String get support_Status => "Trạng thái";
-	/// ["Đang chờ", "Đang xử lý", "Hoàn thành"]
+	/// ["Đang chờ", "Đang xử lý", "Hoàn thành", "Đã huỷ"]
 	@override
-	List<String> get support_SupportStatus => ["Đang chờ", "Đang xử lý", "Hoàn thành"];
+	List<String> get support_SupportStatus => ["Đang chờ", "Đang xử lý", "Hoàn thành", "Đã huỷ"];
 	/// "Chi tiết yêu cầu hỗ trợ"
 	@override
 	String get support_SupportDetails => "Chi tiết yêu cầu hỗ trợ";

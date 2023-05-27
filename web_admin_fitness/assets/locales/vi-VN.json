@@ -263,7 +263,8 @@
         "supportStatus":[
             "Đang chờ",
             "Đang xử lý",
-            "Hoàn thành"
+            "Hoàn thành",
+            "Đã huỷ"
         ],
         "supportDetails": "Chi tiết yêu cầu hỗ trợ",
         "title": "Hỗ trợ"
