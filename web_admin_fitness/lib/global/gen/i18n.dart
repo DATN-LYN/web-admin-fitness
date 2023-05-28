@@ -428,6 +428,16 @@ class I18n implements WidgetsLocalizations {
 	String get editProfile_EditDes => "Are you sure you want to update your profile?";
 	/// "Your profile has been updated successfully."
 	String get editProfile_UpdateSuccess => "Your profile has been updated successfully.";
+	/// "Content"
+	String get support_Content => "Content";
+	/// "Status"
+	String get support_Status => "Status";
+	/// ["Waiting", "Solving", "Done", "Cancelled"]
+	List<String> get support_SupportStatus => ["Waiting", "Solving", "Done", "Cancelled"];
+	/// "Support Request Details"
+	String get support_SupportDetails => "Support Request Details";
+	/// "Support"
+	String get support_Title => "Support";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -1035,6 +1045,21 @@ class _I18n_vi_VN extends I18n {
 	/// "Thông tin của bạn đã được cập nhật thành công"
 	@override
 	String get editProfile_UpdateSuccess => "Thông tin của bạn đã được cập nhật thành công";
+	/// "Nội dung"
+	@override
+	String get support_Content => "Nội dung";
+	/// "Trạng thái"
+	@override
+	String get support_Status => "Trạng thái";
+	/// ["Đang chờ", "Đang xử lý", "Hoàn thành", "Đã huỷ"]
+	@override
+	List<String> get support_SupportStatus => ["Đang chờ", "Đang xử lý", "Hoàn thành", "Đã huỷ"];
+	/// "Chi tiết yêu cầu hỗ trợ"
+	@override
+	String get support_SupportDetails => "Chi tiết yêu cầu hỗ trợ";
+	/// "Hỗ trợ"
+	@override
+	String get support_Title => "Hỗ trợ";
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

@@ -60,6 +60,12 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise
     show GExerciseReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.var.gql.dart'
     show GExerciseVars;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/i_support_fragment.data.gql.dart'
+    show GISupportData, GISupportData_user;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/i_support_fragment.req.gql.dart'
+    show GISupportReq;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/i_support_fragment.var.gql.dart'
+    show GISupportVars;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.data.gql.dart'
     show GInboxData, GInboxData_user;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.req.gql.dart'
@@ -78,6 +84,12 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_
     show GProgramReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.var.gql.dart'
     show GProgramVars;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/support_fragment.data.gql.dart'
+    show GSupportData, GSupportData_user;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/support_fragment.req.gql.dart'
+    show GSupportReq;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/support_fragment.var.gql.dart'
+    show GSupportVars;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.data.gql.dart'
     show GUserData;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.req.gql.dart'
@@ -132,6 +144,15 @@ import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation
     show GUpsertProgramReq;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_program.var.gql.dart'
     show GUpsertProgramVars;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_support.data.gql.dart'
+    show
+        GUpsertSupportData,
+        GUpsertSupportData_upsertSupport,
+        GUpsertSupportData_upsertSupport_user;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_support.req.gql.dart'
+    show GUpsertSupportReq;
+import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_support.var.gql.dart'
+    show GUpsertSupportVars;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_user.data.gql.dart'
     show GUpsertUserData, GUpsertUserData_upsertUser;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_user.req.gql.dart'
@@ -230,6 +251,26 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_p
     show GGetProgramsReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.var.gql.dart'
     show GGetProgramsVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_support.data.gql.dart'
+    show
+        GGetSupportData,
+        GGetSupportData_getSupport,
+        GGetSupportData_getSupport_user;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_support.req.gql.dart'
+    show GGetSupportReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_support.var.gql.dart'
+    show GGetSupportVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_supports.data.gql.dart'
+    show
+        GGetSupportsData,
+        GGetSupportsData_getSupports,
+        GGetSupportsData_getSupports_items,
+        GGetSupportsData_getSupports_items_user,
+        GGetSupportsData_getSupports_meta;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_supports.req.gql.dart'
+    show GGetSupportsReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_supports.var.gql.dart'
+    show GGetSupportsVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.data.gql.dart'
     show
         GGetTopUsersProgramData,
@@ -351,6 +392,18 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetProgramsData_getPrograms_meta,
   GGetProgramsReq,
   GGetProgramsVars,
+  GGetSupportData,
+  GGetSupportData_getSupport,
+  GGetSupportData_getSupport_user,
+  GGetSupportReq,
+  GGetSupportVars,
+  GGetSupportsData,
+  GGetSupportsData_getSupports,
+  GGetSupportsData_getSupports_items,
+  GGetSupportsData_getSupports_items_user,
+  GGetSupportsData_getSupports_meta,
+  GGetSupportsReq,
+  GGetSupportsVars,
   GGetTopUsersProgramData,
   GGetTopUsersProgramData_getTopUsersProgram,
   GGetTopUsersProgramData_getTopUsersProgram_items,
@@ -363,6 +416,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetUsersData_getUsers_meta,
   GGetUsersReq,
   GGetUsersVars,
+  GISupportData,
+  GISupportData_user,
+  GISupportReq,
+  GISupportVars,
   GInboxData,
   GInboxData_user,
   GInboxReq,
@@ -394,6 +451,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GRegisterInputDto,
   GRegisterReq,
   GRegisterVars,
+  GSupportData,
+  GSupportData_user,
+  GSupportReq,
+  GSupportVars,
   GUpsertCategoryData,
   GUpsertCategoryData_upsertCategory,
   GUpsertCategoryInputDto,
@@ -410,7 +471,12 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpsertProgramInputDto,
   GUpsertProgramReq,
   GUpsertProgramVars,
+  GUpsertSupportData,
+  GUpsertSupportData_upsertSupport,
+  GUpsertSupportData_upsertSupport_user,
   GUpsertSupportInputDto,
+  GUpsertSupportReq,
+  GUpsertSupportVars,
   GUpsertUserData,
   GUpsertUserData_upsertUser,
   GUpsertUserExerciseInputDto,

@@ -6,6 +6,6 @@ part 'inbox_filter_data.freezed.dart';
 class InboxFilterData with _$InboxFilterData {
   const factory InboxFilterData([
     String? keyword,
-    DateTime? createdAt,
+    @Default([]) List<bool> senders,
   ]) = _InboxFilterData;
 }

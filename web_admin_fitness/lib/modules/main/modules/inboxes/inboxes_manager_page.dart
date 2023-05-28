@@ -2,7 +2,7 @@ import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_inboxes.req.gql.dart';
-import 'package:web_admin_fitness/global/models/inbox_filter_data.dart';
+import 'package:web_admin_fitness/modules/main/modules/inboxes/models/inbox_filter_data.dart';
 
 import '../../../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../../../global/gen/i18n.dart';
@@ -69,7 +69,7 @@ class _InboxesManagerPageState extends State<InboxesManagerPage> {
                       getInboxesReq.vars.queryParams.toBuilder(),
               ),
               initialFilter: initialFilter,
-              searchField: 'Exercise.name',
+              searchField: 'Inbox.user.email',
             ),
           ],
         ),

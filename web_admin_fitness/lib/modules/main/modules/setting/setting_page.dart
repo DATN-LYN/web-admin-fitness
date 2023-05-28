@@ -39,7 +39,7 @@ class _SettingPageState extends State<SettingPage> with ClientMixin {
         values: i18n.language,
       ),
     );
-    if (data != provider.appSettings.locale.getLabel(i18n)) {
+    if (data != provider.appSettings.locale.getLabel(i18n) && data != null) {
       if (mounted) {
         if (data == i18n.language[1]) {
           provider.changeLocale(AppLocale.viVN);

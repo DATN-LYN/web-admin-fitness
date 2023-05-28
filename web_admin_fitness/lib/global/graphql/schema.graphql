@@ -130,9 +130,10 @@ type ISupport {
   id: String!
   userId: String
   user: User
-  content: String!
-  imgUrl: String!
-  isRead: Boolean!
+  content: String
+  imgUrl: String
+  isRead: Boolean
+  status: Float
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -336,9 +337,10 @@ type Support {
   id: String!
   userId: String
   user: User
-  content: String!
-  imgUrl: String!
-  isRead: Boolean!
+  content: String
+  imgUrl: String
+  isRead: Boolean
+  status: Float
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -383,6 +385,7 @@ input UpsertSupportInputDto {
   content: String
   imgUrl: String
   isRead: Boolean
+  status: Float
 }
 
 input UpsertUserExerciseInputDto {

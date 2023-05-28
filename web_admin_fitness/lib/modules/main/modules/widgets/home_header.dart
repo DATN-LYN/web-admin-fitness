@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -5,6 +6,7 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_current_user.req.gql.dart';
+import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 
@@ -73,21 +75,14 @@ class _NotificationAction extends StatelessWidget with ClientMixin {
           dimension: 46,
           child: IconButton(
             onPressed: () {
-              // AutoRouter.of(context).push(const NotificationsRoute());
+              AutoRouter.of(context).push(const SupportsRoute());
             },
             splashRadius: 32,
             icon: const Badge(
               isLabelVisible: true,
               backgroundColor: AppColors.error,
-              label: Text(
-                '1',
-              ),
-              textStyle: TextStyle(
-                fontSize: 12,
-                color: AppColors.white,
-              ),
               child: Icon(
-                Icons.notifications,
+                Icons.headphones,
                 size: 30,
               ),
             ),

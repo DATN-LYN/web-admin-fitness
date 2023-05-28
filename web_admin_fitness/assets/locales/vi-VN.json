@@ -256,5 +256,17 @@
         "editDes": "Bạn có chắc chắn muốn cập nhật thông tin cá nhân?",
         "updateSuccess": "Thông tin của bạn đã được cập nhật thành công"
   
+    },
+    "support_":{
+        "content": "Nội dung",
+        "status": "Trạng thái",
+        "supportStatus":[
+            "Đang chờ",
+            "Đang xử lý",
+            "Hoàn thành",
+            "Đã huỷ"
+        ],
+        "supportDetails": "Chi tiết yêu cầu hỗ trợ",
+        "title": "Hỗ trợ"
     }
 }

@@ -6,7 +6,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:side_sheet/side_sheet.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
-import 'package:web_admin_fitness/global/models/program_filter_data.dart';
+import 'package:web_admin_fitness/modules/main/modules/programs/models/program_filter_data.dart';
 
 import '../../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../../global/graphql/__generated__/schema.schema.gql.dart';

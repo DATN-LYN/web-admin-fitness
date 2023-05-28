@@ -1,0 +1,15 @@
+#import './user_fragment.graphql'
+
+fragment Support on Support {
+  id
+  userId
+  user {
+    ...User
+  }
+  content
+  imgUrl
+  isRead
+  status
+  createdAt
+  updatedAt
+}
