@@ -137,11 +137,11 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
     }
   }
 
-  void showDialogProgramList(String categoryId) {
+  void showDialogProgramList() {
     showDialog(
       context: context,
       builder: (context) {
-        return ProgramListDialog(categoryId: categoryId);
+        return ProgramListDialog(categoryId: widget.category!.id!);
       },
     );
   }
@@ -174,26 +174,7 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
                     const SizedBox(height: 16),
                     if (!isCreateNew)
                       OutlinedButton(
-                        onPressed: () async {
-                          showDialogProgramList(widget.category!.id!);
-                          // await context.popRoute();
-                          // if (mounted) {
-                          //   context.pushRoute(
-                          //     MainRoute(
-                          //       children: [
-                          //         ProgramsRoute(
-                          //           children: [
-                          //             const ProgramsManagerRoute(),
-                          //             ProgramUpsertRoute(
-                          //               initialCategoryId: widget.category!.id,
-                          //             ),
-                          //           ],
-                          //         )
-                          //       ],
-                          //     ),
-                          //   );
-                          // }
-                        },
+                        onPressed: showDialogProgramList,
                         child: const Text('ADD PROGAM'),
                       ),
                     if (!isCreateNew) ...[

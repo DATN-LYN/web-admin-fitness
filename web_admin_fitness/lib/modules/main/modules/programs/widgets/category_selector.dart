@@ -2,7 +2,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
@@ -31,14 +30,12 @@ class CategorySelector extends StatefulWidget {
     this.excludeIds,
     this.onChanged,
     this.errorText,
-    this.hintText,
   });
 
   final List<GCategory> initial;
   final List<String>? excludeIds;
   final void Function(List<Option<GCategory>> option)? onChanged;
   final String? errorText;
-  final String? hintText;
 
   @override
   State<CategorySelector> createState() => _CategorySelectorState();
@@ -145,39 +142,23 @@ class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    return InputDecorator(
-      decoration: InputDecoration(
-        errorText: widget.errorText,
-        contentPadding: const EdgeInsets.symmetric(vertical: 4),
-        constraints: const BoxConstraints(minHeight: 48),
-        border: InputBorder.none,
-        errorBorder: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
-        focusedErrorBorder: InputBorder.none,
-      ),
-      child: GestureDetector(
-        onTap: showBottomSheet,
+    final i18n = I18n.of(context)!;
+
+    return GestureDetector(
+      onTap: showBottomSheet,
+      child: InputDecorator(
+        decoration: InputDecoration(
+          errorText: widget.errorText,
+          contentPadding: EdgeInsets.all(selectedOptions.isEmpty ? 12 : 8),
+          constraints: const BoxConstraints(minHeight: 48),
+        ),
         child: selectedOptions.isEmpty
-            ? Row(
-                children: [
-                  const Icon(
-                    Ionicons.add_circle_outline,
-                    size: 30,
-                    color: AppColors.grey2,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    widget.hintText ?? '',
-                    style: Theme.of(context)
-                        .inputDecorationTheme
-                        .hintStyle
-                        ?.copyWith(
+            ? Text(
+                i18n.upsertProgram_CategoryHint,
+                style:
+                    Theme.of(context).inputDecorationTheme.hintStyle?.copyWith(
                           height: 1.35,
                         ),
-                  ),
-                ],
               )
             : Row(
                 children: [

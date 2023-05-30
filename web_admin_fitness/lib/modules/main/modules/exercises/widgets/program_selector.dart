@@ -28,13 +28,11 @@ class ProgramSelector extends StatefulWidget {
     required this.initial,
     this.onChanged,
     this.errorText,
-    this.hintText,
   });
 
   final List<GProgram> initial;
   final void Function(List<Option<GProgram>> option)? onChanged;
   final String? errorText;
-  final String? hintText;
 
   @override
   State<ProgramSelector> createState() => _ProgramSelectorState();
@@ -137,28 +135,37 @@ class _ProgramSelectorState extends State<ProgramSelector> with ClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n.of(context)!;
+
     return InputDecorator(
       decoration: InputDecoration(
         errorText: widget.errorText,
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 13,
-          horizontal: 16,
-        ),
+        contentPadding: EdgeInsets.all(selectedOptions.isEmpty ? 14 : 8),
         constraints: const BoxConstraints(minHeight: 48),
       ),
       child: GestureDetector(
         onTap: showBottomSheet,
         child: selectedOptions.isEmpty
             ? Text(
-                widget.hintText ?? '',
+                i18n.upsertExercise_ProgramHint,
                 style:
                     Theme.of(context).inputDecorationTheme.hintStyle?.copyWith(
                           height: 1.35,
                         ),
               )
-            : Text(
-                selectedOptions.first.label,
-                style: const TextStyle(height: 1.35),
+            : Row(
+                children: [
+                  ShimmerImage(
+                    width: 50,
+                    height: 50,
+                    imageUrl: selectedOptions.first.value.imgUrl ?? '_',
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    selectedOptions.first.label,
+                    style: const TextStyle(height: 1.35),
+                  ),
+                ],
               ),
       ),
     );

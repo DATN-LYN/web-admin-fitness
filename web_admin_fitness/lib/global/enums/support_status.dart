@@ -7,7 +7,7 @@ enum SupportStatus {
   waiting(1),
   solving(2),
   done(3),
-  cancelled(2);
+  cancelled(4);
 
   final double value;
   const SupportStatus(this.value);

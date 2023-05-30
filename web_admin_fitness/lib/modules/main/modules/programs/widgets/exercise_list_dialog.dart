@@ -3,41 +3,42 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercise_item.dart';
 
 import '../../../../../global/utils/constants.dart';
 import '../../../../../global/widgets/fitness_empty.dart';
 import '../../../../../global/widgets/fitness_error.dart';
 import '../../../../../global/widgets/infinity_list.dart';
-import '../../programs/widgets/program_item.dart';
 
-class ProgramListDialog extends StatefulWidget {
-  const ProgramListDialog({
+class ExerciseListDialog extends StatefulWidget {
+  const ExerciseListDialog({
     super.key,
-    required this.categoryId,
+    required this.programId,
   });
 
-  final String categoryId;
+  final String programId;
 
   @override
-  State<ProgramListDialog> createState() => _ProgramListDialogState();
+  State<ExerciseListDialog> createState() => _ExerciseListDialogState();
 }
 
-class _ProgramListDialogState extends State<ProgramListDialog>
+class _ExerciseListDialogState extends State<ExerciseListDialog>
     with ClientMixin {
-  late var getProgramsReq = GGetProgramsReq(
+  late var getProgramsReq = GGetExercisesReq(
     (b) => b
+      ..requestId = '@getExercisesRequestId'
       ..vars.queryParams.limit = Constants.defaultLimit
       ..vars.queryParams.page = 1
-      ..vars.queryParams.orderBy = 'Program.name'
+      ..vars.queryParams.orderBy = 'Exercise.name'
       ..vars.queryParams.filters = ListBuilder(
         [
           GFilterDto(
             (b) => b
-              ..data = widget.categoryId
-              ..field = 'Program.categoryId'
+              ..data = widget.programId
+              ..field = 'Exercise.programId'
               ..operator = GFILTER_OPERATOR.eq,
           )
         ],
@@ -67,11 +68,11 @@ class _ProgramListDialogState extends State<ProgramListDialog>
                   context.pushRoute(
                     MainRoute(
                       children: [
-                        ProgramsRoute(
+                        ExercisesRoute(
                           children: [
-                            const ProgramsManagerRoute(),
-                            ProgramUpsertRoute(
-                              initialCategoryId: widget.categoryId,
+                            const ExercisesManagerRoute(),
+                            ExerciseUpsertRoute(
+                              initialProgramId: widget.programId,
                             ),
                           ],
                         )
@@ -80,7 +81,7 @@ class _ProgramListDialogState extends State<ProgramListDialog>
                   );
                 }
               },
-              child: const Text('Add new program'),
+              child: const Text('Add new exercise'),
             ),
             const SizedBox(height: 16),
             Expanded(
@@ -88,7 +89,7 @@ class _ProgramListDialogState extends State<ProgramListDialog>
                 client: client,
                 request: getProgramsReq,
                 loadMoreRequest: (response) {
-                  final data = response?.data?.getPrograms;
+                  final data = response?.data?.getExercises;
                   if (data != null &&
                       data.meta!.currentPage!.toDouble() <
                           data.meta!.totalPages!.toDouble()) {
@@ -97,11 +98,12 @@ class _ProgramListDialogState extends State<ProgramListDialog>
                         ..vars.queryParams.page = (b.vars.queryParams.page! + 1)
                         ..updateResult = (previous, result) =>
                             previous?.rebuild(
-                              (b) => b.getPrograms
-                                ..meta = (result?.getPrograms.meta ??
-                                        previous.getPrograms.meta)!
+                              (b) => b.getExercises
+                                ..meta = (result?.getExercises.meta ??
+                                        previous.getExercises.meta)!
                                     .toBuilder()
-                                ..items.addAll(result?.getPrograms.items ?? []),
+                                ..items
+                                    .addAll(result?.getExercises.items ?? []),
                             ) ??
                             result,
                     );
@@ -133,7 +135,7 @@ class _ProgramListDialogState extends State<ProgramListDialog>
                     );
                   }
 
-                  final data = response!.data!.getPrograms;
+                  final data = response!.data!.getExercises;
                   final hasMoreData = data.meta!.currentPage!.toDouble() <
                       data.meta!.totalPages!.toDouble();
                   final programs = data.items;
@@ -149,8 +151,8 @@ class _ProgramListDialogState extends State<ProgramListDialog>
                     padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
                     itemBuilder: (context, index) {
                       final item = programs[index];
-                      return ProgramItem(
-                        program: item,
+                      return ExerciseItem(
+                        exercise: item,
                       );
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 16),

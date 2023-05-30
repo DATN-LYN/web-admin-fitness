@@ -19,6 +19,7 @@ import 'package:web_admin_fitness/global/utils/dialogs.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
 import 'package:web_admin_fitness/global/widgets/selected_image.dart';
 import 'package:web_admin_fitness/global/widgets/upsert_form_button.dart';
+import 'package:web_admin_fitness/modules/main/modules/programs/widgets/exercise_list_dialog.dart';
 
 import '../../../../../../global/gen/i18n.dart';
 import '../../../../../../global/themes/app_colors.dart';
@@ -189,6 +190,15 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
     }
   }
 
+  void showDialogExerciseList() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ExerciseListDialog(programId: widget.program!.id!);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
@@ -218,6 +228,11 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                       ScrollViewKeyboardDismissBehavior.onDrag,
                   children: [
                     const SizedBox(height: 16),
+                    if (!isCreateNew)
+                      OutlinedButton(
+                        onPressed: showDialogExerciseList,
+                        child: const Text('ADD EXERCISE'),
+                      ),
                     if (!isCreateNew) ...[
                       Label(i18n.upsertProgram_ID),
                       FormBuilderTextField(
@@ -369,7 +384,6 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                               isCreateNew && widget.initialCategoryId == null
                                   ? const []
                                   : [initialCategory!],
-                          hintText: i18n.upsertProgram_CategoryHint,
                           errorText: field.errorText,
                           onChanged: (option) {
                             field.didChange(option.first.key);

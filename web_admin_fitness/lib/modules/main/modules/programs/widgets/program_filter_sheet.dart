@@ -5,6 +5,7 @@ import 'package:web_admin_fitness/global/enums/workout_level.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/widgets/filter/filter_sheet_wrapper.dart';
 import 'package:web_admin_fitness/modules/main/modules/programs/models/program_filter_data.dart';
+import 'package:web_admin_fitness/modules/main/modules/programs/widgets/category_selector.dart';
 
 import '../../../../../../../global/themes/app_colors.dart';
 
@@ -73,7 +74,24 @@ class _ProgramFilterSheetState extends State<ProgramFilterSheet> {
               );
             },
           ),
-        )
+        ),
+        const SizedBox(height: 16),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            i18n.main_Categories,
+            style: titleStyle,
+          ),
+        ),
+        const SizedBox(height: 16),
+        CategorySelector(
+          initial: filter.category != null ? [filter.category!] : [],
+          onChanged: (options) {
+            setState(() {
+              filter = filter.copyWith(category: options.first.value);
+            });
+          },
+        ),
       ],
     );
   }

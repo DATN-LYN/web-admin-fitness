@@ -27,6 +27,6 @@ class RightSheetAppBar extends AppBar {
             }),
             const SizedBox(width: 16),
           ],
-          elevation: 1,
+          elevation: 0.5,
         );
 }
