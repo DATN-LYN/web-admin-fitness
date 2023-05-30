@@ -2,6 +2,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
@@ -147,25 +148,52 @@ class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
     return InputDecorator(
       decoration: InputDecoration(
         errorText: widget.errorText,
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 13,
-          horizontal: 16,
-        ),
+        contentPadding: const EdgeInsets.symmetric(vertical: 4),
         constraints: const BoxConstraints(minHeight: 48),
+        border: InputBorder.none,
+        errorBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+        focusedErrorBorder: InputBorder.none,
       ),
       child: GestureDetector(
         onTap: showBottomSheet,
         child: selectedOptions.isEmpty
-            ? Text(
-                widget.hintText ?? '',
-                style:
-                    Theme.of(context).inputDecorationTheme.hintStyle?.copyWith(
+            ? Row(
+                children: [
+                  const Icon(
+                    Ionicons.add_circle_outline,
+                    size: 30,
+                    color: AppColors.grey2,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    widget.hintText ?? '',
+                    style: Theme.of(context)
+                        .inputDecorationTheme
+                        .hintStyle
+                        ?.copyWith(
                           height: 1.35,
                         ),
+                  ),
+                ],
               )
-            : Text(
-                selectedOptions.first.label,
-                style: const TextStyle(height: 1.35),
+            : Row(
+                children: [
+                  ShimmerImage(
+                    width: 50,
+                    height: 50,
+                    imageUrl: selectedOptions.first.value.imgUrl ?? '_',
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    selectedOptions.first.label,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
       ),
     );

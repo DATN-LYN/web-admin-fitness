@@ -16,6 +16,7 @@ import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
 import 'package:web_admin_fitness/global/widgets/right_sheet_appbar.dart';
 import 'package:web_admin_fitness/global/widgets/selected_image.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
+import 'package:web_admin_fitness/modules/main/modules/categories/widgets/program_list_dialog.dart';
 
 import '../../../../../../global/utils/file_helper.dart';
 import '../../../../../../global/widgets/label.dart';
@@ -136,6 +137,15 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
     }
   }
 
+  void showDialogProgramList(String categoryId) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ProgramListDialog(categoryId: categoryId);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
@@ -162,6 +172,30 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
                       ScrollViewKeyboardDismissBehavior.onDrag,
                   children: [
                     const SizedBox(height: 16),
+                    if (!isCreateNew)
+                      OutlinedButton(
+                        onPressed: () async {
+                          showDialogProgramList(widget.category!.id!);
+                          // await context.popRoute();
+                          // if (mounted) {
+                          //   context.pushRoute(
+                          //     MainRoute(
+                          //       children: [
+                          //         ProgramsRoute(
+                          //           children: [
+                          //             const ProgramsManagerRoute(),
+                          //             ProgramUpsertRoute(
+                          //               initialCategoryId: widget.category!.id,
+                          //             ),
+                          //           ],
+                          //         )
+                          //       ],
+                          //     ),
+                          //   );
+                          // }
+                        },
+                        child: const Text('ADD PROGAM'),
+                      ),
                     if (!isCreateNew) ...[
                       Label(i18n.upsertCategory_CategoryID),
                       FormBuilderTextField(
