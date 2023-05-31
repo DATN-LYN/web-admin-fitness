@@ -10,6 +10,29 @@ import 'package:web_admin_fitness/global/graphql/__generated__/serializers.gql.d
 
 part 'schema.schema.gql.g.dart';
 
+abstract class GChangePasswordInputDto
+    implements Built<GChangePasswordInputDto, GChangePasswordInputDtoBuilder> {
+  GChangePasswordInputDto._();
+
+  factory GChangePasswordInputDto(
+          [Function(GChangePasswordInputDtoBuilder b) updates]) =
+      _$GChangePasswordInputDto;
+
+  String? get oldPassword;
+  String? get newPassword;
+  static Serializer<GChangePasswordInputDto> get serializer =>
+      _$gChangePasswordInputDtoSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GChangePasswordInputDto.serializer,
+        this,
+      ) as Map<String, dynamic>);
+  static GChangePasswordInputDto? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GChangePasswordInputDto.serializer,
+        json,
+      );
+}
+
 class GFILTER_OPERATOR extends EnumClass {
   const GFILTER_OPERATOR._(String name) : super(name);
 

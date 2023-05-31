@@ -10,6 +10,7 @@ import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart'
     show
+        GChangePasswordInputDto,
         GFILTER_OPERATOR,
         GFilterDto,
         GLoginInputDto,
@@ -60,6 +61,15 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise
     show GExerciseReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/exercise_fragment.var.gql.dart'
     show GExerciseVars;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/i_exercise_fragment.data.gql.dart'
+    show
+        GIExerciseData,
+        GIExerciseData_program,
+        GIExerciseData_program_category;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/i_exercise_fragment.req.gql.dart'
+    show GIExerciseReq;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/i_exercise_fragment.var.gql.dart'
+    show GIExerciseVars;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/i_support_fragment.data.gql.dart'
     show GISupportData, GISupportData_user;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/i_support_fragment.req.gql.dart'
@@ -304,6 +314,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GCategoryData,
   GCategoryReq,
   GCategoryVars,
+  GChangePasswordInputDto,
   GDeleteCategoryData,
   GDeleteCategoryData_deleteCategory,
   GDeleteCategoryReq,
@@ -416,6 +427,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetUsersData_getUsers_meta,
   GGetUsersReq,
   GGetUsersVars,
+  GIExerciseData,
+  GIExerciseData_program,
+  GIExerciseData_program_category,
+  GIExerciseReq,
+  GIExerciseVars,
   GISupportData,
   GISupportData_user,
   GISupportReq,
