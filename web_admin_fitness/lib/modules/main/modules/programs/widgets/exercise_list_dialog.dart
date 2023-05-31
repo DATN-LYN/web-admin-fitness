@@ -6,6 +6,7 @@ import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/widgets/shimmer_exercise_item.dart';
 import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercise_item.dart';
 
 import '../../../../../global/utils/constants.dart';
@@ -27,7 +28,7 @@ class ExerciseListDialog extends StatefulWidget {
 
 class _ExerciseListDialogState extends State<ExerciseListDialog>
     with ClientMixin {
-  late var getProgramsReq = GGetExercisesReq(
+  late var getExercisesReq = GGetExercisesReq(
     (b) => b
       ..requestId = '@getExercisesRequestId'
       ..vars.queryParams.limit = Constants.defaultLimit
@@ -44,6 +45,49 @@ class _ExerciseListDialogState extends State<ExerciseListDialog>
         ],
       ),
   );
+
+  void onSearch(String? value) {
+    getExercisesReq = getExercisesReq.rebuild(
+      (p0) => p0
+        ..vars.queryParams.page = 1
+        ..updateResult = ((previous, result) => result)
+        ..vars.queryParams.filters = ListBuilder(
+          [
+            GFilterDto(
+              (b) => b
+                ..data = widget.programId
+                ..field = 'Exercise.programId'
+                ..operator = GFILTER_OPERATOR.eq,
+            ),
+            GFilterDto(
+              (b) => b
+                ..field = 'Exercise.name'
+                ..data = value
+                ..operator = GFILTER_OPERATOR.like,
+            ),
+          ],
+        ),
+    );
+    client.requestController.add(getExercisesReq);
+  }
+
+  void goToExerciseUpsertPage() {
+    context.pushRoute(
+      MainRoute(
+        children: [
+          ExercisesRoute(
+            children: [
+              const ExercisesManagerRoute(),
+              ExerciseUpsertRoute(
+                initialProgramId: widget.programId,
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
@@ -61,39 +105,17 @@ class _ExerciseListDialogState extends State<ExerciseListDialog>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            OutlinedButton(
-              onPressed: () {
-                // await context.popRoute();
-                if (mounted) {
-                  context.pushRoute(
-                    MainRoute(
-                      children: [
-                        ExercisesRoute(
-                          children: [
-                            const ExercisesManagerRoute(),
-                            ExerciseUpsertRoute(
-                              initialProgramId: widget.programId,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  );
-                }
-              },
-              child: Text(i18n.upsertProgram_AddNewExercise),
-            ),
             const SizedBox(height: 16),
             Expanded(
               child: InfinityList(
                 client: client,
-                request: getProgramsReq,
+                request: getExercisesReq,
                 loadMoreRequest: (response) {
                   final data = response?.data?.getExercises;
                   if (data != null &&
                       data.meta!.currentPage!.toDouble() <
                           data.meta!.totalPages!.toDouble()) {
-                    getProgramsReq = getProgramsReq.rebuild(
+                    getExercisesReq = getExercisesReq.rebuild(
                       (b) => b
                         ..vars.queryParams.page = (b.vars.queryParams.page! + 1)
                         ..updateResult = (previous, result) =>
@@ -107,17 +129,17 @@ class _ExerciseListDialogState extends State<ExerciseListDialog>
                             ) ??
                             result,
                     );
-                    return getProgramsReq;
+                    return getExercisesReq;
                   }
                   return null;
                 },
                 refreshRequest: () {
-                  getProgramsReq = getProgramsReq.rebuild(
+                  getExercisesReq = getExercisesReq.rebuild(
                     (b) => b
                       ..vars.queryParams.page = 1
                       ..updateResult = ((previous, result) => result),
                   );
-                  return getProgramsReq;
+                  return getExercisesReq;
                 },
                 builder: (context, response, error) {
                   if (response?.hasErrors == true) {
@@ -128,8 +150,7 @@ class _ExerciseListDialogState extends State<ExerciseListDialog>
                       itemCount: 3,
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                       itemBuilder: (context, index) {
-                        // return const ShimmerRemoteTile();
-                        return const SizedBox();
+                        return const ShimmerExerciseItem();
                       },
                       separatorBuilder: (_, __) => const SizedBox(height: 16),
                     );
@@ -138,27 +159,41 @@ class _ExerciseListDialogState extends State<ExerciseListDialog>
                   final data = response!.data!.getExercises;
                   final hasMoreData = data.meta!.currentPage!.toDouble() <
                       data.meta!.totalPages!.toDouble();
-                  final programs = data.items;
+                  final exercises = data.items;
 
-                  if (programs?.isEmpty == true) {
+                  if (exercises?.isEmpty == true) {
                     return FitnessEmpty(
                       title: i18n.upsertProgram_ExerciseEmpty,
                     );
                   }
 
-                  return ListView.separated(
-                    itemCount: programs!.length + (hasMoreData ? 1 : 0),
-                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-                    itemBuilder: (context, index) {
-                      final item = programs[index];
-                      return ExerciseItem(
-                        exercise: item,
-                      );
-                    },
-                    separatorBuilder: (_, __) => const SizedBox(height: 16),
+                  return Column(
+                    children: [
+                      TextFormField(
+                        onChanged: (value) => onSearch(value),
+                      ),
+                      Expanded(
+                        child: ListView.separated(
+                          itemCount: exercises!.length + (hasMoreData ? 1 : 0),
+                          padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+                          itemBuilder: (context, index) {
+                            final item = exercises[index];
+                            return ExerciseItem(
+                              exercise: item,
+                            );
+                          },
+                          separatorBuilder: (_, __) =>
+                              const SizedBox(height: 16),
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
+            ),
+            ElevatedButton(
+              onPressed: goToExerciseUpsertPage,
+              child: Text(i18n.upsertProgram_AddNewExercise),
             ),
           ],
         ),

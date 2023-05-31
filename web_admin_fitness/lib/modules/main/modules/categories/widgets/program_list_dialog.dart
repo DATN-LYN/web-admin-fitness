@@ -30,9 +30,9 @@ class _ProgramListDialogState extends State<ProgramListDialog>
     with ClientMixin {
   late var getProgramsReq = GGetProgramsReq(
     (b) => b
+      ..requestId = '@getProgramsRequestId'
       ..vars.queryParams.limit = Constants.defaultLimit
       ..vars.queryParams.page = 1
-      ..vars.queryParams.orderBy = 'Program.name'
       ..vars.queryParams.filters = ListBuilder(
         [
           GFilterDto(
@@ -44,6 +44,49 @@ class _ProgramListDialogState extends State<ProgramListDialog>
         ],
       ),
   );
+
+  void onChanged(String? value) {
+    getProgramsReq = getProgramsReq.rebuild(
+      (p0) => p0
+        ..vars.queryParams.page = 1
+        ..updateResult = ((previous, result) => result)
+        ..vars.queryParams.filters = ListBuilder(
+          [
+            GFilterDto(
+              (b) => b
+                ..data = widget.categoryId
+                ..field = 'Program.categoryId'
+                ..operator = GFILTER_OPERATOR.eq,
+            ),
+            GFilterDto(
+              (b) => b
+                ..field = 'Program.name'
+                ..data = value
+                ..operator = GFILTER_OPERATOR.like,
+            ),
+          ],
+        ),
+    );
+    client.requestController.add(getProgramsReq);
+  }
+
+  void goToProgramUpsert() {
+    context.pushRoute(
+      MainRoute(
+        children: [
+          ProgramsRoute(
+            children: [
+              const ProgramsManagerRoute(),
+              ProgramUpsertRoute(
+                initialCategoryId: widget.categoryId,
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
@@ -61,28 +104,6 @@ class _ProgramListDialogState extends State<ProgramListDialog>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            OutlinedButton(
-              onPressed: () {
-                // await context.popRoute();
-                if (mounted) {
-                  context.pushRoute(
-                    MainRoute(
-                      children: [
-                        ProgramsRoute(
-                          children: [
-                            const ProgramsManagerRoute(),
-                            ProgramUpsertRoute(
-                              initialCategoryId: widget.categoryId,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  );
-                }
-              },
-              child: Text(i18n.upsertCategory_AddNewProgram),
-            ),
             const SizedBox(height: 16),
             Expanded(
               child: InfinityList(
@@ -144,19 +165,33 @@ class _ProgramListDialogState extends State<ProgramListDialog>
                     );
                   }
 
-                  return ListView.separated(
-                    itemCount: programs!.length + (hasMoreData ? 1 : 0),
-                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-                    itemBuilder: (context, index) {
-                      final item = programs[index];
-                      return ProgramItem(
-                        program: item,
-                      );
-                    },
-                    separatorBuilder: (_, __) => const SizedBox(height: 16),
+                  return Column(
+                    children: [
+                      TextFormField(
+                        onChanged: (value) => onChanged(value),
+                      ),
+                      Expanded(
+                        child: ListView.separated(
+                          itemCount: programs!.length + (hasMoreData ? 1 : 0),
+                          padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+                          itemBuilder: (context, index) {
+                            final item = programs[index];
+                            return ProgramItem(
+                              program: item,
+                            );
+                          },
+                          separatorBuilder: (_, __) =>
+                              const SizedBox(height: 16),
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
+            ),
+            ElevatedButton(
+              onPressed: goToProgramUpsert,
+              child: Text(i18n.upsertCategory_AddNewProgram),
             ),
           ],
         ),
