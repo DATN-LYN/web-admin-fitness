@@ -126,6 +126,10 @@ class I18n implements WidgetsLocalizations {
 	String get setting_ConfirmLogout => "Confirm logout";
 	/// "You need confirm to logout from this app"
 	String get setting_ConfirmLogoutDes => "You need confirm to logout from this app";
+	/// "Are you sure you want to change your password?"
+	String get setting_ChangePasswordConfirm => "Are you sure you want to change your password?";
+	/// "Your password has been updated successfully."
+	String get setting_ChangePasswordSuccess => "Your password has been updated successfully.";
 	/// ["English (US)", "Tiếng Việt"]
 	List<String> get language => ["English (US)", "Tiếng Việt"];
 	/// "Category List"
@@ -140,6 +144,8 @@ class I18n implements WidgetsLocalizations {
 	String get programs_Description => "Description";
 	/// "Enter program name"
 	String get programs_SearchHint => "Enter program name";
+	/// "Success"
+	String get common_Success => "Success";
 	/// "Actions"
 	String get common_Actions => "Actions";
 	/// "Not Found"
@@ -604,6 +610,12 @@ class _I18n_vi_VN extends I18n {
 	/// "Bạn cần xác nhận để đăng xuất khỏi ứng dụng"
 	@override
 	String get setting_ConfirmLogoutDes => "Bạn cần xác nhận để đăng xuất khỏi ứng dụng";
+	/// "Bạn có chắc chắn muốn thay đổi mật khẩu"
+	@override
+	String get setting_ChangePasswordConfirm => "Bạn có chắc chắn muốn thay đổi mật khẩu";
+	/// "Bạn đã cập nhật mật khẩu thành công"
+	@override
+	String get setting_ChangePasswordSuccess => "Bạn đã cập nhật mật khẩu thành công";
 	/// ["English (US)", "Tiếng Việt"]
 	@override
 	List<String> get language => ["English (US)", "Tiếng Việt"];
@@ -625,6 +637,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Nhập tên chương trình"
 	@override
 	String get programs_SearchHint => "Nhập tên chương trình";
+	/// "Thành công"
+	@override
+	String get common_Success => "Thành công";
 	/// "Hành động"
 	@override
 	String get common_Actions => "Hành động";
