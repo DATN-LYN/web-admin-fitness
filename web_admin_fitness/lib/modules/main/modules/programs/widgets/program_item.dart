@@ -13,13 +13,13 @@ class ProgramItem extends StatelessWidget {
   const ProgramItem({
     super.key,
     required this.program,
-    required this.handleDelete,
-    required this.handleEdit,
+    this.handleDelete,
+    this.handleEdit,
   });
 
   final GProgram program;
-  final VoidCallback handleDelete;
-  final VoidCallback handleEdit;
+  final VoidCallback? handleDelete;
+  final VoidCallback? handleEdit;
 
   @override
   Widget build(BuildContext context) {

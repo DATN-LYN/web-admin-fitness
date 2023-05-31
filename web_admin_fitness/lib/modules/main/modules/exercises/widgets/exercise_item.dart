@@ -13,13 +13,13 @@ class ExerciseItem extends StatelessWidget {
   const ExerciseItem({
     super.key,
     required this.exercise,
-    required this.handleDelete,
-    required this.handleEdit,
+    this.handleDelete,
+    this.handleEdit,
   });
 
   final GExercise exercise;
-  final VoidCallback handleDelete;
-  final VoidCallback handleEdit;
+  final VoidCallback? handleDelete;
+  final VoidCallback? handleEdit;
 
   @override
   Widget build(BuildContext context) {

@@ -184,7 +184,7 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
                         onPressed: () => handleDelete(e),
                         icon: const Icon(Icons.delete_outline),
                         color: AppColors.error,
-                        tooltip: i18n.common_UpdateData,
+                        tooltip: i18n.button_Delete,
                       ),
                     ],
                   );

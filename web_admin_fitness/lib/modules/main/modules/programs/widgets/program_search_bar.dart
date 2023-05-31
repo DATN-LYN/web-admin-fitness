@@ -39,41 +39,6 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
     filter = filterData;
     final newFilters = widget.request.vars.queryParams.filters?.toList() ?? [];
 
-    // filter by schedule mode
-    // newFilters.removeWhere((e) => e.field == 'Remote.isSchedule');
-    // if (filterData.isSchedule != null) {
-    //   newFilters.add(
-    //       // GFilterDto(
-    //       //   (b) => b
-    //       //     ..field = 'Remote.isSchedule'
-    //       //     ..operator = GQUERY_OPERATOR.eq
-    //       //     ..data = filterData.isSchedule.toString(),
-    //       // ),
-    //       );
-    // }
-
-    // filter by startDate and endDate
-    // newFilters.removeWhere((e) => e.field == 'Remote.startDate');
-    // newFilters.removeWhere((e) => e.field == 'Remote.endDate');
-    // if (filterData.rangeType != null &&
-    //     filterData.startDate != null &&
-    //     filterData.endDate != null) {
-    //   newFilters.addAll([
-    // GFilterDto(
-    //   (b) => b
-    //     ..field = 'Remote.startDate'
-    //     ..operator = GQUERY_OPERATOR.gte
-    //     ..data = filterData.startDate.toString(),
-    // ),
-    // GFilterDto(
-    //   (b) => b
-    //     ..field = 'Remote.endDate'
-    //     ..operator = GQUERY_OPERATOR.lte
-    //     ..data = filterData.endDate.toString(),
-    // )
-    //   ]);
-    // }
-
     // filter by keyword
     // newFilters.removeWhere((e) => e.field == widget.searchMode.key);
     if (filterData.keyword?.isNotEmpty ?? false) {
@@ -83,6 +48,21 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
             ..field = widget.searchField
             ..operator = GFILTER_OPERATOR.like
             ..data = filterData.keyword,
+        ),
+      );
+    } else {
+      newFilters.clear();
+    }
+
+    // filter by categoryId
+    newFilters.removeWhere((e) => e.field == 'Program.categoryId');
+    if (filterData.category != null) {
+      newFilters.add(
+        GFilterDto(
+          (b) => b
+            ..field = 'Program.categoryId'
+            ..operator = GFILTER_OPERATOR.eq
+            ..data = filterData.category?.id,
         ),
       );
     } else {

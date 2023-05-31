@@ -8,6 +8,7 @@ import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_error.dart';
 import 'package:web_admin_fitness/global/widgets/infinity_list.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
+import 'package:web_admin_fitness/global/widgets/shimmer_exercise_item.dart';
 
 import '../../../../../../../global/routers/app_router.dart';
 import '../helper/exercise_helper.dart';
@@ -116,8 +117,7 @@ class _ExercisesListViewState extends State<ExercisesListView>
               itemCount: 3,
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               itemBuilder: (context, index) {
-                // return const ShimmerRemoteTile();
-                return const SizedBox();
+                return const ShimmerExerciseItem();
               },
               separatorBuilder: (_, __) => const SizedBox(height: 16),
             );

@@ -30,14 +30,12 @@ class CategorySelector extends StatefulWidget {
     this.excludeIds,
     this.onChanged,
     this.errorText,
-    this.hintText,
   });
 
   final List<GCategory> initial;
   final List<String>? excludeIds;
   final void Function(List<Option<GCategory>> option)? onChanged;
   final String? errorText;
-  final String? hintText;
 
   @override
   State<CategorySelector> createState() => _CategorySelectorState();
@@ -144,28 +142,39 @@ class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    return InputDecorator(
-      decoration: InputDecoration(
-        errorText: widget.errorText,
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 13,
-          horizontal: 16,
+    final i18n = I18n.of(context)!;
+
+    return GestureDetector(
+      onTap: showBottomSheet,
+      child: InputDecorator(
+        decoration: InputDecoration(
+          errorText: widget.errorText,
+          contentPadding: EdgeInsets.all(selectedOptions.isEmpty ? 12 : 8),
+          constraints: const BoxConstraints(minHeight: 48),
         ),
-        constraints: const BoxConstraints(minHeight: 48),
-      ),
-      child: GestureDetector(
-        onTap: showBottomSheet,
         child: selectedOptions.isEmpty
             ? Text(
-                widget.hintText ?? '',
+                i18n.upsertProgram_CategoryHint,
                 style:
                     Theme.of(context).inputDecorationTheme.hintStyle?.copyWith(
                           height: 1.35,
                         ),
               )
-            : Text(
-                selectedOptions.first.label,
-                style: const TextStyle(height: 1.35),
+            : Row(
+                children: [
+                  ShimmerImage(
+                    width: 50,
+                    height: 50,
+                    imageUrl: selectedOptions.first.value.imgUrl ?? '_',
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    selectedOptions.first.label,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
       ),
     );

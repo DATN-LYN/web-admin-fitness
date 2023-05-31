@@ -33,6 +33,21 @@ class _ExercisesManagerPageState extends State<ExercisesManagerPage> {
       ..vars.queryParams.orderBy = 'Exercise.createdAt:DESC',
   );
 
+  @override
+  void initState() {
+    final controller = AutoRouter.of(context);
+    controller.addListener(() {
+      if (controller.current.name == ProgramsManagerRoute.name) {
+        if (mounted) {
+          getExercisesReq = getExercisesReq.rebuild((b) => b
+            ..vars.queryParams.page = 1
+            ..updateResult = ((previous, result) => result));
+        }
+      }
+    });
+    super.initState();
+  }
+
   void refreshHandler() {
     setState(() {
       getExercisesReq = getExercisesReq.rebuild(

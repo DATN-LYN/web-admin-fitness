@@ -33,11 +33,27 @@ class _ProgramsManagerPageState extends State<ProgramsManagerPage> {
       ..vars.queryParams.orderBy = 'Program.createdAt:DESC',
   );
 
+  @override
+  void initState() {
+    final controller = AutoRouter.of(context);
+    controller.addListener(() {
+      if (controller.current.name == ProgramsManagerRoute.name) {
+        if (mounted) {
+          getProgramsReq = getProgramsReq.rebuild((b) => b
+            ..vars.queryParams.page = 1
+            ..updateResult = ((previous, result) => result));
+        }
+      }
+    });
+    super.initState();
+  }
+
   void refreshHandler() {
     setState(() {
       getProgramsReq = getProgramsReq.rebuild(
         (b) => b
           ..vars.queryParams.page = 1
+          ..vars.queryParams.limit = Constants.defaultLimit
           ..updateResult = ((previous, result) => result),
       );
     });

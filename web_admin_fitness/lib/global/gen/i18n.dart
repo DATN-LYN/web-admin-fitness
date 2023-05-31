@@ -244,6 +244,12 @@ class I18n implements WidgetsLocalizations {
 	String get upsertCategory_ImageHint => "Choose category image";
 	/// "Category ID"
 	String get upsertCategory_CategoryID => "Category ID";
+	/// "View Programs"
+	String get upsertCategory_ViewPrograms => "View Programs";
+	/// "Add New Program"
+	String get upsertCategory_AddNewProgram => "Add New Program";
+	/// "This category doesn't have any program"
+	String get upsertCategory_ProgramEmpty => "This category doesn't have any program";
 	/// "Success"
 	String get toast_Title_Success => "Success";
 	/// "Error"
@@ -322,6 +328,12 @@ class I18n implements WidgetsLocalizations {
 	String get upsertProgram_Description => "Description";
 	/// "Input program description"
 	String get upsertProgram_DescriptionHint => "Input program description";
+	/// "View Excercicses"
+	String get upsertProgram_ViewExercises => "View Excercicses";
+	/// "Add New Exercise"
+	String get upsertProgram_AddNewExercise => "Add New Exercise";
+	/// "This program doesn't have any exercise"
+	String get upsertProgram_ExerciseEmpty => "This program doesn't have any exercise";
 	/// "Create New Exercise"
 	String get upsertExercise_CreateNewTitle => "Create New Exercise";
 	/// "Update Exercise"
@@ -769,6 +781,15 @@ class _I18n_vi_VN extends I18n {
 	/// "Mã thể loại"
 	@override
 	String get upsertCategory_CategoryID => "Mã thể loại";
+	/// "Xem danh sách chương trình tập"
+	@override
+	String get upsertCategory_ViewPrograms => "Xem danh sách chương trình tập";
+	/// "Thêm chương trình mới"
+	@override
+	String get upsertCategory_AddNewProgram => "Thêm chương trình mới";
+	/// "Thể loại này không có chương trình nào"
+	@override
+	String get upsertCategory_ProgramEmpty => "Thể loại này không có chương trình nào";
 	/// "Thành công"
 	@override
 	String get toast_Title_Success => "Thành công";
@@ -886,6 +907,15 @@ class _I18n_vi_VN extends I18n {
 	/// "Nhập mô tả chương trình"
 	@override
 	String get upsertProgram_DescriptionHint => "Nhập mô tả chương trình";
+	/// "Xem danh sách bài tập"
+	@override
+	String get upsertProgram_ViewExercises => "Xem danh sách bài tập";
+	/// "Thêm bài tập mới"
+	@override
+	String get upsertProgram_AddNewExercise => "Thêm bài tập mới";
+	/// "Chương trình này không có bài tập nào"
+	@override
+	String get upsertProgram_ExerciseEmpty => "Chương trình này không có bài tập nào";
 	/// "Tạo bài tập mới"
 	@override
 	String get upsertExercise_CreateNewTitle => "Tạo bài tập mới";

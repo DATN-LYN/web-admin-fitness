@@ -38,9 +38,11 @@ class ExerciseUpsertPage extends StatefulWidget {
   const ExerciseUpsertPage({
     super.key,
     @queryParam this.exercise,
+    this.initialProgramId,
   });
 
   final GExercise? exercise;
+  final String? initialProgramId;
 
   @override
   State<ExerciseUpsertPage> createState() => _ExerciseUpsertPageState();
@@ -65,27 +67,37 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
   }
 
   initData() async {
-    if (!isCreateNew) {
+    if (!isCreateNew || widget.initialProgramId != null) {
       try {
-        await getProgram();
-        setState(
-          () {
-            Uri initialUri = Uri.parse(widget.exercise!.videoUrl!);
-            Uri replaceUri = initialUri.replace(scheme: 'https');
-            controller = VideoPlayerController.network(replaceUri.toString());
-          },
-        );
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          getProgram();
+        });
+        if (mounted) {
+          setState(
+            () {
+              Uri initialUri = Uri.parse(widget.exercise!.videoUrl!);
+              Uri replaceUri = initialUri.replace(scheme: 'https');
+              controller = VideoPlayerController.network(replaceUri.toString());
+            },
+          );
+        }
         await controller!.initialize();
       } catch (e) {
-        setState(() => loading = false);
+        if (mounted) {
+          setState(() => loading = false);
+        }
       }
     }
-    setState(() => loading = false);
+    if (mounted) {
+      setState(() => loading = false);
+    }
   }
 
-  Future getProgram() async {
+  void getProgram() async {
     final request = GGetProgramReq(
-      (b) => b..vars.programId = widget.exercise!.programId,
+      (b) => b
+        ..vars.programId =
+            widget.initialProgramId ?? widget.exercise!.programId,
     );
     final response = await client.request(request).first;
     if (response.hasErrors) {
@@ -96,9 +108,11 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
         );
       }
     } else {
-      setState(() {
-        initialProgram = response.data!.getProgram;
-      });
+      if (mounted) {
+        setState(() {
+          initialProgram = response.data!.getProgram;
+        });
+      }
     }
   }
 
@@ -322,15 +336,18 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
                     Label(i18n.upsertExercise_Program),
                     FormBuilderField<String>(
                       name: 'programId',
-                      initialValue: isCreateNew ? null : initialProgram?.id,
+                      initialValue:
+                          widget.initialProgramId ?? initialProgram?.id,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertExercise_ProgramRequired,
                       ),
                       builder: (field) {
                         return ProgramSelector(
-                          initial: isCreateNew ? const [] : [initialProgram!],
-                          hintText: i18n.upsertExercise_ProgramHint,
+                          initial:
+                              isCreateNew && widget.initialProgramId == null
+                                  ? const []
+                                  : [initialProgram!],
                           errorText: field.errorText,
                           onChanged: (option) {
                             field.didChange(option.first.key);

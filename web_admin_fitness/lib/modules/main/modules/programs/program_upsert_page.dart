@@ -19,6 +19,7 @@ import 'package:web_admin_fitness/global/utils/dialogs.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
 import 'package:web_admin_fitness/global/widgets/selected_image.dart';
 import 'package:web_admin_fitness/global/widgets/upsert_form_button.dart';
+import 'package:web_admin_fitness/modules/main/modules/programs/widgets/exercise_list_dialog.dart';
 
 import '../../../../../../global/gen/i18n.dart';
 import '../../../../../../global/themes/app_colors.dart';
@@ -35,9 +36,11 @@ class ProgramUpsertPage extends StatefulWidget {
   const ProgramUpsertPage({
     super.key,
     this.program,
+    this.initialCategoryId,
   });
 
   final GProgram? program;
+  final String? initialCategoryId;
 
   @override
   State<ProgramUpsertPage> createState() => _ProgramUpsertPageState();
@@ -59,8 +62,8 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
 
   initData() async {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!isCreateNew) {
-        getCategory();
+      if (!isCreateNew || widget.initialCategoryId != null) {
+        getCategory(categoryId: widget.initialCategoryId);
       }
     });
     if (mounted) {
@@ -68,9 +71,9 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
     }
   }
 
-  void getCategory() async {
+  void getCategory({String? categoryId}) async {
     final request = GGetCategoryReq(
-      (b) => b..vars.categoryId = widget.program!.categoryId,
+      (b) => b..vars.categoryId = categoryId ?? widget.program!.categoryId,
     );
     final response = await client.request(request).first;
     if (response.hasErrors) {
@@ -187,6 +190,15 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
     }
   }
 
+  void showDialogExerciseList() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ExerciseListDialog(programId: widget.program!.id!);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
@@ -216,6 +228,11 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                       ScrollViewKeyboardDismissBehavior.onDrag,
                   children: [
                     const SizedBox(height: 16),
+                    if (!isCreateNew)
+                      OutlinedButton(
+                        onPressed: showDialogExerciseList,
+                        child: Text(i18n.upsertProgram_ViewExercises),
+                      ),
                     if (!isCreateNew) ...[
                       Label(i18n.upsertProgram_ID),
                       FormBuilderTextField(
@@ -278,7 +295,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertProgram_LevelRequired,
                       ),
-                      initialValue: widget.program?.level,
+                      initialValue: widget.program?.level ?? 1,
                       builder: (field) {
                         late WorkoutLevel initialData;
                         final options = WorkoutLevel.values
@@ -318,7 +335,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertProgram_BodyPartRequired,
                       ),
-                      initialValue: widget.program?.bodyPart,
+                      initialValue: widget.program?.bodyPart ?? 1,
                       builder: (field) {
                         late WorkoutBodyPart initialData;
 
@@ -355,17 +372,18 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                     Label(i18n.upsertProgram_Category),
                     FormBuilderField<String>(
                       name: 'categoryId',
-                      initialValue: initialCategory?.id,
+                      initialValue:
+                          widget.initialCategoryId ?? initialCategory?.id,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertProgram_CategoryRequired,
                       ),
                       builder: (field) {
                         return CategorySelector(
-                          initial: initialCategory == null
-                              ? const []
-                              : [initialCategory!],
-                          hintText: i18n.upsertProgram_CategoryHint,
+                          initial:
+                              isCreateNew && widget.initialCategoryId == null
+                                  ? const []
+                                  : [initialCategory!],
                           errorText: field.errorText,
                           onChanged: (option) {
                             field.didChange(option.first.key);
@@ -384,6 +402,8 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertProgram_DescriptionRequired,
                       ),
+                      maxLines: 7,
+                      maxLength: 255,
                     ),
                   ],
                 ),
