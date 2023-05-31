@@ -1,14 +1,18 @@
+import 'dart:math';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:side_sheet/side_sheet.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
 import 'package:web_admin_fitness/global/models/exercise_filter_data.dart';
-import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/program_selector.dart';
+import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercise_filter_sheet.dart';
 
 import '../../../../../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
 import '../../../../../../../../../../../global/widgets/filter/filter_text_field.dart';
+import '../../../../../global/themes/app_colors.dart';
 
 class ExerciseSearchBar extends StatefulWidget {
   const ExerciseSearchBar({
@@ -78,26 +82,59 @@ class _ExerciseSearchBarState extends State<ExerciseSearchBar> {
     final responsive = ResponsiveWrapper.of(context);
     final isDesktopView = responsive.isLargerThan(MOBILE);
 
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 300),
-          child: ProgramSelector(
-            initial: filter.program != null ? [filter.program!] : [],
-            onChanged: (options) {
-              setState(() {
-                filter = filter.copyWith(program: options.first.value);
-              });
-              handleFilter(filter);
-            },
+        Expanded(
+          child: FilterTextField(
+            hintText: i18n.exercises_SearchHint,
+            onTextChange: (text) => handleFilter(
+              filter.copyWith(keyword: text),
+            ),
           ),
         ),
-        const SizedBox(height: 12),
-        FilterTextField(
-          hintText: i18n.exercises_SearchHint,
-          onTextChange: (text) => handleFilter(
-            filter.copyWith(keyword: text),
+        const SizedBox(width: 12),
+        Material(
+          borderRadius: BorderRadius.circular(12),
+          clipBehavior: Clip.hardEdge,
+          color: AppColors.grey6,
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            onPressed: () async {
+              final newFilter = await SideSheet.right(
+                body: ExerciseFilterSheet(exerciseFilterData: filter),
+                context: context,
+                width: min(
+                  MediaQuery.of(context).size.width * 0.8,
+                  400,
+                ),
+              );
+
+              // * (Optional) show dialog on mobile
+              // await showDialog(
+              //   context: context,
+              //   builder: (context) => Padding(
+              //     padding: const EdgeInsets.all(16),
+              //     child: Material(
+              //       clipBehavior: Clip.hardEdge,
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(12),
+              //       ),
+              //       child: RemoteFilterSheet(initialFilters: filter),
+              //     ),
+              //   ),
+              // )
+
+              if (newFilter is ExerciseFilterData) {
+                handleFilter(newFilter);
+              }
+            },
+            icon: const Icon(
+              Icons.sort,
+              color: AppColors.grey3,
+              size: 16,
+            ),
+            hoverColor: AppColors.grey6,
           ),
         ),
       ],

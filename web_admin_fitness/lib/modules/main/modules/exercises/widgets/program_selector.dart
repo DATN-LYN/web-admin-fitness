@@ -28,11 +28,13 @@ class ProgramSelector extends StatefulWidget {
     required this.initial,
     this.onChanged,
     this.errorText,
+    this.suffixIcon,
   });
 
   final List<GProgram> initial;
   final void Function(List<Option<GProgram>> option)? onChanged;
   final String? errorText;
+  final Widget? suffixIcon;
 
   @override
   State<ProgramSelector> createState() => _ProgramSelectorState();
@@ -142,6 +144,7 @@ class _ProgramSelectorState extends State<ProgramSelector> with ClientMixin {
         errorText: widget.errorText,
         contentPadding: EdgeInsets.all(selectedOptions.isEmpty ? 14 : 8),
         constraints: const BoxConstraints(minHeight: 48),
+        suffixIcon: widget.suffixIcon,
       ),
       child: GestureDetector(
         onTap: showBottomSheet,
@@ -156,8 +159,8 @@ class _ProgramSelectorState extends State<ProgramSelector> with ClientMixin {
             : Row(
                 children: [
                   ShimmerImage(
-                    width: 50,
-                    height: 50,
+                    width: 30,
+                    height: 30,
                     imageUrl: selectedOptions.first.value.imgUrl ?? '_',
                   ),
                   const SizedBox(width: 12),

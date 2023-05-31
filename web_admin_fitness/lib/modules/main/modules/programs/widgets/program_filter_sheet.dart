@@ -23,10 +23,12 @@ class ProgramFilterSheet extends StatefulWidget {
 
 class _ProgramFilterSheetState extends State<ProgramFilterSheet> {
   late ProgramFilterData filter = widget.programFilterData;
+  var formKey = GlobalKey();
 
   void handleClearFilter() {
     setState(() {
       filter = const ProgramFilterData();
+      formKey = GlobalKey();
     });
   }
 
@@ -41,6 +43,7 @@ class _ProgramFilterSheetState extends State<ProgramFilterSheet> {
     final i18n = I18n.of(context)!;
 
     return FilterSheetWrapper(
+      key: formKey,
       onApply: () => context.popRoute(filter),
       onClearAll: handleClearFilter,
       children: [

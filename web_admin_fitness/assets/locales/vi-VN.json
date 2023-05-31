@@ -138,7 +138,10 @@
         "imageIsRequired": "Bạn chưa chọn hình ảnh",
         "nameHint": "Nhập tên thể loại",
         "imageHint": "Chọn hình ảnh thể loại",
-        "categoryID": "Mã thể loại"
+        "categoryID": "Mã thể loại",
+        "viewPrograms": "Xem danh sách chương trình tập",
+        "addNewProgram": "Thêm chương trình mới",
+        "programEmpty": "Thể loại này không có chương trình nào"
     },
     "toast_": {
         "title_": {
@@ -185,7 +188,10 @@
         "categoryRequired": "Bạn chưa chọn thể loại",
         "descriptionRequired": "Bạn chưa nhập mô tả",
         "description": "Mô tả",
-        "descriptionHint": "Nhập mô tả chương trình"
+        "descriptionHint": "Nhập mô tả chương trình",
+        "viewExercises": "Xem danh sách bài tập",
+        "addNewExercise": "Thêm bài tập mới",
+        "exerciseEmpty": "Chương trình này không có bài tập nào"
     },
     "upsertExercise_":{
         "createNewTitle": "Tạo bài tập mới",

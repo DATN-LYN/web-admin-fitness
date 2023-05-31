@@ -231,7 +231,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                     if (!isCreateNew)
                       OutlinedButton(
                         onPressed: showDialogExerciseList,
-                        child: const Text('ADD EXERCISE'),
+                        child: Text(i18n.upsertProgram_ViewExercises),
                       ),
                     if (!isCreateNew) ...[
                       Label(i18n.upsertProgram_ID),

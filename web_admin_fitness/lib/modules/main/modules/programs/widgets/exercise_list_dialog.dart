@@ -57,7 +57,7 @@ class _ExerciseListDialogState extends State<ExerciseListDialog>
           maxWidth: 600,
           maxHeight: 700,
         ),
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -81,7 +81,7 @@ class _ExerciseListDialogState extends State<ExerciseListDialog>
                   );
                 }
               },
-              child: const Text('Add new exercise'),
+              child: Text(i18n.upsertProgram_AddNewExercise),
             ),
             const SizedBox(height: 16),
             Expanded(
@@ -142,7 +142,7 @@ class _ExerciseListDialogState extends State<ExerciseListDialog>
 
                   if (programs?.isEmpty == true) {
                     return FitnessEmpty(
-                      title: i18n.common_NotFound,
+                      title: i18n.upsertProgram_ExerciseEmpty,
                     );
                   }
 

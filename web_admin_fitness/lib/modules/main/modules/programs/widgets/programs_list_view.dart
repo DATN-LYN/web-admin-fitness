@@ -10,6 +10,7 @@ import 'package:web_admin_fitness/global/widgets/infinity_list.dart';
 import 'package:web_admin_fitness/global/widgets/loading_overlay.dart';
 
 import '../../../../../../../global/routers/app_router.dart';
+import '../../../../../global/widgets/shimmer_program_item.dart';
 import '../helper/program_helper.dart';
 import 'program_item.dart';
 
@@ -116,8 +117,7 @@ class _ProgramsListViewState extends State<ProgramsListView> with ClientMixin {
               itemCount: 3,
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               itemBuilder: (context, index) {
-                // return const ShimmerRemoteTile();
-                return const SizedBox();
+                return const ShimmerProgramItem();
               },
               separatorBuilder: (_, __) => const SizedBox(height: 16),
             );

@@ -175,7 +175,7 @@ class _CategoryUpsertPageState extends State<CategoryUpsertPage>
                     if (!isCreateNew)
                       OutlinedButton(
                         onPressed: showDialogProgramList,
-                        child: const Text('ADD PROGAM'),
+                        child: Text(i18n.upsertCategory_ViewPrograms),
                       ),
                     if (!isCreateNew) ...[
                       Label(i18n.upsertCategory_CategoryID),

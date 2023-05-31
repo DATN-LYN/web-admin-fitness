@@ -11,6 +11,7 @@ import '../../../../../global/utils/constants.dart';
 import '../../../../../global/widgets/fitness_empty.dart';
 import '../../../../../global/widgets/fitness_error.dart';
 import '../../../../../global/widgets/infinity_list.dart';
+import '../../../../../global/widgets/shimmer_program_item.dart';
 import '../../programs/widgets/program_item.dart';
 
 class ProgramListDialog extends StatefulWidget {
@@ -56,7 +57,7 @@ class _ProgramListDialogState extends State<ProgramListDialog>
           maxWidth: 600,
           maxHeight: 700,
         ),
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -80,7 +81,7 @@ class _ProgramListDialogState extends State<ProgramListDialog>
                   );
                 }
               },
-              child: const Text('Add new program'),
+              child: Text(i18n.upsertCategory_AddNewProgram),
             ),
             const SizedBox(height: 16),
             Expanded(
@@ -124,10 +125,9 @@ class _ProgramListDialogState extends State<ProgramListDialog>
                   if (response?.loading ?? false) {
                     return ListView.separated(
                       itemCount: 3,
-                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      padding: const EdgeInsets.all(0),
                       itemBuilder: (context, index) {
-                        // return const ShimmerRemoteTile();
-                        return const SizedBox();
+                        return const ShimmerProgramItem();
                       },
                       separatorBuilder: (_, __) => const SizedBox(height: 16),
                     );
@@ -140,7 +140,7 @@ class _ProgramListDialogState extends State<ProgramListDialog>
 
                   if (programs?.isEmpty == true) {
                     return FitnessEmpty(
-                      title: i18n.common_NotFound,
+                      title: i18n.upsertCategory_ProgramEmpty,
                     );
                   }
 
