@@ -37,7 +37,7 @@ import 'widgets/program_selector.dart';
 class ExerciseUpsertPage extends StatefulWidget {
   const ExerciseUpsertPage({
     super.key,
-    @queryParam this.exercise,
+    this.exercise,
     this.initialProgramId,
   });
 

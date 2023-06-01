@@ -27,7 +27,7 @@ import '../../../../../../global/widgets/upsert_form_button.dart';
 class CategoryUpsertPage extends StatefulWidget {
   const CategoryUpsertPage({
     super.key,
-    @queryParam this.category,
+    this.category,
   });
   final GCategory? category;
 
