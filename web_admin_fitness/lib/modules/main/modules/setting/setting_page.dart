@@ -50,13 +50,11 @@ class _SettingPageState extends State<SettingPage> with ClientMixin {
     }
   }
 
-  Future<void> changePasswordHandler() async {
-    final data = await showDialog(
+  void changePasswordHandler() {
+    showDialog(
       context: context,
       builder: (_) => const ChangePasswordDialog(),
     );
-
-    if (data != null) {}
   }
 
   void logOut() {
@@ -169,7 +167,7 @@ class _SettingPageState extends State<SettingPage> with ClientMixin {
               const SizedBox(height: 16),
               SettingTile(
                 icon: Icons.account_circle_outlined,
-                title: 'Edit Profile',
+                title: i18n.editProfile_Title,
                 onTap: goToEditProfile,
               ),
               const Divider(height: 12),

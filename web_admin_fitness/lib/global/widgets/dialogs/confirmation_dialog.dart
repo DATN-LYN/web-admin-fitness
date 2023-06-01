@@ -16,6 +16,7 @@ class ConfirmationDialog extends StatelessWidget {
     this.onTapPositiveButton,
     this.negativeButtonText,
     this.onTapNegativeButton,
+    this.showNegativeButton = true,
   });
 
   final Widget? image;
@@ -27,6 +28,7 @@ class ConfirmationDialog extends StatelessWidget {
   final String? negativeButtonText;
   final VoidCallback? onTapPositiveButton;
   final VoidCallback? onTapNegativeButton;
+  final bool showNegativeButton;
 
   @override
   Widget build(BuildContext context) {
@@ -95,29 +97,32 @@ class ConfirmationDialog extends StatelessWidget {
                           child: Text(negativeButtonText ?? i18n.button_Cancel),
                         ),
                       ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: onTapPositiveButton ?? context.popRoute,
-                          child: Text(positiveButtonText ?? i18n.button_Ok),
+                      if (showNegativeButton) ...[
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: onTapPositiveButton ?? context.popRoute,
+                            child: Text(positiveButtonText ?? i18n.button_Ok),
+                          ),
                         ),
-                      ),
+                      ]
                     ],
                   ),
                 ],
               ),
             ),
-            Positioned(
-              top: 8,
-              right: 8,
-              child: IconButton(
-                onPressed: context.popRoute,
-                icon: const Icon(
-                  Icons.close,
-                  color: AppColors.grey2,
+            if (showNegativeButton)
+              Positioned(
+                top: 8,
+                right: 8,
+                child: IconButton(
+                  onPressed: context.popRoute,
+                  icon: const Icon(
+                    Icons.close,
+                    color: AppColors.grey2,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),

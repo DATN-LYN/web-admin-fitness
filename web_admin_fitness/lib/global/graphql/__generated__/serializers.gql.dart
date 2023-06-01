@@ -49,6 +49,12 @@ import 'package:web_admin_fitness/global/graphql/auth/__generated__/query_refres
     show GRefreshTokenReq;
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/query_refresh_token.var.gql.dart'
     show GRefreshTokenVars;
+import 'package:web_admin_fitness/global/graphql/cache_handler/__generated__/mutation_change_password.data.gql.dart'
+    show GChangePasswordData, GChangePasswordData_changePassword;
+import 'package:web_admin_fitness/global/graphql/cache_handler/__generated__/mutation_change_password.req.gql.dart'
+    show GChangePasswordReq;
+import 'package:web_admin_fitness/global/graphql/cache_handler/__generated__/mutation_change_password.var.gql.dart'
+    show GChangePasswordVars;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.data.gql.dart'
     show GCategoryData;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.req.gql.dart'
@@ -314,7 +320,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GCategoryData,
   GCategoryReq,
   GCategoryVars,
+  GChangePasswordData,
+  GChangePasswordData_changePassword,
   GChangePasswordInputDto,
+  GChangePasswordReq,
+  GChangePasswordVars,
   GDeleteCategoryData,
   GDeleteCategoryData_deleteCategory,
   GDeleteCategoryReq,

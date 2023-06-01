@@ -52,7 +52,9 @@
       "passwordNotMatch": "Mật khẩu không khớp",
       "confirmChange": "Xác nhận thay đổi",
       "confirmLogout": "Xác nhận đăng xuất",
-      "confirmLogoutDes": "Bạn cần xác nhận để đăng xuất khỏi ứng dụng"
+      "confirmLogoutDes": "Bạn cần xác nhận để đăng xuất khỏi ứng dụng",
+      "changePasswordConfirm": "Bạn có chắc chắn muốn thay đổi mật khẩu",
+      "changePasswordSuccess": "Bạn đã cập nhật mật khẩu thành công"
     },
     "language": ["English (US)", "Tiếng Việt"],
     "categories_":{
@@ -66,6 +68,7 @@
         "searchHint": "Nhập tên chương trình"
     },
     "common_":{
+        "success":"Thành công",
         "actions":"Hành động",
         "notFound":"Không tìm thấy",
         "viewDetail":"Xem chi tiết",

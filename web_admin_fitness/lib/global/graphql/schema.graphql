@@ -249,6 +249,8 @@ type Mutation {
   deleteUserExercise(id: String!): ResponseMessageBase!
   upsertStats(input: UpsertUserStatisticsInputDto!): IUserStatistics!
   deleteStats(statsId: String!): ResponseMessageBase!
+  upsertExercise(input: UpsertExerciseInputDto!): IExercise!
+  deleteExercise(exerciseId: String!): ResponseMessageBase!
   register(input: RegisterInputDto!): ResponseMessageBase!
   logout(userId: String!): ResponseMessageBase!
   changePassword(input: ChangePasswordInputDto!): ResponseMessageBase!
@@ -260,8 +262,6 @@ type Mutation {
   deleteProgram(programId: String!): ResponseMessageBase!
   deleteUser(userId: String!): ResponseMessageBase!
   upsertUser(input: UpsertUserInputDto!): IUser!
-  upsertExercise(input: UpsertExerciseInputDto!): IExercise!
-  deleteExercise(exerciseId: String!): ResponseMessageBase!
 }
 
 type Program {
@@ -292,6 +292,8 @@ type Query {
   getStats(statsId: String!): IUserStatistics!
   getStatsList(queryParams: QueryFilterDto!): IUserStatisticses!
   getMyStats(queryParams: QueryFilterDto!): IUserStatisticses!
+  getExercise(programId: String!): IExercise!
+  getExercises(queryParams: QueryFilterDto!): IExercises!
   loginGoogle(input: LoginInputDto!): LoginResponseDto!
   login(input: LoginInputDto!): LoginResponseDto!
   refreshToken(refreshToken: String!): RefreshTokenResponseDto!
@@ -307,8 +309,6 @@ type Query {
   getCurrentUser: IUser!
   getUsers(queryParams: QueryFilterDto!): IUsers!
   getTopUsersProgram(queryParams: QueryFilterDto!): IUsers!
-  getExercise(exerciseId: String!): IExercise!
-  getExercises(queryParams: QueryFilterDto!): IExercises!
 }
 
 input QueryFilterDto {
