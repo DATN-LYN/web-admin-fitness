@@ -89,6 +89,7 @@ dependencies:
   flutter_slidable: ^3.0.0
   syncfusion_flutter_charts: ^21.2.4
   ionicons: ^0.2.2
+  jiffy: ^5.0.0
 
 dev_dependencies:
   flutter_test:

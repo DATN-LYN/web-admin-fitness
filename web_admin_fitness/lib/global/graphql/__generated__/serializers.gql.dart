@@ -112,6 +112,12 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fra
     show GUserReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.var.gql.dart'
     show GUserVars;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_statistics_fragment.data.gql.dart'
+    show GUserStatisticsData;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_statistics_fragment.req.gql.dart'
+    show GUserStatisticsReq;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_statistics_fragment.var.gql.dart'
+    show GUserStatisticsVars;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_category.data.gql.dart'
     show GDeleteCategoryData, GDeleteCategoryData_deleteCategory;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_category.req.gql.dart'
@@ -513,6 +519,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpsertUserVars,
   GUserData,
   GUserReq,
+  GUserStatisticsData,
+  GUserStatisticsReq,
+  GUserStatisticsVars,
   GUserVars,
 ])
 final Serializers serializers = _serializersBuilder.build();
