@@ -4,9 +4,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:web_admin_fitness/global/routers/app_router.dart';
+import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/widgets/toast/multi_toast.dart';
 
 import '../../../../../global/gen/i18n.dart';
+import '../../../../../global/graphql/cache_handler/__generated__/mutation_change_password.req.gql.dart';
 import '../../../../../global/themes/app_colors.dart';
+import '../../../../../global/widgets/dialogs/confirmation_dialog.dart';
 import '../../../../../global/widgets/label.dart';
 
 class ChangePasswordDialog extends StatefulWidget {
@@ -16,16 +22,64 @@ class ChangePasswordDialog extends StatefulWidget {
   State<ChangePasswordDialog> createState() => _ChangePasswordDialogState();
 }
 
-class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
+class _ChangePasswordDialogState extends State<ChangePasswordDialog>
+    with ClientMixin {
   final formKey = GlobalKey<FormBuilderState>();
   bool passwordObscure = true;
   bool newPasswordObscure = true;
   bool confirmNewPasswordObscure = true;
 
-  void navigateToSettingPage() {
+  void changePass() {
     if (formKey.currentState!.saveAndValidate()) {
       final data = formKey.currentState!.value;
-      AutoRouter.of(context).pop(data);
+      final i18n = I18n.of(context)!;
+
+      showDialog(
+        context: context,
+        builder: (context) {
+          return ConfirmationDialog(
+            titleText: i18n.setting_ChangePassword,
+            contentText: i18n.setting_ChangePasswordConfirm,
+            onTapPositiveButton: () async {
+              final req = GChangePasswordReq(
+                (b) => b
+                  ..vars.input.oldPassword = data['oldPassword']
+                  ..vars.input.newPassword = data['newPassword'],
+              );
+
+              final res = await client.request(req).first;
+
+              if (res.hasErrors) {
+                if (mounted) {
+                  showErrorToast(
+                      context, res.graphqlErrors?.first.message.toString());
+                }
+              } else {
+                if (mounted) {
+                  await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return ConfirmationDialog(
+                        titleText: i18n.common_Success,
+                        contentText: i18n.setting_ChangePasswordSuccess,
+                        showNegativeButton: false,
+                        image: const Icon(
+                          Ionicons.checkmark_circle,
+                          color: AppColors.primaryBold,
+                        ),
+                      );
+                    },
+                  );
+                  if (mounted) {
+                    AutoRouter.of(context)
+                        .popUntilRouteWithName(SettingsRoute.name);
+                  }
+                }
+              }
+            },
+          );
+        },
+      );
     }
   }
 
@@ -169,7 +223,6 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                     ),
                   ),
                 ),
-                onSubmitted: (_) => navigateToSettingPage(),
                 autocorrect: false,
               ),
               const SizedBox(height: 20),
@@ -187,7 +240,7 @@ class _ChangePasswordDialogState extends State<ChangePasswordDialog> {
                   const SizedBox(width: 12),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: navigateToSettingPage,
+                      onPressed: changePass,
                       child: Text(i18n.button_Ok),
                     ),
                   ),

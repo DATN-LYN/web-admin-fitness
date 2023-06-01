@@ -12,6 +12,11 @@ type Category {
   updatedAt: DateTime
 }
 
+input ChangePasswordInputDto {
+  oldPassword: String
+  newPassword: String
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -244,10 +249,6 @@ type Mutation {
   deleteUserExercise(id: String!): ResponseMessageBase!
   upsertStats(input: UpsertUserStatisticsInputDto!): IUserStatistics!
   deleteStats(statsId: String!): ResponseMessageBase!
-  upsertExercise(input: UpsertExerciseInputDto!): IExercise!
-  deleteExercise(exerciseId: String!): ResponseMessageBase!
-  register(input: RegisterInputDto!): ResponseMessageBase!
-  logout(userId: String!): ResponseMessageBase!
   upsertInbox(input: UpsertInboxInputDto!): IInbox!
   deleteInbox(inboxId: String!): ResponseMessageBase!
   upsertCategory(input: UpsertCategoryInputDto!): ICategory!
@@ -256,6 +257,11 @@ type Mutation {
   deleteProgram(programId: String!): ResponseMessageBase!
   deleteUser(userId: String!): ResponseMessageBase!
   upsertUser(input: UpsertUserInputDto!): IUser!
+  upsertExercise(input: UpsertExerciseInputDto!): IExercise!
+  deleteExercise(exerciseId: String!): ResponseMessageBase!
+  register(input: RegisterInputDto!): ResponseMessageBase!
+  logout(userId: String!): ResponseMessageBase!
+  changePassword(input: ChangePasswordInputDto!): ResponseMessageBase!
 }
 
 type Program {
@@ -276,6 +282,7 @@ type Query {
   getSupport(supportId: String!): ISupport!
   getSupports(queryParams: QueryFilterDto!): ISupports!
   getMySupports(queryParams: QueryFilterDto!): ISupports!
+  getUnReadSupports: Float!
   getUserProgram(id: String!): IUserProgram!
   getUserPrograms(queryParams: QueryFilterDto!): IUserPrograms!
   getMyUserPrograms(queryParams: QueryFilterDto!): IUserPrograms!
@@ -285,11 +292,6 @@ type Query {
   getStats(statsId: String!): IUserStatistics!
   getStatsList(queryParams: QueryFilterDto!): IUserStatisticses!
   getMyStats(queryParams: QueryFilterDto!): IUserStatisticses!
-  getExercise(programId: String!): IExercise!
-  getExercises(queryParams: QueryFilterDto!): IExercises!
-  loginGoogle(input: LoginInputDto!): LoginResponseDto!
-  login(input: LoginInputDto!): LoginResponseDto!
-  refreshToken(refreshToken: String!): RefreshTokenResponseDto!
   getInbox(inboxId: String!): IInbox!
   getInboxes(queryParams: QueryFilterDto!): IInboxes!
   getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
@@ -302,6 +304,11 @@ type Query {
   getCurrentUser: IUser!
   getUsers(queryParams: QueryFilterDto!): IUsers!
   getTopUsersProgram(queryParams: QueryFilterDto!): IUsers!
+  getExercise(exerciseId: String!): IExercise!
+  getExercises(queryParams: QueryFilterDto!): IExercises!
+  loginGoogle(input: LoginInputDto!): LoginResponseDto!
+  login(input: LoginInputDto!): LoginResponseDto!
+  refreshToken(refreshToken: String!): RefreshTokenResponseDto!
 }
 
 input QueryFilterDto {

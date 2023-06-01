@@ -51,7 +51,9 @@
         "confirmNewPasswordRequired": "Confirm new password is required",
         "passwordNotMatch": "Password not match",
         "confirmLogout": "Confirm logout",
-        "confirmLogoutDes": "You need confirm to logout from this app"
+        "confirmLogoutDes": "You need confirm to logout from this app",
+        "changePasswordConfirm": "Are you sure you want to change your password?",
+        "changePasswordSuccess": "Your password has been updated successfully."
     },
     "language": ["English (US)", "Tiếng Việt"],
     "categories_":{
@@ -65,6 +67,7 @@
         "searchHint":"Enter program name"
     },
     "common_":{
+        "success":"Success",
         "actions":"Actions",
         "notFound":"Not Found",
         "viewDetail":"View Detail",
