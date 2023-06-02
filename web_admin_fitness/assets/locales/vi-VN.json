@@ -81,7 +81,11 @@
         "calo":"Calo",
         "cameraPermissionRequest": "{appName} would like to use your camera for your scan document.",
         "photoPermissionRequest": "{appName} requires access to the photo library for you to be able to upload photos for your print document.",
-        "storagePermissionRequest": "{appName} requires access to the storage for you to be able to save your print document."
+        "storagePermissionRequest": "{appName} requires access to the storage for you to be able to save your print document.",
+        "weekly": "Tuần",
+        "monthly": "Tháng",
+        "yearly": "Năm",
+        "minutes": "Phút"
     },
     "main_":{
         "home":"Trang chủ",
@@ -277,5 +281,33 @@
         ],
         "supportDetails": "Chi tiết yêu cầu hỗ trợ",
         "title": "Hỗ trợ"
+    },
+    "weekDays_":[
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "CN"
+    ],
+    "statistics_":{
+        "recentWorkout": "Chương trình tập gần đây",
+        "youHaveBurnt":"Bạn đã đốt",
+        "thisWeek": "tuần này",
+        "thisMonth": "tháng này",
+        "calories": "calories",
+        "whatAGreatValue":"Thật tuyệt vời!",
+        "bodyCountHistory":"Lịch sử chỉ số cơ thể",
+        "selectMonth": "Chọn tháng"
+    },
+    "chart_":{
+        "chart": "Biểu đồ",
+        "chartType":[
+          "cột",
+          "thanh",
+          "đường",
+          "đường bậc thang"
+        ]
     }
 }

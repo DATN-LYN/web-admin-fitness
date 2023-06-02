@@ -1,31 +1,27 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:fitness_app/global/data/models/statistics_filter_data.dart';
-import 'package:fitness_app/global/enums/filter_range_type.dart';
-import 'package:fitness_app/global/graphql/query/__generated__/query_get_my_stats.req.gql.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_user_stats.req.gql.dart';
 
-import '../../../../../global/enums/filter_range_type.dart';
-import '../../../../../global/gen/i18n.dart';
-import '../../../../../global/graphql/__generated__/schema.schema.gql.dart';
-import '../../../../../global/providers/me_provider.dart';
-import '../../../../../global/themes/app_colors.dart';
-import '../models/statistics_filter_data.dart';
+import '../../../../../../../global/enums/filter_range_type.dart';
+import '../../../../../../../global/gen/i18n.dart';
+import '../../../../../../../global/graphql/__generated__/schema.schema.gql.dart';
+import '../../../../../../../global/themes/app_colors.dart';
+import '../../../models/statistics_filter_data.dart';
 import 'month_picker_dialog.dart';
 import 'year_picker_dialog.dart';
 
 class StatisticsFilter extends StatefulWidget {
   const StatisticsFilter({
+    super.key,
     required this.request,
     required this.onChanged,
     required this.filter,
-    super.key,
   });
 
-  final GGetMyStatsReq request;
-  final Function(GGetMyStatsReq, StatisticsFilterData) onChanged;
+  final GGetUserStatsReq request;
+  final Function(GGetUserStatsReq, StatisticsFilterData) onChanged;
   final StatisticsFilterData filter;
 
   @override
@@ -42,17 +38,13 @@ class _StatisticsFilterState extends State<StatisticsFilter> {
       [
         GFilterDto(
           (b) => b
-            ..data = filter.rangeType
-                ?.startDate(month: filter.month, year: filter.year)
-                .toString()
+            ..data = startDate.toString()
             ..field = 'UserStatistics.updatedAt'
             ..operator = GFILTER_OPERATOR.gt,
         ),
         GFilterDto(
           (b) => b
-            ..data = filter.rangeType
-                ?.endDate(month: filter.month, year: filter.year)
-                .toString()
+            ..data = endDate.toString()
             ..field = 'UserStatistics.updatedAt'
             ..operator = GFILTER_OPERATOR.lt,
         ),
@@ -70,18 +62,22 @@ class _StatisticsFilterState extends State<StatisticsFilter> {
   }
 
   void onFilter() {
-    final now = DateTime.now();
-
     handleFilter(
-      filter.rangeType?.startDate(month: filter.month, year: filter.year) ??
-          now,
-      filter.rangeType?.endDate(month: filter.month, year: filter.year) ?? now,
+      filter.rangeType!.startDate(
+        month: filter.month,
+        year: filter.year,
+      )!,
+      filter.rangeType!.endDate(
+        month: filter.month,
+        year: filter.year,
+      )!,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 8),
         Row(
@@ -118,11 +114,15 @@ class _StatisticsFilterState extends State<StatisticsFilter> {
                 return MonthPickerDialog(
                   initialValue: filter.rangeType?.getFirstDayOfMonth(
                     filter.month ?? Jiffy().month,
+                    filter.year ?? Jiffy().year,
                   ),
                   onChanged: (selectedMonth) {
                     if (selectedMonth != null) {
                       setState(() {
-                        filter = filter.copyWith(month: selectedMonth.month);
+                        filter = filter.copyWith(
+                          month: selectedMonth.month,
+                          year: selectedMonth.year,
+                        );
                       });
                       onFilter();
                     }
@@ -144,20 +144,19 @@ class _StatisticsFilterState extends State<StatisticsFilter> {
                 ),
               ),
               builder: (field) {
-                return const SizedBox();
-                // return YearPickerDialog(
-                //   initialValue: filter.rangeType?.getFirstDayOfMonth(
-                //     filter.month ?? Jiffy().month,
-                //   ),
-                //   onChanged: (selectedMonth) {
-                //     if (selectedMonth != null) {
-                //       setState(() {
-                //         filter = filter.copyWith(year: selectedMonth.year);
-                //       });
-                //       onFilter();
-                //     }
-                //   },
-                // );
+                return YearPickerDialog(
+                  initialValue: filter.rangeType?.getFirstDayOfYear(
+                    filter.year ?? Jiffy().year,
+                  ),
+                  onChanged: (selectedMonth) {
+                    if (selectedMonth != null) {
+                      setState(() {
+                        filter = filter.copyWith(year: selectedMonth.year);
+                      });
+                      onFilter();
+                    }
+                  },
+                );
               },
             ),
           ),

@@ -74,7 +74,7 @@ dependencies:
   responsive_builder: ^0.6.4
   side_sheet: ^1.0.4
   url_strategy: ^0.2.0
-  syncfusion_flutter_core: ^21.1.41
+  # syncfusion_flutter_core: ^21.1.41
   sentry_flutter: ^6.18.1
   sentry_link: ^0.1.2
   flutter_svg: ^2.0.5
@@ -87,9 +87,10 @@ dependencies:
   http: ^0.13.6
   path_provider: ^2.0.14
   flutter_slidable: ^3.0.0
-  syncfusion_flutter_charts: ^21.2.4
+  syncfusion_flutter_charts: ^21.1.38
   ionicons: ^0.2.2
   jiffy: ^5.0.0
+  syncfusion_flutter_datepicker: ^21.1.39
 
 dev_dependencies:
   flutter_test:

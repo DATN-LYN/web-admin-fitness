@@ -166,12 +166,20 @@ class I18n implements WidgetsLocalizations {
 	String get common_Name => "Name";
 	/// "Calo"
 	String get common_Calo => "Calo";
-	/// "${appName} would like to use your camera for your scan document."
-	String common_CameraPermissionRequest(String appName) => "${appName} would like to use your camera for your scan document.";
-	/// "${appName} requires access to the photo library for you to be able to upload photos for your print document."
-	String common_PhotoPermissionRequest(String appName) => "${appName} requires access to the photo library for you to be able to upload photos for your print document.";
-	/// "${appName} requires access to the storage for you to be able to save your print document."
-	String common_StoragePermissionRequest(String appName) => "${appName} requires access to the storage for you to be able to save your print document.";
+	/// "${appName} would like to use your camera to take photo."
+	String common_CameraPermissionRequest(String appName) => "${appName} would like to use your camera to take photo.";
+	/// "${appName} requires access to the photo library for you to be able to upload photos."
+	String common_PhotoPermissionRequest(String appName) => "${appName} requires access to the photo library for you to be able to upload photos.";
+	/// "${appName} requires access to the storage for you to be able to save your image."
+	String common_StoragePermissionRequest(String appName) => "${appName} requires access to the storage for you to be able to save your image.";
+	/// "Weekly"
+	String get common_Weekly => "Weekly";
+	/// "Monthly"
+	String get common_Monthly => "Monthly";
+	/// "Yearly"
+	String get common_Yearly => "Yearly";
+	/// "Minutes"
+	String get common_Minutes => "Minutes";
 	/// "Home"
 	String get main_Home => "Home";
 	/// "Categories"
@@ -456,6 +464,28 @@ class I18n implements WidgetsLocalizations {
 	String get support_SupportDetails => "Support Request Details";
 	/// "Support"
 	String get support_Title => "Support";
+	/// ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+	List<String> get weekDays_ => ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+	/// "Recent Workout"
+	String get statistics_RecentWorkout => "Recent Workout";
+	/// "You have burnt"
+	String get statistics_YouHaveBurnt => "You have burnt";
+	/// "this week"
+	String get statistics_ThisWeek => "this week";
+	/// "this month"
+	String get statistics_ThisMonth => "this month";
+	/// "calories"
+	String get statistics_Calories => "calories";
+	/// "What a great value!"
+	String get statistics_WhatAGreatValue => "What a great value!";
+	/// "Body Count History"
+	String get statistics_BodyCountHistory => "Body Count History";
+	/// "Select month"
+	String get statistics_SelectMonth => "Select month";
+	/// "Chart"
+	String get chart_Chart => "Chart";
+	/// ["column", "bar", "line", "stepline"]
+	List<String> get chart_ChartType => ["column", "bar", "line", "stepline"];
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -679,6 +709,18 @@ class _I18n_vi_VN extends I18n {
 	/// "${appName} requires access to the storage for you to be able to save your print document."
 	@override
 	String common_StoragePermissionRequest(String appName) => "${appName} requires access to the storage for you to be able to save your print document.";
+	/// "Tuần"
+	@override
+	String get common_Weekly => "Tuần";
+	/// "Tháng"
+	@override
+	String get common_Monthly => "Tháng";
+	/// "Năm"
+	@override
+	String get common_Yearly => "Năm";
+	/// "Phút"
+	@override
+	String get common_Minutes => "Phút";
 	/// "Trang chủ"
 	@override
 	String get main_Home => "Trang chủ";
@@ -1105,6 +1147,39 @@ class _I18n_vi_VN extends I18n {
 	/// "Hỗ trợ"
 	@override
 	String get support_Title => "Hỗ trợ";
+	/// ["T2", "T3", "T4", "T5", "T6", "T7", "CN"]
+	@override
+	List<String> get weekDays_ => ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
+	/// "Chương trình tập gần đây"
+	@override
+	String get statistics_RecentWorkout => "Chương trình tập gần đây";
+	/// "Bạn đã đốt"
+	@override
+	String get statistics_YouHaveBurnt => "Bạn đã đốt";
+	/// "tuần này"
+	@override
+	String get statistics_ThisWeek => "tuần này";
+	/// "tháng này"
+	@override
+	String get statistics_ThisMonth => "tháng này";
+	/// "calories"
+	@override
+	String get statistics_Calories => "calories";
+	/// "Thật tuyệt vời!"
+	@override
+	String get statistics_WhatAGreatValue => "Thật tuyệt vời!";
+	/// "Lịch sử chỉ số cơ thể"
+	@override
+	String get statistics_BodyCountHistory => "Lịch sử chỉ số cơ thể";
+	/// "Chọn tháng"
+	@override
+	String get statistics_SelectMonth => "Chọn tháng";
+	/// "Biểu đồ"
+	@override
+	String get chart_Chart => "Biểu đồ";
+	/// ["cột", "thanh", "đường", "đường bậc thang"]
+	@override
+	List<String> get chart_ChartType => ["cột", "thanh", "đường", "đường bậc thang"];
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();
