@@ -1,0 +1,13 @@
+#import '../fragment/meta_fragment.graphql'
+#import '../fragment/user_statistics_fragment.graphql'
+
+query GetUserStats($queryParams: QueryFilterDto!, $userId: String!) {
+  getUserStats(queryParams: $queryParams, userId: $userId) {
+    meta {
+      ...Meta
+    }
+    items {
+      ...UserStatistics
+    }
+  }
+}

@@ -78,10 +78,13 @@
         "id":"ID",
         "name":"Name",
         "calo":"Calo",
-        "cameraPermissionRequest": "{appName} would like to use your camera for your scan document.",
-        "photoPermissionRequest": "{appName} requires access to the photo library for you to be able to upload photos for your print document.",
-        "storagePermissionRequest": "{appName} requires access to the storage for you to be able to save your print document."
-        
+        "cameraPermissionRequest": "{appName} would like to use your camera to take photo.",
+        "photoPermissionRequest": "{appName} requires access to the photo library for you to be able to upload photos.",
+        "storagePermissionRequest": "{appName} requires access to the storage for you to be able to save your image.",
+        "weekly": "Weekly",
+        "monthly": "Monthly",
+        "yearly": "Yearly",
+        "minutes": "Minutes"
     },
     "main_":{
         "home":"Home",
@@ -276,6 +279,35 @@
         ],
         "supportDetails": "Support Request Details",
         "title": "Support"
+    },
+    "weekDays_":[
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+    ],
+    "statistics_":{
+        "userStatistics": "Users Statistics",
+        "recentWorkout": "Recent Workout",
+        "youHaveBurnt":"You have burnt",
+        "thisWeek": "this week",
+        "thisMonth": "this month",
+        "calories": "calories",
+        "whatAGreatValue":"What a great value!",
+        "bodyCountHistory":"Body Count History",
+        "selectMonth": "Select month"
+    },
+    "chart_":{
+        "chart": "Chart",
+        "chartType":[
+          "column",
+          "bar",
+          "line",
+          "stepline"
+        ]
     }
     
 }

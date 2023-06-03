@@ -112,6 +112,12 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fra
     show GUserReq;
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.var.gql.dart'
     show GUserVars;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_statistics_fragment.data.gql.dart'
+    show GUserStatisticsData;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_statistics_fragment.req.gql.dart'
+    show GUserStatisticsReq;
+import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_statistics_fragment.var.gql.dart'
+    show GUserStatisticsVars;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_category.data.gql.dart'
     show GDeleteCategoryData, GDeleteCategoryData_deleteCategory;
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_delete_category.req.gql.dart'
@@ -297,6 +303,16 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_t
     show GGetTopUsersProgramReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.var.gql.dart'
     show GGetTopUsersProgramVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_user_stats.data.gql.dart'
+    show
+        GGetUserStatsData,
+        GGetUserStatsData_getUserStats,
+        GGetUserStatsData_getUserStats_items,
+        GGetUserStatsData_getUserStats_meta;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_user_stats.req.gql.dart'
+    show GGetUserStatsReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_user_stats.var.gql.dart'
+    show GGetUserStatsVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.data.gql.dart'
     show
         GGetUsersData,
@@ -431,6 +447,12 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetTopUsersProgramData_getTopUsersProgram_meta,
   GGetTopUsersProgramReq,
   GGetTopUsersProgramVars,
+  GGetUserStatsData,
+  GGetUserStatsData_getUserStats,
+  GGetUserStatsData_getUserStats_items,
+  GGetUserStatsData_getUserStats_meta,
+  GGetUserStatsReq,
+  GGetUserStatsVars,
   GGetUsersData,
   GGetUsersData_getUsers,
   GGetUsersData_getUsers_items,
@@ -513,6 +535,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpsertUserVars,
   GUserData,
   GUserReq,
+  GUserStatisticsData,
+  GUserStatisticsReq,
+  GUserStatisticsVars,
   GUserVars,
 ])
 final Serializers serializers = _serializersBuilder.build();

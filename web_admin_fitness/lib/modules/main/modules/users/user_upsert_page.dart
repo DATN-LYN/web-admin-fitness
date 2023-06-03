@@ -23,6 +23,7 @@ import '../../../../../../global/gen/i18n.dart';
 import '../../../../../../global/widgets/dialogs/confirmation_dialog.dart';
 import '../../../../../../global/widgets/right_sheet_appbar.dart';
 import '../../../../../../global/widgets/toast/multi_toast.dart';
+import 'modules/stats/user_statistics_widget.dart';
 
 class UserUpsertPage extends StatefulWidget {
   const UserUpsertPage({
@@ -331,7 +332,14 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                           hintText: i18n.upsertUser_ConfirmPasswordHint,
                         ),
                       ),
-                    ]
+                    ],
+                    if (!isCreateNew) ...[
+                      const Divider(
+                        height: 48,
+                        color: AppColors.grey4,
+                      ),
+                      UserStatisticsWidget(userId: widget.user!.id),
+                    ],
                   ],
                 ),
               ),
@@ -342,7 +350,7 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
               positiveButtonText:
                   isCreateNew ? i18n.button_Confirm : i18n.button_Save,
               negativeButtonText: i18n.button_Reset,
-            )
+            ),
           ],
         ),
       ),

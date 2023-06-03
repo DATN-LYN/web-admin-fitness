@@ -7,7 +7,7 @@ class AppThemes {
     return getThemeData(
       Brightness.light,
       const ColorScheme.light(
-        primary: AppColors.primary,
+        primary: AppColors.primaryBold,
         secondary: AppColors.primary,
         background: AppColors.background,
         onBackground: AppColors.grey1,

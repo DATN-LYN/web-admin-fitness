@@ -1,0 +1,9 @@
+fragment UserStatistics on UserStatistics {
+  id
+  userId
+  programCount
+  caloCount
+  durationCount
+  createdAt
+  updatedAt
+}

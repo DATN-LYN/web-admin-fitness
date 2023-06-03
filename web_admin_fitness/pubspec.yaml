@@ -87,8 +87,10 @@ dependencies:
   http: ^0.13.6
   path_provider: ^2.0.14
   flutter_slidable: ^3.0.0
-  syncfusion_flutter_charts: ^21.2.4
+  syncfusion_flutter_charts: ^21.1.38
   ionicons: ^0.2.2
+  jiffy: ^5.0.0
+  syncfusion_flutter_datepicker: ^21.1.39
 
 dev_dependencies:
   flutter_test:
@@ -101,6 +103,9 @@ dev_dependencies:
   auto_route_generator: ^5.0.3
   hive_generator: ^2.0.0
   ferry_generator: ^0.8.0+1
+
+dependency_overrides:
+  syncfusion_flutter_core: 21.1.41
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
