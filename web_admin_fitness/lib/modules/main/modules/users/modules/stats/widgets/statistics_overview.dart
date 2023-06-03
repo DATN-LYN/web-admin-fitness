@@ -32,11 +32,11 @@ class StatisticsOverview extends StatelessWidget {
           title: calo,
           subtitle: i18n.common_Calo,
           icon: const Icon(
-            Icons.feed_rounded,
+            Icons.local_fire_department,
             size: 30,
-            color: AppColors.success,
+            color: AppColors.error,
           ),
-          backgroundColor: AppColors.successSoft,
+          backgroundColor: AppColors.errorSoft,
         ),
         UserStatisticItem(
           title: duration,
@@ -44,9 +44,9 @@ class StatisticsOverview extends StatelessWidget {
           icon: const Icon(
             Icons.timelapse,
             size: 30,
-            color: AppColors.warning,
+            color: AppColors.information,
           ),
-          backgroundColor: AppColors.warningSoft,
+          backgroundColor: AppColors.informationSoft,
         ),
         UserStatisticItem(
           title: program,

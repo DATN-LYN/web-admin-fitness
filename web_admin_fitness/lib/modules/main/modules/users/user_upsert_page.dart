@@ -334,7 +334,10 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                       ),
                     ],
                     if (!isCreateNew) ...[
-                      const Divider(height: 24),
+                      const Divider(
+                        height: 48,
+                        color: AppColors.grey4,
+                      ),
                       UserStatisticsWidget(userId: widget.user!.id),
                     ],
                   ],

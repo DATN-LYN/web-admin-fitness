@@ -290,6 +290,7 @@
         "Sun"
     ],
     "statistics_":{
+        "userStatistics": "Users Statistics",
         "recentWorkout": "Recent Workout",
         "youHaveBurnt":"You have burnt",
         "thisWeek": "this week",

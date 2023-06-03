@@ -466,6 +466,8 @@ class I18n implements WidgetsLocalizations {
 	String get support_Title => "Support";
 	/// ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 	List<String> get weekDays_ => ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+	/// "Users Statistics"
+	String get statistics_UserStatistics => "Users Statistics";
 	/// "Recent Workout"
 	String get statistics_RecentWorkout => "Recent Workout";
 	/// "You have burnt"
@@ -1150,6 +1152,9 @@ class _I18n_vi_VN extends I18n {
 	/// ["T2", "T3", "T4", "T5", "T6", "T7", "CN"]
 	@override
 	List<String> get weekDays_ => ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
+	/// "Thống kê dữ liệu tập luyện"
+	@override
+	String get statistics_UserStatistics => "Thống kê dữ liệu tập luyện";
 	/// "Chương trình tập gần đây"
 	@override
 	String get statistics_RecentWorkout => "Chương trình tập gần đây";

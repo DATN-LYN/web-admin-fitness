@@ -292,6 +292,7 @@
         "CN"
     ],
     "statistics_":{
+        "userStatistics": "Thống kê dữ liệu tập luyện",
         "recentWorkout": "Chương trình tập gần đây",
         "youHaveBurnt":"Bạn đã đốt",
         "thisWeek": "tuần này",

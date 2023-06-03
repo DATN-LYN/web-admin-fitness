@@ -91,7 +91,16 @@ class _UserStatisticsWidgetState extends State<UserStatisticsWidget>
 
         return Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              'User Statistics',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 8),
             StatisticsFilter(
               filter: filterData,
               request: getMyStatsReq,

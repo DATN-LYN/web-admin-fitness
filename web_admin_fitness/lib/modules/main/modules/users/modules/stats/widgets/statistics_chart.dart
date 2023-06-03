@@ -59,7 +59,15 @@ class _StatisticsChartState extends State<StatisticsChart> {
           height: 40,
           child: AdaptiveSelector(
             allowClear: false,
-            initialOption: options.first,
+            decoration: const InputDecoration(
+              filled: true,
+              fillColor: AppColors.white,
+            ),
+            initialOption: AdaptiveSelectorOption(
+              label: '${i18n.chart_Chart} ${chartType.label(i18n)}',
+              value: chartType,
+            ),
+            type: SelectorType.menu,
             options: options,
             onChanged: (option) {
               if (option != null) {

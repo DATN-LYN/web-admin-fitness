@@ -1,3 +1,4 @@
+import 'package:adaptive_selector/adaptive_selector.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -76,27 +77,36 @@ class _StatisticsFilterState extends State<StatisticsFilter> {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n.of(context)!;
+    final options = FilterRangeType.values
+        .map(
+          (e) => AdaptiveSelectorOption(label: e.label(i18n), value: e),
+        )
+        .toList();
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 8),
-        Row(
-          children: [
-            ...FilterRangeType.values.map(
-              (rangeType) {
-                return FilterButton(
-                  isSelected: filter.rangeType == rangeType,
-                  filter: rangeType,
-                  onFilter: () {
-                    setState(() {
-                      filter = filter.copyWith(rangeType: rangeType);
-                    });
-                    onFilter();
-                  },
-                );
-              },
-            ),
-          ],
+        AdaptiveSelector<FilterRangeType>(
+          decoration: const InputDecoration(
+            filled: true,
+            fillColor: AppColors.white,
+          ),
+          allowClear: false,
+          type: SelectorType.menu,
+          options: options,
+          initialOption: AdaptiveSelectorOption(
+            label: filter.rangeType!.label(i18n),
+            value: filter.rangeType!,
+          ),
+          onChanged: (value) {
+            if (value != null) {
+              setState(() {
+                filter = filter.copyWith(rangeType: value.value);
+              });
+            }
+            onFilter();
+          },
         ),
         if (filter.rangeType == FilterRangeType.monthly)
           Padding(
@@ -104,12 +114,6 @@ class _StatisticsFilterState extends State<StatisticsFilter> {
             child: FormBuilderField<int>(
               name: 'month',
               initialValue: Jiffy().month,
-              decoration: const InputDecoration(
-                suffixIcon: Icon(
-                  Icons.arrow_drop_down_sharp,
-                  size: 30,
-                ),
-              ),
               builder: (field) {
                 return MonthPickerDialog(
                   initialValue: filter.rangeType?.getFirstDayOfMonth(
@@ -137,12 +141,6 @@ class _StatisticsFilterState extends State<StatisticsFilter> {
             child: FormBuilderField<int>(
               name: 'year',
               initialValue: Jiffy().month,
-              decoration: const InputDecoration(
-                suffixIcon: Icon(
-                  Icons.arrow_drop_down_sharp,
-                  size: 30,
-                ),
-              ),
               builder: (field) {
                 return YearPickerDialog(
                   initialValue: filter.rangeType?.getFirstDayOfYear(
