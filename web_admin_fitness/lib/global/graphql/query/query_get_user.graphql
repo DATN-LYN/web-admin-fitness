@@ -1,0 +1,24 @@
+#import '../fragment/program_fragment.graphql'
+#import '../fragment/exercise_fragment.graphql'
+
+query GetUser($userId: String!) {
+  getUser (userId: $userId) {
+    id
+    email
+    fullName
+    avatar
+    age
+    userPrograms {
+      id
+      program {
+        ...Program
+      }
+    }
+    userExercises {
+      id
+      exercise {
+        ...Exercise
+      }
+    }
+  }
+}

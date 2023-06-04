@@ -303,6 +303,21 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_t
     show GGetTopUsersProgramReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.var.gql.dart'
     show GGetTopUsersProgramVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_user.data.gql.dart'
+    show
+        GGetUserData,
+        GGetUserData_getUser,
+        GGetUserData_getUser_userExercises,
+        GGetUserData_getUser_userExercises_exercise,
+        GGetUserData_getUser_userExercises_exercise_program,
+        GGetUserData_getUser_userExercises_exercise_program_category,
+        GGetUserData_getUser_userPrograms,
+        GGetUserData_getUser_userPrograms_program,
+        GGetUserData_getUser_userPrograms_program_category;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_user.req.gql.dart'
+    show GGetUserReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_user.var.gql.dart'
+    show GGetUserVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_user_stats.data.gql.dart'
     show
         GGetUserStatsData,
@@ -447,12 +462,23 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetTopUsersProgramData_getTopUsersProgram_meta,
   GGetTopUsersProgramReq,
   GGetTopUsersProgramVars,
+  GGetUserData,
+  GGetUserData_getUser,
+  GGetUserData_getUser_userExercises,
+  GGetUserData_getUser_userExercises_exercise,
+  GGetUserData_getUser_userExercises_exercise_program,
+  GGetUserData_getUser_userExercises_exercise_program_category,
+  GGetUserData_getUser_userPrograms,
+  GGetUserData_getUser_userPrograms_program,
+  GGetUserData_getUser_userPrograms_program_category,
+  GGetUserReq,
   GGetUserStatsData,
   GGetUserStatsData_getUserStats,
   GGetUserStatsData_getUserStats_items,
   GGetUserStatsData_getUserStats_meta,
   GGetUserStatsReq,
   GGetUserStatsVars,
+  GGetUserVars,
   GGetUsersData,
   GGetUsersData_getUsers,
   GGetUsersData_getUsers_items,

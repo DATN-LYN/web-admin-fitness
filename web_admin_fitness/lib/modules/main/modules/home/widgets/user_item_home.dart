@@ -9,58 +9,63 @@ class UserItemHome extends StatelessWidget with ClientMixin {
   UserItemHome({
     super.key,
     required this.user,
+    this.onTap,
   });
 
   final GUser user;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
 
-    return ShadowWrapper(
-      child: Row(
-        children: [
-          ShimmerImage(
-            imageUrl: user.avatar ?? '-',
-            width: 50,
-            height: 50,
-            borderRadius: BorderRadius.circular(100),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text.rich(
-                        TextSpan(
-                          text: user.fullName ?? '_',
-                          children: [
-                            TextSpan(
-                              text: ' - ${user.age}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                              ),
-                            )
-                          ],
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
+    return GestureDetector(
+      onTap: onTap,
+      child: ShadowWrapper(
+        child: Row(
+          children: [
+            ShimmerImage(
+              imageUrl: user.avatar ?? '-',
+              width: 50,
+              height: 50,
+              borderRadius: BorderRadius.circular(100),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text.rich(
+                          TextSpan(
+                            text: user.fullName ?? '_',
+                            children: [
+                              TextSpan(
+                                text: ' - ${user.age}',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )
+                            ],
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(user.email),
-                    ],
+                        const SizedBox(height: 8),
+                        Text(user.email),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                Text(user.countProgram?.toInt().toString() ?? '_'),
-              ],
+                  const SizedBox(width: 10),
+                  Text(user.countProgram?.toInt().toString() ?? '_'),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
