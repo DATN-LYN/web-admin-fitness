@@ -1,9 +1,12 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:adaptive_selector/adaptive_selector.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:web_admin_fitness/global/extensions/gender_extension.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_register.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_user_cache_handler.dart';
@@ -188,6 +191,8 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
       name: widget.user?.fullName,
       size: 100,
     );
+    final responsive = ResponsiveWrapper.of(context);
+    final isDesktopView = responsive.isLargerThan(MOBILE);
 
     return LoadingOverlay(
       loading: loading,
@@ -282,6 +287,45 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                       decoration: InputDecoration(
                         hintText: i18n.upsertUser_FullNameHint,
                       ),
+                    ),
+                    Label(i18n.users_Gender),
+                    FormBuilderField<GGENDER>(
+                      name: 'gender',
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: FormBuilderValidators.required(
+                        errorText: i18n.upsertProgram_LevelRequired,
+                      ),
+                      initialValue: widget.user?.gender ?? GGENDER.Male,
+                      builder: (field) {
+                        late GGENDER initialData;
+                        final options = GGENDER.values
+                            .map(
+                              (e) => AdaptiveSelectorOption(
+                                  label: e.label(i18n), value: e),
+                            )
+                            .toList();
+                        if (!isCreateNew) {
+                          initialData = widget.user!.gender!;
+                        }
+                        return AdaptiveSelector(
+                          options: options,
+                          type: isDesktopView
+                              ? SelectorType.menu
+                              : SelectorType.bottomSheet,
+                          initialOption: !isCreateNew
+                              ? AdaptiveSelectorOption(
+                                  label: initialData.label(i18n),
+                                  value: initialData,
+                                )
+                              : options.first,
+                          allowClear: false,
+                          onChanged: (selectedItem) {
+                            if (selectedItem != null) {
+                              field.didChange(selectedItem.value);
+                            }
+                          },
+                        );
+                      },
                     ),
                     Label(i18n.upsertUser_Age),
                     FormBuilderTextField(

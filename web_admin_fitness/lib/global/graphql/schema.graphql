@@ -151,7 +151,7 @@ type ISupport {
   content: String
   imgUrl: String
   isRead: Boolean
-  status: Float
+  status: SUPPORT_STATUS
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -364,9 +364,16 @@ type Support {
   content: String
   imgUrl: String
   isRead: Boolean
-  status: Float
+  status: SUPPORT_STATUS
   createdAt: DateTime
   updatedAt: DateTime
+}
+
+enum SUPPORT_STATUS {
+  Waiting
+  Solving
+  Done
+  Canceled
 }
 
 input UpsertCategoryInputDto {
@@ -409,7 +416,7 @@ input UpsertSupportInputDto {
   content: String
   imgUrl: String
   isRead: Boolean
-  status: Float
+  status: SUPPORT_STATUS
 }
 
 input UpsertUserExerciseInputDto {

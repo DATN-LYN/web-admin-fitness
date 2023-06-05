@@ -131,7 +131,8 @@
     "users_":{
         "userList": "Danh sách người dùng",
         "searchHint": "Nhập tên người dùng",
-        "avatar": "Ảnh đại diện"
+        "avatar": "Ảnh đại diện",
+        "gender": "Giới tính"
     },
     "upsertCategory_":{
         "createNewTitle": "Tạo thể loại mới",

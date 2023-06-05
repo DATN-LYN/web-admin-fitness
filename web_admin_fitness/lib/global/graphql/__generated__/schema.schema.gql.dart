@@ -178,6 +178,23 @@ abstract class GRegisterInputDto
       );
 }
 
+class GSUPPORT_STATUS extends EnumClass {
+  const GSUPPORT_STATUS._(String name) : super(name);
+
+  static const GSUPPORT_STATUS Waiting = _$gSUPPORTSTATUSWaiting;
+
+  static const GSUPPORT_STATUS Solving = _$gSUPPORTSTATUSSolving;
+
+  static const GSUPPORT_STATUS Done = _$gSUPPORTSTATUSDone;
+
+  static const GSUPPORT_STATUS Canceled = _$gSUPPORTSTATUSCanceled;
+
+  static Serializer<GSUPPORT_STATUS> get serializer =>
+      _$gSUPPORTSTATUSSerializer;
+  static BuiltSet<GSUPPORT_STATUS> get values => _$gSUPPORTSTATUSValues;
+  static GSUPPORT_STATUS valueOf(String name) => _$gSUPPORTSTATUSValueOf(name);
+}
+
 abstract class GUpsertCategoryInputDto
     implements Built<GUpsertCategoryInputDto, GUpsertCategoryInputDtoBuilder> {
   GUpsertCategoryInputDto._();
@@ -297,7 +314,7 @@ abstract class GUpsertSupportInputDto
   String? get content;
   String? get imgUrl;
   bool? get isRead;
-  double? get status;
+  GSUPPORT_STATUS? get status;
   static Serializer<GUpsertSupportInputDto> get serializer =>
       _$gUpsertSupportInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(

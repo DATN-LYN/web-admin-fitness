@@ -1,5 +1,6 @@
 #import '../fragment/program_fragment.graphql'
 #import '../fragment/exercise_fragment.graphql'
+#import '../fragment/inbox_fragment.graphql'
 
 query GetCurrentUser {
   getCurrentUser {
@@ -19,6 +20,9 @@ query GetCurrentUser {
       exercise {
         ...Exercise
       }
+    }
+    inboxes {
+      ...Inbox
     }
   }
 }

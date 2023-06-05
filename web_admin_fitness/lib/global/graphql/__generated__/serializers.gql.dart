@@ -18,6 +18,7 @@ import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql
         GLoginInputDto,
         GQueryFilterDto,
         GRegisterInputDto,
+        GSUPPORT_STATUS,
         GUpsertCategoryInputDto,
         GUpsertExerciseInputDto,
         GUpsertInboxInputDto,
@@ -204,6 +205,8 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_c
     show
         GGetCurrentUserData,
         GGetCurrentUserData_getCurrentUser,
+        GGetCurrentUserData_getCurrentUser_inboxes,
+        GGetCurrentUserData_getCurrentUser_inboxes_user,
         GGetCurrentUserData_getCurrentUser_userExercises,
         GGetCurrentUserData_getCurrentUser_userExercises_exercise,
         GGetCurrentUserData_getCurrentUser_userExercises_exercise_program,
@@ -316,6 +319,12 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_t
     show GGetTopUsersProgramReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.var.gql.dart'
     show GGetTopUsersProgramVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_unread_support.data.gql.dart'
+    show GGetUnreadSupportData;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_unread_support.req.gql.dart'
+    show GGetUnreadSupportReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_unread_support.var.gql.dart'
+    show GGetUnreadSupportVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_user.data.gql.dart'
     show
         GGetUserData,
@@ -412,6 +421,8 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetCategoryVars,
   GGetCurrentUserData,
   GGetCurrentUserData_getCurrentUser,
+  GGetCurrentUserData_getCurrentUser_inboxes,
+  GGetCurrentUserData_getCurrentUser_inboxes_user,
   GGetCurrentUserData_getCurrentUser_userExercises,
   GGetCurrentUserData_getCurrentUser_userExercises_exercise,
   GGetCurrentUserData_getCurrentUser_userExercises_exercise_program,
@@ -485,6 +496,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetTopUsersProgramData_getTopUsersProgram_meta,
   GGetTopUsersProgramReq,
   GGetTopUsersProgramVars,
+  GGetUnreadSupportData,
+  GGetUnreadSupportReq,
+  GGetUnreadSupportVars,
   GGetUserData,
   GGetUserData_getUser,
   GGetUserData_getUser_inboxes,
@@ -550,6 +564,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GRegisterInputDto,
   GRegisterReq,
   GRegisterVars,
+  GSUPPORT_STATUS,
   GSupportData,
   GSupportData_user,
   GSupportReq,

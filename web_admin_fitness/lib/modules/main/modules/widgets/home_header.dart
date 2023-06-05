@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
-import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_current_user.req.gql.dart';
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_unread_support.req.gql.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
@@ -41,7 +41,7 @@ class HomeHeader extends StatelessWidget {
       centerTitle: false,
       actions: context.watch<AuthProvider>().isAuth
           ? [
-              _NotificationAction(),
+              _SupportAction(),
               SizedBox(width: responsive.adap(12, 24)),
               _ProfileAction(),
               const SizedBox(width: 24),
@@ -57,20 +57,18 @@ class HomeHeader extends StatelessWidget {
   }
 }
 
-class _NotificationAction extends StatelessWidget with ClientMixin {
-  _NotificationAction({Key? key}) : super(key: key);
+class _SupportAction extends StatelessWidget with ClientMixin {
+  _SupportAction({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Operation(
       client: client,
-      // operationRequest: GGetTotalNotificationUnReadReq(
-      //   (b) => b..requestId = '@getTotalNotificationUnReadRequestId',
-      // ),
-      operationRequest: GGetCategoriesReq(),
+      operationRequest: GGetUnreadSupportReq(
+        (b) => b.requestId = '@getUnreadSupportRequestId',
+      ),
       builder: (context, response, error) {
-        // final totalUnRead =
-        //     response?.data?.getTotalNotificationUnRead.toInt() ?? 0;
+        final totalUnRead = response?.data?.getUnReadSupports.toInt() ?? 0;
         return SizedBox.square(
           dimension: 46,
           child: IconButton(
@@ -78,10 +76,17 @@ class _NotificationAction extends StatelessWidget with ClientMixin {
               AutoRouter.of(context).push(const SupportsRoute());
             },
             splashRadius: 32,
-            icon: const Badge(
-              isLabelVisible: true,
+            icon: Badge(
+              isLabelVisible: totalUnRead > 0,
               backgroundColor: AppColors.error,
-              child: Icon(
+              label: Text(
+                totalUnRead.toString(),
+              ),
+              textStyle: const TextStyle(
+                fontSize: 12,
+                color: AppColors.white,
+              ),
+              child: const Icon(
                 Icons.headphones,
                 size: 30,
               ),
@@ -104,8 +109,9 @@ class _ProfileAction extends StatelessWidget with ClientMixin {
     final isDesktopView = responsive.isLargerThan(MOBILE);
 
     return Operation(
-      operationRequest:
-          GGetCurrentUserReq((b) => b..requestId = '@getCurrentUserRequestId'),
+      operationRequest: GGetCurrentUserReq(
+        (b) => b..requestId = '@getCurrentUserRequestId',
+      ),
       client: client,
       builder: (context, response, error) {
         final user = response?.data?.getCurrentUser;

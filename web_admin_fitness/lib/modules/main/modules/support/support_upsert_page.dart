@@ -3,7 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:web_admin_fitness/global/enums/support_status.dart';
+import 'package:web_admin_fitness/global/extensions/support_status_extension.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_support_cache_handler.dart';
@@ -181,14 +181,14 @@ class _SupportUpsertPageState extends State<SupportUpsertPage>
                       name: 'status',
                       initialValue: widget.support.status,
                       builder: (field) {
-                        final options = SupportStatus.values
+                        final options = GSUPPORT_STATUS.values
                             .map(
                               (e) => AdaptiveSelectorOption(
-                                  label: e.label(i18n), value: e.value),
+                                  label: e.label(i18n), value: e),
                             )
                             .toList();
                         final initialData =
-                            SupportStatus.getStatus(widget.support.status ?? 1);
+                            widget.support.status ?? GSUPPORT_STATUS.Waiting;
                         return AdaptiveSelector(
                           options: options,
                           type: isDesktopView
@@ -196,7 +196,7 @@ class _SupportUpsertPageState extends State<SupportUpsertPage>
                               : SelectorType.bottomSheet,
                           initialOption: AdaptiveSelectorOption(
                             label: initialData.label(i18n),
-                            value: initialData.value,
+                            value: initialData,
                           ),
                           allowClear: false,
                           onChanged: (selectedItem) {
