@@ -6,8 +6,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:web_admin_fitness/global/enums/workout_body_part.dart';
-import 'package:web_admin_fitness/global/enums/workout_level.dart';
+import 'package:web_admin_fitness/global/extensions/body_part_extension.dart';
+import 'package:web_admin_fitness/global/extensions/workout_level_extension.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_program_cache_handler.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/category_fragment.data.gql.dart';
@@ -289,24 +289,24 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                       ),
                     ],
                     Label(i18n.upsertProgram_Level),
-                    FormBuilderField<double>(
+                    FormBuilderField<GWORKOUT_LEVEL>(
                       name: 'level',
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertProgram_LevelRequired,
                       ),
-                      initialValue: widget.program?.level ?? 1,
+                      initialValue:
+                          widget.program?.level ?? GWORKOUT_LEVEL.Beginner,
                       builder: (field) {
-                        late WorkoutLevel initialData;
-                        final options = WorkoutLevel.values
+                        late GWORKOUT_LEVEL initialData;
+                        final options = GWORKOUT_LEVEL.values
                             .map(
                               (e) => AdaptiveSelectorOption(
-                                  label: e.label(i18n), value: e.value),
+                                  label: e.label(i18n), value: e),
                             )
                             .toList();
                         if (!isCreateNew) {
-                          initialData =
-                              WorkoutLevel.getLevel(widget.program!.level!);
+                          initialData = widget.program!.level!;
                         }
                         return AdaptiveSelector(
                           options: options,
@@ -316,7 +316,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                           initialOption: !isCreateNew
                               ? AdaptiveSelectorOption(
                                   label: initialData.label(i18n),
-                                  value: initialData.value,
+                                  value: initialData,
                                 )
                               : options.first,
                           allowClear: false,
@@ -329,25 +329,25 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                       },
                     ),
                     Label(i18n.upsertProgram_BodyPart),
-                    FormBuilderField<double>(
+                    FormBuilderField<GBODY_PART>(
                       name: 'bodyPart',
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertProgram_BodyPartRequired,
                       ),
-                      initialValue: widget.program?.bodyPart ?? 1,
+                      initialValue:
+                          widget.program?.bodyPart ?? GBODY_PART.Upper,
                       builder: (field) {
-                        late WorkoutBodyPart initialData;
+                        late GBODY_PART initialData;
 
-                        final options = WorkoutBodyPart.values
+                        final options = GBODY_PART.values
                             .map(
                               (e) => AdaptiveSelectorOption(
-                                  label: e.label(i18n), value: e.value),
+                                  label: e.label(i18n), value: e),
                             )
                             .toList();
                         if (!isCreateNew) {
-                          initialData = WorkoutBodyPart.getBodyPart(
-                              widget.program!.bodyPart!);
+                          initialData = widget.program!.bodyPart!;
                         }
                         return AdaptiveSelector(
                           options: options,
@@ -357,7 +357,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                           initialOption: !isCreateNew
                               ? AdaptiveSelectorOption(
                                   label: initialData.label(i18n),
-                                  value: initialData.value,
+                                  value: initialData,
                                 )
                               : options.first,
                           allowClear: false,

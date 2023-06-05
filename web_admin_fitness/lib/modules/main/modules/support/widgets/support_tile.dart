@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:web_admin_fitness/global/enums/support_status.dart';
+import 'package:web_admin_fitness/global/extensions/support_status_extension.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/support_fragment.data.gql.dart';
@@ -23,7 +23,6 @@ class SupportTile extends StatelessWidget with ClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    final status = SupportStatus.getStatus(support.status ?? 1);
     final i18n = I18n.of(context)!;
 
     void markRead() async {
@@ -86,8 +85,8 @@ class SupportTile extends StatelessWidget with ClientMixin {
               ),
             ),
             Tag(
-              text: status.label(i18n),
-              color: status.color(),
+              text: support.status!.label(i18n),
+              color: support.status!.color(),
             )
           ],
         ),

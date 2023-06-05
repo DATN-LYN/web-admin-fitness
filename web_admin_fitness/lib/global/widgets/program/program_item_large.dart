@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:web_admin_fitness/global/extensions/body_part_extension.dart';
+import 'package:web_admin_fitness/global/extensions/workout_level_extension.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
 
-import '../../enums/workout_body_part.dart';
-import '../../enums/workout_level.dart';
 import '../../gen/i18n.dart';
 import '../../graphql/fragment/__generated__/program_fragment.data.gql.dart';
 import '../shadow_wrapper.dart';
@@ -22,8 +22,6 @@ class ProgramItemLarge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
-    final level = WorkoutLevel.getLevel(program.level ?? 0);
-    final bodyPart = WorkoutBodyPart.getBodyPart(program.bodyPart ?? 0);
 
     return ShadowWrapper(
       padding: const EdgeInsets.all(16),
@@ -55,8 +53,8 @@ class ProgramItemLarge extends StatelessWidget {
                   ),
                 ),
                 Tag(
-                  text: level.label(i18n),
-                  color: level.color(),
+                  text: program.level!.label(i18n),
+                  color: program.level!.color(),
                 )
               ],
             ),
@@ -64,7 +62,7 @@ class ProgramItemLarge extends StatelessWidget {
             _infoTile(
               icon: Ionicons.body,
               label: '${i18n.programs_BodyPart}: ',
-              value: bodyPart.label(i18n),
+              value: program.bodyPart!.label(i18n),
             ),
             _infoTile(
               icon: Ionicons.document_text,

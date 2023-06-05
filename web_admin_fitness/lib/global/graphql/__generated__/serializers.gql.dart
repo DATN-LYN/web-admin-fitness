@@ -10,12 +10,15 @@ import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart'
     show
+        GBODY_PART,
         GChangePasswordInputDto,
         GFILTER_OPERATOR,
         GFilterDto,
+        GGENDER,
         GLoginInputDto,
         GQueryFilterDto,
         GRegisterInputDto,
+        GSUPPORT_STATUS,
         GUpsertCategoryInputDto,
         GUpsertExerciseInputDto,
         GUpsertInboxInputDto,
@@ -24,7 +27,8 @@ import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql
         GUpsertUserExerciseInputDto,
         GUpsertUserInputDto,
         GUpsertUserProgramInputDto,
-        GUpsertUserStatisticsInputDto;
+        GUpsertUserStatisticsInputDto,
+        GWORKOUT_LEVEL;
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_logout.data.gql.dart'
     show GLogoutData, GLogoutData_logout;
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_logout.req.gql.dart'
@@ -201,6 +205,8 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_c
     show
         GGetCurrentUserData,
         GGetCurrentUserData_getCurrentUser,
+        GGetCurrentUserData_getCurrentUser_inboxes,
+        GGetCurrentUserData_getCurrentUser_inboxes_user,
         GGetCurrentUserData_getCurrentUser_userExercises,
         GGetCurrentUserData_getCurrentUser_userExercises_exercise,
         GGetCurrentUserData_getCurrentUser_userExercises_exercise_program,
@@ -313,6 +319,12 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_t
     show GGetTopUsersProgramReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.var.gql.dart'
     show GGetTopUsersProgramVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_unread_support.data.gql.dart'
+    show GGetUnreadSupportData;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_unread_support.req.gql.dart'
+    show GGetUnreadSupportReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_unread_support.var.gql.dart'
+    show GGetUnreadSupportVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_user.data.gql.dart'
     show
         GGetUserData,
@@ -360,6 +372,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(DateSerializer())
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
+  GBODY_PART,
   GCategoryData,
   GCategoryReq,
   GCategoryVars,
@@ -395,6 +408,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GExerciseVars,
   GFILTER_OPERATOR,
   GFilterDto,
+  GGENDER,
   GGetCategoriesData,
   GGetCategoriesData_getCategories,
   GGetCategoriesData_getCategories_items,
@@ -407,6 +421,8 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetCategoryVars,
   GGetCurrentUserData,
   GGetCurrentUserData_getCurrentUser,
+  GGetCurrentUserData_getCurrentUser_inboxes,
+  GGetCurrentUserData_getCurrentUser_inboxes_user,
   GGetCurrentUserData_getCurrentUser_userExercises,
   GGetCurrentUserData_getCurrentUser_userExercises_exercise,
   GGetCurrentUserData_getCurrentUser_userExercises_exercise_program,
@@ -480,6 +496,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetTopUsersProgramData_getTopUsersProgram_meta,
   GGetTopUsersProgramReq,
   GGetTopUsersProgramVars,
+  GGetUnreadSupportData,
+  GGetUnreadSupportReq,
+  GGetUnreadSupportVars,
   GGetUserData,
   GGetUserData_getUser,
   GGetUserData_getUser_inboxes,
@@ -545,6 +564,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GRegisterInputDto,
   GRegisterReq,
   GRegisterVars,
+  GSUPPORT_STATUS,
   GSupportData,
   GSupportData_user,
   GSupportReq,
@@ -585,5 +605,6 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUserStatisticsReq,
   GUserStatisticsVars,
   GUserVars,
+  GWORKOUT_LEVEL,
 ])
 final Serializers serializers = _serializersBuilder.build();

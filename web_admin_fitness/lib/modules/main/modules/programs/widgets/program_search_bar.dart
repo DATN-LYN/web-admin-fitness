@@ -77,7 +77,7 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
           (b) => b
             ..field = 'Program.level'
             ..operator = GFILTER_OPERATOR.Gin
-            ..data = filterData.levels.map((e) => e.toInt()).join(','),
+            ..data = filterData.levels.map((e) => e).join(','),
         ),
       );
     }

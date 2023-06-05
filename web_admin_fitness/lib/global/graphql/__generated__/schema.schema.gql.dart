@@ -10,6 +10,22 @@ import 'package:web_admin_fitness/global/graphql/__generated__/serializers.gql.d
 
 part 'schema.schema.gql.g.dart';
 
+class GBODY_PART extends EnumClass {
+  const GBODY_PART._(String name) : super(name);
+
+  static const GBODY_PART Upper = _$gBODYPARTUpper;
+
+  static const GBODY_PART Downer = _$gBODYPARTDowner;
+
+  static const GBODY_PART ABS = _$gBODYPARTABS;
+
+  static const GBODY_PART FullBody = _$gBODYPARTFullBody;
+
+  static Serializer<GBODY_PART> get serializer => _$gBODYPARTSerializer;
+  static BuiltSet<GBODY_PART> get values => _$gBODYPARTValues;
+  static GBODY_PART valueOf(String name) => _$gBODYPARTValueOf(name);
+}
+
 abstract class GChangePasswordInputDto
     implements Built<GChangePasswordInputDto, GChangePasswordInputDtoBuilder> {
   GChangePasswordInputDto._();
@@ -72,6 +88,20 @@ abstract class GFilterDto implements Built<GFilterDto, GFilterDtoBuilder> {
         GFilterDto.serializer,
         json,
       );
+}
+
+class GGENDER extends EnumClass {
+  const GGENDER._(String name) : super(name);
+
+  static const GGENDER Male = _$gGENDERMale;
+
+  static const GGENDER Female = _$gGENDERFemale;
+
+  static const GGENDER Others = _$gGENDEROthers;
+
+  static Serializer<GGENDER> get serializer => _$gGENDERSerializer;
+  static BuiltSet<GGENDER> get values => _$gGENDERValues;
+  static GGENDER valueOf(String name) => _$gGENDERValueOf(name);
 }
 
 abstract class GLoginInputDto
@@ -146,6 +176,23 @@ abstract class GRegisterInputDto
         GRegisterInputDto.serializer,
         json,
       );
+}
+
+class GSUPPORT_STATUS extends EnumClass {
+  const GSUPPORT_STATUS._(String name) : super(name);
+
+  static const GSUPPORT_STATUS Waiting = _$gSUPPORTSTATUSWaiting;
+
+  static const GSUPPORT_STATUS Solving = _$gSUPPORTSTATUSSolving;
+
+  static const GSUPPORT_STATUS Done = _$gSUPPORTSTATUSDone;
+
+  static const GSUPPORT_STATUS Canceled = _$gSUPPORTSTATUSCanceled;
+
+  static Serializer<GSUPPORT_STATUS> get serializer =>
+      _$gSUPPORTSTATUSSerializer;
+  static BuiltSet<GSUPPORT_STATUS> get values => _$gSUPPORTSTATUSValues;
+  static GSUPPORT_STATUS valueOf(String name) => _$gSUPPORTSTATUSValueOf(name);
 }
 
 abstract class GUpsertCategoryInputDto
@@ -235,8 +282,8 @@ abstract class GUpsertProgramInputDto
 
   String? get id;
   String get name;
-  double get level;
-  double get bodyPart;
+  GWORKOUT_LEVEL? get level;
+  GBODY_PART? get bodyPart;
   String get description;
   String get imgUrl;
   String get categoryId;
@@ -267,7 +314,7 @@ abstract class GUpsertSupportInputDto
   String? get content;
   String? get imgUrl;
   bool? get isRead;
-  double? get status;
+  GSUPPORT_STATUS? get status;
   static Serializer<GUpsertSupportInputDto> get serializer =>
       _$gUpsertSupportInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -318,6 +365,7 @@ abstract class GUpsertUserInputDto
   String get avatar;
   String get email;
   double get age;
+  GGENDER? get gender;
   static Serializer<GUpsertUserInputDto> get serializer =>
       _$gUpsertUserInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -383,6 +431,20 @@ abstract class GUpsertUserStatisticsInputDto
         GUpsertUserStatisticsInputDto.serializer,
         json,
       );
+}
+
+class GWORKOUT_LEVEL extends EnumClass {
+  const GWORKOUT_LEVEL._(String name) : super(name);
+
+  static const GWORKOUT_LEVEL Beginner = _$gWORKOUTLEVELBeginner;
+
+  static const GWORKOUT_LEVEL Intermediate = _$gWORKOUTLEVELIntermediate;
+
+  static const GWORKOUT_LEVEL Advanced = _$gWORKOUTLEVELAdvanced;
+
+  static Serializer<GWORKOUT_LEVEL> get serializer => _$gWORKOUTLEVELSerializer;
+  static BuiltSet<GWORKOUT_LEVEL> get values => _$gWORKOUTLEVELValues;
+  static GWORKOUT_LEVEL valueOf(String name) => _$gWORKOUTLEVELValueOf(name);
 }
 
 const Map<String, Set<String>> possibleTypesMap = {};

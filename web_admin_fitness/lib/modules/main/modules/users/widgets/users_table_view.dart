@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:web_admin_fitness/global/extensions/gender_extension.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart';
@@ -168,6 +169,13 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('fullName'),
                 itemValue: (e) => e.fullName ?? '-',
+              ),
+              TableColumn(
+                label: i18n.users_Gender,
+                minimumWidth: 150,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('gender'),
+                itemValue: (e) => e.gender!.label(i18n),
               ),
               TableColumn(
                 label: i18n.upsertUser_Age,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:web_admin_fitness/global/enums/workout_body_part.dart';
-import 'package:web_admin_fitness/global/enums/workout_level.dart';
+import 'package:web_admin_fitness/global/extensions/body_part_extension.dart';
+import 'package:web_admin_fitness/global/extensions/workout_level_extension.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/widgets/label_text_row.dart';
@@ -24,8 +24,6 @@ class ProgramItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
-    final level = WorkoutLevel.getLevel(program.level ?? 0);
-    final bodyPart = WorkoutBodyPart.getBodyPart(program.bodyPart ?? 0);
 
     return SlidableWrapper(
       handleDelete: handleDelete,
@@ -40,11 +38,11 @@ class ProgramItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Tag(
-                    text: level.label(i18n),
-                    color: level.color(),
+                    text: program.level!.label(i18n),
+                    color: program.level!.color(),
                   ),
                   Text(
-                    bodyPart.label(i18n),
+                    program.bodyPart!.label(i18n),
                     style: const TextStyle(
                       fontWeight: FontWeight.w600,
                     ),

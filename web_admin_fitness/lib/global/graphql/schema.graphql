@@ -4,6 +4,13 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
+enum BODY_PART {
+  Upper
+  Downer
+  ABS
+  FullBody
+}
+
 type Category {
   id: ID
   name: String
@@ -47,6 +54,12 @@ input FilterDto {
   field: String
   data: String
   operator: FILTER_OPERATOR
+}
+
+enum GENDER {
+  Male
+  Female
+  Others
 }
 
 type ICategories {
@@ -108,15 +121,15 @@ type Inbox {
 type IProgram {
   id: ID
   name: String
-  level: Float
   view: Float
-  bodyPart: Float
   description: String
   imgUrl: String
   categoryId: String!
   category: Category
   createdAt: DateTime
   updatedAt: DateTime
+  level: WORKOUT_LEVEL
+  bodyPart: BODY_PART
 }
 
 type IPrograms {
@@ -138,7 +151,7 @@ type ISupport {
   content: String
   imgUrl: String
   isRead: Boolean
-  status: Float
+  status: SUPPORT_STATUS
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -164,6 +177,7 @@ type IUser {
   inboxes: [Inbox!]
   userPrograms: [UserProgram!]
   userExercises: [UserExercise!]
+  gender: GENDER
 }
 
 type IUserExercise {
@@ -268,15 +282,15 @@ type Mutation {
 type Program {
   id: ID
   name: String
-  level: Float
   view: Float
-  bodyPart: Float
   description: String
   imgUrl: String
   categoryId: String!
   category: Category
   createdAt: DateTime
   updatedAt: DateTime
+  level: WORKOUT_LEVEL
+  bodyPart: BODY_PART
 }
 
 type Query {
@@ -350,9 +364,16 @@ type Support {
   content: String
   imgUrl: String
   isRead: Boolean
-  status: Float
+  status: SUPPORT_STATUS
   createdAt: DateTime
   updatedAt: DateTime
+}
+
+enum SUPPORT_STATUS {
+  Waiting
+  Solving
+  Done
+  Canceled
 }
 
 input UpsertCategoryInputDto {
@@ -381,8 +402,8 @@ input UpsertInboxInputDto {
 input UpsertProgramInputDto {
   id: ID
   name: String!
-  level: Float!
-  bodyPart: Float!
+  level: WORKOUT_LEVEL
+  bodyPart: BODY_PART
   description: String!
   imgUrl: String!
   categoryId: String!
@@ -395,7 +416,7 @@ input UpsertSupportInputDto {
   content: String
   imgUrl: String
   isRead: Boolean
-  status: Float
+  status: SUPPORT_STATUS
 }
 
 input UpsertUserExerciseInputDto {
@@ -410,6 +431,7 @@ input UpsertUserInputDto {
   avatar: String!
   email: String!
   age: Float!
+  gender: GENDER
 }
 
 input UpsertUserProgramInputDto {
@@ -443,6 +465,7 @@ type User {
   inboxes: [Inbox!]
   userPrograms: [UserProgram!]
   userExercises: [UserExercise!]
+  gender: GENDER
 }
 
 type UserExercise {
@@ -475,5 +498,11 @@ type UserStatistics {
   user: User
   createdAt: DateTime
   updatedAt: DateTime
+}
+
+enum WORKOUT_LEVEL {
+  Beginner
+  Intermediate
+  Advanced
 }
 

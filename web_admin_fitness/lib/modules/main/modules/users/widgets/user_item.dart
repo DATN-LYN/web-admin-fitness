@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_admin_fitness/global/extensions/gender_extension.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
@@ -29,6 +30,7 @@ class UserItem extends StatelessWidget with ClientMixin {
         onTap: handleEdit,
         child: ShadowWrapper(
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ShimmerImage(
                 imageUrl: user.avatar ?? '-',
@@ -62,6 +64,9 @@ class UserItem extends StatelessWidget with ClientMixin {
                   ],
                 ),
               ),
+              Text(
+                user.gender!.label(i18n),
+              )
             ],
           ),
         ),
