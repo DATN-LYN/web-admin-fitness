@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import 'package:web_admin_fitness/global/enums/workout_body_part.dart';
-import 'package:web_admin_fitness/global/enums/workout_level.dart';
+import 'package:web_admin_fitness/global/extensions/body_part_extension.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
+import 'package:web_admin_fitness/global/extensions/workout_level_extension.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
@@ -177,10 +177,9 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('level'),
                 cellBuilder: (e) {
-                  final level = WorkoutLevel.getLevel(e.level ?? 0);
                   return Tag(
-                    text: level.label(i18n),
-                    color: level.color(),
+                    text: e.level!.label(i18n),
+                    color: e.level!.color(),
                   );
                 },
               ),
@@ -190,10 +189,8 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                   columnWidthMode: ColumnWidthMode.fill,
                   action: sortButton('bodyPart'),
                   cellBuilder: (e) {
-                    final bodyPart =
-                        WorkoutBodyPart.getBodyPart(e.bodyPart ?? 0);
                     return Text(
-                      bodyPart.label(i18n),
+                      e.bodyPart!.label(i18n),
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
                       ),

@@ -1,28 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 
 import '../gen/i18n.dart';
 import '../themes/app_colors.dart';
 
-enum WorkoutLevel {
-  beginner(1),
-  intermediate(2),
-  advanced(3);
-
-  final double value;
-  const WorkoutLevel(this.value);
-
-  static WorkoutLevel getLevel(double levelNumber) {
-    return WorkoutLevel.values
-        .firstWhere((element) => element.value == levelNumber);
-  }
-
+extension WorkoutLevelExtension on GWORKOUT_LEVEL {
   String label(I18n i18n) {
     switch (this) {
-      case beginner:
+      case GWORKOUT_LEVEL.Beginner:
         return i18n.workoutLevel[0];
-      case intermediate:
+      case GWORKOUT_LEVEL.Intermediate:
         return i18n.workoutLevel[1];
-      case advanced:
+      case GWORKOUT_LEVEL.Advanced:
         return i18n.workoutLevel[2];
       default:
         return i18n.workoutLevel[0];
@@ -31,11 +20,11 @@ enum WorkoutLevel {
 
   Color color() {
     switch (this) {
-      case beginner:
+      case GWORKOUT_LEVEL.Beginner:
         return AppColors.success;
-      case intermediate:
+      case GWORKOUT_LEVEL.Intermediate:
         return AppColors.information;
-      case advanced:
+      case GWORKOUT_LEVEL.Advanced:
         return AppColors.warning;
       default:
         return AppColors.warning;

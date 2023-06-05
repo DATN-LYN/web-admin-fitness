@@ -10,9 +10,11 @@ import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart'
     show
+        GBODY_PART,
         GChangePasswordInputDto,
         GFILTER_OPERATOR,
         GFilterDto,
+        GGENDER,
         GLoginInputDto,
         GQueryFilterDto,
         GRegisterInputDto,
@@ -24,7 +26,8 @@ import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql
         GUpsertUserExerciseInputDto,
         GUpsertUserInputDto,
         GUpsertUserProgramInputDto,
-        GUpsertUserStatisticsInputDto;
+        GUpsertUserStatisticsInputDto,
+        GWORKOUT_LEVEL;
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_logout.data.gql.dart'
     show GLogoutData, GLogoutData_logout;
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_logout.req.gql.dart'
@@ -360,6 +363,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(DateSerializer())
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
+  GBODY_PART,
   GCategoryData,
   GCategoryReq,
   GCategoryVars,
@@ -395,6 +399,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GExerciseVars,
   GFILTER_OPERATOR,
   GFilterDto,
+  GGENDER,
   GGetCategoriesData,
   GGetCategoriesData_getCategories,
   GGetCategoriesData_getCategories_items,
@@ -585,5 +590,6 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUserStatisticsReq,
   GUserStatisticsVars,
   GUserVars,
+  GWORKOUT_LEVEL,
 ])
 final Serializers serializers = _serializersBuilder.build();
