@@ -293,7 +293,7 @@ type Query {
   getStatsList(queryParams: QueryFilterDto!): IUserStatisticses!
   getMyStats(queryParams: QueryFilterDto!): IUserStatisticses!
   getUserStats(queryParams: QueryFilterDto!, userId: String!): IUserStatisticses!
-  getExercise(programId: String!): IExercise!
+  getExercise(exerciseId: String!): IExercise!
   getExercises(queryParams: QueryFilterDto!): IExercises!
   loginGoogle(input: LoginInputDto!): LoginResponseDto!
   login(input: LoginInputDto!): LoginResponseDto!
@@ -310,6 +310,7 @@ type Query {
   getCurrentUser: IUser!
   getUsers(queryParams: QueryFilterDto!): IUsers!
   getTopUsersProgram(queryParams: QueryFilterDto!): IUsers!
+  getTopUsersInbox(queryParams: QueryFilterDto!): IUsers!
 }
 
 input QueryFilterDto {

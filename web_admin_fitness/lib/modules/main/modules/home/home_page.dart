@@ -12,6 +12,7 @@ import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/toast/multi_toast.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/widgets/home_overview.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/widgets/user_item_home.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/widgets/user_programs_dialog.dart';
 
 import '../../../../global/graphql/query/__generated__/query_get_users.req.gql.dart';
 import '../users/widgets/user_item.dart';
@@ -131,6 +132,15 @@ class _HomePageState extends State<HomePage> with ClientMixin {
     }
   }
 
+  void showDialogProgramsOfUser(String userId) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return UserProgramsDialog(userId: userId);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final responsive = ResponsiveWrapper.of(context);
@@ -171,11 +181,10 @@ class _HomePageState extends State<HomePage> with ClientMixin {
                       final user = users[index];
                       return UserItemHome(
                         user: user,
+                        onTap: () => showDialogProgramsOfUser(user.id),
                       );
                     },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(height: 10);
-                    },
+                    separatorBuilder: (_, __) => const SizedBox(height: 10),
                   ),
                 ],
               ),

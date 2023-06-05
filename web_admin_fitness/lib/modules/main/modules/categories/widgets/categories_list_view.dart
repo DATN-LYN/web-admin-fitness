@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_categories.req.gql.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
@@ -57,6 +58,7 @@ class _CategoriesListViewState extends State<CategoriesListView>
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n.of(context)!;
     var getCategoriesReq = widget.request;
 
     return LoadingOverlay(
@@ -125,8 +127,8 @@ class _CategoriesListViewState extends State<CategoriesListView>
           final categories = data.items;
 
           if (categories?.isEmpty == true) {
-            return const FitnessEmpty(
-              title: 'Not Found',
+            return FitnessEmpty(
+              title: i18n.common_NotFound,
             );
           }
 
