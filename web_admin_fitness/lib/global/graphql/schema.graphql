@@ -185,6 +185,7 @@ type IUserProgram {
   id: ID
   userId: String!
   programId: String!
+  isFavorite: Boolean!
   user: User
   program: Program
   createdAt: DateTime
@@ -415,6 +416,7 @@ input UpsertUserProgramInputDto {
   id: ID
   userId: String!
   programId: String!
+  isFavorite: Boolean
 }
 
 input UpsertUserStatisticsInputDto {
@@ -457,6 +459,7 @@ type UserProgram {
   id: ID
   userId: String!
   programId: String!
+  isFavorite: Boolean!
   user: User
   program: Program
   createdAt: DateTime

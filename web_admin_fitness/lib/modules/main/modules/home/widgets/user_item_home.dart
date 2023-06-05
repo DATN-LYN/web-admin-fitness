@@ -10,10 +10,12 @@ class UserItemHome extends StatelessWidget with ClientMixin {
     super.key,
     required this.user,
     this.onTap,
+    required this.userCount,
   });
 
   final GUser user;
   final VoidCallback? onTap;
+  final String userCount;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class UserItemHome extends StatelessWidget with ClientMixin {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  Text(user.countProgram?.toInt().toString() ?? '_'),
+                  Text(userCount),
                 ],
               ),
             ),

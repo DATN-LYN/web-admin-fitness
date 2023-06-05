@@ -97,8 +97,8 @@ class _ProgramSelectorState extends State<ProgramSelector> with ClientMixin {
           return DialogSelector<GProgram>(
             initial: selectedOptions,
             isMultiple: false,
-            decoration: const InputDecoration(
-              hintText: 'Search Hint',
+            decoration: InputDecoration(
+              hintText: i18n.upsertProgram_NameHint,
             ),
             response: response as OperationResponse,
             hasMoreData: hasMoreData,

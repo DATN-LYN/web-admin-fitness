@@ -293,6 +293,16 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_s
     show GGetSupportsReq;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_supports.var.gql.dart'
     show GGetSupportsVars;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_inbox.data.gql.dart'
+    show
+        GGetTopUsersInboxData,
+        GGetTopUsersInboxData_getTopUsersInbox,
+        GGetTopUsersInboxData_getTopUsersInbox_items,
+        GGetTopUsersInboxData_getTopUsersInbox_meta;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_inbox.req.gql.dart'
+    show GGetTopUsersInboxReq;
+import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_inbox.var.gql.dart'
+    show GGetTopUsersInboxVars;
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_top_users_program.data.gql.dart'
     show
         GGetTopUsersProgramData,
@@ -307,6 +317,8 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_u
     show
         GGetUserData,
         GGetUserData_getUser,
+        GGetUserData_getUser_inboxes,
+        GGetUserData_getUser_inboxes_user,
         GGetUserData_getUser_userExercises,
         GGetUserData_getUser_userExercises_exercise,
         GGetUserData_getUser_userExercises_exercise_program,
@@ -456,6 +468,12 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetSupportsData_getSupports_meta,
   GGetSupportsReq,
   GGetSupportsVars,
+  GGetTopUsersInboxData,
+  GGetTopUsersInboxData_getTopUsersInbox,
+  GGetTopUsersInboxData_getTopUsersInbox_items,
+  GGetTopUsersInboxData_getTopUsersInbox_meta,
+  GGetTopUsersInboxReq,
+  GGetTopUsersInboxVars,
   GGetTopUsersProgramData,
   GGetTopUsersProgramData_getTopUsersProgram,
   GGetTopUsersProgramData_getTopUsersProgram_items,
@@ -464,6 +482,8 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetTopUsersProgramVars,
   GGetUserData,
   GGetUserData_getUser,
+  GGetUserData_getUser_inboxes,
+  GGetUserData_getUser_inboxes_user,
   GGetUserData_getUser_userExercises,
   GGetUserData_getUser_userExercises_exercise,
   GGetUserData_getUser_userExercises_exercise_program,

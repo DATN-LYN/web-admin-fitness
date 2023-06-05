@@ -1,0 +1,13 @@
+#import '../fragment/meta_fragment.graphql'
+#import '../fragment/user_fragment.graphql'
+
+query GetTopUsersInbox($queryParams: QueryFilterDto!) {
+  getTopUsersInbox(queryParams: $queryParams) {
+    meta {
+      ...Meta
+    }
+    items {
+      ...User
+    }
+  }
+}

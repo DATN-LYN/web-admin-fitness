@@ -6,12 +6,12 @@ import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_error.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_program_item.dart';
-import 'package:web_admin_fitness/modules/main/modules/programs/widgets/program_item.dart';
+import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inbox_item.dart';
 
 import '../../../../../global/gen/i18n.dart';
 
-class UserProgramsDialog extends StatefulWidget {
-  const UserProgramsDialog({
+class UserInboxesDialog extends StatefulWidget {
+  const UserInboxesDialog({
     super.key,
     required this.userId,
   });
@@ -19,10 +19,10 @@ class UserProgramsDialog extends StatefulWidget {
   final String userId;
 
   @override
-  State<UserProgramsDialog> createState() => _UserProgramsDialogState();
+  State<UserInboxesDialog> createState() => _UserInboxesDialogState();
 }
 
-class _UserProgramsDialogState extends State<UserProgramsDialog>
+class _UserInboxesDialogState extends State<UserInboxesDialog>
     with ClientMixin {
   late var req = GGetUserReq(
     (b) => b.vars.userId = widget.userId,
@@ -68,7 +68,7 @@ class _UserProgramsDialogState extends State<UserProgramsDialog>
                   children: [
                     const SizedBox(height: 16),
                     Text(
-                      'Programs of ${data?.fullName ?? '_'}',
+                      '${i18n.home_InboxesOf} ${data?.fullName ?? '_'}',
                       style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
@@ -78,10 +78,10 @@ class _UserProgramsDialogState extends State<UserProgramsDialog>
                     Expanded(
                       child: data?.userPrograms?.isNotEmpty == true
                           ? ListView.separated(
-                              itemCount: data!.userPrograms?.length ?? 0,
+                              itemCount: data!.inboxes?.length ?? 0,
                               itemBuilder: (context, index) {
-                                final item = data.userPrograms?[index].program;
-                                return ProgramItem(program: item!);
+                                final item = data.inboxes![index];
+                                return InboxItem(inbox: item);
                               },
                               separatorBuilder: (_, __) =>
                                   const SizedBox(height: 16),

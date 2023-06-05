@@ -310,5 +310,20 @@
           "đường",
           "đường bậc thang"
         ]
-    }
+    },
+    "home_":{
+        "topUsersProgram": "Người dùng tập nhiểu chương trình nhất",
+        "topUsersInbox": "Người dùng nhắn tin nhiều nhất",
+        "programsOf": "Danh sách chương trình của",
+        "inboxesOf": "Danh sách tin nhắn của",
+        "mostViewedPrograms": "Chương trình được xem nhiều nhất",
+        "newestPrograms": "Chương trình mới nhất",
+        "userAgesPieChart": "Biểu đồ tròn độ tuổi người dùng",
+        "userGendersPieChart": "Biểu đồ tròn giới tính người dùng"
+    },
+    "gender":[
+        "Nam",
+        "Nữ",
+        "Khác"
+    ]
 }

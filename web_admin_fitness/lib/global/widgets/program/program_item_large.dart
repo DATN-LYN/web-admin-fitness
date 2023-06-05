@@ -34,6 +34,7 @@ class ProgramItemLarge extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             ShimmerImage(
               imageUrl: program.imgUrl ?? '_',
