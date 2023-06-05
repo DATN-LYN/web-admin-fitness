@@ -308,6 +308,21 @@
           "line",
           "stepline"
         ]
-    }
+    },
+    "home_":{
+        "topUsersProgram": "Top users have most programs",
+        "topUsersInbox": "Top users have most inboxes",
+        "programsOf": "Programs of",
+        "inboxesOf": "Inboxes of",
+        "mostViewedPrograms": "Most viewed programs",
+        "newestPrograms": "Newest programs",
+        "userAgesPieChart": "User ages pie chart",
+        "userGendersPieChart": "User genders pie chart"
+    },
+    "gender":[
+        "Male",
+        "Female",
+        "Others"
+    ]
     
 }

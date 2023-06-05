@@ -14,11 +14,11 @@ class InboxItem extends StatelessWidget {
   const InboxItem({
     super.key,
     required this.inbox,
-    required this.handleDelete,
+     this.handleDelete,
   });
 
   final GInbox inbox;
-  final VoidCallback handleDelete;
+  final VoidCallback? handleDelete;
 
   @override
   Widget build(BuildContext context) {

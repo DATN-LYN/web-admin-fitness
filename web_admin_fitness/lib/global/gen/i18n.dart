@@ -488,6 +488,24 @@ class I18n implements WidgetsLocalizations {
 	String get chart_Chart => "Chart";
 	/// ["column", "bar", "line", "stepline"]
 	List<String> get chart_ChartType => ["column", "bar", "line", "stepline"];
+	/// "Top users have most programs"
+	String get home_TopUsersProgram => "Top users have most programs";
+	/// "Top users have most inboxes"
+	String get home_TopUsersInbox => "Top users have most inboxes";
+	/// "Programs of"
+	String get home_ProgramsOf => "Programs of";
+	/// "Inboxes of"
+	String get home_InboxesOf => "Inboxes of";
+	/// "Most viewed programs"
+	String get home_MostViewedPrograms => "Most viewed programs";
+	/// "Newest programs"
+	String get home_NewestPrograms => "Newest programs";
+	/// "User ages pie chart"
+	String get home_UserAgesPieChart => "User ages pie chart";
+	/// "User genders pie chart"
+	String get home_UserGendersPieChart => "User genders pie chart";
+	/// ["Male", "Female", "Others"]
+	List<String> get gender => ["Male", "Female", "Others"];
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -1185,6 +1203,33 @@ class _I18n_vi_VN extends I18n {
 	/// ["cột", "thanh", "đường", "đường bậc thang"]
 	@override
 	List<String> get chart_ChartType => ["cột", "thanh", "đường", "đường bậc thang"];
+	/// "Người dùng tập nhiểu chương trình nhất"
+	@override
+	String get home_TopUsersProgram => "Người dùng tập nhiểu chương trình nhất";
+	/// "Người dùng nhắn tin nhiều nhất"
+	@override
+	String get home_TopUsersInbox => "Người dùng nhắn tin nhiều nhất";
+	/// "Danh sách chương trình của"
+	@override
+	String get home_ProgramsOf => "Danh sách chương trình của";
+	/// "Danh sách tin nhắn của"
+	@override
+	String get home_InboxesOf => "Danh sách tin nhắn của";
+	/// "Chương trình được xem nhiều nhất"
+	@override
+	String get home_MostViewedPrograms => "Chương trình được xem nhiều nhất";
+	/// "Chương trình mới nhất"
+	@override
+	String get home_NewestPrograms => "Chương trình mới nhất";
+	/// "Biểu đồ tròn độ tuổi người dùng"
+	@override
+	String get home_UserAgesPieChart => "Biểu đồ tròn độ tuổi người dùng";
+	/// "Biểu đồ tròn giới tính người dùng"
+	@override
+	String get home_UserGendersPieChart => "Biểu đồ tròn giới tính người dùng";
+	/// ["Nam", "Nữ", "Khác"]
+	@override
+	List<String> get gender => ["Nam", "Nữ", "Khác"];
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

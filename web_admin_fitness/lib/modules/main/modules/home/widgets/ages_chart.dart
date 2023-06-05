@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:web_admin_fitness/global/gen/i18n.dart';
 
 import '../../../../../global/themes/app_colors.dart';
 
@@ -23,8 +24,10 @@ class _AgesChartState extends State<AgesChart> {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n.of(context)!;
+
     return SfCircularChart(
-      title: ChartTitle(text: 'Age Users'),
+      title: ChartTitle(text: i18n.home_UserAgesPieChart),
       legend: Legend(isVisible: true),
       series: [
         PieSeries<int, String>(
