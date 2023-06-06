@@ -1,6 +1,7 @@
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
@@ -10,6 +11,7 @@ import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/label.dart';
 import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 import 'package:web_admin_fitness/global/widgets/toast/multi_toast.dart';
+import 'package:web_admin_fitness/modules/main/modules/home/widgets/genders_chart.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/widgets/home_overview.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/widgets/user_item_home.dart';
 import 'package:web_admin_fitness/modules/main/modules/home/widgets/user_programs_dialog.dart';
@@ -29,6 +31,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with ClientMixin {
   Map<int, int> ages = {};
+  Map<GGENDER, int> genders = {};
   List<GUser> users = [];
   List<GUser> topUsersProgram = [];
   List<GUser> topUsersInbox = [];
@@ -67,10 +70,15 @@ class _HomePageState extends State<HomePage> with ClientMixin {
     } else {
       users = response.data!.getUsers.items!.map((p0) => p0).toList();
       final userAges = users.map((e) => e.age?.toInt() ?? 0).toList();
+      final userGenders = users.map((e) => e.gender ?? GGENDER.Male).toList();
 
       if (mounted) {
         setState(() {
           ages = userAges.fold<Map<int, int>>({}, (map, element) {
+            map[element] = (map[element] ?? 0) + 1;
+            return map;
+          });
+          genders = userGenders.fold<Map<GGENDER, int>>({}, (map, element) {
             map[element] = (map[element] ?? 0) + 1;
             return map;
           });
@@ -225,7 +233,7 @@ class _HomePageState extends State<HomePage> with ClientMixin {
             ),
             Expanded(
               child: ShadowWrapper(
-                child: AgesChart(ages: ages),
+                child: GendersChart(genders: genders),
               ),
             ),
           ],
@@ -335,6 +343,7 @@ class _HomePageState extends State<HomePage> with ClientMixin {
             );
           },
         ),
+        const SizedBox(height: 20),
       ],
     );
   }
