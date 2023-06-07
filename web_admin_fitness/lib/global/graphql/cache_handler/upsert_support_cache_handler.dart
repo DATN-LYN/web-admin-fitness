@@ -1,6 +1,5 @@
 import 'package:ferry/ferry.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
-import 'package:web_admin_fitness/global/graphql/fragment/__generated__/support_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/support_fragment.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_support.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/mutation/__generated__/mutation_upsert_support.var.gql.dart';
@@ -18,14 +17,11 @@ class UpsertSupportCacheHandler {
       final req = GSupportReq((b) => b..idFields = {'id': upsertData.id});
       final oldSupport = proxy.readFragment(req);
 
-      final newData = response.data != null
-          ? GSupportData.fromJson(response.data!.upsertSupport.toJson())
-          : null;
-      if (newData != null && oldSupport != null) {
-        final updatedSupport = newData;
+      final updatedSupport = oldSupport?.rebuild(
+        (b) => b..isRead = true,
+      );
 
-        proxy.writeFragment(req, updatedSupport);
-      }
+      proxy.writeFragment(req, updatedSupport);
     }
   };
 }
