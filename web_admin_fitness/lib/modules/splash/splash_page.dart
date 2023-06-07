@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashPage> with ClientMixin {
     return Scaffold(
       backgroundColor: AppColors.primarySoft,
       body: Center(
-        child: Assets.images.logoContainer.image(width: 130, height: 130),
+        child: Assets.images.logo.image(width: 130, height: 130),
       ),
     );
   }

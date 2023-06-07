@@ -50,7 +50,7 @@ class _MenuRailState extends State<MenuRail> {
                 padding: const EdgeInsets.only(left: 15),
                 alignment: Alignment.centerLeft,
                 child: Image.asset(
-                  Assets.images.logoContainer.path,
+                  Assets.images.logo.path,
                   height: 50,
                   alignment: Alignment.centerLeft,
                   fit: BoxFit.cover,
