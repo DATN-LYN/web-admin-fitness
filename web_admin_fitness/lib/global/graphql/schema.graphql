@@ -1,0 +1,508 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+enum BODY_PART {
+  Upper
+  Downer
+  ABS
+  FullBody
+}
+
+type Category {
+  id: ID
+  name: String
+  imgUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input ChangePasswordInputDto {
+  oldPassword: String
+  newPassword: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Exercise {
+  id: ID
+  name: String
+  duration: Float
+  videoUrl: String
+  imgUrl: String
+  calo: Float
+  programId: String!
+  program: Program
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+enum FILTER_OPERATOR {
+  eq
+  like
+  in
+  lt
+  gt
+}
+
+input FilterDto {
+  field: String
+  data: String
+  operator: FILTER_OPERATOR
+}
+
+enum GENDER {
+  Male
+  Female
+  Others
+}
+
+type ICategories {
+  meta: Meta
+  items: [Category!]
+}
+
+type ICategory {
+  id: ID
+  name: String
+  imgUrl: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IExercise {
+  id: ID
+  name: String
+  duration: Float
+  videoUrl: String
+  imgUrl: String
+  calo: Float
+  programId: String!
+  program: Program
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IExercises {
+  meta: Meta
+  items: [Exercise!]
+}
+
+type IInbox {
+  id: ID
+  message: String
+  isSender: Boolean!
+  userId: String!
+  user: User
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IInboxes {
+  meta: Meta
+  items: [Inbox!]
+}
+
+type Inbox {
+  id: ID
+  message: String
+  isSender: Boolean!
+  userId: String!
+  user: User
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IProgram {
+  id: ID
+  name: String
+  view: Float
+  description: String
+  imgUrl: String
+  categoryId: String!
+  category: Category
+  createdAt: DateTime
+  updatedAt: DateTime
+  level: WORKOUT_LEVEL
+  bodyPart: BODY_PART
+}
+
+type IPrograms {
+  meta: Meta
+  items: [Program!]
+}
+
+type ISummary {
+  userCnt: Float
+  programCnt: Float
+  exerciseCnt: Float
+  categoryCnt: Float
+}
+
+type ISupport {
+  id: String!
+  userId: String
+  user: User
+  content: String
+  imgUrl: String
+  isRead: Boolean
+  status: SUPPORT_STATUS
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type ISupports {
+  meta: Meta
+  items: [Support!]
+}
+
+type IUser {
+  id: String!
+  email: String!
+  countProgram: Float
+  countInbox: Float
+  fullName: String
+  password: String!
+  googleId: String
+  avatar: String
+  age: Float
+  refreshToken: String
+  roleId: String
+  role: Role
+  inboxes: [Inbox!]
+  userPrograms: [UserProgram!]
+  userExercises: [UserExercise!]
+  gender: GENDER
+}
+
+type IUserExercise {
+  id: ID
+  userId: String!
+  exerciseId: String!
+  user: User
+  exercise: Exercise
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IUserExercises {
+  meta: Meta
+  items: [UserExercise!]
+}
+
+type IUserProgram {
+  id: ID
+  userId: String!
+  programId: String!
+  isFavorite: Boolean!
+  user: User
+  program: Program
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IUserPrograms {
+  meta: Meta
+  items: [UserProgram!]
+}
+
+type IUsers {
+  meta: Meta
+  items: [User!]
+}
+
+type IUserStatistics {
+  id: ID
+  userId: String!
+  programCount: Float
+  caloCount: Float
+  durationCount: Float
+  user: User
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type IUserStatisticses {
+  meta: Meta
+  items: [UserStatistics!]
+}
+
+input LoginInputDto {
+  accessToken: String
+  expiresIn: String
+  token: String
+  email: String
+  password: String
+}
+
+type LoginResponseDto {
+  id: String!
+  user: User
+  accessToken: String
+  refreshToken: String
+}
+
+type Meta {
+  totalItems: Float
+  itemCount: Float
+  itemsPerPage: Float
+  totalPages: Float
+  currentPage: Float
+}
+
+type Mutation {
+  upsertSupport(input: UpsertSupportInputDto!): ISupport!
+  deleteSupport(supportId: String!): ResponseMessageBase!
+  upsertUserProgram(input: UpsertUserProgramInputDto!): IUserProgram!
+  deleteUserProgram(id: String!): ResponseMessageBase!
+  upsertUserExercise(input: UpsertUserExerciseInputDto!): IUserExercise!
+  deleteUserExercise(id: String!): ResponseMessageBase!
+  upsertStats(input: UpsertUserStatisticsInputDto!): IUserStatistics!
+  deleteStats(statsId: String!): ResponseMessageBase!
+  upsertExercise(input: UpsertExerciseInputDto!): IExercise!
+  deleteExercise(exerciseId: String!): ResponseMessageBase!
+  register(input: RegisterInputDto!): ResponseMessageBase!
+  logout(userId: String!): ResponseMessageBase!
+  changePassword(input: ChangePasswordInputDto!): ResponseMessageBase!
+  upsertInbox(input: UpsertInboxInputDto!): IInbox!
+  deleteInbox(inboxId: String!): ResponseMessageBase!
+  upsertCategory(input: UpsertCategoryInputDto!): ICategory!
+  deleteCategory(categoryId: String!): ResponseMessageBase!
+  upsertProgram(input: UpsertProgramInputDto!): IProgram!
+  deleteProgram(programId: String!): ResponseMessageBase!
+  deleteUser(userId: String!): ResponseMessageBase!
+  upsertUser(input: UpsertUserInputDto!): IUser!
+}
+
+type Program {
+  id: ID
+  name: String
+  view: Float
+  description: String
+  imgUrl: String
+  categoryId: String!
+  category: Category
+  createdAt: DateTime
+  updatedAt: DateTime
+  level: WORKOUT_LEVEL
+  bodyPart: BODY_PART
+}
+
+type Query {
+  getSupport(supportId: String!): ISupport!
+  getSupports(queryParams: QueryFilterDto!): ISupports!
+  getMySupports(queryParams: QueryFilterDto!): ISupports!
+  getUnReadSupports: Float!
+  getUserProgram(id: String!): IUserProgram!
+  getUserPrograms(queryParams: QueryFilterDto!): IUserPrograms!
+  getMyUserPrograms(queryParams: QueryFilterDto!): IUserPrograms!
+  getUserExercise(id: String!): IUserExercise!
+  getUserExercises(queryParams: QueryFilterDto!): IUserExercises!
+  getMyUserExercises(queryParams: QueryFilterDto!): IUserExercises!
+  getStats(statsId: String!): IUserStatistics!
+  getStatsList(queryParams: QueryFilterDto!): IUserStatisticses!
+  getMyStats(queryParams: QueryFilterDto!): IUserStatisticses!
+  getUserStats(queryParams: QueryFilterDto!, userId: String!): IUserStatisticses!
+  getExercise(exerciseId: String!): IExercise!
+  getExercises(queryParams: QueryFilterDto!): IExercises!
+  loginGoogle(input: LoginInputDto!): LoginResponseDto!
+  login(input: LoginInputDto!): LoginResponseDto!
+  refreshToken(refreshToken: String!): RefreshTokenResponseDto!
+  getInbox(inboxId: String!): IInbox!
+  getInboxes(queryParams: QueryFilterDto!): IInboxes!
+  getMyInboxes(queryParams: QueryFilterDto!): IInboxes!
+  getCategory(categoryId: String!): Category!
+  getCategories(queryParams: QueryFilterDto!): ICategories!
+  getProgram(programId: String!): Program!
+  getHomeOverview: ISummary!
+  getPrograms(queryParams: QueryFilterDto!): IPrograms!
+  getUser(userId: String!): IUser!
+  getCurrentUser: IUser!
+  getUsers(queryParams: QueryFilterDto!): IUsers!
+  getTopUsersProgram(queryParams: QueryFilterDto!): IUsers!
+  getTopUsersInbox(queryParams: QueryFilterDto!): IUsers!
+}
+
+input QueryFilterDto {
+  limit: Float
+  page: Float
+  orderBy: String
+  filters: [FilterDto!]
+}
+
+type RefreshTokenResponseDto {
+  token: String!
+}
+
+input RegisterInputDto {
+  email: String!
+  password: String!
+  avatar: String
+  age: Float!
+  fullName: String!
+}
+
+type ResponseMessageBase {
+  message: String!
+  success: Boolean!
+}
+
+type Role {
+  id: String!
+  name: String!
+}
+
+type Support {
+  id: String!
+  userId: String
+  user: User
+  content: String
+  imgUrl: String
+  isRead: Boolean
+  status: SUPPORT_STATUS
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+enum SUPPORT_STATUS {
+  Waiting
+  Solving
+  Done
+  Canceled
+}
+
+input UpsertCategoryInputDto {
+  id: ID
+  name: String!
+  imgUrl: String!
+}
+
+input UpsertExerciseInputDto {
+  id: ID
+  name: String!
+  imgUrl: String!
+  duration: Float!
+  videoUrl: String!
+  calo: Float!
+  programId: String!
+}
+
+input UpsertInboxInputDto {
+  id: ID
+  message: String!
+  userId: String!
+  isSender: Boolean!
+}
+
+input UpsertProgramInputDto {
+  id: ID
+  name: String!
+  level: WORKOUT_LEVEL
+  bodyPart: BODY_PART
+  description: String!
+  imgUrl: String!
+  categoryId: String!
+  view: Float!
+}
+
+input UpsertSupportInputDto {
+  id: ID
+  userId: String
+  content: String
+  imgUrl: String
+  isRead: Boolean
+  status: SUPPORT_STATUS
+}
+
+input UpsertUserExerciseInputDto {
+  id: ID
+  userId: String!
+  exerciseId: String!
+}
+
+input UpsertUserInputDto {
+  id: ID
+  fullName: String!
+  avatar: String!
+  email: String!
+  age: Float!
+  gender: GENDER
+}
+
+input UpsertUserProgramInputDto {
+  id: ID
+  userId: String!
+  programId: String!
+  isFavorite: Boolean
+}
+
+input UpsertUserStatisticsInputDto {
+  id: ID
+  userId: String!
+  programCount: Float!
+  caloCount: Float!
+  durationCount: Float!
+}
+
+type User {
+  id: String!
+  email: String!
+  countProgram: Float
+  countInbox: Float
+  fullName: String
+  password: String!
+  googleId: String
+  avatar: String
+  age: Float
+  refreshToken: String
+  roleId: String
+  role: Role
+  inboxes: [Inbox!]
+  userPrograms: [UserProgram!]
+  userExercises: [UserExercise!]
+  gender: GENDER
+}
+
+type UserExercise {
+  id: ID
+  userId: String!
+  exerciseId: String!
+  user: User
+  exercise: Exercise
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UserProgram {
+  id: ID
+  userId: String!
+  programId: String!
+  isFavorite: Boolean!
+  user: User
+  program: Program
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type UserStatistics {
+  id: ID
+  userId: String!
+  programCount: Float
+  caloCount: Float
+  durationCount: Float
+  user: User
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+enum WORKOUT_LEVEL {
+  Beginner
+  Intermediate
+  Advanced
+}
+

@@ -1,0 +1,16 @@
+#import './program_fragment.graphql'
+
+fragment Exercise on Exercise {
+  id
+  name
+  imgUrl
+  videoUrl
+  duration
+  calo
+  programId
+  createdAt
+  updatedAt
+  program {
+    ...Program
+  }
+}

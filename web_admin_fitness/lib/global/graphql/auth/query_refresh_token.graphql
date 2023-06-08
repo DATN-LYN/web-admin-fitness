@@ -1,0 +1,5 @@
+query RefreshToken($refreshToken: String!) {
+  refreshToken(refreshToken: $refreshToken) {
+    token
+  }
+}

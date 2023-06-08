@@ -1,0 +1,13 @@
+#import './user_fragment.graphql'
+
+fragment Inbox on Inbox {
+  id
+  message
+  userId
+  user {
+    ...User
+  }
+  isSender
+  createdAt
+  updatedAt
+}

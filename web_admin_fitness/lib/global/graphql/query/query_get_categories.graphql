@@ -1,0 +1,13 @@
+#import '../fragment/meta_fragment.graphql'
+#import '../fragment/category_fragment.graphql'
+
+query GetCategories($queryParams: QueryFilterDto!) {
+  getCategories(queryParams: $queryParams) {
+    meta {
+      ...Meta
+    }
+    items {
+      ...Category
+    }
+  }
+}

@@ -1,0 +1,7 @@
+#import '../fragment/category_fragment.graphql'
+
+query GetCategory($categoryId: String!) {
+  getCategory(categoryId: $categoryId) {
+   ...Category
+  }
+}

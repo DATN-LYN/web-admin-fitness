@@ -1,0 +1,330 @@
+{
+    "login_": {
+        "email": "Email",
+        "password": "Mật khẩu",
+        "emailHint": "Nhập email của bạn",
+        "passwordHint": "Nhập mật khẩu của bạn",
+        "forgotPassword": "Quên mật khẩu?",
+        "orLogInWith": "Hoặc đăng nhập bằng",
+        "doNotHaveAnAccount": "Chưa có tài khoản? ",
+        "registerNow": "Đăng ký",
+        "logIn": "Đăng Nhập",
+        "emailNotValid": "Email không hợp lệ",
+        "emailIsRequired": "Email bắt buộc",
+        "passwordMustBeAtLeastSixCharacters": "Mật khẩu phải dài tối thiểu 6 ký tự",
+        "passwordIsRequired": "Mật khẩu bắt buộc",
+        "adminLogin":"Đăng nhập dành cho Quản trị viên"
+    },
+    "button_":{
+        "next": "Tiếp tục",
+        "done": "Xong",
+        "cancel": "Huỷ bỏ",
+        "ok": "Đồng ý",
+        "apply": "Áp dụng",
+        "confirm":"Xác nhận",
+        "reset":"Đặt lại",
+        "save": "Lưu",
+        "delete":"Xoá",
+        "edit":"Sửa",
+        "view":"Xem"
+    },
+    "setting_":{
+        "title":"Cài đặt",
+        "language":"Ngôn ngữ",
+        "shareWithFriends":"Chia sẻ với bạn bè",
+        "privacyPolicy":"Chính sách bảo mật",
+        "termsAndConditions":"Điều khoản và điều kiện",
+        "changePassword":"Thay đổi mật khẩu",
+        "logout":"Đăng xuất",
+        "account":"Tài khoản",
+        "security": "Bảo mật",
+        "aboutApp":"Về ứng dụng",
+        "changePasswordDes": "Vui lòng nhập mật khẩu cũ của bạn, sau đó nhập mật khẩu mới để tiến hành thay đổi mật khẩu",
+      "oldPassword": "Mật khẩu cũ",
+      "oldPasswordHint": "Nhập mật khẩu cũ của bạn",
+      "oldPasswordRequired": "Mật khẩu cũ bắt buộc",
+      "newPassword": "Mật khẩu mới",
+      "newPasswordHint": "Nhập mật khẩu mới của bạn",
+      "newPasswordRequired": "Mật khẩu mới bắt buộc",
+      "confirmNewPassword": "Xác nhận mật khẩu mới",
+      "confirmNewPasswordHint": "Nhập xác nhận mật khẩu mới",
+      "confirmNewPasswordRequired": "Xác nhận mật khẩu mới bắt buộc",
+      "passwordNotMatch": "Mật khẩu không khớp",
+      "confirmChange": "Xác nhận thay đổi",
+      "confirmLogout": "Xác nhận đăng xuất",
+      "confirmLogoutDes": "Bạn cần xác nhận để đăng xuất khỏi ứng dụng",
+      "changePasswordConfirm": "Bạn có chắc chắn muốn thay đổi mật khẩu",
+      "changePasswordSuccess": "Bạn đã cập nhật mật khẩu thành công"
+    },
+    "language": ["English (US)", "Tiếng Việt"],
+    "categories_":{
+        "categoryList": "Danh sách thể loại"
+    },
+    "programs_":{
+        "calo":"calo",
+        "programList": "Danh sách chương trình tập",
+        "bodyPart":"Bộ phận",
+        "description":"Mô tả",
+        "searchHint": "Nhập tên chương trình"
+    },
+    "common_":{
+        "success":"Thành công",
+        "actions":"Hành động",
+        "notFound":"Không tìm thấy",
+        "viewDetail":"Xem chi tiết",
+        "updateData":"Cập nhật dữ liệu",
+        "duration": "Thời gian",
+        "level": "Độ khó",
+        "imageUrl": "Đường dẫn hình ảnh",
+        "id":"ID",
+        "name":"Tên",
+        "calo":"Calo",
+        "cameraPermissionRequest": "{appName} would like to use your camera for your scan document.",
+        "photoPermissionRequest": "{appName} requires access to the photo library for you to be able to upload photos for your print document.",
+        "storagePermissionRequest": "{appName} requires access to the storage for you to be able to save your print document.",
+        "weekly": "Tuần",
+        "monthly": "Tháng",
+        "yearly": "Năm",
+        "minutes": "Phút"
+    },
+    "main_":{
+        "home":"Trang chủ",
+        "categories":"Thể loại",
+        "programs":"Chương trình",
+        "setting":"Cài đặt",
+        "exercises":"Bài tập",
+        "inboxes":"Tin Nhắn",
+        "users":"Người dùng"
+    },
+    "workoutLevel": [
+        "Dễ", 
+        "Trung bình", 
+        "Khó"
+    ],
+    "workoutBodyPart": [
+        "Thân trên", 
+        "Thân dưới", 
+        "Bụng", 
+        "Toàn thân"
+    ],
+    "filter_":{
+        "filter":"Bộ lọc",
+        "workoutLevel": "Độ khó của chương trình"
+    },
+    "exercises_":{
+        "exerciseList": "Danh sách bài tập",
+        "searchHint":"Nhập tên bài tập",
+        "program":"Chương trình",
+        "programId":"Mã chương trình",
+        "videoUrl": "Đường dẫn video"
+    },
+    "inboxes_":{
+        "inboxList": "Danh sách tin nhắn",
+        "user": "Người dùng",
+        "message": "Tin nhắn",
+        "bot":"Bot",
+        "from": "Gửi từ",
+        "createdAt": "Tạo lúc",
+        "inboxDetail": "Chi tiết tin nhắn",
+        "userId": "Mã người dùng"
+    },
+    "users_":{
+        "userList": "Danh sách người dùng",
+        "searchHint": "Nhập tên người dùng",
+        "avatar": "Ảnh đại diện",
+        "gender": "Giới tính"
+    },
+    "upsertCategory_":{
+        "createNewTitle": "Tạo thể loại mới",
+        "updateTitle": "Cập nhật thể loại",
+        "createNewDes":"Bạn có chắc chắn muốn tạo thể loại mới?",
+        "updateDes": "Bạn có chắc chắn muốn cập nhật thông tin thể loại?",
+        "categoryDetail":"Chi tiết thể loại",
+        "categoryName": "Tên thể loại",
+        "categoryImage": "Hình ảnh thể loại",
+        "nameIsRequired": "Bạn chưa nhập tên",
+        "imageIsRequired": "Bạn chưa chọn hình ảnh",
+        "nameHint": "Nhập tên thể loại",
+        "imageHint": "Chọn hình ảnh thể loại",
+        "categoryID": "Mã thể loại",
+        "viewPrograms": "Xem danh sách chương trình tập",
+        "addNewProgram": "Thêm chương trình mới",
+        "programEmpty": "Thể loại này không có chương trình nào"
+    },
+    "toast_": {
+        "title_": {
+          "success": "Thành công",
+          "error": "Lỗi",
+          "warning": "Cảnh báo"
+        },
+        "subtitle_": {
+          "error": "Đã có lỗi, hãy thử lại",
+          "invalidInformation": "Thông tin của bạn chưa hợp lệ, hãy kiểm tra lại",
+          "createCategory": "Tạo thể loại mới thành công",
+          "updateCategory": "Cập nhật thể loại thành công",
+          "deleteCategory": "Xoá thể loại thành công",
+          "createProgram": "Tạo chương trình mới thành công",
+          "updateProgram": "Cập nhật chương trình thành công",
+          "deleteProgram": "Xoá chương trình thành công",
+          "createExercise": "Tạo bài tập mới thành công",
+          "updateExercise": "Cập nhật bài tập thành công",
+          "deleteExercise": "Xoá bài tập thành công",
+          "createUser": "Tạo người dùng mới thành công",
+          "updateUser": "Cập nhật thông tin người dùng thành công",
+          "deleteUser": "Xoá người dùng thành công"
+        }
+    },
+      "upsertProgram_":{
+        "createNewTitle": "Tạo chương trình mới",
+        "updateTitle": "Cập nhật chương trình",
+        "createNewDes":"Bạn có chắc chắn muốn tạo chương trình mới?",
+        "updateDes": "Bạn có chắc chắn muốn cập nhật thông tin chương trình?",
+        "programDetail":"Chi tiết chương trình",
+        "name": "Tên chương trình",
+        "image": "Hình ảnh",
+        "nameIsRequired": "Bạn chưa nhập tên",
+        "imageIsRequired": "Bạn chưa chọn hình",
+        "nameHint": "Nhập tên chương trình",
+        "imageHint": "Chọn hình ảnh của chương trình",
+        "ID": "Mã chương trình",
+        "level": "Độ khó",
+        "bodyPart": "Vùng cơ thể",
+        "category": "Thể loại",
+        "categoryHint": "Chọn thể loại",
+        "levelRequired": "Bạn chưa chọn độ khó",
+        "bodyPartRequired": "Bạn chưa chọn vùng cơ thể",
+        "categoryRequired": "Bạn chưa chọn thể loại",
+        "descriptionRequired": "Bạn chưa nhập mô tả",
+        "description": "Mô tả",
+        "descriptionHint": "Nhập mô tả chương trình",
+        "viewExercises": "Xem danh sách bài tập",
+        "addNewExercise": "Thêm bài tập mới",
+        "exerciseEmpty": "Chương trình này không có bài tập nào"
+    },
+    "upsertExercise_":{
+        "createNewTitle": "Tạo bài tập mới",
+        "updateTitle": "Cập nhật bài tập",
+        "createNewDes":"Bạn có chắc chắn muốn tạo bài tập mới?",
+        "updateDes": "Bạn có chắc chắn muốn cập nhật thông tin bài tập?",
+        "exerciseDetail":"Chi tiết bài tập",
+        "name": "Tên bài tập",
+        "image": "Hình ảnh",
+        "video":"Video bài tập",
+        "nameIsRequired": "Bạn chưa nhập tên",
+        "imageIsRequired": "Bạn chưa chọn hình",
+        "videoIsRequired": "Bạn chưa chọn video",
+        "nameHint": "Nhập tên bài tập",
+        "imageHint": "Chọn hình ảnh của bài tập",
+        "videoHint":"Chọn video của bài tập",
+        "ID": "Mã bài tập",
+        "program": "Chương trình",
+        "programHint": "Chọn chương trình",
+        "programRequired": "Bạn chưa chọn chương trình",
+        "duration": "Thời gian",
+        "durationHint": "Chọn video để xem thời gian",
+        "durationRequired": "Thời gian bắt buộc",
+        "caloRequired": "Ban chưa nhập calo",
+        "calo": "Calo",
+        "caloHint": "Nhập calo của bài tập"
+    },
+    "deleteCategory_":{
+        "title":"Xoá thể loại",
+        "des": "Bạn có chắc chắn muốn xoá thể loại?"
+    },
+    "deleteExercise_":{
+        "title":"Xoá bài tập",
+        "des": "Bạn có chắc chắn muốn xoá bài tập?"
+    },
+    "deleteProgram_":{
+        "title":"Xoá chương trình",
+        "des": "Bạn có chắc chắn muốn xoá chương trình?"
+    },
+    "deleteUser_":{
+        "title":"Xoá người dùng",
+        "des": "Bạn có chắc chắn muốn xoá người dùng?"
+    },
+    "deleteInbox_":{
+        "title":"Xoá tin nhắn",
+        "des": "Bạn có chắc chắn muốn xoá tin nhắn?"
+    },
+    "upsertUser_":{
+        "createNewTitle": "Tạo người dùng mới",
+        "updateTitle": "Cập nhật thông tin người dùng",
+        "createNewDes":"Bạn có chắc chắn muốn tạo một người dùng mới?",
+        "updateDes": "Bạn có chắc chắn muốn cập nhật thông tin của người dùng này?",
+        "userDetail": "Thông tin người dùng",
+        "fullName": "Họ và tên",
+        "fullNameHint":"Nhập họ và tên",
+        "fullNameRequired":"Bạn chưa nhập họ và tên",
+        "emailHint": "Nhập email",
+        "passwordHint":"Nhập mật khẩu",
+        "age": "Tuổi",
+        "ageHint": "Nhập tuổi",
+        "ageRequired":"Bạn chưa nhập tuổi",
+        "confirmPasswordHint":"Nhập lại mật khẩu",
+        "confirmPasswordRequired":"Bạn chưa xác nhận mật khẩu",
+        "confirmPassword":"Xác nhận mật khẩu"
+    },
+    "editProfile_":{
+        "title": "Cập nhật thông tin",
+        "editDes": "Bạn có chắc chắn muốn cập nhật thông tin cá nhân?",
+        "updateSuccess": "Thông tin của bạn đã được cập nhật thành công"
+  
+    },
+    "support_":{
+        "content": "Nội dung",
+        "status": "Trạng thái",
+        "supportStatus":[
+            "Đang chờ",
+            "Đang xử lý",
+            "Hoàn thành",
+            "Đã huỷ"
+        ],
+        "supportDetails": "Chi tiết yêu cầu hỗ trợ",
+        "title": "Hỗ trợ"
+    },
+    "weekDays_":[
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "CN"
+    ],
+    "statistics_":{
+        "userStatistics": "Thống kê dữ liệu tập luyện",
+        "recentWorkout": "Chương trình tập gần đây",
+        "youHaveBurnt":"Bạn đã đốt",
+        "thisWeek": "tuần này",
+        "thisMonth": "tháng này",
+        "calories": "calories",
+        "whatAGreatValue":"Thật tuyệt vời!",
+        "bodyCountHistory":"Lịch sử chỉ số cơ thể",
+        "selectMonth": "Chọn tháng"
+    },
+    "chart_":{
+        "chart": "Biểu đồ",
+        "chartType":[
+          "cột",
+          "thanh",
+          "đường",
+          "đường bậc thang"
+        ]
+    },
+    "home_":{
+        "topUsersProgram": "Người dùng tập nhiểu chương trình nhất",
+        "topUsersInbox": "Người dùng nhắn tin nhiều nhất",
+        "programsOf": "Danh sách chương trình của",
+        "inboxesOf": "Danh sách tin nhắn của",
+        "mostViewedPrograms": "Chương trình được xem nhiều nhất",
+        "newestPrograms": "Chương trình mới nhất",
+        "userAgesPieChart": "Biểu đồ tròn độ tuổi người dùng",
+        "userGendersPieChart": "Biểu đồ tròn giới tính người dùng"
+    },
+    "gender":[
+        "Nam",
+        "Nữ",
+        "Khác"
+    ]
+}

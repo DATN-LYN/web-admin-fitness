@@ -1,0 +1,65 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+
+import '../themes/app_colors.dart';
+import 'shimmer_wrapper.dart';
+
+class ShimmerImage extends StatelessWidget {
+  const ShimmerImage({
+    super.key,
+    required this.imageUrl,
+    this.iconErrorSize = 20,
+    this.fit = BoxFit.cover,
+    this.width,
+    this.height,
+    this.errorWidget,
+    this.borderImage = 100,
+    this.borderRadius,
+  });
+
+  final String imageUrl;
+  final double? width;
+  final double? height;
+  final double iconErrorSize;
+  final BoxFit fit;
+  final Widget? errorWidget;
+  final double borderImage;
+  final BorderRadiusGeometry? borderRadius;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.grey6),
+        borderRadius: borderRadius ?? BorderRadius.circular(borderImage),
+      ),
+      child: ClipRRect(
+        borderRadius: borderRadius ?? BorderRadius.circular(borderImage),
+        child: CachedNetworkImage(
+          imageUrl: imageUrl,
+          width: width,
+          height: height,
+          fit: fit,
+          placeholder: (context, url) => ShimmerWrapper(
+            child: Container(
+              height: width,
+              width: height,
+              color: AppColors.grey6,
+            ),
+          ),
+          errorWidget: (context, url, error) =>
+              errorWidget ??
+              Container(
+                height: width,
+                width: height,
+                color: AppColors.grey6,
+                child: Icon(
+                  Icons.error,
+                  size: iconErrorSize,
+                ),
+              ),
+        ),
+      ),
+    );
+  }
+}

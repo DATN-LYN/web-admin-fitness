@@ -1,0 +1,14 @@
+{
+    "defaultLocale": "en-US",
+    "locales": [
+        "en-US",
+        "vi-VN"
+    ],
+    "localePath": "assets/locales",
+    "generatedPath": "lib/global/gen",
+    "ltr": [
+        "en-US",
+        "vi-VN"
+    ],
+    "rtl": []
+}

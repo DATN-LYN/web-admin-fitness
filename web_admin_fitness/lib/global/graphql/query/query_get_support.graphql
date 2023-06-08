@@ -1,0 +1,7 @@
+#import '../fragment/i_support_fragment.graphql'
+
+query GetSupport($supportId: String!) {
+  getSupport(supportId: $supportId) {
+    ...ISupport
+  }
+}

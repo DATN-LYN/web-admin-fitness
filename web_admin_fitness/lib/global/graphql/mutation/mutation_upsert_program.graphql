@@ -1,0 +1,13 @@
+mutation UpsertProgram($input: UpsertProgramInputDto!) {
+  upsertProgram(input: $input) {
+    id
+    name
+    level
+    bodyPart
+    description
+    imgUrl
+    createdAt
+    updatedAt
+    categoryId
+  }
+}

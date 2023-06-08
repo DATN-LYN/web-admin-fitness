@@ -1,0 +1,17 @@
+#import './category_fragment.graphql'
+
+fragment Program on Program {
+  id
+  name
+  level
+  bodyPart
+  description
+  imgUrl
+  createdAt
+  updatedAt
+  categoryId
+  category{
+    ...Category
+  }
+  view
+}

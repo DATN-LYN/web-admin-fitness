@@ -1,0 +1,7 @@
+mutation UpsertCategory($input: UpsertCategoryInputDto!) {
+  upsertCategory(input: $input) {
+    id
+    name
+    imgUrl
+  }
+}

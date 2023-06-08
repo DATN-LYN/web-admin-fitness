@@ -1,0 +1,13 @@
+#import '../fragment/meta_fragment.graphql'
+#import '../fragment/program_fragment.graphql'
+
+query GetPrograms($queryParams: QueryFilterDto!) {
+  getPrograms(queryParams: $queryParams) {
+    meta {
+      ...Meta
+    }
+    items {
+      ...Program
+    }
+  }
+}

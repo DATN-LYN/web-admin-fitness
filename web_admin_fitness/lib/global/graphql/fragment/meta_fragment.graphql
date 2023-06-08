@@ -1,0 +1,7 @@
+fragment Meta on Meta {
+  itemCount
+  itemsPerPage
+  currentPage
+  totalPages
+  totalItems
+}

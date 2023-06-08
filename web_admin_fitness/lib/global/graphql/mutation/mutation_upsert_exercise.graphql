@@ -1,0 +1,13 @@
+mutation UpsertExercise($input: UpsertExerciseInputDto!) {
+  upsertExercise(input: $input) {
+    id
+    name
+    imgUrl
+    videoUrl
+    duration
+    calo
+    programId
+    createdAt
+    updatedAt
+  }
+}
