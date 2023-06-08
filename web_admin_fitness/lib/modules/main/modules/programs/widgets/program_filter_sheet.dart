@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:web_admin_fitness/global/extensions/body_part_extension.dart';
 import 'package:web_admin_fitness/global/extensions/workout_level_extension.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
@@ -70,6 +71,37 @@ class _ProgramFilterSheetState extends State<ProgramFilterSheet> {
                     filter = filter.copyWith(
                       levels:
                           filter.levels.whereNot((item) => item == e).toList(),
+                    );
+                  }
+                },
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 16),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            i18n.programs_BodyPart,
+            style: titleStyle,
+          ),
+        ),
+        const SizedBox(height: 10),
+        ...GBODY_PART.values.map(
+          (e) => CheckboxListTile(
+            value: filter.bodyParts.contains(e),
+            title: Text(e.label(i18n)),
+            onChanged: (value) {
+              setState(
+                () {
+                  if (value == true) {
+                    filter =
+                        filter.copyWith(bodyParts: [...filter.bodyParts, e]);
+                  } else {
+                    filter = filter.copyWith(
+                      bodyParts: filter.bodyParts
+                          .whereNot((item) => item == e)
+                          .toList(),
                     );
                   }
                 },
