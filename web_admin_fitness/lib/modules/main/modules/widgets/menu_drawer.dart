@@ -28,7 +28,7 @@ class MenuDrawer extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
               child: Align(
                 alignment: Alignment.bottomLeft,
-                child: Assets.images.logoContainer.image(),
+                child: Assets.images.logo.image(),
               ),
             ),
             const Divider(),
