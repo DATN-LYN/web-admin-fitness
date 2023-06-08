@@ -3,6 +3,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:web_admin_fitness/global/extensions/gender_extension.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
+import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 
 import '../../../../../global/themes/app_colors.dart';
 
@@ -28,27 +29,43 @@ class _GendersChartState extends State<GendersChart> {
   Widget build(BuildContext context) {
     final i18n = I18n.of(context)!;
 
-    return SfCircularChart(
-      title: ChartTitle(text: i18n.home_UserGendersPieChart),
-      legend: Legend(isVisible: true),
-      series: [
-        PieSeries<int, String>(
-          dataSource: widget.genders.entries.map((e) => e.value).toList(),
-          xValueMapper: (data, index) =>
-              widget.genders.keys.elementAt(index).label(i18n),
-          yValueMapper: (data, _) => data,
-          dataLabelMapper: (data, _) =>
-              '${(data * 100 / widget.genders.length).round()} %',
-          startAngle: 90,
-          endAngle: 90,
-          strokeColor: AppColors.white,
-          strokeWidth: 0.2,
-          dataLabelSettings: const DataLabelSettings(
-            isVisible: true,
-            textStyle: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          i18n.home_UserGendersPieChart,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 16),
+        ShadowWrapper(
+          margin: EdgeInsets.zero,
+          child: SfCircularChart(
+            legend: Legend(isVisible: true),
+            series: [
+              DoughnutSeries<int, String>(
+                dataSource: widget.genders.entries.map((e) => e.value).toList(),
+                xValueMapper: (data, index) =>
+                    widget.genders.keys.elementAt(index).label(i18n),
+                yValueMapper: (data, _) => data,
+                dataLabelMapper: (data, _) =>
+                    '${(data * 100 / widget.genders.length).round()} %',
+                startAngle: 90,
+                endAngle: 90,
+                strokeColor: AppColors.white,
+                strokeWidth: 0.2,
+                dataLabelSettings: const DataLabelSettings(
+                  isVisible: true,
+                  textStyle: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+                innerRadius: '60%',
+              ),
+            ],
           ),
         ),
       ],
