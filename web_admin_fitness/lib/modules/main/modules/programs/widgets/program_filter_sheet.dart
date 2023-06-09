@@ -88,22 +88,14 @@ class _ProgramFilterSheetState extends State<ProgramFilterSheet> {
         ),
         const SizedBox(height: 10),
         ...GBODY_PART.values.map(
-          (e) => CheckboxListTile(
-            value: filter.bodyParts.contains(e),
+          (e) => RadioListTile(
+            groupValue: filter.bodyPart,
+            value: e,
             title: Text(e.label(i18n)),
             onChanged: (value) {
               setState(
                 () {
-                  if (value == true) {
-                    filter =
-                        filter.copyWith(bodyParts: [...filter.bodyParts, e]);
-                  } else {
-                    filter = filter.copyWith(
-                      bodyParts: filter.bodyParts
-                          .whereNot((item) => item == e)
-                          .toList(),
-                    );
-                  }
+                  filter = filter.copyWith(bodyPart: e);
                 },
               );
             },

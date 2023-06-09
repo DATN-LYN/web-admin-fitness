@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:web_admin_fitness/global/extensions/double_extension.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/widgets/shadow_wrapper.dart';
 
@@ -42,14 +43,34 @@ class _AgesChartState extends State<AgesChart> {
           margin: EdgeInsets.zero,
           child: SfCircularChart(
             legend: Legend(isVisible: true),
+            tooltipBehavior: TooltipBehavior(
+              enable: true,
+              builder: (data, point, _, __, ___) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 6,
+                  ),
+                  child: Text(
+                    '${(point.y as double).toStringWithNoZero()} ',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                );
+              },
+            ),
             series: [
               DoughnutSeries<int, String>(
+                enableTooltip: true,
                 dataSource: widget.ages.entries.map((e) => e.value).toList(),
                 xValueMapper: (data, index) =>
                     widget.ages.keys.elementAt(index).toString(),
                 yValueMapper: (data, _) => data,
                 dataLabelMapper: (data, _) =>
-                    '${(data * 100 / widget.ages.length).round()} %',
+                    '${(data * 100 / widget.ages.length).round()}%',
                 startAngle: 90,
                 endAngle: 90,
                 strokeColor: AppColors.white,
@@ -61,7 +82,7 @@ class _AgesChartState extends State<AgesChart> {
                     fontSize: 16,
                   ),
                 ),
-                innerRadius: '60%',
+                innerRadius: '65%',
               ),
             ],
           ),

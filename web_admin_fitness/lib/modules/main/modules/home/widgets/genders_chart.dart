@@ -63,7 +63,7 @@ class _GendersChartState extends State<GendersChart> {
                     fontSize: 16,
                   ),
                 ),
-                innerRadius: '60%',
+                innerRadius: '65%',
               ),
             ],
           ),

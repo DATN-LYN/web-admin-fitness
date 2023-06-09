@@ -36,11 +36,12 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
   late ProgramFilterData filter = widget.initialFilter;
 
   void handleFilter(ProgramFilterData filterData) {
-    filter = filterData;
+    setState(() {
+      filter = filterData;
+    });
     final newFilters = widget.request.vars.queryParams.filters?.toList() ?? [];
 
     // filter by keyword
-    // newFilters.removeWhere((e) => e.field == widget.searchMode.key);
     if (filterData.keyword?.isNotEmpty ?? false) {
       newFilters.add(
         GFilterDto(
@@ -54,17 +55,6 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
       newFilters.clear();
     }
 
-    // filter by bodyPart
-    newFilters.removeWhere((e) => e.field == 'Program.bodyPart');
-    if (filterData.bodyParts.isNotEmpty) {
-      newFilters.add(
-        GFilterDto((b) => b
-          ..field = 'Program.bodyPart'
-          ..operator = GFILTER_OPERATOR.Gin
-          ..data = filterData.bodyParts.map((e) => e).join(',')),
-      );
-    }
-
     // filter by categoryId
     newFilters.removeWhere((e) => e.field == 'Program.categoryId');
     if (filterData.category != null) {
@@ -76,11 +66,9 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
             ..data = filterData.category?.id,
         ),
       );
-    } else {
-      newFilters.clear();
     }
 
-    // filter by status
+    // filter by level
     newFilters.removeWhere((e) => e.field == 'Program.level');
     if (filterData.levels.isNotEmpty) {
       newFilters.add(
@@ -92,6 +80,21 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
         ),
       );
     }
+
+    // filter by bodyPart
+    newFilters.removeWhere((e) => e.field == 'Program.bodyPart');
+    if (filterData.bodyPart != null) {
+      newFilters.add(
+        GFilterDto(
+          (b) => b
+            ..field = 'Program.bodyPart'
+            ..operator = GFILTER_OPERATOR.eq
+            ..data = filterData.bodyPart.toString(),
+        ),
+      );
+    }
+
+    print(newFilters);
 
     widget.onChanged(widget.request.rebuild(
       (b) => b
