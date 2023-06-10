@@ -46,7 +46,13 @@ class CardOverviewWidget extends StatelessWidget {
                   maxLines: 1,
                 ),
                 const SizedBox(height: 8),
-                Text(total.toInt().toString()),
+                Text(
+                  total.toInt().toString(),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ],
             ),
           ),

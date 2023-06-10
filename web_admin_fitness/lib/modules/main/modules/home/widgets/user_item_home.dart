@@ -24,6 +24,7 @@ class UserItemHome extends StatelessWidget with ClientMixin {
     return GestureDetector(
       onTap: onTap,
       child: ShadowWrapper(
+        margin: EdgeInsets.zero,
         child: Row(
           children: [
             ShimmerImage(

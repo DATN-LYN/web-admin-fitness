@@ -117,7 +117,7 @@ class AppThemes {
             return null;
           }
           if (states.contains(MaterialState.selected)) {
-            return AppColors.primary;
+            return AppColors.primaryBold;
           }
           return null;
         }),

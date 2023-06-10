@@ -114,7 +114,6 @@ class _HomeOverviewState extends State<HomeOverview> with ClientMixin {
         ];
 
         return GridView.builder(
-          padding: const EdgeInsets.all(16),
           gridDelegate: gridDelegate,
           shrinkWrap: true,
           itemCount: items.length,

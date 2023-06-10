@@ -8,7 +8,7 @@ part 'program_filter_data.freezed.dart';
 class ProgramFilterData with _$ProgramFilterData {
   const factory ProgramFilterData([
     String? keyword,
-    @Default([]) List<GBODY_PART> bodyParts,
+    GBODY_PART? bodyPart,
     @Default([]) List<GWORKOUT_LEVEL> levels,
     GCategory? category,
   ]) = _ProgramFilterData;
