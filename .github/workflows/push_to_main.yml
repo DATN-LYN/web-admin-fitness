@@ -28,4 +28,9 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ADMIN_FITNESS_2EA39 }}"
           channelId: live
-          projectId: unigo-ca293
+          projectId: admin-fitness-2ea39
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks 
+
+
+
