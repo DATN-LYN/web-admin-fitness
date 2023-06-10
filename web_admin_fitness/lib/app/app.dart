@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return Consumer<AppSettingsProvider>(
       builder: (context, provider, child) {
         return MaterialApp.router(
-          title: 'My App',
+          title: 'Admin Fitness',
           debugShowCheckedModeBanner: false,
           scrollBehavior: AppScrollBehavior(),
           localizationsDelegates: const [

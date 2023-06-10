@@ -6,6 +6,7 @@ import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/widgets/filter/filter_text_field.dart';
 
 import '../../../../../global/utils/constants.dart';
 import '../../../../../global/widgets/fitness_empty.dart';
@@ -105,6 +106,10 @@ class _ProgramListDialogState extends State<ProgramListDialog>
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 16),
+            FilterTextField(
+              hintText: i18n.upsertProgram_NameHint,
+              onTextChange: onChanged,
+            ),
             Expanded(
               child: InfinityList(
                 client: client,
@@ -165,26 +170,16 @@ class _ProgramListDialogState extends State<ProgramListDialog>
                     );
                   }
 
-                  return Column(
-                    children: [
-                      TextFormField(
-                        onChanged: (value) => onChanged(value),
-                      ),
-                      Expanded(
-                        child: ListView.separated(
-                          itemCount: programs!.length + (hasMoreData ? 1 : 0),
-                          padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-                          itemBuilder: (context, index) {
-                            final item = programs[index];
-                            return ProgramItem(
-                              program: item,
-                            );
-                          },
-                          separatorBuilder: (_, __) =>
-                              const SizedBox(height: 16),
-                        ),
-                      ),
-                    ],
+                  return ListView.separated(
+                    itemCount: programs!.length + (hasMoreData ? 1 : 0),
+                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+                    itemBuilder: (context, index) {
+                      final item = programs[index];
+                      return ProgramItem(
+                        program: item,
+                      );
+                    },
+                    separatorBuilder: (_, __) => const SizedBox(height: 16),
                   );
                 },
               ),

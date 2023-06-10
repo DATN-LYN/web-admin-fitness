@@ -6,6 +6,7 @@ import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_exercises.req.gql.dart';
 import 'package:web_admin_fitness/global/routers/app_router.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/widgets/filter/filter_text_field.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_exercise_item.dart';
 import 'package:web_admin_fitness/modules/main/modules/exercises/widgets/exercise_item.dart';
 
@@ -106,6 +107,11 @@ class _ExerciseListDialogState extends State<ExerciseListDialog>
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 16),
+            FilterTextField(
+              hintText: i18n.upsertExercise_NameHint,
+              onTextChange: onSearch,
+            ),
+            const SizedBox(height: 16),
             Expanded(
               child: InfinityList(
                 client: client,
@@ -167,26 +173,16 @@ class _ExerciseListDialogState extends State<ExerciseListDialog>
                     );
                   }
 
-                  return Column(
-                    children: [
-                      TextFormField(
-                        onChanged: (value) => onSearch(value),
-                      ),
-                      Expanded(
-                        child: ListView.separated(
-                          itemCount: exercises!.length + (hasMoreData ? 1 : 0),
-                          padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
-                          itemBuilder: (context, index) {
-                            final item = exercises[index];
-                            return ExerciseItem(
-                              exercise: item,
-                            );
-                          },
-                          separatorBuilder: (_, __) =>
-                              const SizedBox(height: 16),
-                        ),
-                      ),
-                    ],
+                  return ListView.separated(
+                    itemCount: exercises!.length + (hasMoreData ? 1 : 0),
+                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+                    itemBuilder: (context, index) {
+                      final item = exercises[index];
+                      return ExerciseItem(
+                        exercise: item,
+                      );
+                    },
+                    separatorBuilder: (_, __) => const SizedBox(height: 16),
                   );
                 },
               ),
