@@ -33,6 +33,7 @@ class _LoginPageState extends State<LoginPage> with ClientMixin {
   bool isLoading = false;
 
   void login() async {
+    final i18n = I18n.of(context)!;
     if (formKey.currentState!.saveAndValidate()) {
       FocusManager.instance.primaryFocus?.unfocus();
       final loginReq = GLoginReq(
@@ -47,15 +48,19 @@ class _LoginPageState extends State<LoginPage> with ClientMixin {
 
       if (response.hasErrors) {
         if (mounted) {
-          print(response.linkException);
           showErrorToast(
             context,
-            response.graphqlErrors?.first.message ??
-                'Login failed. Please try again',
+            response.graphqlErrors?.first.message ?? i18n.login_LoginFailed,
           );
         }
       } else {
-        handleLoginSuccess(response.data!.login);
+        if (response.data?.login.user?.userRole == GROLE.Admin) {
+          handleLoginSuccess(response.data!.login);
+        } else {
+          if (mounted) {
+            showErrorToast(context, i18n.login_WrongRole);
+          }
+        }
       }
     }
   }

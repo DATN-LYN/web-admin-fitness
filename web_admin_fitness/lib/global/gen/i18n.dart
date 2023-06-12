@@ -58,6 +58,10 @@ class I18n implements WidgetsLocalizations {
 	String get login_PasswordIsRequired => "Password is required";
 	/// "Admin Login"
 	String get login_AdminLogin => "Admin Login";
+	/// "Login failed, please try again"
+	String get login_LoginFailed => "Login failed, please try again";
+	/// "This account is not allowed to sign in Admin Web"
+	String get login_WrongRole => "This account is not allowed to sign in Admin Web";
 	/// "Next"
 	String get button_Next => "Next";
 	/// "Done"
@@ -450,6 +454,8 @@ class I18n implements WidgetsLocalizations {
 	String get upsertUser_ConfirmPasswordRequired => "Confirm password is required";
 	/// "Confirm password"
 	String get upsertUser_ConfirmPassword => "Confirm password";
+	/// "Role"
+	String get upsertUser_Role => "Role";
 	/// "Update Profile"
 	String get editProfile_Title => "Update Profile";
 	/// "Are you sure you want to update your profile?"
@@ -562,6 +568,12 @@ class _I18n_vi_VN extends I18n {
 	/// "Đăng nhập dành cho Quản trị viên"
 	@override
 	String get login_AdminLogin => "Đăng nhập dành cho Quản trị viên";
+	/// "Đăng nhập thất bại, hãy thử lại"
+	@override
+	String get login_LoginFailed => "Đăng nhập thất bại, hãy thử lại";
+	/// "Tài khoản không được phép đăng nhập vào trang Admin"
+	@override
+	String get login_WrongRole => "Tài khoản không được phép đăng nhập vào trang Admin";
 	/// "Tiếp tục"
 	@override
 	String get button_Next => "Tiếp tục";
@@ -1150,6 +1162,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Xác nhận mật khẩu"
 	@override
 	String get upsertUser_ConfirmPassword => "Xác nhận mật khẩu";
+	/// "Loại tài khoản"
+	@override
+	String get upsertUser_Role => "Loại tài khoản";
 	/// "Cập nhật thông tin"
 	@override
 	String get editProfile_Title => "Cập nhật thông tin";

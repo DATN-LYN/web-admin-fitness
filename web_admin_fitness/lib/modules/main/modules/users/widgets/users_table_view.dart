@@ -4,7 +4,9 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:web_admin_fitness/global/extensions/gender_extension.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
+import 'package:web_admin_fitness/global/extensions/role_extension.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
+import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
@@ -12,6 +14,7 @@ import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
+import 'package:web_admin_fitness/global/widgets/tag.dart';
 
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
@@ -183,6 +186,20 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('age'),
                 itemValue: (e) => e.age?.toInt().toString(),
+              ),
+              TableColumn(
+                label: i18n.upsertUser_Role,
+                minimumWidth: 150,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('user_role'),
+                cellBuilder: (e) {
+                  return Tag(
+                    text: e.userRole?.label(i18n) ?? '',
+                    color: e.userRole == GROLE.Admin
+                        ? AppColors.information
+                        : AppColors.success,
+                  );
+                },
               ),
               TableColumn(
                 label: i18n.common_Actions,

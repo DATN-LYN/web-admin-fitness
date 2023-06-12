@@ -13,7 +13,9 @@
         "emailIsRequired": "Email bắt buộc",
         "passwordMustBeAtLeastSixCharacters": "Mật khẩu phải dài tối thiểu 6 ký tự",
         "passwordIsRequired": "Mật khẩu bắt buộc",
-        "adminLogin":"Đăng nhập dành cho Quản trị viên"
+        "adminLogin":"Đăng nhập dành cho Quản trị viên",
+        "loginFailed": "Đăng nhập thất bại, hãy thử lại",
+        "wrongRole": "Tài khoản không được phép đăng nhập vào trang Admin"
     },
     "button_":{
         "next": "Tiếp tục",
@@ -263,7 +265,8 @@
         "ageRequired":"Bạn chưa nhập tuổi",
         "confirmPasswordHint":"Nhập lại mật khẩu",
         "confirmPasswordRequired":"Bạn chưa xác nhận mật khẩu",
-        "confirmPassword":"Xác nhận mật khẩu"
+        "confirmPassword":"Xác nhận mật khẩu",
+        "role": "Loại tài khoản"
     },
     "editProfile_":{
         "title": "Cập nhật thông tin",

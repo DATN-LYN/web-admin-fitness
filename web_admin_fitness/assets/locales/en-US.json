@@ -13,7 +13,9 @@
         "emailIsRequired": "Email is required",
         "passwordMustBeAtLeastSixCharacters": "Password must be at least 6 characters",
         "passwordIsRequired": "Password is required",
-        "adminLogin":"Admin Login"
+        "adminLogin":"Admin Login",
+        "loginFailed": "Login failed, please try again",
+        "wrongRole": "This account is not allowed to sign in Admin Web"
     },
     "button_":{
         "next": "Next",
@@ -262,7 +264,8 @@
         "ageRequired":"Age is required",
         "confirmPasswordHint":"Enter confirm password",
         "confirmPasswordRequired":"Confirm password is required",
-        "confirmPassword":"Confirm password"
+        "confirmPassword":"Confirm password",
+        "role": "Role"
     },
     "editProfile_":{
         "title": "Update Profile",

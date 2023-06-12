@@ -328,6 +328,7 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                         );
                       },
                     ),
+                    Label(i18n.upsertUser_Role),
                     FormBuilderField<GROLE>(
                       name: 'user_role',
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -416,7 +417,8 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                         ),
                       ),
                     ],
-                    if (!isCreateNew) ...[
+                    if (!isCreateNew &&
+                        widget.user?.userRole != GROLE.Admin) ...[
                       const Divider(
                         height: 48,
                         color: AppColors.grey4,
