@@ -324,6 +324,10 @@
         "Male",
         "Female",
         "Others"
+    ],
+    "role":[
+        "Admin",
+        "User"    
     ]
     
 }

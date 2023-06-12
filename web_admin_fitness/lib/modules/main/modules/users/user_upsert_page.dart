@@ -7,6 +7,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:web_admin_fitness/global/extensions/gender_extension.dart';
+import 'package:web_admin_fitness/global/extensions/role_extension.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_register.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_user_cache_handler.dart';
@@ -306,6 +307,44 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                             .toList();
                         if (!isCreateNew) {
                           initialData = widget.user!.gender!;
+                        }
+                        return AdaptiveSelector(
+                          options: options,
+                          type: isDesktopView
+                              ? SelectorType.menu
+                              : SelectorType.bottomSheet,
+                          initialOption: !isCreateNew
+                              ? AdaptiveSelectorOption(
+                                  label: initialData.label(i18n),
+                                  value: initialData,
+                                )
+                              : options.first,
+                          allowClear: false,
+                          onChanged: (selectedItem) {
+                            if (selectedItem != null) {
+                              field.didChange(selectedItem.value);
+                            }
+                          },
+                        );
+                      },
+                    ),
+                    FormBuilderField<GROLE>(
+                      name: 'user_role',
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: FormBuilderValidators.required(
+                        errorText: i18n.upsertProgram_LevelRequired,
+                      ),
+                      initialValue: widget.user?.userRole ?? GROLE.User,
+                      builder: (field) {
+                        late GROLE initialData;
+                        final options = GROLE.values
+                            .map(
+                              (e) => AdaptiveSelectorOption(
+                                  label: e.label(i18n), value: e),
+                            )
+                            .toList();
+                        if (!isCreateNew) {
+                          initialData = widget.user!.userRole!;
                         }
                         return AdaptiveSelector(
                           options: options,

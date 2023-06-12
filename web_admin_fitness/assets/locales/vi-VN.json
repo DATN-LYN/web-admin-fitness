@@ -326,5 +326,9 @@
         "Nam",
         "Nữ",
         "Khác"
+    ],
+    "role":[
+        "Quản trị viên",
+        "Người dùng"
     ]
 }

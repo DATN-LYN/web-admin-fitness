@@ -508,6 +508,8 @@ class I18n implements WidgetsLocalizations {
 	String get home_UserGendersPieChart => "User genders pie chart";
 	/// ["Male", "Female", "Others"]
 	List<String> get gender => ["Male", "Female", "Others"];
+	/// ["Admin", "User"]
+	List<String> get role => ["Admin", "User"];
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -1235,6 +1237,9 @@ class _I18n_vi_VN extends I18n {
 	/// ["Nam", "Nữ", "Khác"]
 	@override
 	List<String> get gender => ["Nam", "Nữ", "Khác"];
+	/// ["Quản trị viên", "Người dùng"]
+	@override
+	List<String> get role => ["Quản trị viên", "Người dùng"];
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();
