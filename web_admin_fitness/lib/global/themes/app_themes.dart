@@ -49,6 +49,8 @@ class AppThemes {
       ),
       inputDecorationTheme: InputDecorationTheme(
         isDense: true,
+        filled: true,
+        fillColor: AppColors.white,
         constraints: const BoxConstraints(
           minHeight: 48,
         ),

@@ -43,7 +43,10 @@ class SelectedImage extends StatelessWidget {
                     height: height,
                   );
                 } else {
-                  return const CircularProgressIndicator();
+                  return const SizedBox.square(
+                    dimension: 30,
+                    child: CircularProgressIndicator(),
+                  );
                 }
               },
             ),

@@ -195,7 +195,7 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
               ),
               TableColumn(
                 label: i18n.exercises_ProgramId,
-                minimumWidth: 220,
+                minimumWidth: 230,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('programId'),
                 cellBuilder: (e) {
@@ -212,7 +212,13 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                           imageUrl: e.program?.imgUrl ?? '_',
                         ),
                         const SizedBox(width: 14),
-                        Text(e.program?.name ?? '_')
+                        Expanded(
+                          child: Text(
+                            e.program?.name ?? '_',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
                       ],
                     ),
                   );

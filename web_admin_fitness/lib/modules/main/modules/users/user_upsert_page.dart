@@ -84,6 +84,7 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
       (b) => b
         ..age = double.parse(formValue['age'])
         ..email = formValue['email']
+        ..gender = formValue['gender']
         ..avatar = imageUrl
         ..fullName = formValue['fullName'],
     );
@@ -142,8 +143,8 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
         context: context,
         builder: (dialogContext, child) {
           return ConfirmationDialog(
-            titleText: i18n.upsertUser_CreateNewTitle,
-            contentText: i18n.upsertUser_CreateNewDes,
+            titleText: i18n.upsertUser_UpdateTitle,
+            contentText: i18n.upsertUser_UpdateDes,
             onTapPositiveButton: () async {
               dialogContext.popRoute(true);
               setState(() => loading = true);
@@ -172,7 +173,7 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                 }
               } else {
                 if (mounted) {
-                  showSuccessToast(context, i18n.toast_Subtitle_CreateUser);
+                  showSuccessToast(context, i18n.toast_Subtitle_UpdateUser);
                   context.popRoute(response);
                 }
               }
@@ -328,6 +329,18 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                         );
                       },
                     ),
+                    Label(i18n.upsertUser_Age),
+                    FormBuilderTextField(
+                      name: 'age',
+                      initialValue: widget.user?.age?.round().toString(),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: FormBuilderValidators.required(
+                        errorText: i18n.upsertUser_AgeRequired,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: i18n.upsertUser_AgeHint,
+                      ),
+                    ),
                     Label(i18n.upsertUser_Role),
                     FormBuilderField<GROLE>(
                       name: 'user_role',
@@ -366,18 +379,6 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                           },
                         );
                       },
-                    ),
-                    Label(i18n.upsertUser_Age),
-                    FormBuilderTextField(
-                      name: 'age',
-                      initialValue: widget.user?.age?.round().toString(),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertUser_AgeRequired,
-                      ),
-                      decoration: InputDecoration(
-                        hintText: i18n.upsertUser_AgeHint,
-                      ),
                     ),
                     if (isCreateNew) ...[
                       Label(i18n.login_Password),

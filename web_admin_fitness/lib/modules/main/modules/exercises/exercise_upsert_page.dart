@@ -69,9 +69,7 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
   initData() async {
     if (!isCreateNew || widget.initialProgramId != null) {
       try {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          getProgram();
-        });
+        getProgram();
         if (mounted) {
           setState(
             () {
@@ -112,6 +110,7 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
         setState(() {
           initialProgram = response.data!.getProgram;
         });
+        print(initialProgram);
       }
     }
   }
@@ -148,6 +147,7 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
     } else {
       videoUrl = widget.exercise?.videoUrl;
     }
+    print(formValue['programId']);
     return GUpsertExerciseInputDto(
       (b) => b
         ..name = formValue['name']
@@ -156,7 +156,7 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
         ..duration = controller!.value.duration.inSeconds.toDouble()
         ..calo = double.parse(formValue['calo'])
         ..videoUrl = videoUrl
-        ..programId = formValue['programId'],
+        ..programId = formValue['programId'] ?? initialProgram?.id,
     );
   }
 
@@ -336,8 +336,9 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
                     Label(i18n.upsertExercise_Program),
                     FormBuilderField<String>(
                       name: 'programId',
-                      initialValue:
-                          widget.initialProgramId ?? initialProgram?.id,
+                      initialValue: isCreateNew
+                          ? null
+                          : (widget.initialProgramId ?? initialProgram!.id),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: FormBuilderValidators.required(
                         errorText: i18n.upsertExercise_ProgramRequired,
