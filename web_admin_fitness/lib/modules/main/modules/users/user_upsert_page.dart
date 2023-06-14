@@ -66,10 +66,14 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
     final formValue = formKey.currentState!.value;
     String? imageUrl = await getImageUrl();
 
+    print(formValue['user_role']);
+
     return GRegisterInputDto(
       (b) => b
         ..age = double.parse(formValue['age'])
         ..email = formValue['email']
+        ..userRole = formValue['user_role']
+        ..gender = formValue['gender']
         ..avatar = imageUrl
         ..fullName = formValue['fullName']
         ..password = formValue['password'],
@@ -85,6 +89,8 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
         ..age = double.parse(formValue['age'])
         ..email = formValue['email']
         ..gender = formValue['gender']
+        ..gender = formValue['gender']
+        ..userRole = formValue['user_role']
         ..avatar = imageUrl
         ..fullName = formValue['fullName'],
     );
@@ -105,6 +111,7 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
               setState(() => loading = true);
 
               final upsertData = await getInputCreate();
+              print(upsertData);
 
               final request =
                   GRegisterReq((b) => b..vars.input.replace(upsertData));

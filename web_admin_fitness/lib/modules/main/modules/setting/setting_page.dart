@@ -210,46 +210,10 @@ class _SettingPageState extends State<SettingPage> with ClientMixin {
                   onTap: () => changeLanguage(provider, i18n),
                 );
               }),
-              const Divider(height: 12),
-              SettingTile(
-                icon: Icons.share,
-                title: i18n.setting_ShareWithFriends,
-                onTap: shareIntroUrl,
-              ),
             ],
           ),
         ),
         const SizedBox(height: 16),
-        ShadowWrapper(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 16,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                i18n.setting_Security,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 16),
-              SettingTile(
-                icon: Icons.privacy_tip_outlined,
-                title: i18n.setting_PrivacyPolicy,
-                onTap: openPrivacyPolicyUrl,
-              ),
-              const Divider(height: 12),
-              SettingTile(
-                icon: Icons.note_outlined,
-                title: i18n.setting_TermsAndConditions,
-                onTap: openTermsAndConditionsUrl,
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }

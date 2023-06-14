@@ -178,7 +178,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('gender'),
-                itemValue: (e) => e.gender!.label(i18n),
+                itemValue: (e) => e.gender?.label(i18n) ?? '',
               ),
               TableColumn(
                 label: i18n.upsertUser_Age,

@@ -496,10 +496,10 @@ class I18n implements WidgetsLocalizations {
 	String get chart_Chart => "Chart";
 	/// ["column", "bar", "line", "stepline"]
 	List<String> get chart_ChartType => ["column", "bar", "line", "stepline"];
-	/// "Top users have most programs"
-	String get home_TopUsersProgram => "Top users have most programs";
-	/// "Top users have most inboxes"
-	String get home_TopUsersInbox => "Top users have most inboxes";
+	/// "Users have most programs"
+	String get home_TopUsersProgram => "Users have most programs";
+	/// "Users have most inboxes"
+	String get home_TopUsersInbox => "Users have most inboxes";
 	/// "Programs of"
 	String get home_ProgramsOf => "Programs of";
 	/// "Inboxes of"
@@ -1225,9 +1225,9 @@ class _I18n_vi_VN extends I18n {
 	/// ["cột", "thanh", "đường", "đường bậc thang"]
 	@override
 	List<String> get chart_ChartType => ["cột", "thanh", "đường", "đường bậc thang"];
-	/// "Người dùng tập nhiểu chương trình nhất"
+	/// "Người dùng tập nhiều chương trình nhất"
 	@override
-	String get home_TopUsersProgram => "Người dùng tập nhiểu chương trình nhất";
+	String get home_TopUsersProgram => "Người dùng tập nhiều chương trình nhất";
 	/// "Người dùng nhắn tin nhiều nhất"
 	@override
 	String get home_TopUsersInbox => "Người dùng nhắn tin nhiều nhất";

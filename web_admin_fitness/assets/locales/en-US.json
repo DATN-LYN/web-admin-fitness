@@ -314,8 +314,8 @@
         ]
     },
     "home_":{
-        "topUsersProgram": "Top users have most programs",
-        "topUsersInbox": "Top users have most inboxes",
+        "topUsersProgram": "Users have most programs",
+        "topUsersInbox": "Users have most inboxes",
         "programsOf": "Programs of",
         "inboxesOf": "Inboxes of",
         "mostViewedPrograms": "Most viewed programs",

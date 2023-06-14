@@ -30,7 +30,8 @@ class _UsersManagerPageState extends State<UsersManagerPage> with ClientMixin {
       ..requestId = '@getUsersReq'
       ..fetchPolicy = FetchPolicy.CacheAndNetwork
       ..vars.queryParams.page = 1
-      ..vars.queryParams.limit = Constants.defaultLimit,
+      ..vars.queryParams.limit = Constants.defaultLimit
+      ..vars.queryParams.orderBy = 'User.createdAt:DESC',
   );
 
   void refreshHandler() {

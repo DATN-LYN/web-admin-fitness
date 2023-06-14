@@ -82,17 +82,23 @@ class _HomePageState extends State<HomePage> with ClientMixin {
         Row(
           children: [
             Expanded(
-              child: AgesChart(ages: ages),
+              child: AgesChart(
+                ages: ages,
+                usersLength: users.length,
+              ),
             ),
             const SizedBox(width: 16),
             Expanded(
-              child: GendersChart(genders: genders),
+              child: GendersChart(
+                genders: genders,
+                usersLength: users.length,
+              ),
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 32),
         const TopUsersWidget(),
-        const SizedBox(height: 20),
+        const SizedBox(height: 32),
         const TopProgramsWidget(),
         const SizedBox(height: 20),
       ],

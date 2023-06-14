@@ -9,8 +9,10 @@ class AgesChart extends StatefulWidget {
   const AgesChart({
     super.key,
     required this.ages,
+    required this.usersLength,
   });
   final Map<int, int> ages;
+  final int usersLength;
 
   @override
   State<AgesChart> createState() => _AgesChartState();
@@ -33,7 +35,7 @@ class _AgesChartState extends State<AgesChart> {
         Text(
           i18n.home_UserAgesPieChart,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -49,7 +51,7 @@ class _AgesChartState extends State<AgesChart> {
                     widget.ages.keys.elementAt(index).toString(),
                 yValueMapper: (data, _) => data,
                 dataLabelMapper: (data, _) =>
-                    '${(data * 100 / widget.ages.length).round()}%',
+                    '${(data * 100 / widget.usersLength).round()}%',
                 startAngle: 90,
                 endAngle: 90,
                 strokeColor: AppColors.white,

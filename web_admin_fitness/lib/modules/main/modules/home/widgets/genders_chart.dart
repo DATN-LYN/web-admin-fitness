@@ -11,8 +11,10 @@ class GendersChart extends StatefulWidget {
   const GendersChart({
     super.key,
     required this.genders,
+    required this.usersLength,
   });
   final Map<GGENDER, int> genders;
+  final int usersLength;
 
   @override
   State<GendersChart> createState() => _GendersChartState();
@@ -35,7 +37,7 @@ class _GendersChartState extends State<GendersChart> {
         Text(
           i18n.home_UserGendersPieChart,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -50,8 +52,9 @@ class _GendersChartState extends State<GendersChart> {
                 xValueMapper: (data, index) =>
                     widget.genders.keys.elementAt(index).label(i18n),
                 yValueMapper: (data, _) => data,
-                dataLabelMapper: (data, _) =>
-                    '${(data * 100 / widget.genders.length).round()} %',
+                dataLabelMapper: (data, _) {
+                  return '${(data * 100 / widget.usersLength).round()} %';
+                },
                 startAngle: 90,
                 endAngle: 90,
                 strokeColor: AppColors.white,
