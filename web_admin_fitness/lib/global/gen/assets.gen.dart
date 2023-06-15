@@ -44,8 +44,8 @@ class $AssetsImagesGen {
   AssetGenImage get emptyData =>
       const AssetGenImage('assets/images/empty_data.png');
 
-  /// File path: assets/images/login.jpg
-  AssetGenImage get login => const AssetGenImage('assets/images/login.jpg');
+  /// File path: assets/images/login.png
+  AssetGenImage get login => const AssetGenImage('assets/images/login.png');
 
   /// File path: assets/images/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');

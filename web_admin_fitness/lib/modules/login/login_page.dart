@@ -203,13 +203,13 @@ class _LoginPageState extends State<LoginPage> with ClientMixin {
           ),
           if (width > 850)
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+              child: Container(
+                height: double.maxFinite,
+                color: AppColors.primarySoft,
+                child: Center(
                   child: Assets.images.login.image(
-                    height: double.maxFinite,
-                    fit: BoxFit.cover,
+                    width: 400,
+                    height: 400,
                   ),
                 ),
               ),
