@@ -124,9 +124,9 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
         ..name = formValue['name']
         ..imgUrl = imageUrl
         ..bodyPart = formValue['bodyPart']
-        ..description = formValue['description']
+        ..description = formValue['description'] ?? widget.program?.description
         ..level = formValue['level']
-        ..categoryId = formValue['categoryId']
+        ..categoryId = formValue['categoryId'] ?? widget.program?.categoryId
         ..view = widget.program?.view ?? 0,
     );
   }
