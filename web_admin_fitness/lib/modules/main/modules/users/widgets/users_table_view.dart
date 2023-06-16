@@ -139,7 +139,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               // ),
               TableColumn(
                 label: i18n.users_Avatar,
-                minimumWidth: 50,
+                minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('avatar'),
                 cellBuilder: (e) {
@@ -189,38 +189,43 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               ),
               TableColumn(
                 label: i18n.upsertUser_Role,
-                minimumWidth: 150,
+                minimumWidth: 160,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('user_role'),
                 cellBuilder: (e) {
                   return Tag(
                     text: e.userRole?.label(i18n) ?? '',
                     color: e.userRole == GROLE.Admin
-                        ? AppColors.information
-                        : AppColors.success,
+                        ? AppColors.warning
+                        : AppColors.information,
+                  );
+                },
+              ),
+              TableColumn(
+                label: i18n.upsertUser_Status,
+                minimumWidth: 150,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('isActive'),
+                cellBuilder: (e) {
+                  return Tag(
+                    text:
+                        e.isActive ?? true ? i18n.account[0] : i18n.account[1],
+                    color: e.isActive ?? false
+                        ? AppColors.success
+                        : AppColors.error,
                   );
                 },
               ),
               TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
-                width: 125,
+                width: 120,
                 cellBuilder: (e) {
-                  return Row(
-                    children: [
-                      IconButton(
-                        onPressed: () => goToUpsertPage(e),
-                        icon: const Icon(Icons.remove_red_eye),
-                        color: AppColors.grey4,
-                        tooltip: i18n.common_ViewDetail,
-                      ),
-                      IconButton(
-                        onPressed: () => handleDelete(e),
-                        icon: const Icon(Icons.delete_outline),
-                        color: AppColors.error,
-                        tooltip: i18n.button_Delete,
-                      ),
-                    ],
+                  return IconButton(
+                    onPressed: () => goToUpsertPage(e),
+                    icon: const Icon(Icons.remove_red_eye),
+                    color: AppColors.grey4,
+                    tooltip: i18n.common_ViewDetail,
                   );
                 },
               ),

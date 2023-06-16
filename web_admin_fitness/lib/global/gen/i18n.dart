@@ -456,6 +456,8 @@ class I18n implements WidgetsLocalizations {
 	String get upsertUser_ConfirmPassword => "Confirm password";
 	/// "Role"
 	String get upsertUser_Role => "Role";
+	/// "Status"
+	String get upsertUser_Status => "Status";
 	/// "Update Profile"
 	String get editProfile_Title => "Update Profile";
 	/// "Are you sure you want to update your profile?"
@@ -516,6 +518,8 @@ class I18n implements WidgetsLocalizations {
 	List<String> get gender => ["Male", "Female", "Others"];
 	/// ["Admin", "User"]
 	List<String> get role => ["Admin", "User"];
+	/// ["Active", "Inactive"]
+	List<String> get account => ["Active", "Inactive"];
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -1165,6 +1169,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Loại tài khoản"
 	@override
 	String get upsertUser_Role => "Loại tài khoản";
+	/// "Trạng thái"
+	@override
+	String get upsertUser_Status => "Trạng thái";
 	/// "Cập nhật thông tin"
 	@override
 	String get editProfile_Title => "Cập nhật thông tin";
@@ -1255,6 +1262,9 @@ class _I18n_vi_VN extends I18n {
 	/// ["Quản trị viên", "Người dùng"]
 	@override
 	List<String> get role => ["Quản trị viên", "Người dùng"];
+	/// ["Đang hoạt động", "Vô hiệu hoá"]
+	@override
+	List<String> get account => ["Đang hoạt động", "Vô hiệu hoá"];
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();

@@ -266,7 +266,9 @@
         "confirmPasswordHint":"Nhập lại mật khẩu",
         "confirmPasswordRequired":"Bạn chưa xác nhận mật khẩu",
         "confirmPassword":"Xác nhận mật khẩu",
-        "role": "Loại tài khoản"
+        "role": "Loại tài khoản",
+        "status": "Trạng thái"
+
     },
     "editProfile_":{
         "title": "Cập nhật thông tin",
@@ -333,5 +335,9 @@
     "role":[
         "Quản trị viên",
         "Người dùng"
+    ],
+    "account":[
+        "Đang hoạt động",
+        "Vô hiệu hoá"    
     ]
 }

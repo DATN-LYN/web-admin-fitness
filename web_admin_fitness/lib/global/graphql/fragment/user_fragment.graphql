@@ -8,4 +8,5 @@ fragment User on User {
   countInbox
   gender
   userRole
+  isActive
 }

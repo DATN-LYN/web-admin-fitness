@@ -66,14 +66,13 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
     final formValue = formKey.currentState!.value;
     String? imageUrl = await getImageUrl();
 
-    print(formValue['user_role']);
-
     return GRegisterInputDto(
       (b) => b
         ..age = double.parse(formValue['age'])
         ..email = formValue['email']
         ..userRole = formValue['user_role']
         ..gender = formValue['gender']
+        ..isActive = true
         ..avatar = imageUrl
         ..fullName = formValue['fullName']
         ..password = formValue['password'],
@@ -92,6 +91,7 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
         ..gender = formValue['gender']
         ..userRole = formValue['user_role']
         ..avatar = imageUrl
+        ..isActive = formValue['isActive']
         ..fullName = formValue['fullName'],
     );
   }
@@ -100,9 +100,9 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
     final i18n = I18n.of(context)!;
 
     if (formKey.currentState!.saveAndValidate()) {
-      showAlertDialog(
+      showDialog(
         context: context,
-        builder: (dialogContext, child) {
+        builder: (dialogContext) {
           return ConfirmationDialog(
             titleText: i18n.upsertUser_CreateNewTitle,
             contentText: i18n.upsertUser_CreateNewDes,
@@ -111,7 +111,6 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
               setState(() => loading = true);
 
               final upsertData = await getInputCreate();
-              print(upsertData);
 
               final request =
                   GRegisterReq((b) => b..vars.input.replace(upsertData));
@@ -375,6 +374,52 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                           initialOption: !isCreateNew
                               ? AdaptiveSelectorOption(
                                   label: initialData.label(i18n),
+                                  value: initialData,
+                                )
+                              : options.first,
+                          allowClear: false,
+                          onChanged: (selectedItem) {
+                            if (selectedItem != null) {
+                              field.didChange(selectedItem.value);
+                            }
+                          },
+                        );
+                      },
+                    ),
+                    Label(i18n.upsertUser_Status),
+                    FormBuilderField<bool>(
+                      name: 'isActive',
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: FormBuilderValidators.required(
+                        errorText: i18n.upsertProgram_LevelRequired,
+                      ),
+                      initialValue: widget.user?.isActive,
+                      builder: (field) {
+                        late bool initialData;
+                        final options = [
+                          AdaptiveSelectorOption(
+                            label: i18n.account[0],
+                            value: true,
+                          ),
+                          AdaptiveSelectorOption(
+                            label: i18n.account[1],
+                            value: false,
+                          ),
+                        ];
+
+                        if (!isCreateNew) {
+                          initialData = widget.user!.isActive!;
+                        }
+                        return AdaptiveSelector(
+                          options: options,
+                          type: isDesktopView
+                              ? SelectorType.menu
+                              : SelectorType.bottomSheet,
+                          initialOption: !isCreateNew
+                              ? AdaptiveSelectorOption(
+                                  label: initialData
+                                      ? i18n.account[0]
+                                      : i18n.account[1],
                                   value: initialData,
                                 )
                               : options.first,

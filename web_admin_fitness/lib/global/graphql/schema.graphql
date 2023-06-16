@@ -173,6 +173,7 @@ type IUser {
   age: Float
   refreshToken: String
   roleId: String
+  isActive: Boolean
   role: Role
   inboxes: [Inbox!]
   userPrograms: [UserProgram!]
@@ -350,6 +351,7 @@ input RegisterInputDto {
   fullName: String!
   gender: GENDER
   userRole: ROLE
+  isActive: Boolean
 }
 
 type ResponseMessageBase {
@@ -441,6 +443,7 @@ input UpsertUserInputDto {
   avatar: String!
   email: String!
   age: Float!
+  isActive: Boolean
   gender: GENDER
   userRole: ROLE
 }
@@ -472,6 +475,7 @@ type User {
   age: Float
   refreshToken: String
   roleId: String
+  isActive: Boolean
   role: Role
   inboxes: [Inbox!]
   userPrograms: [UserProgram!]

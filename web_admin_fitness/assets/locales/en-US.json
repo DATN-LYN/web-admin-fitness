@@ -265,7 +265,8 @@
         "confirmPasswordHint":"Enter confirm password",
         "confirmPasswordRequired":"Confirm password is required",
         "confirmPassword":"Confirm password",
-        "role": "Role"
+        "role": "Role",
+        "status": "Status"
     },
     "editProfile_":{
         "title": "Update Profile",
@@ -331,6 +332,10 @@
     "role":[
         "Admin",
         "User"    
+    ],
+    "account":[
+        "Active",
+        "Inactive"    
     ]
     
 }
