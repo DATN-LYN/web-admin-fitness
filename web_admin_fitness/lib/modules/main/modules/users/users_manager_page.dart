@@ -3,8 +3,8 @@ import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart';
-import 'package:web_admin_fitness/global/models/user_filter_data.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/modules/main/modules/users/models/user_filter_data.dart';
 
 import '../../../../../../../../../global/extensions/responsive_wrapper.dart';
 import '../../../../../../global/gen/i18n.dart';
