@@ -48,7 +48,7 @@ class _UserFilterSheetState extends State<UserFilterSheet> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Text(
-            i18n.filter_WorkoutLevel,
+            i18n.users_Role,
             style: titleStyle,
           ),
         ),
@@ -72,7 +72,36 @@ class _UserFilterSheetState extends State<UserFilterSheet> {
               );
             },
           ),
-        )
+        ),
+        const SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            i18n.support_Status,
+            style: titleStyle,
+          ),
+        ),
+        const SizedBox(height: 10),
+        ...[true, false].map(
+          (e) => CheckboxListTile(
+            value: filter.active.contains(e),
+            title: Text(e ? i18n.account[0] : i18n.account[1]),
+            onChanged: (value) {
+              setState(
+                () {
+                  if (value == true) {
+                    filter = filter.copyWith(active: [...filter.active, e]);
+                  } else {
+                    filter = filter.copyWith(
+                      active:
+                          filter.active.whereNot((item) => item == e).toList(),
+                    );
+                  }
+                },
+              );
+            },
+          ),
+        ),
       ],
     );
   }

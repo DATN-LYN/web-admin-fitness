@@ -240,6 +240,8 @@ class I18n implements WidgetsLocalizations {
 	String get users_Avatar => "Avatar";
 	/// "Gender"
 	String get users_Gender => "Gender";
+	/// "Role"
+	String get users_Role => "Role";
 	/// "Create New Category"
 	String get upsertCategory_CreateNewTitle => "Create New Category";
 	/// "Update Category"
@@ -845,6 +847,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Giới tính"
 	@override
 	String get users_Gender => "Giới tính";
+	/// "Loại tài khoản"
+	@override
+	String get users_Role => "Loại tài khoản";
 	/// "Tạo thể loại mới"
 	@override
 	String get upsertCategory_CreateNewTitle => "Tạo thể loại mới";

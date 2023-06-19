@@ -9,5 +9,6 @@ class UserFilterData with _$UserFilterData {
     String? keyword,
     DateTime? createdAt,
     @Default([]) List<GROLE> roles,
+    @Default([]) List<bool> active,
   ]) = _UserFilterData;
 }
