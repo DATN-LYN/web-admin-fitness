@@ -48,7 +48,7 @@ class _UserFilterSheetState extends State<UserFilterSheet> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Text(
-            i18n.filter_WorkoutLevel,
+            i18n.upsertUser_Role,
             style: titleStyle,
           ),
         ),
