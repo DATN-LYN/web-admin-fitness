@@ -55,13 +55,24 @@ class _UserSearchBarState extends State<UserSearchBar> {
     }
 
     // filter by role
-    newFilters.removeWhere((e) => e.field == 'Inbox.userRole');
+    newFilters.removeWhere((e) => e.field == 'User.userRole');
     if (filterData.roles.isNotEmpty) {
       newFilters.add(
         GFilterDto((b) => b
-          ..field = 'Inbox.userRole'
+          ..field = 'User.userRole'
           ..operator = GFILTER_OPERATOR.Gin
           ..data = filterData.roles.map((e) => e).join(',')),
+      );
+    }
+
+    // filter by active/inactive
+    newFilters.removeWhere((e) => e.field == 'User.isActive');
+    if (filterData.active.isNotEmpty) {
+      newFilters.add(
+        GFilterDto((b) => b
+          ..field = 'User.isActive'
+          ..operator = GFILTER_OPERATOR.Gin
+          ..data = filterData.active.map((e) => e).join(',')),
       );
     }
 

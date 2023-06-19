@@ -133,7 +133,8 @@
         "userList": "User List",
         "searchHint": "Enter user email",
         "avatar": "Avatar",
-        "gender": "Gender"
+        "gender": "Gender",
+        "role": "Role"
     },
     "upsertCategory_":{
         "createNewTitle": "Create New Category",
