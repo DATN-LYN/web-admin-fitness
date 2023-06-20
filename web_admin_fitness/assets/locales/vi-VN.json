@@ -65,7 +65,7 @@
     "programs_":{
         "calo":"calo",
         "programList": "Danh sách chương trình tập",
-        "bodyPart":"Bộ phận",
+        "bodyPart":"Vùng cơ thể",
         "description":"Mô tả",
         "searchHint": "Nhập tên chương trình"
     },

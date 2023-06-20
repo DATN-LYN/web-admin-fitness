@@ -20,6 +20,7 @@ import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import '../../../../../../../global/routers/app_router.dart';
 import '../../../../../global/widgets/avatar.dart';
+import '../../../../../global/widgets/fitness_empty.dart';
 import '../helper/user_helper.dart';
 
 class UsersTableView extends StatefulWidget {
@@ -223,7 +224,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 cellBuilder: (e) {
                   return IconButton(
                     onPressed: () => goToUpsertPage(e),
-                    icon: const Icon(Icons.remove_red_eye),
+                    icon: const Icon(Icons.edit),
                     color: AppColors.grey4,
                     tooltip: i18n.common_ViewDetail,
                   );
@@ -231,6 +232,14 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               ),
             ],
           );
+
+          if (users.isEmpty &&
+              response?.hasErrors == false &&
+              response?.loading == false) {
+            return FitnessEmpty(
+              title: i18n.common_NotFound,
+            );
+          }
 
           return SfDataGrid(
             source: dataSource,

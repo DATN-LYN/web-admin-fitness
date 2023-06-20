@@ -700,9 +700,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Danh sách chương trình tập"
 	@override
 	String get programs_ProgramList => "Danh sách chương trình tập";
-	/// "Bộ phận"
+	/// "Vùng cơ thể"
 	@override
-	String get programs_BodyPart => "Bộ phận";
+	String get programs_BodyPart => "Vùng cơ thể";
 	/// "Mô tả"
 	@override
 	String get programs_Description => "Mô tả";
