@@ -4,7 +4,9 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:web_admin_fitness/global/extensions/gender_extension.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
+import 'package:web_admin_fitness/global/extensions/role_extension.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
+import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_users.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
@@ -12,11 +14,13 @@ import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
+import 'package:web_admin_fitness/global/widgets/tag.dart';
 
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/graphql/fragment/__generated__/user_fragment.data.gql.dart';
 import '../../../../../../../global/routers/app_router.dart';
 import '../../../../../global/widgets/avatar.dart';
+import '../../../../../global/widgets/fitness_empty.dart';
 import '../helper/user_helper.dart';
 
 class UsersTableView extends StatefulWidget {
@@ -136,7 +140,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               // ),
               TableColumn(
                 label: i18n.users_Avatar,
-                minimumWidth: 50,
+                minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('avatar'),
                 cellBuilder: (e) {
@@ -175,7 +179,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('gender'),
-                itemValue: (e) => e.gender!.label(i18n),
+                itemValue: (e) => e.gender?.label(i18n) ?? '',
               ),
               TableColumn(
                 label: i18n.upsertUser_Age,
@@ -185,30 +189,57 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 itemValue: (e) => e.age?.toInt().toString(),
               ),
               TableColumn(
+                label: i18n.upsertUser_Role,
+                minimumWidth: 160,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('user_role'),
+                cellBuilder: (e) {
+                  return Tag(
+                    text: e.userRole?.label(i18n) ?? '',
+                    color: e.userRole == GROLE.Admin
+                        ? AppColors.warning
+                        : AppColors.information,
+                  );
+                },
+              ),
+              TableColumn(
+                label: i18n.upsertUser_Status,
+                minimumWidth: 150,
+                columnWidthMode: ColumnWidthMode.fill,
+                action: sortButton('isActive'),
+                cellBuilder: (e) {
+                  return Tag(
+                    text:
+                        e.isActive ?? true ? i18n.account[0] : i18n.account[1],
+                    color: e.isActive ?? false
+                        ? AppColors.success
+                        : AppColors.error,
+                  );
+                },
+              ),
+              TableColumn(
                 label: i18n.common_Actions,
                 align: Alignment.center,
-                width: 125,
+                width: 120,
                 cellBuilder: (e) {
-                  return Row(
-                    children: [
-                      IconButton(
-                        onPressed: () => goToUpsertPage(e),
-                        icon: const Icon(Icons.remove_red_eye),
-                        color: AppColors.grey4,
-                        tooltip: i18n.common_ViewDetail,
-                      ),
-                      IconButton(
-                        onPressed: () => handleDelete(e),
-                        icon: const Icon(Icons.delete_outline),
-                        color: AppColors.error,
-                        tooltip: i18n.button_Delete,
-                      ),
-                    ],
+                  return IconButton(
+                    onPressed: () => goToUpsertPage(e),
+                    icon: const Icon(Icons.edit),
+                    color: AppColors.grey4,
+                    tooltip: i18n.common_ViewDetail,
                   );
                 },
               ),
             ],
           );
+
+          if (users.isEmpty &&
+              response?.hasErrors == false &&
+              response?.loading == false) {
+            return FitnessEmpty(
+              title: i18n.common_NotFound,
+            );
+          }
 
           return SfDataGrid(
             source: dataSource,

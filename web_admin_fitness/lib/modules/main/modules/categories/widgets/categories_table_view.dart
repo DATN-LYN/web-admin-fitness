@@ -15,6 +15,7 @@ import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/routers/app_router.dart';
+import '../../../../../global/widgets/fitness_empty.dart';
 import '../helper/category_helper.dart';
 
 class CategoriesTableView extends StatefulWidget {
@@ -176,7 +177,7 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
                     children: [
                       IconButton(
                         onPressed: () => goToUpsertPage(e),
-                        icon: const Icon(Icons.visibility),
+                        icon: const Icon(Icons.edit),
                         color: AppColors.grey4,
                         tooltip: i18n.common_ViewDetail,
                       ),
@@ -192,6 +193,14 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
               ),
             ],
           );
+
+          if (categories.isEmpty &&
+              response?.hasErrors == false &&
+              response?.loading == false) {
+            return FitnessEmpty(
+              title: i18n.common_NotFound,
+            );
+          }
 
           return SfDataGrid(
             source: dataSource,

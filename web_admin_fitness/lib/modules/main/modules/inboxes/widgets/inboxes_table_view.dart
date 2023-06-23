@@ -16,6 +16,7 @@ import 'package:web_admin_fitness/global/widgets/tag.dart';
 
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/routers/app_router.dart';
+import '../../../../../global/widgets/fitness_empty.dart';
 import '../helper/inbox_helper.dart';
 
 class InboxesTableView extends StatefulWidget {
@@ -212,6 +213,14 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
               ),
             ],
           );
+
+          if (inboxes.isEmpty &&
+              response?.hasErrors == false &&
+              response?.loading == false) {
+            return FitnessEmpty(
+              title: i18n.common_NotFound,
+            );
+          }
 
           return SfDataGrid(
             source: dataSource,

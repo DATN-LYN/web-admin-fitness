@@ -96,52 +96,52 @@ class _TopProgramsWidgetState extends State<TopProgramsWidget>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          i18n.home_MostViewedPrograms,
+          i18n.home_NewestPrograms,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
         ),
         const SizedBox(height: 20),
         GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: isDesktopView ? 5 : 2,
+            crossAxisCount: isDesktopView ? 4 : 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 16,
+            mainAxisExtent: 310,
+          ),
+          shrinkWrap: true,
+          itemCount: newestPrograms.length > 8 ? 8 : newestPrograms.length,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            final program = newestPrograms[index];
+            return ProgramItemLarge(
+              program: program,
+            );
+          },
+        ),
+        const SizedBox(height: 32),
+        Text(
+          i18n.home_MostViewedPrograms,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 20),
+        GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: isDesktopView ? 4 : 2,
             crossAxisSpacing: 10,
             mainAxisSpacing: 16,
             mainAxisExtent: 310,
           ),
           shrinkWrap: true,
           itemCount:
-              mostViewedPrograms.length > 10 ? 10 : mostViewedPrograms.length,
+              mostViewedPrograms.length > 8 ? 8 : mostViewedPrograms.length,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             final program = mostViewedPrograms[index];
-            return ProgramItemLarge(
-              program: program,
-            );
-          },
-        ),
-        const SizedBox(height: 20),
-        Text(
-          i18n.home_NewestPrograms,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 20),
-        GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: isDesktopView ? 5 : 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 16,
-            mainAxisExtent: 310,
-          ),
-          shrinkWrap: true,
-          itemCount: newestPrograms.length > 10 ? 10 : newestPrograms.length,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
-            final program = newestPrograms[index];
             return ProgramItemLarge(
               program: program,
             );

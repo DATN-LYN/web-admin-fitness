@@ -3,6 +3,8 @@
         "adap",
         "autovalidate",
         "calo",
+        "GGENDER",
+        "GROLE",
         "unfocus",
         "Upsert"
     ]

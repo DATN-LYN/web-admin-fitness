@@ -163,19 +163,21 @@ class _SupportUpsertPageState extends State<SupportUpsertPage>
                       readOnly: true,
                       initialValue: widget.support.content,
                     ),
-                    Label(i18n.upsertExercise_Image),
-                    FormBuilderTextField(
-                      name: 'imgUrl',
-                      enabled: false,
-                      readOnly: true,
-                      initialValue: widget.support.imgUrl,
-                    ),
-                    const SizedBox(height: 10),
-                    ShimmerImage(
-                      imageUrl: widget.support.imgUrl ?? '_',
-                      height: 300,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                    if (widget.support.imgUrl != null) ...[
+                      Label(i18n.upsertExercise_Image),
+                      FormBuilderTextField(
+                        name: 'imgUrl',
+                        enabled: false,
+                        readOnly: true,
+                        initialValue: widget.support.imgUrl,
+                      ),
+                      const SizedBox(height: 10),
+                      ShimmerImage(
+                        imageUrl: widget.support.imgUrl ?? '_',
+                        height: 300,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ],
                     Label(i18n.support_Status),
                     FormBuilderField(
                       name: 'status',

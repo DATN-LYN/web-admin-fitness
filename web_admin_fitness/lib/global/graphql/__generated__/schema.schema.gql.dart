@@ -165,6 +165,9 @@ abstract class GRegisterInputDto
   String? get avatar;
   double get age;
   String get fullName;
+  GGENDER? get gender;
+  GROLE? get userRole;
+  bool? get isActive;
   static Serializer<GRegisterInputDto> get serializer =>
       _$gRegisterInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -176,6 +179,18 @@ abstract class GRegisterInputDto
         GRegisterInputDto.serializer,
         json,
       );
+}
+
+class GROLE extends EnumClass {
+  const GROLE._(String name) : super(name);
+
+  static const GROLE Admin = _$gROLEAdmin;
+
+  static const GROLE User = _$gROLEUser;
+
+  static Serializer<GROLE> get serializer => _$gROLESerializer;
+  static BuiltSet<GROLE> get values => _$gROLEValues;
+  static GROLE valueOf(String name) => _$gROLEValueOf(name);
 }
 
 class GSUPPORT_STATUS extends EnumClass {
@@ -365,7 +380,9 @@ abstract class GUpsertUserInputDto
   String get avatar;
   String get email;
   double get age;
+  bool? get isActive;
   GGENDER? get gender;
+  GROLE? get userRole;
   static Serializer<GUpsertUserInputDto> get serializer =>
       _$gUpsertUserInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
