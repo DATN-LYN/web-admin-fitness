@@ -203,7 +203,6 @@ type IUserProgram {
   id: ID
   userId: String!
   programId: String!
-  isFavorite: Boolean!
   user: User
   program: Program
   createdAt: DateTime
@@ -500,7 +499,6 @@ type UserProgram {
   id: ID
   userId: String!
   programId: String!
-  isFavorite: Boolean!
   user: User
   program: Program
   createdAt: DateTime

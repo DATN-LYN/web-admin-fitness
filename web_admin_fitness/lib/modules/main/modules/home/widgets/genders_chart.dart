@@ -53,7 +53,7 @@ class _GendersChartState extends State<GendersChart> {
                     widget.genders.keys.elementAt(index).label(i18n),
                 yValueMapper: (data, _) => data,
                 dataLabelMapper: (data, _) {
-                  return '${(data * 100 / widget.usersLength).round()} %';
+                  return '${(data * 100 / widget.usersLength).round()}%';
                 },
                 startAngle: 90,
                 endAngle: 90,
