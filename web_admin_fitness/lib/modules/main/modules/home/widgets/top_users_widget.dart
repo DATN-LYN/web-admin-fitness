@@ -53,6 +53,8 @@ class _TopUsersWidgetState extends State<TopUsersWidget> with ClientMixin {
         setState(() {
           topUsersProgram =
               response.data!.getTopUsersProgram.items!.map((p0) => p0).toList();
+          topUsersProgram
+              .sort((b, a) => a.countProgram!.compareTo(b.countProgram!));
         });
       }
     }
@@ -80,6 +82,7 @@ class _TopUsersWidgetState extends State<TopUsersWidget> with ClientMixin {
         setState(() {
           topUsersInbox =
               response.data!.getTopUsersInbox.items!.map((p0) => p0).toList();
+          topUsersInbox.sort((b, a) => a.countInbox!.compareTo(b.countInbox!));
         });
       }
     }
@@ -115,14 +118,14 @@ class _TopUsersWidgetState extends State<TopUsersWidget> with ClientMixin {
               Text(
                 i18n.home_TopUsersProgram,
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 16),
               ListView.separated(
                 itemCount:
-                    topUsersProgram.length > 10 ? 10 : topUsersProgram.length,
+                    topUsersProgram.length > 5 ? 5 : topUsersProgram.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
@@ -146,14 +149,13 @@ class _TopUsersWidgetState extends State<TopUsersWidget> with ClientMixin {
               Text(
                 i18n.home_TopUsersInbox,
                 style: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 16),
               ListView.separated(
-                itemCount:
-                    topUsersInbox.length > 10 ? 10 : topUsersInbox.length,
+                itemCount: topUsersInbox.length > 5 ? 5 : topUsersInbox.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {

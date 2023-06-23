@@ -7,4 +7,6 @@ fragment User on User {
   countProgram
   countInbox
   gender
+  userRole
+  isActive
 }

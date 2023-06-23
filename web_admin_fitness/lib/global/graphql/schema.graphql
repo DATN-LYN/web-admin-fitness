@@ -173,11 +173,15 @@ type IUser {
   age: Float
   refreshToken: String
   roleId: String
+  isActive: Boolean
   role: Role
   inboxes: [Inbox!]
   userPrograms: [UserProgram!]
   userExercises: [UserExercise!]
   gender: GENDER
+  userRole: ROLE
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 type IUserExercise {
@@ -199,7 +203,6 @@ type IUserProgram {
   id: ID
   userId: String!
   programId: String!
-  isFavorite: Boolean!
   user: User
   program: Program
   createdAt: DateTime
@@ -345,6 +348,9 @@ input RegisterInputDto {
   avatar: String
   age: Float!
   fullName: String!
+  gender: GENDER
+  userRole: ROLE
+  isActive: Boolean
 }
 
 type ResponseMessageBase {
@@ -355,6 +361,11 @@ type ResponseMessageBase {
 type Role {
   id: String!
   name: String!
+}
+
+enum ROLE {
+  Admin
+  User
 }
 
 type Support {
@@ -431,7 +442,9 @@ input UpsertUserInputDto {
   avatar: String!
   email: String!
   age: Float!
+  isActive: Boolean
   gender: GENDER
+  userRole: ROLE
 }
 
 input UpsertUserProgramInputDto {
@@ -461,11 +474,15 @@ type User {
   age: Float
   refreshToken: String
   roleId: String
+  isActive: Boolean
   role: Role
   inboxes: [Inbox!]
   userPrograms: [UserProgram!]
   userExercises: [UserExercise!]
   gender: GENDER
+  userRole: ROLE
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 type UserExercise {
@@ -482,7 +499,6 @@ type UserProgram {
   id: ID
   userId: String!
   programId: String!
-  isFavorite: Boolean!
   user: User
   program: Program
   createdAt: DateTime

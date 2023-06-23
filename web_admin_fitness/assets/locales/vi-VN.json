@@ -13,7 +13,9 @@
         "emailIsRequired": "Email bắt buộc",
         "passwordMustBeAtLeastSixCharacters": "Mật khẩu phải dài tối thiểu 6 ký tự",
         "passwordIsRequired": "Mật khẩu bắt buộc",
-        "adminLogin":"Đăng nhập dành cho Quản trị viên"
+        "adminLogin":"Đăng nhập dành cho Quản trị viên",
+        "loginFailed": "Đăng nhập thất bại, hãy thử lại",
+        "wrongRole": "Tài khoản không được phép đăng nhập vào trang Admin"
     },
     "button_":{
         "next": "Tiếp tục",
@@ -63,7 +65,7 @@
     "programs_":{
         "calo":"calo",
         "programList": "Danh sách chương trình tập",
-        "bodyPart":"Bộ phận",
+        "bodyPart":"Vùng cơ thể",
         "description":"Mô tả",
         "searchHint": "Nhập tên chương trình"
     },
@@ -132,7 +134,8 @@
         "userList": "Danh sách người dùng",
         "searchHint": "Nhập tên người dùng",
         "avatar": "Ảnh đại diện",
-        "gender": "Giới tính"
+        "gender": "Giới tính",
+        "role": "Loại tài khoản"
     },
     "upsertCategory_":{
         "createNewTitle": "Tạo thể loại mới",
@@ -263,7 +266,10 @@
         "ageRequired":"Bạn chưa nhập tuổi",
         "confirmPasswordHint":"Nhập lại mật khẩu",
         "confirmPasswordRequired":"Bạn chưa xác nhận mật khẩu",
-        "confirmPassword":"Xác nhận mật khẩu"
+        "confirmPassword":"Xác nhận mật khẩu",
+        "role": "Loại tài khoản",
+        "status": "Trạng thái"
+
     },
     "editProfile_":{
         "title": "Cập nhật thông tin",
@@ -313,7 +319,7 @@
         ]
     },
     "home_":{
-        "topUsersProgram": "Người dùng tập nhiểu chương trình nhất",
+        "topUsersProgram": "Người dùng tập nhiều chương trình nhất",
         "topUsersInbox": "Người dùng nhắn tin nhiều nhất",
         "programsOf": "Danh sách chương trình của",
         "inboxesOf": "Danh sách tin nhắn của",
@@ -326,5 +332,13 @@
         "Nam",
         "Nữ",
         "Khác"
+    ],
+    "role":[
+        "Quản trị viên",
+        "Người dùng"
+    ],
+    "account":[
+        "Đang hoạt động",
+        "Vô hiệu hoá"    
     ]
 }

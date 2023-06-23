@@ -16,6 +16,7 @@ import 'package:web_admin_fitness/global/widgets/table/table_data_source.dart';
 
 import '../../../../../../../global/gen/i18n.dart';
 import '../../../../../../../global/routers/app_router.dart';
+import '../../../../../global/widgets/fitness_empty.dart';
 import '../helper/exercise_helper.dart';
 
 class ExercisesTableView extends StatefulWidget {
@@ -195,7 +196,7 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
               ),
               TableColumn(
                 label: i18n.exercises_ProgramId,
-                minimumWidth: 220,
+                minimumWidth: 230,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('programId'),
                 cellBuilder: (e) {
@@ -212,7 +213,13 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                           imageUrl: e.program?.imgUrl ?? '_',
                         ),
                         const SizedBox(width: 14),
-                        Text(e.program?.name ?? '_')
+                        Expanded(
+                          child: Text(
+                            e.program?.name ?? '_',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
                       ],
                     ),
                   );
@@ -243,6 +250,14 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
               ),
             ],
           );
+
+          if (exercises.isEmpty &&
+              response?.hasErrors == false &&
+              response?.loading == false) {
+            return FitnessEmpty(
+              title: i18n.common_NotFound,
+            );
+          }
 
           return SfDataGrid(
             source: dataSource,

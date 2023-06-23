@@ -68,7 +68,7 @@ class _UserProgramsDialogState extends State<UserProgramsDialog>
                   children: [
                     const SizedBox(height: 16),
                     Text(
-                      'Programs of ${data?.fullName ?? '_'}',
+                      '${i18n.home_ProgramsOf} ${data?.fullName ?? '_'}',
                       style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 16,

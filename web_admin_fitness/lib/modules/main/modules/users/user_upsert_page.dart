@@ -7,6 +7,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:web_admin_fitness/global/extensions/gender_extension.dart';
+import 'package:web_admin_fitness/global/extensions/role_extension.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/mutation_register.req.gql.dart';
 import 'package:web_admin_fitness/global/graphql/cache_handler/upsert_user_cache_handler.dart';
@@ -69,6 +70,9 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
       (b) => b
         ..age = double.parse(formValue['age'])
         ..email = formValue['email']
+        ..userRole = formValue['user_role']
+        ..gender = formValue['gender']
+        ..isActive = true
         ..avatar = imageUrl
         ..fullName = formValue['fullName']
         ..password = formValue['password'],
@@ -83,7 +87,11 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
       (b) => b
         ..age = double.parse(formValue['age'])
         ..email = formValue['email']
+        ..gender = formValue['gender']
+        ..gender = formValue['gender']
+        ..userRole = formValue['user_role']
         ..avatar = imageUrl
+        ..isActive = formValue['isActive']
         ..fullName = formValue['fullName'],
     );
   }
@@ -92,9 +100,9 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
     final i18n = I18n.of(context)!;
 
     if (formKey.currentState!.saveAndValidate()) {
-      showAlertDialog(
+      showDialog(
         context: context,
-        builder: (dialogContext, child) {
+        builder: (dialogContext) {
           return ConfirmationDialog(
             titleText: i18n.upsertUser_CreateNewTitle,
             contentText: i18n.upsertUser_CreateNewDes,
@@ -141,8 +149,8 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
         context: context,
         builder: (dialogContext, child) {
           return ConfirmationDialog(
-            titleText: i18n.upsertUser_CreateNewTitle,
-            contentText: i18n.upsertUser_CreateNewDes,
+            titleText: i18n.upsertUser_UpdateTitle,
+            contentText: i18n.upsertUser_UpdateDes,
             onTapPositiveButton: () async {
               dialogContext.popRoute(true);
               setState(() => loading = true);
@@ -171,7 +179,7 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                 }
               } else {
                 if (mounted) {
-                  showSuccessToast(context, i18n.toast_Subtitle_CreateUser);
+                  showSuccessToast(context, i18n.toast_Subtitle_UpdateUser);
                   context.popRoute(response);
                 }
               }
@@ -339,6 +347,91 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                         hintText: i18n.upsertUser_AgeHint,
                       ),
                     ),
+                    Label(i18n.upsertUser_Role),
+                    FormBuilderField<GROLE>(
+                      name: 'user_role',
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: FormBuilderValidators.required(
+                        errorText: i18n.upsertProgram_LevelRequired,
+                      ),
+                      initialValue: widget.user?.userRole ?? GROLE.User,
+                      builder: (field) {
+                        late GROLE initialData;
+                        final options = GROLE.values
+                            .map(
+                              (e) => AdaptiveSelectorOption(
+                                  label: e.label(i18n), value: e),
+                            )
+                            .toList();
+                        if (!isCreateNew) {
+                          initialData = widget.user!.userRole!;
+                        }
+                        return AdaptiveSelector(
+                          options: options,
+                          type: isDesktopView
+                              ? SelectorType.menu
+                              : SelectorType.bottomSheet,
+                          initialOption: !isCreateNew
+                              ? AdaptiveSelectorOption(
+                                  label: initialData.label(i18n),
+                                  value: initialData,
+                                )
+                              : options.first,
+                          allowClear: false,
+                          onChanged: (selectedItem) {
+                            if (selectedItem != null) {
+                              field.didChange(selectedItem.value);
+                            }
+                          },
+                        );
+                      },
+                    ),
+                    Label(i18n.upsertUser_Status),
+                    FormBuilderField<bool>(
+                      name: 'isActive',
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: FormBuilderValidators.required(
+                        errorText: i18n.upsertProgram_LevelRequired,
+                      ),
+                      initialValue: widget.user?.isActive,
+                      builder: (field) {
+                        late bool initialData;
+                        final options = [
+                          AdaptiveSelectorOption(
+                            label: i18n.account[0],
+                            value: true,
+                          ),
+                          AdaptiveSelectorOption(
+                            label: i18n.account[1],
+                            value: false,
+                          ),
+                        ];
+
+                        if (!isCreateNew) {
+                          initialData = widget.user!.isActive!;
+                        }
+                        return AdaptiveSelector(
+                          options: options,
+                          type: isDesktopView
+                              ? SelectorType.menu
+                              : SelectorType.bottomSheet,
+                          initialOption: !isCreateNew
+                              ? AdaptiveSelectorOption(
+                                  label: initialData
+                                      ? i18n.account[0]
+                                      : i18n.account[1],
+                                  value: initialData,
+                                )
+                              : options.first,
+                          allowClear: false,
+                          onChanged: (selectedItem) {
+                            if (selectedItem != null) {
+                              field.didChange(selectedItem.value);
+                            }
+                          },
+                        );
+                      },
+                    ),
                     if (isCreateNew) ...[
                       Label(i18n.login_Password),
                       FormBuilderTextField(
@@ -377,7 +470,8 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                         ),
                       ),
                     ],
-                    if (!isCreateNew) ...[
+                    if (!isCreateNew &&
+                        widget.user?.userRole != GROLE.Admin) ...[
                       const Divider(
                         height: 48,
                         color: AppColors.grey4,

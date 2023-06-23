@@ -10,6 +10,7 @@ import 'package:web_admin_fitness/global/graphql/fragment/__generated__/program_
 import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_programs.req.gql.dart';
 import 'package:web_admin_fitness/global/themes/app_colors.dart';
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
+import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
 import 'package:web_admin_fitness/global/widgets/shimmer_image.dart';
 import 'package:web_admin_fitness/global/widgets/table/data_table_builder.dart';
 import 'package:web_admin_fitness/global/widgets/table/table_column.dart';
@@ -242,7 +243,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                     children: [
                       IconButton(
                         onPressed: () => goToUpsertPage(e),
-                        icon: const Icon(Icons.visibility),
+                        icon: const Icon(Icons.edit),
                         color: AppColors.grey4,
                         tooltip: i18n.common_ViewDetail,
                       ),
@@ -258,6 +259,14 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
               ),
             ],
           );
+
+          if (programs.isEmpty &&
+              response?.hasErrors == false &&
+              response?.loading == false) {
+            return FitnessEmpty(
+              title: i18n.common_NotFound,
+            );
+          }
 
           return SfDataGrid(
             source: dataSource,

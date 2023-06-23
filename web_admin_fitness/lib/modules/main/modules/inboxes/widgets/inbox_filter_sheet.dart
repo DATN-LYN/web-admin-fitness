@@ -46,7 +46,7 @@ class _InboxFilterSheetState extends State<InboxFilterSheet> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Text(
-            i18n.filter_WorkoutLevel,
+            i18n.inboxes_From,
             style: titleStyle,
           ),
         ),

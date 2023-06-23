@@ -13,7 +13,9 @@
         "emailIsRequired": "Email is required",
         "passwordMustBeAtLeastSixCharacters": "Password must be at least 6 characters",
         "passwordIsRequired": "Password is required",
-        "adminLogin":"Admin Login"
+        "adminLogin":"Admin Login",
+        "loginFailed": "Login failed, please try again",
+        "wrongRole": "This account is not allowed to sign in Admin Web"
     },
     "button_":{
         "next": "Next",
@@ -131,7 +133,8 @@
         "userList": "User List",
         "searchHint": "Enter user email",
         "avatar": "Avatar",
-        "gender": "Gender"
+        "gender": "Gender",
+        "role": "Role"
     },
     "upsertCategory_":{
         "createNewTitle": "Create New Category",
@@ -262,7 +265,9 @@
         "ageRequired":"Age is required",
         "confirmPasswordHint":"Enter confirm password",
         "confirmPasswordRequired":"Confirm password is required",
-        "confirmPassword":"Confirm password"
+        "confirmPassword":"Confirm password",
+        "role": "Role",
+        "status": "Status"
     },
     "editProfile_":{
         "title": "Update Profile",
@@ -311,8 +316,8 @@
         ]
     },
     "home_":{
-        "topUsersProgram": "Top users have most programs",
-        "topUsersInbox": "Top users have most inboxes",
+        "topUsersProgram": "Users have most programs",
+        "topUsersInbox": "Users have most inboxes",
         "programsOf": "Programs of",
         "inboxesOf": "Inboxes of",
         "mostViewedPrograms": "Most viewed programs",
@@ -324,6 +329,14 @@
         "Male",
         "Female",
         "Others"
+    ],
+    "role":[
+        "Admin",
+        "User"    
+    ],
+    "account":[
+        "Active",
+        "Inactive"    
     ]
     
 }

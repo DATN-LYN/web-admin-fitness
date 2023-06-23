@@ -58,6 +58,10 @@ class I18n implements WidgetsLocalizations {
 	String get login_PasswordIsRequired => "Password is required";
 	/// "Admin Login"
 	String get login_AdminLogin => "Admin Login";
+	/// "Login failed, please try again"
+	String get login_LoginFailed => "Login failed, please try again";
+	/// "This account is not allowed to sign in Admin Web"
+	String get login_WrongRole => "This account is not allowed to sign in Admin Web";
 	/// "Next"
 	String get button_Next => "Next";
 	/// "Done"
@@ -236,6 +240,8 @@ class I18n implements WidgetsLocalizations {
 	String get users_Avatar => "Avatar";
 	/// "Gender"
 	String get users_Gender => "Gender";
+	/// "Role"
+	String get users_Role => "Role";
 	/// "Create New Category"
 	String get upsertCategory_CreateNewTitle => "Create New Category";
 	/// "Update Category"
@@ -450,6 +456,10 @@ class I18n implements WidgetsLocalizations {
 	String get upsertUser_ConfirmPasswordRequired => "Confirm password is required";
 	/// "Confirm password"
 	String get upsertUser_ConfirmPassword => "Confirm password";
+	/// "Role"
+	String get upsertUser_Role => "Role";
+	/// "Status"
+	String get upsertUser_Status => "Status";
 	/// "Update Profile"
 	String get editProfile_Title => "Update Profile";
 	/// "Are you sure you want to update your profile?"
@@ -490,10 +500,10 @@ class I18n implements WidgetsLocalizations {
 	String get chart_Chart => "Chart";
 	/// ["column", "bar", "line", "stepline"]
 	List<String> get chart_ChartType => ["column", "bar", "line", "stepline"];
-	/// "Top users have most programs"
-	String get home_TopUsersProgram => "Top users have most programs";
-	/// "Top users have most inboxes"
-	String get home_TopUsersInbox => "Top users have most inboxes";
+	/// "Users have most programs"
+	String get home_TopUsersProgram => "Users have most programs";
+	/// "Users have most inboxes"
+	String get home_TopUsersInbox => "Users have most inboxes";
 	/// "Programs of"
 	String get home_ProgramsOf => "Programs of";
 	/// "Inboxes of"
@@ -508,6 +518,10 @@ class I18n implements WidgetsLocalizations {
 	String get home_UserGendersPieChart => "User genders pie chart";
 	/// ["Male", "Female", "Others"]
 	List<String> get gender => ["Male", "Female", "Others"];
+	/// ["Admin", "User"]
+	List<String> get role => ["Admin", "User"];
+	/// ["Active", "Inactive"]
+	List<String> get account => ["Active", "Inactive"];
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
 }
@@ -560,6 +574,12 @@ class _I18n_vi_VN extends I18n {
 	/// "Đăng nhập dành cho Quản trị viên"
 	@override
 	String get login_AdminLogin => "Đăng nhập dành cho Quản trị viên";
+	/// "Đăng nhập thất bại, hãy thử lại"
+	@override
+	String get login_LoginFailed => "Đăng nhập thất bại, hãy thử lại";
+	/// "Tài khoản không được phép đăng nhập vào trang Admin"
+	@override
+	String get login_WrongRole => "Tài khoản không được phép đăng nhập vào trang Admin";
 	/// "Tiếp tục"
 	@override
 	String get button_Next => "Tiếp tục";
@@ -680,9 +700,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Danh sách chương trình tập"
 	@override
 	String get programs_ProgramList => "Danh sách chương trình tập";
-	/// "Bộ phận"
+	/// "Vùng cơ thể"
 	@override
-	String get programs_BodyPart => "Bộ phận";
+	String get programs_BodyPart => "Vùng cơ thể";
 	/// "Mô tả"
 	@override
 	String get programs_Description => "Mô tả";
@@ -827,6 +847,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Giới tính"
 	@override
 	String get users_Gender => "Giới tính";
+	/// "Loại tài khoản"
+	@override
+	String get users_Role => "Loại tài khoản";
 	/// "Tạo thể loại mới"
 	@override
 	String get upsertCategory_CreateNewTitle => "Tạo thể loại mới";
@@ -1148,6 +1171,12 @@ class _I18n_vi_VN extends I18n {
 	/// "Xác nhận mật khẩu"
 	@override
 	String get upsertUser_ConfirmPassword => "Xác nhận mật khẩu";
+	/// "Loại tài khoản"
+	@override
+	String get upsertUser_Role => "Loại tài khoản";
+	/// "Trạng thái"
+	@override
+	String get upsertUser_Status => "Trạng thái";
 	/// "Cập nhật thông tin"
 	@override
 	String get editProfile_Title => "Cập nhật thông tin";
@@ -1208,9 +1237,9 @@ class _I18n_vi_VN extends I18n {
 	/// ["cột", "thanh", "đường", "đường bậc thang"]
 	@override
 	List<String> get chart_ChartType => ["cột", "thanh", "đường", "đường bậc thang"];
-	/// "Người dùng tập nhiểu chương trình nhất"
+	/// "Người dùng tập nhiều chương trình nhất"
 	@override
-	String get home_TopUsersProgram => "Người dùng tập nhiểu chương trình nhất";
+	String get home_TopUsersProgram => "Người dùng tập nhiều chương trình nhất";
 	/// "Người dùng nhắn tin nhiều nhất"
 	@override
 	String get home_TopUsersInbox => "Người dùng nhắn tin nhiều nhất";
@@ -1235,6 +1264,12 @@ class _I18n_vi_VN extends I18n {
 	/// ["Nam", "Nữ", "Khác"]
 	@override
 	List<String> get gender => ["Nam", "Nữ", "Khác"];
+	/// ["Quản trị viên", "Người dùng"]
+	@override
+	List<String> get role => ["Quản trị viên", "Người dùng"];
+	/// ["Đang hoạt động", "Vô hiệu hoá"]
+	@override
+	List<String> get account => ["Đang hoạt động", "Vô hiệu hoá"];
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();
