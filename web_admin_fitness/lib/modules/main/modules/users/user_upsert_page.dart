@@ -237,7 +237,7 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                           children: [
                             !isCreateNew && image == null
                                 ? ShimmerImage(
-                                    imageUrl: widget.user?.avatar ?? '_',
+                                    imageUrl: widget.user?.avatar ?? '',
                                     width: 100,
                                     height: 100,
                                     borderRadius: BorderRadius.circular(100),
@@ -470,8 +470,7 @@ class _UserUpsertPageState extends State<UserUpsertPage> with ClientMixin {
                         ),
                       ),
                     ],
-                    if (!isCreateNew &&
-                        widget.user?.userRole != GROLE.Admin) ...[
+                    if (!isCreateNew) ...[
                       const Divider(
                         height: 48,
                         color: AppColors.grey4,

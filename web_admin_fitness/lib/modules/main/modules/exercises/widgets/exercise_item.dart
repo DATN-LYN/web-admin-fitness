@@ -34,7 +34,7 @@ class ExerciseItem extends StatelessWidget {
           child: Row(
             children: [
               ShimmerImage(
-                imageUrl: exercise.imgUrl ?? '_',
+                imageUrl: exercise.imgUrl ?? '',
                 height: 100,
                 width: 100,
                 borderRadius: BorderRadius.circular(8),

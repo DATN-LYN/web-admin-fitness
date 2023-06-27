@@ -38,7 +38,7 @@ class InboxItem extends StatelessWidget {
               Row(
                 children: [
                   ShimmerImage(
-                    imageUrl: inbox.user?.avatar ?? '_',
+                    imageUrl: inbox.user?.avatar ?? '',
                     width: 46,
                     height: 46,
                     borderRadius: BorderRadius.circular(100),

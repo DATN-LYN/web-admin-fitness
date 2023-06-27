@@ -130,7 +130,6 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                 label: i18n.common_ImageUrl,
                 minimumWidth: 380,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('imgUrl'),
                 cellBuilder: (e) {
                   return Padding(
                     padding: const EdgeInsets.all(4),
@@ -156,12 +155,6 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                   );
                 },
               ),
-              // TableColumn(
-              //   label: i18n.common_Id,
-              //   minimumWidth: 220,
-              //   columnWidthMode: ColumnWidthMode.fill,
-              //   itemValue: (e) => e.id,
-              // ),
               TableColumn(
                 label: i18n.common_Name,
                 itemValue: (e) => e.name,
@@ -191,14 +184,12 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                 label: i18n.exercises_VideoUrl,
                 minimumWidth: 300,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('videoUrl'),
                 itemValue: (e) => e.videoUrl,
               ),
               TableColumn(
-                label: i18n.exercises_ProgramId,
+                label: i18n.exercises_Program,
                 minimumWidth: 230,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('programId'),
                 cellBuilder: (e) {
                   return GestureDetector(
                     onTap: () => context.pushRoute(
@@ -210,7 +201,7 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                           height: 90,
                           width: 100,
                           borderRadius: BorderRadius.circular(8),
-                          imageUrl: e.program?.imgUrl ?? '_',
+                          imageUrl: e.program?.imgUrl ?? '',
                         ),
                         const SizedBox(width: 14),
                         Expanded(

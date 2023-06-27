@@ -53,7 +53,7 @@ class ProgramItem extends StatelessWidget {
               Row(
                 children: [
                   ShimmerImage(
-                    imageUrl: program.imgUrl ?? '_',
+                    imageUrl: program.imgUrl ?? '',
                     width: 100,
                     height: 100,
                     borderRadius: BorderRadius.circular(8),

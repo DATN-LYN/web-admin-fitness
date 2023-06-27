@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:web_admin_fitness/global/extensions/date_time_extension.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.data.gql.dart';
@@ -115,12 +116,6 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
           final dataSource = TableDataSource<GInbox>(
             tableData: inboxes,
             columnItems: [
-              // TableColumn(
-              //   label: i18n.common_Id,
-              //   minimumWidth: 220,
-              //   columnWidthMode: ColumnWidthMode.fill,
-              //   itemValue: (e) => e.id,
-              // ),
               TableColumn(
                 label: i18n.inboxes_User,
                 minimumWidth: 350,
@@ -133,7 +128,7 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
                     child: Row(
                       children: [
                         ShimmerImage(
-                          imageUrl: e.user?.avatar ?? '_',
+                          imageUrl: e.user?.avatar ?? '',
                           width: 50,
                           height: 50,
                           borderRadius: BorderRadius.circular(100),
@@ -164,14 +159,12 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
                 label: i18n.inboxes_Message,
                 minimumWidth: 450,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('message'),
                 itemValue: (e) => e.message,
               ),
               TableColumn(
                 label: i18n.inboxes_From,
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('isSender'),
                 cellBuilder: (e) {
                   return Tag(
                     text: e.isSender ? i18n.inboxes_User : i18n.inboxes_Bot,
@@ -180,11 +173,11 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
                 },
               ),
               TableColumn(
-                label: 'Created At',
+                label: i18n.inboxes_CreatedAt,
                 minimumWidth: 220,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('createdAt'),
-                itemValue: (e) => e.createdAt?.toIso8601String(),
+                itemValue: (e) => e.createdAt!.formatDateTime(i18n),
               ),
               TableColumn(
                 label: i18n.common_Actions,

@@ -33,7 +33,7 @@ class UserItem extends StatelessWidget with ClientMixin {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ShimmerImage(
-                imageUrl: user.avatar ?? '-',
+                imageUrl: user.avatar ?? '',
                 width: 50,
                 height: 50,
                 borderRadius: BorderRadius.circular(100),

@@ -92,6 +92,7 @@ class _UserSearchBarState extends State<UserSearchBar> {
     final isDesktopView = responsive.isLargerThan(MOBILE);
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           child: FilterTextField(
@@ -107,6 +108,7 @@ class _UserSearchBarState extends State<UserSearchBar> {
           clipBehavior: Clip.hardEdge,
           color: AppColors.grey6,
           child: IconButton(
+            padding: EdgeInsets.zero,
             onPressed: () async {
               final newFilter = await SideSheet.right(
                 body: UserFilterSheet(userFilterData: filter),

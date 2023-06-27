@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import 'package:web_admin_fitness/global/extensions/gender_extension.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/extensions/role_extension.dart';
 import 'package:web_admin_fitness/global/gen/assets.gen.dart';
@@ -86,9 +85,11 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
   }
 
   void goToUpsertPage(GUser user) {
-    context
-        .pushRoute(UserUpsertRoute(user: user))
-        .then((value) => refreshHandler());
+    context.pushRoute(UserUpsertRoute(user: user)).then((value) {
+      if (value != null) {
+        refreshHandler();
+      }
+    });
   }
 
   @override
@@ -125,24 +126,10 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
           final dataSource = TableDataSource<GUser>(
             tableData: users,
             columnItems: [
-              // TableColumn(
-              //   label: i18n.common_Id,
-              //   minimumWidth: 220,
-              //   columnWidthMode: ColumnWidthMode.fill,
-              //   itemValue: (e) => e.id,
-              // ),
-              // TableColumn(
-              //   label: i18n.common_Name,
-              //   itemValue: (e) => e.fullName,
-              //   minimumWidth: 200,
-              //   columnWidthMode: ColumnWidthMode.fill,
-              //   action: sortButton('fullName'),
-              // ),
               TableColumn(
                 label: i18n.users_Avatar,
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('avatar'),
                 cellBuilder: (e) {
                   return Row(
                     children: [
@@ -178,8 +165,17 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 label: i18n.users_Gender,
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('gender'),
-                itemValue: (e) => e.gender?.label(i18n) ?? '',
+                cellBuilder: (e) {
+                  return e.gender == GGENDER.Female
+                      ? const Icon(
+                          Icons.female,
+                          color: Colors.pink,
+                        )
+                      : const Icon(
+                          Icons.male,
+                          color: AppColors.information,
+                        );
+                },
               ),
               TableColumn(
                 label: i18n.upsertUser_Age,
@@ -192,7 +188,6 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 label: i18n.upsertUser_Role,
                 minimumWidth: 160,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('user_role'),
                 cellBuilder: (e) {
                   return Tag(
                     text: e.userRole?.label(i18n) ?? '',
@@ -206,7 +201,6 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
                 label: i18n.upsertUser_Status,
                 minimumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('isActive'),
                 cellBuilder: (e) {
                   return Tag(
                     text:

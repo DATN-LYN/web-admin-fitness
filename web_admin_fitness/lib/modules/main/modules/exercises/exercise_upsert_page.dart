@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +50,8 @@ class ExerciseUpsertPage extends StatefulWidget {
 class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
     with ClientMixin {
   var formKey = GlobalKey<FormBuilderState>();
-  bool loading = true;
+  bool loading = false;
+  bool initLoading = true;
   XFile? image;
   XFile? video;
   late final isCreateNew = widget.exercise == null;
@@ -62,36 +62,33 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
   @override
   void initState() {
     initData();
-
     super.initState();
   }
 
   initData() async {
     if (!isCreateNew || widget.initialProgramId != null) {
       try {
-        getProgram();
-        if (mounted) {
-          setState(
-            () {
-              Uri initialUri = Uri.parse(widget.exercise!.videoUrl!);
-              Uri replaceUri = initialUri.replace(scheme: 'https');
-              controller = VideoPlayerController.network(replaceUri.toString());
-            },
-          );
-        }
+        await getProgram();
+        Uri initialUri = Uri.parse(widget.exercise!.videoUrl!);
+        Uri replaceUri = initialUri.replace(scheme: 'https');
+        controller = VideoPlayerController.network(replaceUri.toString());
         await controller!.initialize();
       } catch (e) {
         if (mounted) {
-          setState(() => loading = false);
+          formKey = GlobalKey<FormBuilderState>();
+          setState(() => initLoading = false);
         }
       }
     }
     if (mounted) {
-      setState(() => loading = false);
+      setState(() {
+        formKey = GlobalKey<FormBuilderState>();
+        initLoading = false;
+      });
     }
   }
 
-  void getProgram() async {
+  Future<void> getProgram() async {
     final request = GGetProgramReq(
       (b) => b
         ..vars.programId =
@@ -106,12 +103,7 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
         );
       }
     } else {
-      if (mounted) {
-        setState(() {
-          initialProgram = response.data!.getProgram;
-        });
-        print(initialProgram);
-      }
+      initialProgram = response.data!.getProgram;
     }
   }
 
@@ -147,7 +139,6 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
     } else {
       videoUrl = widget.exercise?.videoUrl;
     }
-    print(formValue['programId']);
     return GUpsertExerciseInputDto(
       (b) => b
         ..name = formValue['name']
@@ -204,9 +195,9 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
     final i18n = I18n.of(context)!;
 
     if (formKey.currentState!.saveAndValidate()) {
-      showAlertDialog(
+      showDialog(
         context: context,
-        builder: (dialogContext, child) {
+        builder: (dialogContext) {
           return ConfirmationDialog(
             titleText: isCreateNew
                 ? i18n.upsertExercise_CreateNewTitle
@@ -287,175 +278,187 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
                 : i18n.upsertExercise_ExerciseDetail,
           ),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: FormBuilder(
-                key: formKey,
-                child: ListView(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  keyboardDismissBehavior:
-                      ScrollViewKeyboardDismissBehavior.onDrag,
-                  children: [
-                    const SizedBox(height: 16),
-                    if (!isCreateNew) ...[
-                      Label(i18n.upsertExercise_ID),
-                      FormBuilderTextField(
-                        name: 'id',
-                        enabled: false,
-                        readOnly: true,
-                        initialValue: widget.exercise?.id,
-                      ),
-                    ],
-                    Label(i18n.upsertExercise_Name),
-                    FormBuilderTextField(
-                      name: 'name',
-                      initialValue: widget.exercise?.name,
-                      decoration: InputDecoration(
-                        hintText: i18n.upsertExercise_NameHint,
-                      ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertExercise_NameIsRequired,
-                      ),
-                    ),
-                    Label(i18n.upsertExercise_Calo),
-                    FormBuilderTextField(
-                      name: 'calo',
-                      initialValue: widget.exercise?.calo.toString(),
-                      decoration: InputDecoration(
-                        hintText: i18n.upsertExercise_CaloHint,
-                      ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertExercise_CaloRequired,
-                      ),
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    ),
-                    Label(i18n.upsertExercise_Program),
-                    FormBuilderField<String>(
-                      name: 'programId',
-                      initialValue: isCreateNew
-                          ? null
-                          : (widget.initialProgramId ?? initialProgram!.id),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertExercise_ProgramRequired,
-                      ),
-                      builder: (field) {
-                        return ProgramSelector(
-                          initial:
-                              isCreateNew && widget.initialProgramId == null
-                                  ? const []
-                                  : [initialProgram!],
-                          errorText: field.errorText,
-                          onChanged: (option) {
-                            field.didChange(option.first.key);
-                          },
-                        );
-                      },
-                    ),
-                    Label(i18n.upsertExercise_Image),
-                    FormBuilderField<String>(
-                      name: 'imgUrl',
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertExercise_ImageIsRequired,
-                      ),
-                      initialValue: widget.exercise?.imgUrl,
-                      builder: (field) {
-                        return PickImageField(
-                          errorText: field.errorText,
-                          onPickImage: onPickImage,
-                          fieldValue: !isCreateNew && image == null
-                              ? widget.exercise?.imgUrl ?? ''
-                              : image != null
-                                  ? image!.name
-                                  : i18n.upsertExercise_ImageHint,
-                          textColor: image != null || !isCreateNew
-                              ? AppColors.grey1
-                              : AppColors.grey4,
-                        );
-                      },
-                    ),
-                    if (image != null) ...[
-                      const SizedBox(height: 12),
-                      SelectedImage(image: image!),
-                    ],
-                    if (!isCreateNew && image == null) ...[
-                      const SizedBox(height: 12),
-                      ShimmerImage(
-                        imageUrl: widget.exercise!.imgUrl!,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ],
-                    Label(i18n.upsertExercise_Video),
-                    FormBuilderField<String>(
-                      name: 'videoUrl',
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertExercise_VideoIsRequired,
-                      ),
-                      initialValue: widget.exercise?.videoUrl,
-                      builder: (field) {
-                        return InputDecorator(
-                          decoration: InputDecoration(
-                            constraints: const BoxConstraints(minHeight: 48),
-                            errorText: field.errorText,
-                            contentPadding: const EdgeInsets.all(16),
-                          ),
-                          child: GestureDetector(
-                            onTap: onPickVideo,
-                            child: Text(
-                              !isCreateNew && video == null
-                                  ? widget.exercise!.videoUrl!
-                                  : video != null
-                                      ? video!.name
-                                      : i18n.upsertExercise_VideoHint,
-                              style: TextStyle(
-                                color: video != null || !isCreateNew
-                                    ? AppColors.grey1
-                                    : AppColors.grey4,
-                              ),
+        body: initLoading
+            ? const Center(child: CircularProgressIndicator())
+            : Column(
+                children: [
+                  Expanded(
+                    child: FormBuilder(
+                      key: formKey,
+                      child: ListView(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        children: [
+                          const SizedBox(height: 16),
+                          if (!isCreateNew) ...[
+                            Label(i18n.upsertExercise_ID),
+                            FormBuilderTextField(
+                              name: 'id',
+                              enabled: false,
+                              readOnly: true,
+                              initialValue: widget.exercise?.id,
+                            ),
+                          ],
+                          Label(i18n.upsertExercise_Name),
+                          FormBuilderTextField(
+                            name: 'name',
+                            initialValue: widget.exercise?.name,
+                            decoration: InputDecoration(
+                              hintText: i18n.upsertExercise_NameHint,
+                            ),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertExercise_NameIsRequired,
                             ),
                           ),
-                        );
-                      },
-                    ),
-                    if ((video != null || !isCreateNew && video == null) &&
-                        controller != null) ...[
-                      ExerciseVideo(key: key, controller: controller!)
-                    ],
-                    Label(i18n.upsertExercise_Duration),
-                    FormBuilderTextField(
-                      name: 'duration',
-                      readOnly: true,
-                      initialValue: widget.exercise?.duration != null
-                          ? DurationTime.totalDurationFormat(Duration(
-                              seconds: widget.exercise!.duration!.toInt()))
-                          : null,
-                      decoration: InputDecoration(
-                        hintText: i18n.upsertExercise_DurationHint,
+                          Label(i18n.upsertExercise_Calo),
+                          FormBuilderTextField(
+                            name: 'calo',
+                            initialValue: widget.exercise?.calo.toString(),
+                            decoration: InputDecoration(
+                              hintText: i18n.upsertExercise_CaloHint,
+                            ),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertExercise_CaloRequired,
+                            ),
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                          ),
+                          Label(i18n.upsertExercise_Program),
+                          FormBuilderField<String>(
+                            name: 'programId',
+                            initialValue:
+                                widget.initialProgramId ?? initialProgram?.id,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertExercise_ProgramRequired,
+                            ),
+                            builder: (field) {
+                              return ProgramSelector(
+                                initial: isCreateNew &&
+                                        widget.initialProgramId == null
+                                    ? const []
+                                    : [initialProgram!],
+                                errorText: field.errorText,
+                                onChanged: (option) {
+                                  field.didChange(option.first.key);
+                                },
+                              );
+                            },
+                          ),
+                          Label(i18n.upsertExercise_Image),
+                          FormBuilderField<String>(
+                            name: 'imgUrl',
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertExercise_ImageIsRequired,
+                            ),
+                            initialValue: widget.exercise?.imgUrl,
+                            builder: (field) {
+                              return PickImageField(
+                                errorText: field.errorText,
+                                onPickImage: onPickImage,
+                                fieldValue: !isCreateNew && image == null
+                                    ? widget.exercise?.imgUrl ?? ''
+                                    : image != null
+                                        ? image!.name
+                                        : i18n.upsertExercise_ImageHint,
+                                textColor: image != null || !isCreateNew
+                                    ? AppColors.grey1
+                                    : AppColors.grey4,
+                              );
+                            },
+                          ),
+                          if (image != null) ...[
+                            const SizedBox(height: 12),
+                            SelectedImage(image: image!),
+                          ],
+                          if (!isCreateNew && image == null) ...[
+                            const SizedBox(height: 12),
+                            ShimmerImage(
+                              imageUrl: widget.exercise!.imgUrl!,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ],
+                          Label(i18n.upsertExercise_Video),
+                          FormBuilderField<String>(
+                            name: 'videoUrl',
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertExercise_VideoIsRequired,
+                            ),
+                            initialValue: widget.exercise?.videoUrl,
+                            builder: (field) {
+                              return InputDecorator(
+                                decoration: InputDecoration(
+                                  constraints:
+                                      const BoxConstraints(minHeight: 48),
+                                  errorText: field.errorText,
+                                  contentPadding: const EdgeInsets.all(16),
+                                ),
+                                child: GestureDetector(
+                                  onTap: onPickVideo,
+                                  child: Text(
+                                    !isCreateNew && video == null
+                                        ? widget.exercise!.videoUrl!
+                                        : video != null
+                                            ? video!.name
+                                            : i18n.upsertExercise_VideoHint,
+                                    style: TextStyle(
+                                      color: video != null || !isCreateNew
+                                          ? AppColors.grey1
+                                          : AppColors.grey4,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          if ((video != null ||
+                                  !isCreateNew && video == null) &&
+                              controller != null) ...[
+                            ExerciseVideo(key: key, controller: controller!)
+                          ],
+                          Label(i18n.upsertExercise_Duration),
+                          FormBuilderTextField(
+                            name: 'duration',
+                            readOnly: true,
+                            initialValue: widget.exercise?.duration != null
+                                ? DurationTime.totalDurationFormat(Duration(
+                                    seconds:
+                                        widget.exercise!.duration!.toInt()))
+                                : null,
+                            decoration: InputDecoration(
+                              hintText: i18n.upsertExercise_DurationHint,
+                            ),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertExercise_DurationRequired,
+                            ),
+                          ),
+                        ],
                       ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertExercise_DurationRequired,
-                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  UpsertFormButton(
+                    onPressPositiveButton: handleSubmit,
+                    onPressNegativeButton: handleReset,
+                    positiveButtonText:
+                        isCreateNew ? i18n.button_Confirm : i18n.button_Save,
+                    negativeButtonText: i18n.button_Reset,
+                  ),
+                ],
               ),
-            ),
-            UpsertFormButton(
-              onPressPositiveButton: handleSubmit,
-              onPressNegativeButton: handleReset,
-              positiveButtonText:
-                  isCreateNew ? i18n.button_Confirm : i18n.button_Save,
-              negativeButtonText: i18n.button_Reset,
-            ),
-          ],
-        ),
       ),
     );
   }

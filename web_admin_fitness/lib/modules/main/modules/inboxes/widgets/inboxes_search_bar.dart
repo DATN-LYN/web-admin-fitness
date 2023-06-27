@@ -83,9 +83,9 @@ class _InboxSearchBarState extends State<InboxSearchBar> {
     final isDesktopView = responsive.isLargerThan(MOBILE);
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          flex: 1,
           child: FilterTextField(
             hintText: i18n.upsertUser_EmailHint,
             onTextChange: (text) => handleFilter(
@@ -99,6 +99,7 @@ class _InboxSearchBarState extends State<InboxSearchBar> {
           clipBehavior: Clip.hardEdge,
           color: AppColors.grey6,
           child: IconButton(
+            padding: EdgeInsets.zero,
             onPressed: () async {
               final newFilter = await SideSheet.right(
                 body: InboxFilterSheet(inboxFilterData: filter),
