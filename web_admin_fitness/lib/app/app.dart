@@ -4,9 +4,9 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:web_admin_fitness/gen/strings.g.dart';
 import 'package:web_admin_fitness/global/routers/auth_guard.dart';
 
-import '../global/gen/i18n.dart';
 import '../global/providers/app_settings_provider.dart';
 import '../global/routers/app_router.dart';
 import '../global/themes/app_colors.dart';
@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     FormBuilderLocalizations.delegate.load(const Locale('en', 'US'));
+    // final t = Translations.of(context);
 
     return Consumer<AppSettingsProvider>(
       builder: (context, provider, child) {
@@ -34,16 +35,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           debugShowCheckedModeBanner: false,
           scrollBehavior: AppScrollBehavior(),
           localizationsDelegates: const [
-            I18n.delegate,
             GlobalMaterialLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
           ],
-          supportedLocales: I18n.delegate.supportedLocales,
+          supportedLocales: AppLocaleUtils.supportedLocales,
           locale: provider.localeData,
-          localeResolutionCallback: I18n.delegate.resolution(
-            fallback: const Locale('en', 'US'),
-          ),
           theme: AppThemes.light(),
           routerDelegate: _appRouter.delegate(),
           routeInformationParser: _appRouter.defaultRouteParser(),

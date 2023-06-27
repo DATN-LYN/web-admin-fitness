@@ -5,6 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:web_admin_fitness/gen/strings.g.dart';
 import 'package:web_admin_fitness/global/extensions/responsive_wrapper.dart';
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/query_login.data.gql.dart';
 import 'package:web_admin_fitness/global/graphql/auth/__generated__/query_login.req.gql.dart';
@@ -104,7 +105,7 @@ class _LoginPageState extends State<LoginPage> with ClientMixin {
                       const SizedBox(height: 16),
                       Center(
                         child: Text(
-                          i18n.login_AdminLogin,
+                          t.hello(name: 'name'),
                           style: TextStyle(
                             fontSize: textSize.toDouble(),
                             fontWeight: FontWeight.w600,
