@@ -130,29 +130,16 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
             columnItems: [
               TableColumn(
                 label: i18n.common_ImageUrl,
-                minimumWidth: 350,
+                minimumWidth: 170,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
-                  return Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Row(
-                      children: [
-                        ShimmerImage(
-                          imageUrl: e.imgUrl ?? '',
-                          height: 100,
-                          width: 120,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            e.imgUrl ?? '_',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                            softWrap: true,
-                          ),
-                        ),
-                      ],
+                  return Tooltip(
+                    message: e.imgUrl,
+                    child: ShimmerImage(
+                      imageUrl: e.imgUrl ?? '',
+                      height: 100,
+                      width: 120,
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   );
                 },
