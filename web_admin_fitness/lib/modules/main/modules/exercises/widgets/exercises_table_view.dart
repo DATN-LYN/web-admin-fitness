@@ -128,29 +128,19 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
             columnItems: [
               TableColumn(
                 label: i18n.common_ImageUrl,
-                minimumWidth: 380,
+                minimumWidth: 170,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return Padding(
                     padding: const EdgeInsets.all(4),
-                    child: Row(
-                      children: [
-                        ShimmerImage(
-                          imageUrl: e.imgUrl ?? '',
-                          height: 100,
-                          width: 120,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            e.imgUrl ?? '_',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                            softWrap: true,
-                          ),
-                        ),
-                      ],
+                    child: Tooltip(
+                      message: e.imgUrl ?? '_',
+                      child: ShimmerImage(
+                        imageUrl: e.imgUrl ?? '',
+                        height: 100,
+                        width: 120,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   );
                 },

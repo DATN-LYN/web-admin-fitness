@@ -5,7 +5,7 @@ import 'package:web_admin_fitness/global/graphql/query/__generated__/query_get_u
 import 'package:web_admin_fitness/global/utils/client_mixin.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_empty.dart';
 import 'package:web_admin_fitness/global/widgets/fitness_error.dart';
-import 'package:web_admin_fitness/global/widgets/shimmer_program_item.dart';
+import 'package:web_admin_fitness/global/widgets/shimmer_inbox_item.dart';
 import 'package:web_admin_fitness/modules/main/modules/inboxes/widgets/inbox_item.dart';
 
 import '../../../../../global/gen/i18n.dart';
@@ -57,7 +57,7 @@ class _UserInboxesDialogState extends State<UserInboxesDialog>
                     itemCount: 3,
                     padding: const EdgeInsets.all(0),
                     itemBuilder: (context, index) {
-                      return const ShimmerProgramItem();
+                      return const ShimmerInboxItem();
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 16),
                   );

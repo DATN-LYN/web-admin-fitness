@@ -74,10 +74,10 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
         controller = VideoPlayerController.network(replaceUri.toString());
         await controller!.initialize();
       } catch (e) {
-        if (mounted) {
-          formKey = GlobalKey<FormBuilderState>();
-          setState(() => initLoading = false);
-        }
+        // if (mounted) {
+        //   formKey = GlobalKey<FormBuilderState>();
+        //   setState(() => initLoading = false);
+        // }
       }
     }
     if (mounted) {

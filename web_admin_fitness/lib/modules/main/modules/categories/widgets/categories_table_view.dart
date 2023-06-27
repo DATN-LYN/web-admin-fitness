@@ -127,40 +127,19 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
             columnItems: [
               TableColumn(
                 label: i18n.common_ImageUrl,
-                minimumWidth: 450,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('imgUrl'),
                 cellBuilder: (e) {
-                  return Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Row(
-                      children: [
-                        ShimmerImage(
-                          imageUrl: e.imgUrl ?? '',
-                          height: 100,
-                          width: 120,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            e.imgUrl ?? '_',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                            softWrap: true,
-                          ),
-                        ),
-                      ],
+                  return Tooltip(
+                    message: e.imgUrl,
+                    child: ShimmerImage(
+                      imageUrl: e.imgUrl ?? '',
+                      height: 100,
+                      width: 120,
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   );
                 },
               ),
-              // TableColumn(
-              //   label: i18n.common_Id,
-              //   minimumWidth: 200,
-              //   columnWidthMode: ColumnWidthMode.fill,
-              //   itemValue: (e) => e.id,
-              // ),
               TableColumn(
                 label: i18n.common_Name,
                 itemValue: (e) => e.name,

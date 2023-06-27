@@ -174,7 +174,7 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
               ),
               TableColumn(
                 label: i18n.inboxes_CreatedAt,
-                minimumWidth: 220,
+                minimumWidth: 160,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('createdAt'),
                 itemValue: (e) => e.createdAt!.formatDateTime(i18n),
