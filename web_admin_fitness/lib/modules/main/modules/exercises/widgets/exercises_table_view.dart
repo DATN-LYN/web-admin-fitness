@@ -178,7 +178,7 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
               ),
               TableColumn(
                 label: i18n.exercises_Program,
-                minimumWidth: 230,
+                minimumWidth: 270,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return GestureDetector(
