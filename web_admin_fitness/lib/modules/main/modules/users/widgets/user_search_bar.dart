@@ -76,6 +76,17 @@ class _UserSearchBarState extends State<UserSearchBar> {
       );
     }
 
+    // filter by gender
+    newFilters.removeWhere((e) => e.field == 'User.gender');
+    if (filterData.genders.isNotEmpty) {
+      newFilters.add(
+        GFilterDto((b) => b
+          ..field = 'User.gender'
+          ..operator = GFILTER_OPERATOR.Gin
+          ..data = filterData.genders.map((e) => e).join(',')),
+      );
+    }
+
     widget.onChanged(widget.request.rebuild(
       (b) => b
         ..vars.queryParams.page = 1

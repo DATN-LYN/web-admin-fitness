@@ -64,9 +64,7 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
 
   initData() async {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!isCreateNew || widget.initialCategoryId != null) {
-        getCategory();
-      }
+      getCategory();
     });
   }
 
