@@ -129,42 +129,21 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
             tableData: programs,
             columnItems: [
               TableColumn(
-                label: i18n.common_ImageUrl,
-                // itemValue: (e) => e.imgUrl,
-                minimumWidth: 350,
+                label: i18n.common_Image,
+                minimumWidth: 170,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('imgUrl'),
                 cellBuilder: (e) {
-                  return Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: Row(
-                      children: [
-                        ShimmerImage(
-                          imageUrl: e.imgUrl ?? '',
-                          height: 100,
-                          width: 120,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            e.imgUrl ?? '_',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                            softWrap: true,
-                          ),
-                        ),
-                      ],
+                  return Tooltip(
+                    message: e.imgUrl,
+                    child: ShimmerImage(
+                      imageUrl: e.imgUrl ?? '',
+                      height: 100,
+                      width: 120,
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   );
                 },
               ),
-              // TableColumn(
-              //   label: i18n.common_Id,
-              //   minimumWidth: 200,
-              //   columnWidthMode: ColumnWidthMode.fill,
-              //   itemValue: (e) => e.id,
-              // ),
               TableColumn(
                 label: i18n.common_Name,
                 itemValue: (e) => e.name,
@@ -176,7 +155,6 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                 label: i18n.common_Level,
                 minimumWidth: 130,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('level'),
                 cellBuilder: (e) {
                   return Tag(
                     text: e.level!.label(i18n),
@@ -188,7 +166,6 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                   label: i18n.programs_BodyPart,
                   minimumWidth: 150,
                   columnWidthMode: ColumnWidthMode.fill,
-                  action: sortButton('bodyPart'),
                   cellBuilder: (e) {
                     return Text(
                       e.bodyPart!.label(i18n),
@@ -201,7 +178,6 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                 label: i18n.programs_Description,
                 minimumWidth: 220,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('description'),
                 itemValue: (e) => e.description.toString(),
               ),
               TableColumn(
@@ -209,7 +185,6 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                 minimumWidth: 200,
                 columnWidthMode: ColumnWidthMode.fill,
                 align: Alignment.center,
-                action: sortButton('categoryId'),
                 cellBuilder: (e) {
                   return GestureDetector(
                     onTap: () => context.pushRoute(
@@ -221,7 +196,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                         ShimmerImage(
                           height: 70,
                           width: 70,
-                          imageUrl: e.category?.imgUrl ?? '_',
+                          imageUrl: e.category?.imgUrl ?? '',
                         ),
                         const SizedBox(height: 8),
                         Text(

@@ -60,7 +60,7 @@ class SupportTile extends StatelessWidget with ClientMixin {
         child: Row(
           children: [
             ShimmerImage(
-              imageUrl: support.user?.avatar ?? '_',
+              imageUrl: support.user?.avatar ?? '',
               width: 70,
               height: 70,
             ),

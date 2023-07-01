@@ -109,9 +109,9 @@ class _ExercisesManagerPageState extends State<ExercisesManagerPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context
-              .pushRoute(ExerciseUpsertRoute())
-              .then((value) => refreshHandler());
+          context.pushRoute(ExerciseUpsertRoute()).then(
+                (value) => {if (value != null) refreshHandler()},
+              );
         },
         child: const Icon(Icons.add),
       ),

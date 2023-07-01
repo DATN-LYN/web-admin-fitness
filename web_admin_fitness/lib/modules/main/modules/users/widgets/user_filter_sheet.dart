@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:web_admin_fitness/global/extensions/gender_extension.dart';
 import 'package:web_admin_fitness/global/extensions/role_extension.dart';
 import 'package:web_admin_fitness/global/gen/i18n.dart';
 import 'package:web_admin_fitness/global/graphql/__generated__/schema.schema.gql.dart';
@@ -95,6 +96,35 @@ class _UserFilterSheetState extends State<UserFilterSheet> {
                     filter = filter.copyWith(
                       active:
                           filter.active.whereNot((item) => item == e).toList(),
+                    );
+                  }
+                },
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Text(
+            i18n.users_Gender,
+            style: titleStyle,
+          ),
+        ),
+        const SizedBox(height: 10),
+        ...GGENDER.values.map(
+          (e) => CheckboxListTile(
+            value: filter.genders.contains(e),
+            title: Text(e.label(i18n)),
+            onChanged: (value) {
+              setState(
+                () {
+                  if (value == true) {
+                    filter = filter.copyWith(genders: [...filter.genders, e]);
+                  } else {
+                    filter = filter.copyWith(
+                      genders:
+                          filter.genders.whereNot((item) => item == e).toList(),
                     );
                   }
                 },

@@ -165,7 +165,7 @@ class _CategorySelectorState extends State<CategorySelector> with ClientMixin {
                   ShimmerImage(
                     width: 50,
                     height: 50,
-                    imageUrl: selectedOptions.first.value.imgUrl ?? '_',
+                    imageUrl: selectedOptions.first.value.imgUrl ?? '',
                   ),
                   const SizedBox(width: 12),
                   Text(
@@ -196,7 +196,7 @@ class CategorySelectorTile extends StatelessWidget {
       child: Row(
         children: [
           ShimmerImage(
-            imageUrl: category.imgUrl ?? '_',
+            imageUrl: category.imgUrl ?? '',
             width: 40,
             height: 40,
             borderRadius: BorderRadius.circular(100),

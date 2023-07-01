@@ -173,7 +173,7 @@ class _SupportUpsertPageState extends State<SupportUpsertPage>
                       ),
                       const SizedBox(height: 10),
                       ShimmerImage(
-                        imageUrl: widget.support.imgUrl ?? '_',
+                        imageUrl: widget.support.imgUrl ?? '',
                         height: 300,
                         borderRadius: BorderRadius.circular(8),
                       ),

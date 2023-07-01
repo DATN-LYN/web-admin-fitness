@@ -129,7 +129,7 @@ class _SettingPageState extends State<SettingPage> with ClientMixin {
               name: user?.fullName,
               size: 100,
             ),
-            imageUrl: user?.avatar ?? '_',
+            imageUrl: user?.avatar ?? '',
           ),
         ),
         const SizedBox(height: 16),

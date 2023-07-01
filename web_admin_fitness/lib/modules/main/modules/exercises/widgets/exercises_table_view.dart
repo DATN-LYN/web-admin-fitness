@@ -127,41 +127,24 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
             tableData: exercises,
             columnItems: [
               TableColumn(
-                label: i18n.common_ImageUrl,
-                minimumWidth: 380,
+                label: i18n.common_Image,
+                minimumWidth: 170,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('imgUrl'),
                 cellBuilder: (e) {
                   return Padding(
                     padding: const EdgeInsets.all(4),
-                    child: Row(
-                      children: [
-                        ShimmerImage(
-                          imageUrl: e.imgUrl ?? '',
-                          height: 100,
-                          width: 120,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            e.imgUrl ?? '_',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                            softWrap: true,
-                          ),
-                        ),
-                      ],
+                    child: Tooltip(
+                      message: e.imgUrl ?? '_',
+                      child: ShimmerImage(
+                        imageUrl: e.imgUrl ?? '',
+                        height: 100,
+                        width: 120,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   );
                 },
               ),
-              // TableColumn(
-              //   label: i18n.common_Id,
-              //   minimumWidth: 220,
-              //   columnWidthMode: ColumnWidthMode.fill,
-              //   itemValue: (e) => e.id,
-              // ),
               TableColumn(
                 label: i18n.common_Name,
                 itemValue: (e) => e.name,
@@ -191,14 +174,12 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                 label: i18n.exercises_VideoUrl,
                 minimumWidth: 300,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('videoUrl'),
                 itemValue: (e) => e.videoUrl,
               ),
               TableColumn(
-                label: i18n.exercises_ProgramId,
-                minimumWidth: 230,
+                label: i18n.exercises_Program,
+                minimumWidth: 270,
                 columnWidthMode: ColumnWidthMode.fill,
-                action: sortButton('programId'),
                 cellBuilder: (e) {
                   return GestureDetector(
                     onTap: () => context.pushRoute(
@@ -210,7 +191,7 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
                           height: 90,
                           width: 100,
                           borderRadius: BorderRadius.circular(8),
-                          imageUrl: e.program?.imgUrl ?? '_',
+                          imageUrl: e.program?.imgUrl ?? '',
                         ),
                         const SizedBox(width: 14),
                         Expanded(

@@ -86,7 +86,8 @@
         "weekly": "Weekly",
         "monthly": "Monthly",
         "yearly": "Yearly",
-        "minutes": "Minutes"
+        "minutes": "Minutes",
+        "image": "Image"
     },
     "main_":{
         "home":"Home",
