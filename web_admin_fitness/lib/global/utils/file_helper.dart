@@ -41,7 +41,7 @@ class FileHelper {
               ),
       );
 
-      return response.url;
+      return response.secureUrl;
     } on CloudinaryException catch (e) {
       print(e.message);
       print(e.request);

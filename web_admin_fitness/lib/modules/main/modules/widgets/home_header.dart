@@ -122,11 +122,10 @@ class _ProfileAction extends StatelessWidget with ClientMixin {
               ? Row(
                   children: [
                     ShimmerImage(
-                      imageUrl: user?.avatar ?? '_',
+                      imageUrl: user?.avatar ?? '',
                       width: 46,
                       height: 46,
-                      errorWidget:
-                          Avatar(name: user?.fullName ?? '_', size: 46),
+                      errorWidget: Avatar(name: user?.fullName ?? '', size: 46),
                     ),
                     const SizedBox(width: 8),
                     ConstrainedBox(
@@ -160,10 +159,10 @@ class _ProfileAction extends StatelessWidget with ClientMixin {
                 )
               : Center(
                   child: ShimmerImage(
-                    imageUrl: user?.avatar ?? '_',
+                    imageUrl: user?.avatar ?? '',
                     width: 32,
                     height: 32,
-                    errorWidget: Avatar(name: user?.fullName ?? '_', size: 32),
+                    errorWidget: Avatar(name: user?.fullName ?? '', size: 32),
                   ),
                 ),
           itemBuilder: (BuildContext context) => [

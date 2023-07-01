@@ -49,7 +49,9 @@ class ProgramUpsertPage extends StatefulWidget {
 class _ProgramUpsertPageState extends State<ProgramUpsertPage>
     with ClientMixin {
   var formKey = GlobalKey<FormBuilderState>();
-  bool loading = true;
+  bool loading = false;
+  bool initLoading = true;
+
   late final isCreateNew = widget.program == null;
   XFile? image;
   GCategory? initialCategory;
@@ -62,33 +64,34 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
 
   initData() async {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!isCreateNew || widget.initialCategoryId != null) {
-        getCategory(categoryId: widget.initialCategoryId);
-      }
+      getCategory();
     });
-    if (mounted) {
-      setState(() => loading = false);
-    }
   }
 
-  void getCategory({String? categoryId}) async {
-    final request = GGetCategoryReq(
-      (b) => b..vars.categoryId = categoryId ?? widget.program!.categoryId,
-    );
-    final response = await client.request(request).first;
-    if (response.hasErrors) {
-      if (mounted) {
-        showErrorToast(
-          context,
-          response.graphqlErrors?.first.message,
-        );
+  void getCategory() async {
+    if (!isCreateNew || widget.initialCategoryId != null) {
+      final request = GGetCategoryReq(
+        (b) => b
+          ..vars.categoryId =
+              widget.initialCategoryId ?? widget.program!.categoryId,
+      );
+      final response = await client.request(request).first;
+      if (response.hasErrors) {
+        if (mounted) {
+          showErrorToast(
+            context,
+            response.graphqlErrors?.first.message,
+          );
+        }
+      } else {
+        initialCategory = response.data!.getCategory;
       }
-    } else {
-      if (mounted) {
-        setState(() {
-          initialCategory = response.data!.getCategory;
-        });
-      }
+    }
+    if (mounted) {
+      setState(() {
+        initLoading = false;
+        formKey = GlobalKey<FormBuilderState>();
+      });
     }
   }
 
@@ -217,207 +220,215 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                 : i18n.upsertProgram_ProgramDetail,
           ),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: FormBuilder(
-                key: formKey,
-                child: ListView(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  keyboardDismissBehavior:
-                      ScrollViewKeyboardDismissBehavior.onDrag,
-                  children: [
-                    const SizedBox(height: 16),
-                    if (!isCreateNew)
-                      OutlinedButton(
-                        onPressed: showDialogExerciseList,
-                        child: Text(i18n.upsertProgram_ViewExercises),
-                      ),
-                    if (!isCreateNew) ...[
-                      Label(i18n.upsertProgram_ID),
-                      FormBuilderTextField(
-                        name: 'id',
-                        enabled: false,
-                        readOnly: true,
-                        initialValue: widget.program?.id,
-                      ),
-                    ],
-                    Label(i18n.upsertProgram_Name),
-                    FormBuilderTextField(
-                      name: 'name',
-                      initialValue: widget.program?.name,
-                      decoration: InputDecoration(
-                        hintText: i18n.upsertProgram_NameHint,
-                      ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertProgram_NameIsRequired,
-                      ),
-                    ),
-                    Label(i18n.upsertProgram_Image),
-                    FormBuilderField<String>(
-                      name: 'imgUrl',
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertProgram_ImageIsRequired,
-                      ),
-                      initialValue: widget.program?.imgUrl,
-                      builder: (field) {
-                        return PickImageField(
-                          errorText: field.errorText,
-                          onPickImage: onPickImage,
-                          fieldValue: !isCreateNew && image == null
-                              ? widget.program?.imgUrl ?? ''
-                              : image != null
-                                  ? image!.name
-                                  : i18n.upsertExercise_ImageHint,
-                          textColor: image != null || !isCreateNew
-                              ? AppColors.grey1
-                              : AppColors.grey4,
-                        );
-                      },
-                    ),
-                    if (image != null) ...[
-                      const SizedBox(height: 12),
-                      SelectedImage(image: image!),
-                    ],
-                    if (!isCreateNew && image == null) ...[
-                      const SizedBox(height: 12),
-                      ShimmerImage(
-                        imageUrl: widget.program!.imgUrl!,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ],
-                    Label(i18n.upsertProgram_Level),
-                    FormBuilderField<GWORKOUT_LEVEL>(
-                      name: 'level',
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertProgram_LevelRequired,
-                      ),
-                      initialValue:
-                          widget.program?.level ?? GWORKOUT_LEVEL.Beginner,
-                      builder: (field) {
-                        late GWORKOUT_LEVEL initialData;
-                        final options = GWORKOUT_LEVEL.values
-                            .map(
-                              (e) => AdaptiveSelectorOption(
-                                  label: e.label(i18n), value: e),
-                            )
-                            .toList();
-                        if (!isCreateNew) {
-                          initialData = widget.program!.level!;
-                        }
-                        return AdaptiveSelector(
-                          options: options,
-                          type: isDesktopView
-                              ? SelectorType.menu
-                              : SelectorType.bottomSheet,
-                          initialOption: !isCreateNew
-                              ? AdaptiveSelectorOption(
-                                  label: initialData.label(i18n),
-                                  value: initialData,
-                                )
-                              : options.first,
-                          allowClear: false,
-                          onChanged: (selectedItem) {
-                            if (selectedItem != null) {
-                              field.didChange(selectedItem.value);
-                            }
-                          },
-                        );
-                      },
-                    ),
-                    Label(i18n.upsertProgram_BodyPart),
-                    FormBuilderField<GBODY_PART>(
-                      name: 'bodyPart',
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertProgram_BodyPartRequired,
-                      ),
-                      initialValue:
-                          widget.program?.bodyPart ?? GBODY_PART.Upper,
-                      builder: (field) {
-                        late GBODY_PART initialData;
+        body: initLoading
+            ? const Center(child: CircularProgressIndicator())
+            : Column(
+                children: [
+                  Expanded(
+                    child: FormBuilder(
+                      key: formKey,
+                      child: ListView(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        children: [
+                          const SizedBox(height: 16),
+                          if (!isCreateNew)
+                            OutlinedButton(
+                              onPressed: showDialogExerciseList,
+                              child: Text(i18n.upsertProgram_ViewExercises),
+                            ),
+                          if (!isCreateNew) ...[
+                            Label(i18n.upsertProgram_ID),
+                            FormBuilderTextField(
+                              name: 'id',
+                              enabled: false,
+                              readOnly: true,
+                              initialValue: widget.program?.id,
+                            ),
+                          ],
+                          Label(i18n.upsertProgram_Name),
+                          FormBuilderTextField(
+                            name: 'name',
+                            initialValue: widget.program?.name,
+                            decoration: InputDecoration(
+                              hintText: i18n.upsertProgram_NameHint,
+                            ),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertProgram_NameIsRequired,
+                            ),
+                          ),
+                          Label(i18n.upsertProgram_Image),
+                          FormBuilderField<String>(
+                            name: 'imgUrl',
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertProgram_ImageIsRequired,
+                            ),
+                            initialValue: widget.program?.imgUrl,
+                            builder: (field) {
+                              return PickImageField(
+                                errorText: field.errorText,
+                                onPickImage: onPickImage,
+                                fieldValue: !isCreateNew && image == null
+                                    ? widget.program?.imgUrl ?? ''
+                                    : image != null
+                                        ? image!.name
+                                        : i18n.upsertExercise_ImageHint,
+                                textColor: image != null || !isCreateNew
+                                    ? AppColors.grey1
+                                    : AppColors.grey4,
+                              );
+                            },
+                          ),
+                          if (image != null) ...[
+                            const SizedBox(height: 12),
+                            SelectedImage(image: image!),
+                          ],
+                          if (!isCreateNew && image == null) ...[
+                            const SizedBox(height: 12),
+                            ShimmerImage(
+                              imageUrl: widget.program!.imgUrl!,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ],
+                          Label(i18n.upsertProgram_Level),
+                          FormBuilderField<GWORKOUT_LEVEL>(
+                            name: 'level',
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertProgram_LevelRequired,
+                            ),
+                            initialValue: widget.program?.level ??
+                                GWORKOUT_LEVEL.Beginner,
+                            builder: (field) {
+                              late GWORKOUT_LEVEL initialData;
+                              final options = GWORKOUT_LEVEL.values
+                                  .map(
+                                    (e) => AdaptiveSelectorOption(
+                                        label: e.label(i18n), value: e),
+                                  )
+                                  .toList();
+                              if (!isCreateNew) {
+                                initialData = widget.program!.level!;
+                              }
+                              return AdaptiveSelector(
+                                options: options,
+                                type: isDesktopView
+                                    ? SelectorType.menu
+                                    : SelectorType.bottomSheet,
+                                initialOption: !isCreateNew
+                                    ? AdaptiveSelectorOption(
+                                        label: initialData.label(i18n),
+                                        value: initialData,
+                                      )
+                                    : options.first,
+                                allowClear: false,
+                                onChanged: (selectedItem) {
+                                  if (selectedItem != null) {
+                                    field.didChange(selectedItem.value);
+                                  }
+                                },
+                              );
+                            },
+                          ),
+                          Label(i18n.upsertProgram_BodyPart),
+                          FormBuilderField<GBODY_PART>(
+                            name: 'bodyPart',
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertProgram_BodyPartRequired,
+                            ),
+                            initialValue:
+                                widget.program?.bodyPart ?? GBODY_PART.Upper,
+                            builder: (field) {
+                              late GBODY_PART initialData;
 
-                        final options = GBODY_PART.values
-                            .map(
-                              (e) => AdaptiveSelectorOption(
-                                  label: e.label(i18n), value: e),
-                            )
-                            .toList();
-                        if (!isCreateNew) {
-                          initialData = widget.program!.bodyPart!;
-                        }
-                        return AdaptiveSelector(
-                          options: options,
-                          type: isDesktopView
-                              ? SelectorType.menu
-                              : SelectorType.bottomSheet,
-                          initialOption: !isCreateNew
-                              ? AdaptiveSelectorOption(
-                                  label: initialData.label(i18n),
-                                  value: initialData,
-                                )
-                              : options.first,
-                          allowClear: false,
-                          onChanged: (selectedItem) {
-                            if (selectedItem != null) {
-                              field.didChange(selectedItem.value);
-                            }
-                          },
-                        );
-                      },
-                    ),
-                    Label(i18n.upsertProgram_Category),
-                    FormBuilderField<String>(
-                      name: 'categoryId',
-                      initialValue:
-                          widget.initialCategoryId ?? initialCategory?.id,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertProgram_CategoryRequired,
+                              final options = GBODY_PART.values
+                                  .map(
+                                    (e) => AdaptiveSelectorOption(
+                                        label: e.label(i18n), value: e),
+                                  )
+                                  .toList();
+                              if (!isCreateNew) {
+                                initialData = widget.program!.bodyPart!;
+                              }
+                              return AdaptiveSelector(
+                                options: options,
+                                type: isDesktopView
+                                    ? SelectorType.menu
+                                    : SelectorType.bottomSheet,
+                                initialOption: !isCreateNew
+                                    ? AdaptiveSelectorOption(
+                                        label: initialData.label(i18n),
+                                        value: initialData,
+                                      )
+                                    : options.first,
+                                allowClear: false,
+                                onChanged: (selectedItem) {
+                                  if (selectedItem != null) {
+                                    field.didChange(selectedItem.value);
+                                  }
+                                },
+                              );
+                            },
+                          ),
+                          Label(i18n.upsertProgram_Category),
+                          FormBuilderField<String>(
+                            name: 'categoryId',
+                            initialValue:
+                                widget.initialCategoryId ?? initialCategory?.id,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertProgram_CategoryRequired,
+                            ),
+                            builder: (field) {
+                              return CategorySelector(
+                                initial: isCreateNew &&
+                                        widget.initialCategoryId == null
+                                    ? const []
+                                    : [initialCategory!],
+                                errorText: field.errorText,
+                                onChanged: (option) {
+                                  field.didChange(option.first.key);
+                                },
+                              );
+                            },
+                          ),
+                          Label(i18n.upsertProgram_Description),
+                          FormBuilderTextField(
+                            name: 'description',
+                            initialValue: widget.program?.description,
+                            decoration: InputDecoration(
+                              hintText: i18n.upsertProgram_DescriptionHint,
+                            ),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.required(
+                              errorText: i18n.upsertProgram_DescriptionRequired,
+                            ),
+                            maxLines: 7,
+                            maxLength: 255,
+                          ),
+                        ],
                       ),
-                      builder: (field) {
-                        return CategorySelector(
-                          initial:
-                              isCreateNew && widget.initialCategoryId == null
-                                  ? const []
-                                  : [initialCategory!],
-                          errorText: field.errorText,
-                          onChanged: (option) {
-                            field.didChange(option.first.key);
-                          },
-                        );
-                      },
                     ),
-                    Label(i18n.upsertProgram_Description),
-                    FormBuilderTextField(
-                      name: 'description',
-                      initialValue: widget.program?.description,
-                      decoration: InputDecoration(
-                        hintText: i18n.upsertProgram_DescriptionHint,
-                      ),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: FormBuilderValidators.required(
-                        errorText: i18n.upsertProgram_DescriptionRequired,
-                      ),
-                      maxLines: 7,
-                      maxLength: 255,
-                    ),
-                  ],
-                ),
+                  ),
+                  UpsertFormButton(
+                    onPressPositiveButton: handleSubmit,
+                    onPressNegativeButton: handleReset,
+                    positiveButtonText:
+                        isCreateNew ? i18n.button_Confirm : i18n.button_Save,
+                    negativeButtonText: i18n.button_Reset,
+                  ),
+                ],
               ),
-            ),
-            UpsertFormButton(
-              onPressPositiveButton: handleSubmit,
-              onPressNegativeButton: handleReset,
-              positiveButtonText:
-                  isCreateNew ? i18n.button_Confirm : i18n.button_Save,
-              negativeButtonText: i18n.button_Reset,
-            ),
-          ],
-        ),
       ),
     );
   }

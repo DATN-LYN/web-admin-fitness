@@ -35,10 +35,10 @@ class ProgramItemLarge extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ShimmerImage(
-              imageUrl: program.imgUrl ?? '_',
+              imageUrl: program.imgUrl ?? '',
               height: 150,
               width: double.infinity,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
               borderRadius: BorderRadius.circular(12),
             ),
             const SizedBox(height: 16),

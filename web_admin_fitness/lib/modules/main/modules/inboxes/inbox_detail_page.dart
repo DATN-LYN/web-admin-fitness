@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_admin_fitness/global/extensions/date_time_extension.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/widgets/label.dart';
 
@@ -30,20 +31,23 @@ class InboxDetailPage extends StatelessWidget {
         children: [
           Label(i18n.inboxes_UserId),
           TextFormField(
+            enabled: false,
             initialValue: inbox.userId,
           ),
           Label(i18n.upsertUser_FullName),
           TextFormField(
+            enabled: false,
             initialValue: inbox.user?.fullName ?? '__',
           ),
           Label(i18n.login_Email),
           TextFormField(
+            enabled: false,
             initialValue: inbox.user?.email ?? '__',
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(i18n.inboxes_Message),
+              Label(i18n.inboxes_Message),
               Tag(
                 color: inbox.isSender ? AppColors.success : AppColors.alert,
                 text: inbox.isSender ? i18n.inboxes_User : i18n.inboxes_Bot,
@@ -52,13 +56,15 @@ class InboxDetailPage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           TextFormField(
+            enabled: false,
             initialValue: inbox.message,
             maxLines: 30,
             minLines: 1,
           ),
           Label(i18n.inboxes_CreatedAt),
           TextFormField(
-            initialValue: inbox.createdAt?.toIso8601String(),
+            enabled: false,
+            initialValue: inbox.createdAt?.formatDateTime(i18n),
           ),
         ],
       ),

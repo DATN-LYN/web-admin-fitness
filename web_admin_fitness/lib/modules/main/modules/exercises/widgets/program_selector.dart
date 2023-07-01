@@ -161,7 +161,7 @@ class _ProgramSelectorState extends State<ProgramSelector> with ClientMixin {
                   ShimmerImage(
                     width: 30,
                     height: 30,
-                    imageUrl: selectedOptions.first.value.imgUrl ?? '_',
+                    imageUrl: selectedOptions.first.value.imgUrl ?? '',
                   ),
                   const SizedBox(width: 12),
                   Text(
@@ -190,7 +190,7 @@ class ProgramSelectorTile extends StatelessWidget {
       child: Row(
         children: [
           ShimmerImage(
-            imageUrl: program.imgUrl ?? '_',
+            imageUrl: program.imgUrl ?? '',
             width: 40,
             height: 40,
             borderRadius: BorderRadius.circular(100),

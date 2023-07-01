@@ -112,9 +112,9 @@ class _ProgramSearchBarState extends State<ProgramSearchBar> {
     final isDesktopView = responsive.isLargerThan(MOBILE);
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          flex: 1,
           child: FilterTextField(
             hintText: i18n.programs_SearchHint,
             onTextChange: (text) => handleFilter(

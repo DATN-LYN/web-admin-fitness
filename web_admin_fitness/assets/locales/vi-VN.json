@@ -87,7 +87,8 @@
         "weekly": "Tuần",
         "monthly": "Tháng",
         "yearly": "Năm",
-        "minutes": "Phút"
+        "minutes": "Phút",
+        "image": "Hình ảnh"
     },
     "main_":{
         "home":"Trang chủ",

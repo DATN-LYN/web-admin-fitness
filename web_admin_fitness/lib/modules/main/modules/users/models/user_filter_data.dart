@@ -10,5 +10,6 @@ class UserFilterData with _$UserFilterData {
     DateTime? createdAt,
     @Default([]) List<GROLE> roles,
     @Default([]) List<bool> active,
+    @Default([]) List<GGENDER> genders,
   ]) = _UserFilterData;
 }

@@ -28,7 +28,7 @@ class UserItemHome extends StatelessWidget with ClientMixin {
         child: Row(
           children: [
             ShimmerImage(
-              imageUrl: user.avatar ?? '-',
+              imageUrl: user.avatar ?? '',
               width: 50,
               height: 50,
               borderRadius: BorderRadius.circular(100),

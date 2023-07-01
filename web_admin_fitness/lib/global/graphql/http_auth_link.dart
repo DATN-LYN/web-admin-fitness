@@ -91,10 +91,6 @@ class HttpAuthLink extends Link {
           ...headers?.headers ?? <String, String>{},
           'authorization': _token,
           'Accept-Language': 'en',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET,PUT,PATCH,POST,DELETE',
-          'Access-Control-Allow-Headers':
-              'Origin, X-Requested-With, Content-Type, Accept',
         },
       ),
     );
