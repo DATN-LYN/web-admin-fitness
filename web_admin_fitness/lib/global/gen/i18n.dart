@@ -184,6 +184,8 @@ class I18n implements WidgetsLocalizations {
 	String get common_Yearly => "Yearly";
 	/// "Minutes"
 	String get common_Minutes => "Minutes";
+	/// "Image"
+	String get common_Image => "Image";
 	/// "Home"
 	String get main_Home => "Home";
 	/// "Categories"
@@ -763,6 +765,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Phút"
 	@override
 	String get common_Minutes => "Phút";
+	/// "Hình ảnh"
+	@override
+	String get common_Image => "Hình ảnh";
 	/// "Trang chủ"
 	@override
 	String get main_Home => "Trang chủ";

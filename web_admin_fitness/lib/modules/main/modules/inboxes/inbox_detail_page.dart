@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:web_admin_fitness/global/extensions/date_time_extension.dart';
 import 'package:web_admin_fitness/global/graphql/fragment/__generated__/inbox_fragment.data.gql.dart';
 import 'package:web_admin_fitness/global/widgets/label.dart';
 
@@ -63,7 +64,7 @@ class InboxDetailPage extends StatelessWidget {
           Label(i18n.inboxes_CreatedAt),
           TextFormField(
             enabled: false,
-            initialValue: inbox.createdAt?.toIso8601String(),
+            initialValue: inbox.createdAt?.formatDateTime(i18n),
           ),
         ],
       ),

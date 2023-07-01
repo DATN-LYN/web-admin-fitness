@@ -202,7 +202,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               ),
               TableColumn(
                 label: i18n.upsertUser_Status,
-                maximumWidth: 140,
+                maximumWidth: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return Tag(

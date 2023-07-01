@@ -127,7 +127,7 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
             tableData: exercises,
             columnItems: [
               TableColumn(
-                label: i18n.common_ImageUrl,
+                label: i18n.common_Image,
                 minimumWidth: 170,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {

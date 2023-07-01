@@ -126,8 +126,9 @@ class _CategoriesTableViewState extends State<CategoriesTableView>
             tableData: categories,
             columnItems: [
               TableColumn(
-                label: i18n.common_ImageUrl,
+                label: i18n.common_Image,
                 columnWidthMode: ColumnWidthMode.fill,
+                width: 200,
                 cellBuilder: (e) {
                   return Tooltip(
                     message: e.imgUrl,
