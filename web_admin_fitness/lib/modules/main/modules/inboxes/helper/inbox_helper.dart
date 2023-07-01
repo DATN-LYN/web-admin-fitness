@@ -39,7 +39,7 @@ class InboxHelper with ClientMixin {
               }
             } else {
               if (context.mounted) {
-                showSuccessToast(context, i18n.toast_Subtitle_DeleteProgram);
+                showSuccessToast(context, i18n.toast_Subtitle_DeleteInbox);
                 // context.popRoute(response);
               }
             }
