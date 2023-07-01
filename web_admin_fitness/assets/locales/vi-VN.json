@@ -175,7 +175,10 @@
           "deleteExercise": "Xoá bài tập thành công",
           "createUser": "Tạo người dùng mới thành công",
           "updateUser": "Cập nhật thông tin người dùng thành công",
-          "deleteUser": "Xoá người dùng thành công"
+          "deleteUser": "Xoá người dùng thành công",
+          "createInbox": "Tạo tin nhắn mới thành công",
+          "updateInbox": "Cập nhật tin nhắn thành công",
+          "deleteInbox": "Xoá tin nhắn thành công"
         }
     },
       "upsertProgram_":{
