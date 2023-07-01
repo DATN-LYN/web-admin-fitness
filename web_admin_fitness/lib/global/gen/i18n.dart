@@ -308,6 +308,12 @@ class I18n implements WidgetsLocalizations {
 	String get toast_Subtitle_UpdateUser => "You have updated a user successfully";
 	/// "You have deleted a user successfully"
 	String get toast_Subtitle_DeleteUser => "You have deleted a user successfully";
+	/// "You have created a new inbox successfully"
+	String get toast_Subtitle_CreateInbox => "You have created a new inbox successfully";
+	/// "You have updated an inbox successfully"
+	String get toast_Subtitle_UpdateInbox => "You have updated an inbox successfully";
+	/// "You have deleted an inbox successfully"
+	String get toast_Subtitle_DeleteInbox => "You have deleted an inbox successfully";
 	/// "Create New Program"
 	String get upsertProgram_CreateNewTitle => "Create New Program";
 	/// "Update Program"
@@ -951,6 +957,15 @@ class _I18n_vi_VN extends I18n {
 	/// "Xoá người dùng thành công"
 	@override
 	String get toast_Subtitle_DeleteUser => "Xoá người dùng thành công";
+	/// "Tạo tin nhắn mới thành công"
+	@override
+	String get toast_Subtitle_CreateInbox => "Tạo tin nhắn mới thành công";
+	/// "Cập nhật tin nhắn thành công"
+	@override
+	String get toast_Subtitle_UpdateInbox => "Cập nhật tin nhắn thành công";
+	/// "Xoá tin nhắn thành công"
+	@override
+	String get toast_Subtitle_DeleteInbox => "Xoá tin nhắn thành công";
 	/// "Tạo chương trình mới"
 	@override
 	String get upsertProgram_CreateNewTitle => "Tạo chương trình mới";

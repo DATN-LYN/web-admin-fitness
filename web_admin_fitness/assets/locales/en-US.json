@@ -174,7 +174,10 @@
           "deleteExercise": "You have deleted a exercise successfully",
           "createUser": "You have created a new user successfully",
           "updateUser": "You have updated a user successfully",
-          "deleteUser": "You have deleted a user successfully"
+          "deleteUser": "You have deleted a user successfully",
+          "createInbox": "You have created a new inbox successfully",
+          "updateInbox": "You have updated an inbox successfully",
+          "deleteInbox": "You have deleted an inbox successfully"
         }
     },
     "upsertProgram_":{
