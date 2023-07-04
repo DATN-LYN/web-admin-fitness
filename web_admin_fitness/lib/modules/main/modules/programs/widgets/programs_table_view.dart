@@ -130,7 +130,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
             columnItems: [
               TableColumn(
                 label: i18n.common_Image,
-                minimumWidth: 170,
+                width: 170,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return Tooltip(
@@ -147,13 +147,13 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
               TableColumn(
                 label: i18n.common_Name,
                 itemValue: (e) => e.name,
-                minimumWidth: 200,
+                width: 300,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('name'),
               ),
               TableColumn(
                 label: i18n.common_Level,
-                minimumWidth: 130,
+                width: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return Tag(
@@ -164,7 +164,7 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
               ),
               TableColumn(
                   label: i18n.programs_BodyPart,
-                  minimumWidth: 150,
+                  width: 170,
                   columnWidthMode: ColumnWidthMode.fill,
                   cellBuilder: (e) {
                     return Text(
@@ -176,23 +176,23 @@ class _ProgramsTableViewState extends State<ProgramsTableView>
                   }),
               TableColumn(
                 label: i18n.programs_Description,
-                minimumWidth: 220,
+                minimumWidth: 350,
                 columnWidthMode: ColumnWidthMode.fill,
                 itemValue: (e) => e.description.toString(),
               ),
               TableColumn(
                 label: i18n.upsertProgram_Category,
-                minimumWidth: 200,
+                width: 200,
                 columnWidthMode: ColumnWidthMode.fill,
-                align: Alignment.center,
                 cellBuilder: (e) {
                   return GestureDetector(
                     onTap: () => context.pushRoute(
                       CategoryUpsertRoute(category: e.category),
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        const SizedBox(height: 10),
                         ShimmerImage(
                           height: 70,
                           width: 70,
