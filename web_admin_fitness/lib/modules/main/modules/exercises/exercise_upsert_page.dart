@@ -58,6 +58,11 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
   VideoPlayerController? controller;
   GProgram? initialProgram;
   var key = GlobalKey();
+  late String duration = DurationTime.totalDurationFormat(
+    Duration(
+      seconds: widget.exercise?.duration?.toInt() ?? 0,
+    ),
+  );
 
   @override
   void initState() {
@@ -116,11 +121,12 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
   }
 
   void setDuration() {
-    formKey.currentState?.fields['duration']?.didChange(
-      DurationTime.totalDurationFormat(
+    setState(() {
+      duration = DurationTime.totalDurationFormat(
         controller!.value.duration,
-      ),
-    );
+      );
+    });
+    formKey.currentState?.fields['duration']?.didChange(duration);
   }
 
   Future<GUpsertExerciseInputDto> getInput() async {
@@ -432,11 +438,7 @@ class _ExerciseUpsertPageState extends State<ExerciseUpsertPage>
                           FormBuilderTextField(
                             name: 'duration',
                             readOnly: true,
-                            initialValue: widget.exercise?.duration != null
-                                ? DurationTime.totalDurationFormat(Duration(
-                                    seconds:
-                                        widget.exercise!.duration!.toInt()))
-                                : null,
+                            initialValue: duration,
                             decoration: InputDecoration(
                               hintText: i18n.upsertExercise_DurationHint,
                             ),

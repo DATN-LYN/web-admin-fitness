@@ -128,7 +128,7 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
             columnItems: [
               TableColumn(
                 label: i18n.common_Image,
-                minimumWidth: 170,
+                width: 170,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return Padding(
@@ -148,20 +148,20 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
               TableColumn(
                 label: i18n.common_Name,
                 itemValue: (e) => e.name,
-                minimumWidth: 200,
+                width: 270,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('name'),
               ),
               TableColumn(
                 label: i18n.programs_Calo,
-                minimumWidth: 150,
+                width: 170,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('calo'),
                 itemValue: (e) => e.calo.toString(),
               ),
               TableColumn(
                 label: i18n.common_Duration,
-                minimumWidth: 150,
+                width: 170,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('duration'),
                 itemValue: (e) => DurationTime.totalDurationFormat(
@@ -172,13 +172,13 @@ class _ExercisesTableViewState extends State<ExercisesTableView>
               ),
               TableColumn(
                 label: i18n.exercises_VideoUrl,
-                minimumWidth: 300,
+                minimumWidth: 450,
                 columnWidthMode: ColumnWidthMode.fill,
                 itemValue: (e) => e.videoUrl,
               ),
               TableColumn(
                 label: i18n.exercises_Program,
-                minimumWidth: 270,
+                minimumWidth: 250,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return GestureDetector(

@@ -128,7 +128,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
             columnItems: [
               TableColumn(
                 label: i18n.users_Avatar,
-                minimumWidth: 150,
+                width: 150,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return Row(
@@ -163,10 +163,11 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               ),
               TableColumn(
                 label: i18n.users_Gender,
-                maximumWidth: 120,
+                maximumWidth: 130,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
-                  return Center(
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
                     child: e.gender == GGENDER.Female
                         ? const Icon(
                             Icons.female,
@@ -181,7 +182,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               ),
               TableColumn(
                 label: i18n.upsertUser_Age,
-                maximumWidth: 130,
+                maximumWidth: 140,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('age'),
                 align: Alignment.center,
@@ -189,7 +190,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               ),
               TableColumn(
                 label: i18n.upsertUser_Role,
-                maximumWidth: 140,
+                maximumWidth: 170,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return Tag(
@@ -202,7 +203,7 @@ class _UsersTableViewState extends State<UsersTableView> with ClientMixin {
               ),
               TableColumn(
                 label: i18n.upsertUser_Status,
-                maximumWidth: 150,
+                maximumWidth: 170,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return Tag(

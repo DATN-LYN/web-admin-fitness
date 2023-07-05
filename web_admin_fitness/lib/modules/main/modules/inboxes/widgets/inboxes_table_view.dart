@@ -118,7 +118,7 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
             columnItems: [
               TableColumn(
                 label: i18n.inboxes_User,
-                minimumWidth: 350,
+                width: 350,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return GestureDetector(
@@ -163,7 +163,7 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
               ),
               TableColumn(
                 label: i18n.inboxes_From,
-                minimumWidth: 150,
+                width: 180,
                 columnWidthMode: ColumnWidthMode.fill,
                 cellBuilder: (e) {
                   return Tag(
@@ -174,7 +174,7 @@ class _InboxesTableViewState extends State<InboxesTableView> with ClientMixin {
               ),
               TableColumn(
                 label: i18n.inboxes_CreatedAt,
-                minimumWidth: 160,
+                width: 180,
                 columnWidthMode: ColumnWidthMode.fill,
                 action: sortButton('createdAt'),
                 itemValue: (e) => e.createdAt!.formatDateTime(i18n),
