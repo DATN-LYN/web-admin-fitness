@@ -196,14 +196,16 @@ class _SupportUpsertPageState extends State<SupportUpsertPage>
                           type: isDesktopView
                               ? SelectorType.menu
                               : SelectorType.bottomSheet,
-                          initialOption: AdaptiveSelectorOption(
-                            label: initialData.label(i18n),
-                            value: initialData,
-                          ),
+                          initial: [
+                            AdaptiveSelectorOption(
+                              label: initialData.label(i18n),
+                              value: initialData,
+                            )
+                          ],
                           allowClear: false,
                           onChanged: (selectedItem) {
-                            if (selectedItem != null) {
-                              field.didChange(selectedItem.value);
+                            if (selectedItem.isNotEmpty) {
+                              field.didChange(selectedItem.first.value);
                             }
                           },
                         );

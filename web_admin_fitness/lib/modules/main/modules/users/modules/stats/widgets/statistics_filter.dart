@@ -95,14 +95,16 @@ class _StatisticsFilterState extends State<StatisticsFilter> {
           allowClear: false,
           type: SelectorType.menu,
           options: options,
-          initialOption: AdaptiveSelectorOption(
-            label: filter.rangeType!.label(i18n),
-            value: filter.rangeType!,
-          ),
+          initial: [
+            AdaptiveSelectorOption(
+              label: filter.rangeType!.label(i18n),
+              value: filter.rangeType!,
+            )
+          ],
           onChanged: (value) {
-            if (value != null) {
+            if (value.isNotEmpty) {
               setState(() {
-                filter = filter.copyWith(rangeType: value.value);
+                filter = filter.copyWith(rangeType: value.first.value);
               });
             }
             onFilter();
