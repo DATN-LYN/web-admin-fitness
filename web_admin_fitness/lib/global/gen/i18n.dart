@@ -202,6 +202,8 @@ class I18n implements WidgetsLocalizations {
 	String get main_Inboxes => "Tin Nhắn";
 	/// "Người dùng"
 	String get main_Users => "Người dùng";
+	/// "Tài khoản"
+	String get main_Accounts => "Tài khoản";
 	/// ["Dễ", "Trung bình", "Khó"]
 	List<String> get workoutLevel => ["Dễ", "Trung bình", "Khó"];
 	/// ["Thân trên", "Thân dưới", "Bụng", "Toàn thân"]
@@ -795,6 +797,9 @@ class _I18n_en_US extends I18n {
 	/// "Users"
 	@override
 	String get main_Users => "Users";
+	/// "Accounts"
+	@override
+	String get main_Accounts => "Accounts";
 	/// ["Beginner", "Intermediate", "Advanced"]
 	@override
 	List<String> get workoutLevel => ["Beginner", "Intermediate", "Advanced"];

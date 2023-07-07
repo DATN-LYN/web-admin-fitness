@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
         '/main/programs': i18n.main_Programs,
         '/main/exercises': i18n.main_Exercises,
         '/main/inboxes': i18n.main_Inboxes,
-        '/main/users': i18n.main_Users,
+        '/main/users': i18n.main_Accounts,
         '/main/setting': i18n.main_Setting,
       };
       for (final key in titles.keys) {

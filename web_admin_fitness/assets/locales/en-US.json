@@ -96,7 +96,8 @@
         "setting":"Setting",
         "exercises":"Exercises",
         "inboxes":"Inboxes",
-        "users":"Users"
+        "users":"Users",
+        "accounts": "Accounts"
     },
     "workoutLevel": [
         "Beginner", 

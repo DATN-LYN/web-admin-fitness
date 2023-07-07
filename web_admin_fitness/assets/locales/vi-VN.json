@@ -97,7 +97,8 @@
         "setting":"Cài đặt",
         "exercises":"Bài tập",
         "inboxes":"Tin Nhắn",
-        "users":"Người dùng"
+        "users":"Người dùng",
+        "accounts": "Tài khoản"
     },
     "workoutLevel": [
         "Dễ", 
