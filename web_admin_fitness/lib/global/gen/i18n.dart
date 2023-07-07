@@ -200,6 +200,8 @@ class I18n implements WidgetsLocalizations {
 	String get main_Inboxes => "Inboxes";
 	/// "Users"
 	String get main_Users => "Users";
+	/// "Accounts"
+	String get main_Accounts => "Accounts";
 	/// ["Beginner", "Intermediate", "Advanced"]
 	List<String> get workoutLevel => ["Beginner", "Intermediate", "Advanced"];
 	/// ["Upper", "Downer", "Abs", "Full Body"]
@@ -795,6 +797,9 @@ class _I18n_vi_VN extends I18n {
 	/// "Người dùng"
 	@override
 	String get main_Users => "Người dùng";
+	/// "Tài khoản"
+	@override
+	String get main_Accounts => "Tài khoản";
 	/// ["Dễ", "Trung bình", "Khó"]
 	@override
 	List<String> get workoutLevel => ["Dễ", "Trung bình", "Khó"];
