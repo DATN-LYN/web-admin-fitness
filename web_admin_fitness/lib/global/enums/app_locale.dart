@@ -13,7 +13,7 @@ enum AppLocale {
   static AppLocale fromValue(String? value) {
     return AppLocale.values.firstWhere(
       (e) => e.value.contains(value ?? ''),
-      orElse: () => auto,
+      orElse: () => viVN,
     );
   }
 
@@ -26,7 +26,7 @@ enum AppLocale {
       default:
         // final codes = Platform.localeName;
         // return Locale(codes.split('_')[0]);
-        return const Locale('en', 'US');
+        return const Locale('vi', 'VN');
     }
   }
 

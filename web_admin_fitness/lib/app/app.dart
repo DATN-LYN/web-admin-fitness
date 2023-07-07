@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    FormBuilderLocalizations.delegate.load(const Locale('en', 'US'));
+    FormBuilderLocalizations.delegate.load(const Locale('vi', 'VN'));
 
     return Consumer<AppSettingsProvider>(
       builder: (context, provider, child) {
@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           supportedLocales: I18n.delegate.supportedLocales,
           locale: provider.localeData,
           localeResolutionCallback: I18n.delegate.resolution(
-            fallback: const Locale('en', 'US'),
+            fallback: const Locale('vi', 'VN'),
           ),
           theme: AppThemes.light(),
           routerDelegate: _appRouter.delegate(),
