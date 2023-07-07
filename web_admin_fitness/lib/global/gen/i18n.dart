@@ -32,1264 +32,1264 @@ class I18n implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 	/// "Email"
 	String get login_Email => "Email";
-	/// "Password"
-	String get login_Password => "Password";
-	/// "Enter your email"
-	String get login_EmailHint => "Enter your email";
-	/// "Enter your password"
-	String get login_PasswordHint => "Enter your password";
-	/// "Forgot password?"
-	String get login_ForgotPassword => "Forgot password?";
-	/// "Or log in with"
-	String get login_OrLogInWith => "Or log in with";
-	/// "Don't have an account? "
-	String get login_DoNotHaveAnAccount => "Don't have an account? ";
-	/// "Register now"
-	String get login_RegisterNow => "Register now";
-	/// "Log In"
-	String get login_LogIn => "Log In";
-	/// "Email is invalid"
-	String get login_EmailNotValid => "Email is invalid";
-	/// "Email is required"
-	String get login_EmailIsRequired => "Email is required";
-	/// "Password must be at least 6 characters"
-	String get login_PasswordMustBeAtLeastSixCharacters => "Password must be at least 6 characters";
-	/// "Password is required"
-	String get login_PasswordIsRequired => "Password is required";
-	/// "Admin Login"
-	String get login_AdminLogin => "Admin Login";
-	/// "Login failed, please try again"
-	String get login_LoginFailed => "Login failed, please try again";
-	/// "This account is not allowed to sign in Admin Web"
-	String get login_WrongRole => "This account is not allowed to sign in Admin Web";
-	/// "Next"
-	String get button_Next => "Next";
-	/// "Done"
-	String get button_Done => "Done";
-	/// "Cancel"
-	String get button_Cancel => "Cancel";
-	/// "OK"
-	String get button_Ok => "OK";
-	/// "Apply"
-	String get button_Apply => "Apply";
-	/// "Confirm"
-	String get button_Confirm => "Confirm";
-	/// "Reset"
-	String get button_Reset => "Reset";
-	/// "Save"
-	String get button_Save => "Save";
-	/// "Delete"
-	String get button_Delete => "Delete";
-	/// "Edit"
-	String get button_Edit => "Edit";
-	/// "View"
-	String get button_View => "View";
-	/// "Setting"
-	String get setting_Title => "Setting";
-	/// "Language"
-	String get setting_Language => "Language";
-	/// "Share with friends"
-	String get setting_ShareWithFriends => "Share with friends";
-	/// "Privacy policy"
-	String get setting_PrivacyPolicy => "Privacy policy";
-	/// "Terms and conditions"
-	String get setting_TermsAndConditions => "Terms and conditions";
-	/// "Change password"
-	String get setting_ChangePassword => "Change password";
-	/// "Log out"
-	String get setting_Logout => "Log out";
-	/// "Account"
-	String get setting_Account => "Account";
-	/// "Security"
-	String get setting_Security => "Security";
-	/// "About app"
-	String get setting_AboutApp => "About app";
-	/// "Please enter your old password, then enter the new password to proceed with the password change"
-	String get setting_ChangePasswordDes => "Please enter your old password, then enter the new password to proceed with the password change";
-	/// "Old password"
-	String get setting_OldPassword => "Old password";
-	/// "Enter your old password"
-	String get setting_OldPasswordHint => "Enter your old password";
-	/// "Old password is required"
-	String get setting_OldPasswordRequired => "Old password is required";
-	/// "New password"
-	String get setting_NewPassword => "New password";
-	/// "Enter your new password"
-	String get setting_NewPasswordHint => "Enter your new password";
-	/// "New password is required"
-	String get setting_NewPasswordRequired => "New password is required";
-	/// "Confirm new password"
-	String get setting_ConfirmNewPassword => "Confirm new password";
-	/// "Enter your confirm new password"
-	String get setting_ConfirmNewPasswordHint => "Enter your confirm new password";
-	/// "Confirm new password is required"
-	String get setting_ConfirmNewPasswordRequired => "Confirm new password is required";
-	/// "Password not match"
-	String get setting_PasswordNotMatch => "Password not match";
-	/// "Confirm logout"
-	String get setting_ConfirmLogout => "Confirm logout";
-	/// "You need confirm to logout from this app"
-	String get setting_ConfirmLogoutDes => "You need confirm to logout from this app";
-	/// "Are you sure you want to change your password?"
-	String get setting_ChangePasswordConfirm => "Are you sure you want to change your password?";
-	/// "Your password has been updated successfully."
-	String get setting_ChangePasswordSuccess => "Your password has been updated successfully.";
-	/// ["English (US)", "Tiếng Việt"]
-	List<String> get language => ["English (US)", "Tiếng Việt"];
-	/// "Category List"
-	String get categories_CategoryList => "Category List";
-	/// "calo"
-	String get programs_Calo => "calo";
-	/// "Program List"
-	String get programs_ProgramList => "Program List";
-	/// "Body Part"
-	String get programs_BodyPart => "Body Part";
-	/// "Description"
-	String get programs_Description => "Description";
-	/// "Enter program name"
-	String get programs_SearchHint => "Enter program name";
-	/// "Success"
-	String get common_Success => "Success";
-	/// "Actions"
-	String get common_Actions => "Actions";
-	/// "Not Found"
-	String get common_NotFound => "Not Found";
-	/// "View Detail"
-	String get common_ViewDetail => "View Detail";
-	/// "Update Data"
-	String get common_UpdateData => "Update Data";
-	/// "Duration"
-	String get common_Duration => "Duration";
-	/// "Level"
-	String get common_Level => "Level";
-	/// "Image URL"
-	String get common_ImageUrl => "Image URL";
-	/// "ID"
-	String get common_Id => "ID";
-	/// "Name"
-	String get common_Name => "Name";
-	/// "Calo"
-	String get common_Calo => "Calo";
-	/// "${appName} would like to use your camera to take photo."
-	String common_CameraPermissionRequest(String appName) => "${appName} would like to use your camera to take photo.";
-	/// "${appName} requires access to the photo library for you to be able to upload photos."
-	String common_PhotoPermissionRequest(String appName) => "${appName} requires access to the photo library for you to be able to upload photos.";
-	/// "${appName} requires access to the storage for you to be able to save your image."
-	String common_StoragePermissionRequest(String appName) => "${appName} requires access to the storage for you to be able to save your image.";
-	/// "Weekly"
-	String get common_Weekly => "Weekly";
-	/// "Monthly"
-	String get common_Monthly => "Monthly";
-	/// "Yearly"
-	String get common_Yearly => "Yearly";
-	/// "Minutes"
-	String get common_Minutes => "Minutes";
-	/// "Image"
-	String get common_Image => "Image";
-	/// "Home"
-	String get main_Home => "Home";
-	/// "Categories"
-	String get main_Categories => "Categories";
-	/// "Programs"
-	String get main_Programs => "Programs";
-	/// "Setting"
-	String get main_Setting => "Setting";
-	/// "Exercises"
-	String get main_Exercises => "Exercises";
-	/// "Inboxes"
-	String get main_Inboxes => "Inboxes";
-	/// "Users"
-	String get main_Users => "Users";
-	/// ["Beginner", "Intermediate", "Advanced"]
-	List<String> get workoutLevel => ["Beginner", "Intermediate", "Advanced"];
-	/// ["Upper", "Downer", "Abs", "Full Body"]
-	List<String> get workoutBodyPart => ["Upper", "Downer", "Abs", "Full Body"];
-	/// "Filter"
-	String get filter_Filter => "Filter";
-	/// "Workout Level"
-	String get filter_WorkoutLevel => "Workout Level";
-	/// "Exercise List"
-	String get exercises_ExerciseList => "Exercise List";
-	/// "Enter exercise name"
-	String get exercises_SearchHint => "Enter exercise name";
-	/// "Program"
-	String get exercises_Program => "Program";
-	/// "Program ID"
-	String get exercises_ProgramId => "Program ID";
-	/// "Video URL"
-	String get exercises_VideoUrl => "Video URL";
-	/// "Inbox List"
-	String get inboxes_InboxList => "Inbox List";
-	/// "User"
-	String get inboxes_User => "User";
-	/// "Message"
-	String get inboxes_Message => "Message";
-	/// "Bot"
-	String get inboxes_Bot => "Bot";
-	/// "From"
-	String get inboxes_From => "From";
-	/// "Created At"
-	String get inboxes_CreatedAt => "Created At";
-	/// "Inbox Detail"
-	String get inboxes_InboxDetail => "Inbox Detail";
-	/// "User ID"
-	String get inboxes_UserId => "User ID";
-	/// "User List"
-	String get users_UserList => "User List";
-	/// "Enter user email"
-	String get users_SearchHint => "Enter user email";
-	/// "Avatar"
-	String get users_Avatar => "Avatar";
-	/// "Gender"
-	String get users_Gender => "Gender";
-	/// "Role"
-	String get users_Role => "Role";
-	/// "Create New Category"
-	String get upsertCategory_CreateNewTitle => "Create New Category";
-	/// "Update Category"
-	String get upsertCategory_UpdateTitle => "Update Category";
-	/// "Are you sure you want to create a new category?"
-	String get upsertCategory_CreateNewDes => "Are you sure you want to create a new category?";
-	/// "Are you sure you want to update this category information?"
-	String get upsertCategory_UpdateDes => "Are you sure you want to update this category information?";
-	/// "Category Detail"
-	String get upsertCategory_CategoryDetail => "Category Detail";
-	/// "Category Name"
-	String get upsertCategory_CategoryName => "Category Name";
-	/// "Category Image"
-	String get upsertCategory_CategoryImage => "Category Image";
-	/// "Name is required"
-	String get upsertCategory_NameIsRequired => "Name is required";
-	/// "Image is required"
-	String get upsertCategory_ImageIsRequired => "Image is required";
-	/// "Input category name"
-	String get upsertCategory_NameHint => "Input category name";
-	/// "Choose category image"
-	String get upsertCategory_ImageHint => "Choose category image";
-	/// "Category ID"
-	String get upsertCategory_CategoryID => "Category ID";
-	/// "View Programs"
-	String get upsertCategory_ViewPrograms => "View Programs";
-	/// "Add New Program"
-	String get upsertCategory_AddNewProgram => "Add New Program";
-	/// "This category doesn't have any program"
-	String get upsertCategory_ProgramEmpty => "This category doesn't have any program";
-	/// "Success"
-	String get toast_Title_Success => "Success";
-	/// "Error"
-	String get toast_Title_Error => "Error";
-	/// "Warning"
-	String get toast_Title_Warning => "Warning";
-	/// "Something went wrong, please try again"
-	String get toast_Subtitle_Error => "Something went wrong, please try again";
-	/// "Your information is not valid, please try again"
-	String get toast_Subtitle_InvalidInformation => "Your information is not valid, please try again";
-	/// "You have created a new category successfully"
-	String get toast_Subtitle_CreateCategory => "You have created a new category successfully";
-	/// "You have updated a category successfully"
-	String get toast_Subtitle_UpdateCategory => "You have updated a category successfully";
-	/// "You have deleted a category successfully"
-	String get toast_Subtitle_DeleteCategory => "You have deleted a category successfully";
-	/// "You have created a new program successfully"
-	String get toast_Subtitle_CreateProgram => "You have created a new program successfully";
-	/// "You have updated a program successfully"
-	String get toast_Subtitle_UpdateProgram => "You have updated a program successfully";
-	/// "You have deleted a program successfully"
-	String get toast_Subtitle_DeleteProgram => "You have deleted a program successfully";
-	/// "You have created a new exercise successfully"
-	String get toast_Subtitle_CreateExercise => "You have created a new exercise successfully";
-	/// "You have updated a exercise successfully"
-	String get toast_Subtitle_UpdateExercise => "You have updated a exercise successfully";
-	/// "You have deleted a exercise successfully"
-	String get toast_Subtitle_DeleteExercise => "You have deleted a exercise successfully";
-	/// "You have created a new user successfully"
-	String get toast_Subtitle_CreateUser => "You have created a new user successfully";
-	/// "You have updated a user successfully"
-	String get toast_Subtitle_UpdateUser => "You have updated a user successfully";
-	/// "You have deleted a user successfully"
-	String get toast_Subtitle_DeleteUser => "You have deleted a user successfully";
-	/// "You have created a new inbox successfully"
-	String get toast_Subtitle_CreateInbox => "You have created a new inbox successfully";
-	/// "You have updated an inbox successfully"
-	String get toast_Subtitle_UpdateInbox => "You have updated an inbox successfully";
-	/// "You have deleted an inbox successfully"
-	String get toast_Subtitle_DeleteInbox => "You have deleted an inbox successfully";
-	/// "Create New Program"
-	String get upsertProgram_CreateNewTitle => "Create New Program";
-	/// "Update Program"
-	String get upsertProgram_UpdateTitle => "Update Program";
-	/// "Are you sure you want to create a new program?"
-	String get upsertProgram_CreateNewDes => "Are you sure you want to create a new program?";
-	/// "Are you sure you want to update this program information?"
-	String get upsertProgram_UpdateDes => "Are you sure you want to update this program information?";
-	/// "Program detail"
-	String get upsertProgram_ProgramDetail => "Program detail";
-	/// "Program Name"
-	String get upsertProgram_Name => "Program Name";
-	/// "Program Image"
-	String get upsertProgram_Image => "Program Image";
-	/// "Name is required"
-	String get upsertProgram_NameIsRequired => "Name is required";
-	/// "Image is required"
-	String get upsertProgram_ImageIsRequired => "Image is required";
-	/// "Input program name"
-	String get upsertProgram_NameHint => "Input program name";
-	/// "Choose program image"
-	String get upsertProgram_ImageHint => "Choose program image";
-	/// "Program ID"
-	String get upsertProgram_ID => "Program ID";
-	/// "Level"
-	String get upsertProgram_Level => "Level";
-	/// "Body Part"
-	String get upsertProgram_BodyPart => "Body Part";
-	/// "Category"
-	String get upsertProgram_Category => "Category";
-	/// "Choose category"
-	String get upsertProgram_CategoryHint => "Choose category";
-	/// "Level is required"
-	String get upsertProgram_LevelRequired => "Level is required";
-	/// "Body part is required"
-	String get upsertProgram_BodyPartRequired => "Body part is required";
-	/// "Category is required"
-	String get upsertProgram_CategoryRequired => "Category is required";
-	/// "Description is required"
-	String get upsertProgram_DescriptionRequired => "Description is required";
-	/// "Description"
-	String get upsertProgram_Description => "Description";
-	/// "Input program description"
-	String get upsertProgram_DescriptionHint => "Input program description";
-	/// "View Excercicses"
-	String get upsertProgram_ViewExercises => "View Excercicses";
-	/// "Add New Exercise"
-	String get upsertProgram_AddNewExercise => "Add New Exercise";
-	/// "This program doesn't have any exercise"
-	String get upsertProgram_ExerciseEmpty => "This program doesn't have any exercise";
-	/// "Create New Exercise"
-	String get upsertExercise_CreateNewTitle => "Create New Exercise";
-	/// "Update Exercise"
-	String get upsertExercise_UpdateTitle => "Update Exercise";
-	/// "Are you sure you want to create a new exercise?"
-	String get upsertExercise_CreateNewDes => "Are you sure you want to create a new exercise?";
-	/// "Are you sure you want to update this exercise information?"
-	String get upsertExercise_UpdateDes => "Are you sure you want to update this exercise information?";
-	/// "Exercise Detail"
-	String get upsertExercise_ExerciseDetail => "Exercise Detail";
-	/// "Exercise Name"
-	String get upsertExercise_Name => "Exercise Name";
-	/// "Exercise Image"
-	String get upsertExercise_Image => "Exercise Image";
-	/// "Exercise Video"
-	String get upsertExercise_Video => "Exercise Video";
-	/// "Name is required"
-	String get upsertExercise_NameIsRequired => "Name is required";
-	/// "Image is required"
-	String get upsertExercise_ImageIsRequired => "Image is required";
-	/// "Video is required"
-	String get upsertExercise_VideoIsRequired => "Video is required";
-	/// "Input exercise name"
-	String get upsertExercise_NameHint => "Input exercise name";
-	/// "Choose exercise image"
-	String get upsertExercise_ImageHint => "Choose exercise image";
-	/// "Choose exercise video"
-	String get upsertExercise_VideoHint => "Choose exercise video";
-	/// "Exercise ID"
-	String get upsertExercise_ID => "Exercise ID";
-	/// "Program"
-	String get upsertExercise_Program => "Program";
-	/// "Choose program"
-	String get upsertExercise_ProgramHint => "Choose program";
-	/// "Program is required"
-	String get upsertExercise_ProgramRequired => "Program is required";
-	/// "Duration"
-	String get upsertExercise_Duration => "Duration";
-	/// "Choose a video to see its duration"
-	String get upsertExercise_DurationHint => "Choose a video to see its duration";
-	/// "Duration is required"
-	String get upsertExercise_DurationRequired => "Duration is required";
-	/// "Calo is required"
-	String get upsertExercise_CaloRequired => "Calo is required";
-	/// "Calo"
-	String get upsertExercise_Calo => "Calo";
-	/// "Input exercise calo"
-	String get upsertExercise_CaloHint => "Input exercise calo";
-	/// "Delete Category"
-	String get deleteCategory_Title => "Delete Category";
-	/// "Are you sure you want to delete this category?"
-	String get deleteCategory_Des => "Are you sure you want to delete this category?";
-	/// "Delete Exercise"
-	String get deleteExercise_Title => "Delete Exercise";
-	/// "Are you sure you want to delete this exercise?"
-	String get deleteExercise_Des => "Are you sure you want to delete this exercise?";
-	/// "Delete Program"
-	String get deleteProgram_Title => "Delete Program";
-	/// "Are you sure you want to delete this program?"
-	String get deleteProgram_Des => "Are you sure you want to delete this program?";
-	/// "Delete User"
-	String get deleteUser_Title => "Delete User";
-	/// "Are you sure you want to delete this user?"
-	String get deleteUser_Des => "Are you sure you want to delete this user?";
-	/// "Delete Inbox"
-	String get deleteInbox_Title => "Delete Inbox";
-	/// "Are you sure you want to delete this inbox?"
-	String get deleteInbox_Des => "Are you sure you want to delete this inbox?";
-	/// "Create New User"
-	String get upsertUser_CreateNewTitle => "Create New User";
-	/// "Update User"
-	String get upsertUser_UpdateTitle => "Update User";
-	/// "Are you sure you want to create a new user?"
-	String get upsertUser_CreateNewDes => "Are you sure you want to create a new user?";
-	/// "Are you sure you want to update this user information?"
-	String get upsertUser_UpdateDes => "Are you sure you want to update this user information?";
-	/// "User Detail"
-	String get upsertUser_UserDetail => "User Detail";
-	/// "Full Name"
-	String get upsertUser_FullName => "Full Name";
-	/// "Enter user full name"
-	String get upsertUser_FullNameHint => "Enter user full name";
-	/// "Full name is required"
-	String get upsertUser_FullNameRequired => "Full name is required";
-	/// "Enter user email"
-	String get upsertUser_EmailHint => "Enter user email";
-	/// "Enter password"
-	String get upsertUser_PasswordHint => "Enter password";
-	/// "Age"
-	String get upsertUser_Age => "Age";
-	/// "Enter user age"
-	String get upsertUser_AgeHint => "Enter user age";
-	/// "Age is required"
-	String get upsertUser_AgeRequired => "Age is required";
-	/// "Enter confirm password"
-	String get upsertUser_ConfirmPasswordHint => "Enter confirm password";
-	/// "Confirm password is required"
-	String get upsertUser_ConfirmPasswordRequired => "Confirm password is required";
-	/// "Confirm password"
-	String get upsertUser_ConfirmPassword => "Confirm password";
-	/// "Role"
-	String get upsertUser_Role => "Role";
-	/// "Status"
-	String get upsertUser_Status => "Status";
-	/// "Update Profile"
-	String get editProfile_Title => "Update Profile";
-	/// "Are you sure you want to update your profile?"
-	String get editProfile_EditDes => "Are you sure you want to update your profile?";
-	/// "Your profile has been updated successfully."
-	String get editProfile_UpdateSuccess => "Your profile has been updated successfully.";
-	/// "Content"
-	String get support_Content => "Content";
-	/// "Status"
-	String get support_Status => "Status";
-	/// ["Waiting", "Solving", "Done", "Cancelled"]
-	List<String> get support_SupportStatus => ["Waiting", "Solving", "Done", "Cancelled"];
-	/// "Support Request Details"
-	String get support_SupportDetails => "Support Request Details";
-	/// "Support"
-	String get support_Title => "Support";
-	/// ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-	List<String> get weekDays_ => ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-	/// "Users Statistics"
-	String get statistics_UserStatistics => "Users Statistics";
-	/// "Recent Workout"
-	String get statistics_RecentWorkout => "Recent Workout";
-	/// "You have burnt"
-	String get statistics_YouHaveBurnt => "You have burnt";
-	/// "this week"
-	String get statistics_ThisWeek => "this week";
-	/// "this month"
-	String get statistics_ThisMonth => "this month";
-	/// "calories"
-	String get statistics_Calories => "calories";
-	/// "What a great value!"
-	String get statistics_WhatAGreatValue => "What a great value!";
-	/// "Body Count History"
-	String get statistics_BodyCountHistory => "Body Count History";
-	/// "Select month"
-	String get statistics_SelectMonth => "Select month";
-	/// "Chart"
-	String get chart_Chart => "Chart";
-	/// ["column", "bar", "line", "stepline"]
-	List<String> get chart_ChartType => ["column", "bar", "line", "stepline"];
-	/// "Users have most programs"
-	String get home_TopUsersProgram => "Users have most programs";
-	/// "Users have most inboxes"
-	String get home_TopUsersInbox => "Users have most inboxes";
-	/// "Programs of"
-	String get home_ProgramsOf => "Programs of";
-	/// "Inboxes of"
-	String get home_InboxesOf => "Inboxes of";
-	/// "Most viewed programs"
-	String get home_MostViewedPrograms => "Most viewed programs";
-	/// "Newest programs"
-	String get home_NewestPrograms => "Newest programs";
-	/// "User ages pie chart"
-	String get home_UserAgesPieChart => "User ages pie chart";
-	/// "User genders pie chart"
-	String get home_UserGendersPieChart => "User genders pie chart";
-	/// ["Male", "Female", "Others"]
-	List<String> get gender => ["Male", "Female", "Others"];
-	/// ["Admin", "User"]
-	List<String> get role => ["Admin", "User"];
-	/// ["Active", "Inactive"]
-	List<String> get account => ["Active", "Inactive"];
+	/// "Mật khẩu"
+	String get login_Password => "Mật khẩu";
+	/// "Nhập email của bạn"
+	String get login_EmailHint => "Nhập email của bạn";
+	/// "Nhập mật khẩu của bạn"
+	String get login_PasswordHint => "Nhập mật khẩu của bạn";
+	/// "Quên mật khẩu?"
+	String get login_ForgotPassword => "Quên mật khẩu?";
+	/// "Hoặc đăng nhập bằng"
+	String get login_OrLogInWith => "Hoặc đăng nhập bằng";
+	/// "Chưa có tài khoản? "
+	String get login_DoNotHaveAnAccount => "Chưa có tài khoản? ";
+	/// "Đăng ký"
+	String get login_RegisterNow => "Đăng ký";
+	/// "Đăng Nhập"
+	String get login_LogIn => "Đăng Nhập";
+	/// "Email không hợp lệ"
+	String get login_EmailNotValid => "Email không hợp lệ";
+	/// "Email bắt buộc"
+	String get login_EmailIsRequired => "Email bắt buộc";
+	/// "Mật khẩu phải dài tối thiểu 6 ký tự"
+	String get login_PasswordMustBeAtLeastSixCharacters => "Mật khẩu phải dài tối thiểu 6 ký tự";
+	/// "Mật khẩu bắt buộc"
+	String get login_PasswordIsRequired => "Mật khẩu bắt buộc";
+	/// "Đăng nhập dành cho Quản trị viên"
+	String get login_AdminLogin => "Đăng nhập dành cho Quản trị viên";
+	/// "Đăng nhập thất bại, hãy thử lại"
+	String get login_LoginFailed => "Đăng nhập thất bại, hãy thử lại";
+	/// "Tài khoản không được phép đăng nhập vào trang Admin"
+	String get login_WrongRole => "Tài khoản không được phép đăng nhập vào trang Admin";
+	/// "Tiếp tục"
+	String get button_Next => "Tiếp tục";
+	/// "Xong"
+	String get button_Done => "Xong";
+	/// "Huỷ bỏ"
+	String get button_Cancel => "Huỷ bỏ";
+	/// "Đồng ý"
+	String get button_Ok => "Đồng ý";
+	/// "Áp dụng"
+	String get button_Apply => "Áp dụng";
+	/// "Xác nhận"
+	String get button_Confirm => "Xác nhận";
+	/// "Đặt lại"
+	String get button_Reset => "Đặt lại";
+	/// "Lưu"
+	String get button_Save => "Lưu";
+	/// "Xoá"
+	String get button_Delete => "Xoá";
+	/// "Sửa"
+	String get button_Edit => "Sửa";
+	/// "Xem"
+	String get button_View => "Xem";
+	/// "Cài đặt"
+	String get setting_Title => "Cài đặt";
+	/// "Ngôn ngữ"
+	String get setting_Language => "Ngôn ngữ";
+	/// "Chia sẻ với bạn bè"
+	String get setting_ShareWithFriends => "Chia sẻ với bạn bè";
+	/// "Chính sách bảo mật"
+	String get setting_PrivacyPolicy => "Chính sách bảo mật";
+	/// "Điều khoản và điều kiện"
+	String get setting_TermsAndConditions => "Điều khoản và điều kiện";
+	/// "Thay đổi mật khẩu"
+	String get setting_ChangePassword => "Thay đổi mật khẩu";
+	/// "Đăng xuất"
+	String get setting_Logout => "Đăng xuất";
+	/// "Tài khoản"
+	String get setting_Account => "Tài khoản";
+	/// "Bảo mật"
+	String get setting_Security => "Bảo mật";
+	/// "Về ứng dụng"
+	String get setting_AboutApp => "Về ứng dụng";
+	/// "Vui lòng nhập mật khẩu cũ của bạn, sau đó nhập mật khẩu mới để tiến hành thay đổi mật khẩu"
+	String get setting_ChangePasswordDes => "Vui lòng nhập mật khẩu cũ của bạn, sau đó nhập mật khẩu mới để tiến hành thay đổi mật khẩu";
+	/// "Mật khẩu cũ"
+	String get setting_OldPassword => "Mật khẩu cũ";
+	/// "Nhập mật khẩu cũ của bạn"
+	String get setting_OldPasswordHint => "Nhập mật khẩu cũ của bạn";
+	/// "Mật khẩu cũ bắt buộc"
+	String get setting_OldPasswordRequired => "Mật khẩu cũ bắt buộc";
+	/// "Mật khẩu mới"
+	String get setting_NewPassword => "Mật khẩu mới";
+	/// "Nhập mật khẩu mới của bạn"
+	String get setting_NewPasswordHint => "Nhập mật khẩu mới của bạn";
+	/// "Mật khẩu mới bắt buộc"
+	String get setting_NewPasswordRequired => "Mật khẩu mới bắt buộc";
+	/// "Xác nhận mật khẩu mới"
+	String get setting_ConfirmNewPassword => "Xác nhận mật khẩu mới";
+	/// "Nhập xác nhận mật khẩu mới"
+	String get setting_ConfirmNewPasswordHint => "Nhập xác nhận mật khẩu mới";
+	/// "Xác nhận mật khẩu mới bắt buộc"
+	String get setting_ConfirmNewPasswordRequired => "Xác nhận mật khẩu mới bắt buộc";
+	/// "Mật khẩu không khớp"
+	String get setting_PasswordNotMatch => "Mật khẩu không khớp";
 	/// "Xác nhận thay đổi"
 	String get setting_ConfirmChange => "Xác nhận thay đổi";
-}
-class _I18n_en_US extends I18n {
-  const _I18n_en_US();
+	/// "Xác nhận đăng xuất"
+	String get setting_ConfirmLogout => "Xác nhận đăng xuất";
+	/// "Bạn cần xác nhận để đăng xuất khỏi ứng dụng"
+	String get setting_ConfirmLogoutDes => "Bạn cần xác nhận để đăng xuất khỏi ứng dụng";
+	/// "Bạn có chắc chắn muốn thay đổi mật khẩu"
+	String get setting_ChangePasswordConfirm => "Bạn có chắc chắn muốn thay đổi mật khẩu";
+	/// "Bạn đã cập nhật mật khẩu thành công"
+	String get setting_ChangePasswordSuccess => "Bạn đã cập nhật mật khẩu thành công";
+	/// ["English (US)", "Tiếng Việt"]
+	List<String> get language => ["English (US)", "Tiếng Việt"];
+	/// "Danh sách thể loại"
+	String get categories_CategoryList => "Danh sách thể loại";
+	/// "calo"
+	String get programs_Calo => "calo";
+	/// "Danh sách chương trình tập"
+	String get programs_ProgramList => "Danh sách chương trình tập";
+	/// "Vùng cơ thể"
+	String get programs_BodyPart => "Vùng cơ thể";
+	/// "Mô tả"
+	String get programs_Description => "Mô tả";
+	/// "Nhập tên chương trình"
+	String get programs_SearchHint => "Nhập tên chương trình";
+	/// "Thành công"
+	String get common_Success => "Thành công";
+	/// "Hành động"
+	String get common_Actions => "Hành động";
+	/// "Không tìm thấy"
+	String get common_NotFound => "Không tìm thấy";
+	/// "Xem chi tiết"
+	String get common_ViewDetail => "Xem chi tiết";
+	/// "Cập nhật dữ liệu"
+	String get common_UpdateData => "Cập nhật dữ liệu";
+	/// "Thời gian"
+	String get common_Duration => "Thời gian";
+	/// "Độ khó"
+	String get common_Level => "Độ khó";
+	/// "Đường dẫn hình ảnh"
+	String get common_ImageUrl => "Đường dẫn hình ảnh";
+	/// "ID"
+	String get common_Id => "ID";
+	/// "Tên"
+	String get common_Name => "Tên";
+	/// "Calo"
+	String get common_Calo => "Calo";
+	/// "${appName} would like to use your camera for your scan document."
+	String common_CameraPermissionRequest(String appName) => "${appName} would like to use your camera for your scan document.";
+	/// "${appName} requires access to the photo library for you to be able to upload photos for your print document."
+	String common_PhotoPermissionRequest(String appName) => "${appName} requires access to the photo library for you to be able to upload photos for your print document.";
+	/// "${appName} requires access to the storage for you to be able to save your print document."
+	String common_StoragePermissionRequest(String appName) => "${appName} requires access to the storage for you to be able to save your print document.";
+	/// "Tuần"
+	String get common_Weekly => "Tuần";
+	/// "Tháng"
+	String get common_Monthly => "Tháng";
+	/// "Năm"
+	String get common_Yearly => "Năm";
+	/// "Phút"
+	String get common_Minutes => "Phút";
+	/// "Hình ảnh"
+	String get common_Image => "Hình ảnh";
+	/// "Trang chủ"
+	String get main_Home => "Trang chủ";
+	/// "Thể loại"
+	String get main_Categories => "Thể loại";
+	/// "Chương trình"
+	String get main_Programs => "Chương trình";
+	/// "Cài đặt"
+	String get main_Setting => "Cài đặt";
+	/// "Bài tập"
+	String get main_Exercises => "Bài tập";
+	/// "Tin Nhắn"
+	String get main_Inboxes => "Tin Nhắn";
+	/// "Người dùng"
+	String get main_Users => "Người dùng";
+	/// ["Dễ", "Trung bình", "Khó"]
+	List<String> get workoutLevel => ["Dễ", "Trung bình", "Khó"];
+	/// ["Thân trên", "Thân dưới", "Bụng", "Toàn thân"]
+	List<String> get workoutBodyPart => ["Thân trên", "Thân dưới", "Bụng", "Toàn thân"];
+	/// "Bộ lọc"
+	String get filter_Filter => "Bộ lọc";
+	/// "Độ khó của chương trình"
+	String get filter_WorkoutLevel => "Độ khó của chương trình";
+	/// "Danh sách bài tập"
+	String get exercises_ExerciseList => "Danh sách bài tập";
+	/// "Nhập tên bài tập"
+	String get exercises_SearchHint => "Nhập tên bài tập";
+	/// "Chương trình"
+	String get exercises_Program => "Chương trình";
+	/// "Mã chương trình"
+	String get exercises_ProgramId => "Mã chương trình";
+	/// "Đường dẫn video"
+	String get exercises_VideoUrl => "Đường dẫn video";
+	/// "Danh sách tin nhắn"
+	String get inboxes_InboxList => "Danh sách tin nhắn";
+	/// "Người dùng"
+	String get inboxes_User => "Người dùng";
+	/// "Tin nhắn"
+	String get inboxes_Message => "Tin nhắn";
+	/// "Bot"
+	String get inboxes_Bot => "Bot";
+	/// "Gửi từ"
+	String get inboxes_From => "Gửi từ";
+	/// "Tạo lúc"
+	String get inboxes_CreatedAt => "Tạo lúc";
+	/// "Chi tiết tin nhắn"
+	String get inboxes_InboxDetail => "Chi tiết tin nhắn";
+	/// "Mã người dùng"
+	String get inboxes_UserId => "Mã người dùng";
+	/// "Danh sách người dùng"
+	String get users_UserList => "Danh sách người dùng";
+	/// "Nhập tên người dùng"
+	String get users_SearchHint => "Nhập tên người dùng";
+	/// "Ảnh đại diện"
+	String get users_Avatar => "Ảnh đại diện";
+	/// "Giới tính"
+	String get users_Gender => "Giới tính";
+	/// "Loại tài khoản"
+	String get users_Role => "Loại tài khoản";
+	/// "Tạo thể loại mới"
+	String get upsertCategory_CreateNewTitle => "Tạo thể loại mới";
+	/// "Cập nhật thể loại"
+	String get upsertCategory_UpdateTitle => "Cập nhật thể loại";
+	/// "Bạn có chắc chắn muốn tạo thể loại mới?"
+	String get upsertCategory_CreateNewDes => "Bạn có chắc chắn muốn tạo thể loại mới?";
+	/// "Bạn có chắc chắn muốn cập nhật thông tin thể loại?"
+	String get upsertCategory_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin thể loại?";
+	/// "Chi tiết thể loại"
+	String get upsertCategory_CategoryDetail => "Chi tiết thể loại";
+	/// "Tên thể loại"
+	String get upsertCategory_CategoryName => "Tên thể loại";
+	/// "Hình ảnh thể loại"
+	String get upsertCategory_CategoryImage => "Hình ảnh thể loại";
+	/// "Bạn chưa nhập tên"
+	String get upsertCategory_NameIsRequired => "Bạn chưa nhập tên";
+	/// "Bạn chưa chọn hình ảnh"
+	String get upsertCategory_ImageIsRequired => "Bạn chưa chọn hình ảnh";
+	/// "Nhập tên thể loại"
+	String get upsertCategory_NameHint => "Nhập tên thể loại";
+	/// "Chọn hình ảnh thể loại"
+	String get upsertCategory_ImageHint => "Chọn hình ảnh thể loại";
+	/// "Mã thể loại"
+	String get upsertCategory_CategoryID => "Mã thể loại";
+	/// "Xem danh sách chương trình tập"
+	String get upsertCategory_ViewPrograms => "Xem danh sách chương trình tập";
+	/// "Thêm chương trình mới"
+	String get upsertCategory_AddNewProgram => "Thêm chương trình mới";
+	/// "Thể loại này không có chương trình nào"
+	String get upsertCategory_ProgramEmpty => "Thể loại này không có chương trình nào";
+	/// "Thành công"
+	String get toast_Title_Success => "Thành công";
+	/// "Lỗi"
+	String get toast_Title_Error => "Lỗi";
+	/// "Cảnh báo"
+	String get toast_Title_Warning => "Cảnh báo";
+	/// "Đã có lỗi, hãy thử lại"
+	String get toast_Subtitle_Error => "Đã có lỗi, hãy thử lại";
+	/// "Thông tin của bạn chưa hợp lệ, hãy kiểm tra lại"
+	String get toast_Subtitle_InvalidInformation => "Thông tin của bạn chưa hợp lệ, hãy kiểm tra lại";
+	/// "Tạo thể loại mới thành công"
+	String get toast_Subtitle_CreateCategory => "Tạo thể loại mới thành công";
+	/// "Cập nhật thể loại thành công"
+	String get toast_Subtitle_UpdateCategory => "Cập nhật thể loại thành công";
+	/// "Xoá thể loại thành công"
+	String get toast_Subtitle_DeleteCategory => "Xoá thể loại thành công";
+	/// "Tạo chương trình mới thành công"
+	String get toast_Subtitle_CreateProgram => "Tạo chương trình mới thành công";
+	/// "Cập nhật chương trình thành công"
+	String get toast_Subtitle_UpdateProgram => "Cập nhật chương trình thành công";
+	/// "Xoá chương trình thành công"
+	String get toast_Subtitle_DeleteProgram => "Xoá chương trình thành công";
+	/// "Tạo bài tập mới thành công"
+	String get toast_Subtitle_CreateExercise => "Tạo bài tập mới thành công";
+	/// "Cập nhật bài tập thành công"
+	String get toast_Subtitle_UpdateExercise => "Cập nhật bài tập thành công";
+	/// "Xoá bài tập thành công"
+	String get toast_Subtitle_DeleteExercise => "Xoá bài tập thành công";
+	/// "Tạo người dùng mới thành công"
+	String get toast_Subtitle_CreateUser => "Tạo người dùng mới thành công";
+	/// "Cập nhật thông tin người dùng thành công"
+	String get toast_Subtitle_UpdateUser => "Cập nhật thông tin người dùng thành công";
+	/// "Xoá người dùng thành công"
+	String get toast_Subtitle_DeleteUser => "Xoá người dùng thành công";
+	/// "Tạo tin nhắn mới thành công"
+	String get toast_Subtitle_CreateInbox => "Tạo tin nhắn mới thành công";
+	/// "Cập nhật tin nhắn thành công"
+	String get toast_Subtitle_UpdateInbox => "Cập nhật tin nhắn thành công";
+	/// "Xoá tin nhắn thành công"
+	String get toast_Subtitle_DeleteInbox => "Xoá tin nhắn thành công";
+	/// "Tạo chương trình mới"
+	String get upsertProgram_CreateNewTitle => "Tạo chương trình mới";
+	/// "Cập nhật chương trình"
+	String get upsertProgram_UpdateTitle => "Cập nhật chương trình";
+	/// "Bạn có chắc chắn muốn tạo chương trình mới?"
+	String get upsertProgram_CreateNewDes => "Bạn có chắc chắn muốn tạo chương trình mới?";
+	/// "Bạn có chắc chắn muốn cập nhật thông tin chương trình?"
+	String get upsertProgram_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin chương trình?";
+	/// "Chi tiết chương trình"
+	String get upsertProgram_ProgramDetail => "Chi tiết chương trình";
+	/// "Tên chương trình"
+	String get upsertProgram_Name => "Tên chương trình";
+	/// "Hình ảnh"
+	String get upsertProgram_Image => "Hình ảnh";
+	/// "Bạn chưa nhập tên"
+	String get upsertProgram_NameIsRequired => "Bạn chưa nhập tên";
+	/// "Bạn chưa chọn hình"
+	String get upsertProgram_ImageIsRequired => "Bạn chưa chọn hình";
+	/// "Nhập tên chương trình"
+	String get upsertProgram_NameHint => "Nhập tên chương trình";
+	/// "Chọn hình ảnh của chương trình"
+	String get upsertProgram_ImageHint => "Chọn hình ảnh của chương trình";
+	/// "Mã chương trình"
+	String get upsertProgram_ID => "Mã chương trình";
+	/// "Độ khó"
+	String get upsertProgram_Level => "Độ khó";
+	/// "Vùng cơ thể"
+	String get upsertProgram_BodyPart => "Vùng cơ thể";
+	/// "Thể loại"
+	String get upsertProgram_Category => "Thể loại";
+	/// "Chọn thể loại"
+	String get upsertProgram_CategoryHint => "Chọn thể loại";
+	/// "Bạn chưa chọn độ khó"
+	String get upsertProgram_LevelRequired => "Bạn chưa chọn độ khó";
+	/// "Bạn chưa chọn vùng cơ thể"
+	String get upsertProgram_BodyPartRequired => "Bạn chưa chọn vùng cơ thể";
+	/// "Bạn chưa chọn thể loại"
+	String get upsertProgram_CategoryRequired => "Bạn chưa chọn thể loại";
+	/// "Bạn chưa nhập mô tả"
+	String get upsertProgram_DescriptionRequired => "Bạn chưa nhập mô tả";
+	/// "Mô tả"
+	String get upsertProgram_Description => "Mô tả";
+	/// "Nhập mô tả chương trình"
+	String get upsertProgram_DescriptionHint => "Nhập mô tả chương trình";
+	/// "Xem danh sách bài tập"
+	String get upsertProgram_ViewExercises => "Xem danh sách bài tập";
+	/// "Thêm bài tập mới"
+	String get upsertProgram_AddNewExercise => "Thêm bài tập mới";
+	/// "Chương trình này không có bài tập nào"
+	String get upsertProgram_ExerciseEmpty => "Chương trình này không có bài tập nào";
+	/// "Tạo bài tập mới"
+	String get upsertExercise_CreateNewTitle => "Tạo bài tập mới";
+	/// "Cập nhật bài tập"
+	String get upsertExercise_UpdateTitle => "Cập nhật bài tập";
+	/// "Bạn có chắc chắn muốn tạo bài tập mới?"
+	String get upsertExercise_CreateNewDes => "Bạn có chắc chắn muốn tạo bài tập mới?";
+	/// "Bạn có chắc chắn muốn cập nhật thông tin bài tập?"
+	String get upsertExercise_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin bài tập?";
+	/// "Chi tiết bài tập"
+	String get upsertExercise_ExerciseDetail => "Chi tiết bài tập";
+	/// "Tên bài tập"
+	String get upsertExercise_Name => "Tên bài tập";
+	/// "Hình ảnh"
+	String get upsertExercise_Image => "Hình ảnh";
+	/// "Video bài tập"
+	String get upsertExercise_Video => "Video bài tập";
+	/// "Bạn chưa nhập tên"
+	String get upsertExercise_NameIsRequired => "Bạn chưa nhập tên";
+	/// "Bạn chưa chọn hình"
+	String get upsertExercise_ImageIsRequired => "Bạn chưa chọn hình";
+	/// "Bạn chưa chọn video"
+	String get upsertExercise_VideoIsRequired => "Bạn chưa chọn video";
+	/// "Nhập tên bài tập"
+	String get upsertExercise_NameHint => "Nhập tên bài tập";
+	/// "Chọn hình ảnh của bài tập"
+	String get upsertExercise_ImageHint => "Chọn hình ảnh của bài tập";
+	/// "Chọn video của bài tập"
+	String get upsertExercise_VideoHint => "Chọn video của bài tập";
+	/// "Mã bài tập"
+	String get upsertExercise_ID => "Mã bài tập";
+	/// "Chương trình"
+	String get upsertExercise_Program => "Chương trình";
+	/// "Chọn chương trình"
+	String get upsertExercise_ProgramHint => "Chọn chương trình";
+	/// "Bạn chưa chọn chương trình"
+	String get upsertExercise_ProgramRequired => "Bạn chưa chọn chương trình";
+	/// "Thời gian"
+	String get upsertExercise_Duration => "Thời gian";
+	/// "Chọn video để xem thời gian"
+	String get upsertExercise_DurationHint => "Chọn video để xem thời gian";
+	/// "Thời gian bắt buộc"
+	String get upsertExercise_DurationRequired => "Thời gian bắt buộc";
+	/// "Ban chưa nhập calo"
+	String get upsertExercise_CaloRequired => "Ban chưa nhập calo";
+	/// "Calo"
+	String get upsertExercise_Calo => "Calo";
+	/// "Nhập calo của bài tập"
+	String get upsertExercise_CaloHint => "Nhập calo của bài tập";
+	/// "Xoá thể loại"
+	String get deleteCategory_Title => "Xoá thể loại";
+	/// "Bạn có chắc chắn muốn xoá thể loại?"
+	String get deleteCategory_Des => "Bạn có chắc chắn muốn xoá thể loại?";
+	/// "Xoá bài tập"
+	String get deleteExercise_Title => "Xoá bài tập";
+	/// "Bạn có chắc chắn muốn xoá bài tập?"
+	String get deleteExercise_Des => "Bạn có chắc chắn muốn xoá bài tập?";
+	/// "Xoá chương trình"
+	String get deleteProgram_Title => "Xoá chương trình";
+	/// "Bạn có chắc chắn muốn xoá chương trình?"
+	String get deleteProgram_Des => "Bạn có chắc chắn muốn xoá chương trình?";
+	/// "Xoá người dùng"
+	String get deleteUser_Title => "Xoá người dùng";
+	/// "Bạn có chắc chắn muốn xoá người dùng?"
+	String get deleteUser_Des => "Bạn có chắc chắn muốn xoá người dùng?";
+	/// "Xoá tin nhắn"
+	String get deleteInbox_Title => "Xoá tin nhắn";
+	/// "Bạn có chắc chắn muốn xoá tin nhắn?"
+	String get deleteInbox_Des => "Bạn có chắc chắn muốn xoá tin nhắn?";
+	/// "Tạo người dùng mới"
+	String get upsertUser_CreateNewTitle => "Tạo người dùng mới";
+	/// "Cập nhật thông tin người dùng"
+	String get upsertUser_UpdateTitle => "Cập nhật thông tin người dùng";
+	/// "Bạn có chắc chắn muốn tạo một người dùng mới?"
+	String get upsertUser_CreateNewDes => "Bạn có chắc chắn muốn tạo một người dùng mới?";
+	/// "Bạn có chắc chắn muốn cập nhật thông tin của người dùng này?"
+	String get upsertUser_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin của người dùng này?";
+	/// "Thông tin người dùng"
+	String get upsertUser_UserDetail => "Thông tin người dùng";
+	/// "Họ và tên"
+	String get upsertUser_FullName => "Họ và tên";
+	/// "Nhập họ và tên"
+	String get upsertUser_FullNameHint => "Nhập họ và tên";
+	/// "Bạn chưa nhập họ và tên"
+	String get upsertUser_FullNameRequired => "Bạn chưa nhập họ và tên";
+	/// "Nhập email"
+	String get upsertUser_EmailHint => "Nhập email";
+	/// "Nhập mật khẩu"
+	String get upsertUser_PasswordHint => "Nhập mật khẩu";
+	/// "Tuổi"
+	String get upsertUser_Age => "Tuổi";
+	/// "Nhập tuổi"
+	String get upsertUser_AgeHint => "Nhập tuổi";
+	/// "Bạn chưa nhập tuổi"
+	String get upsertUser_AgeRequired => "Bạn chưa nhập tuổi";
+	/// "Nhập lại mật khẩu"
+	String get upsertUser_ConfirmPasswordHint => "Nhập lại mật khẩu";
+	/// "Bạn chưa xác nhận mật khẩu"
+	String get upsertUser_ConfirmPasswordRequired => "Bạn chưa xác nhận mật khẩu";
+	/// "Xác nhận mật khẩu"
+	String get upsertUser_ConfirmPassword => "Xác nhận mật khẩu";
+	/// "Loại tài khoản"
+	String get upsertUser_Role => "Loại tài khoản";
+	/// "Trạng thái"
+	String get upsertUser_Status => "Trạng thái";
+	/// "Cập nhật thông tin"
+	String get editProfile_Title => "Cập nhật thông tin";
+	/// "Bạn có chắc chắn muốn cập nhật thông tin cá nhân?"
+	String get editProfile_EditDes => "Bạn có chắc chắn muốn cập nhật thông tin cá nhân?";
+	/// "Thông tin của bạn đã được cập nhật thành công"
+	String get editProfile_UpdateSuccess => "Thông tin của bạn đã được cập nhật thành công";
+	/// "Nội dung"
+	String get support_Content => "Nội dung";
+	/// "Trạng thái"
+	String get support_Status => "Trạng thái";
+	/// ["Đang chờ", "Đang xử lý", "Hoàn thành", "Đã huỷ"]
+	List<String> get support_SupportStatus => ["Đang chờ", "Đang xử lý", "Hoàn thành", "Đã huỷ"];
+	/// "Chi tiết yêu cầu hỗ trợ"
+	String get support_SupportDetails => "Chi tiết yêu cầu hỗ trợ";
+	/// "Hỗ trợ"
+	String get support_Title => "Hỗ trợ";
+	/// ["T2", "T3", "T4", "T5", "T6", "T7", "CN"]
+	List<String> get weekDays_ => ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
+	/// "Thống kê dữ liệu tập luyện"
+	String get statistics_UserStatistics => "Thống kê dữ liệu tập luyện";
+	/// "Chương trình tập gần đây"
+	String get statistics_RecentWorkout => "Chương trình tập gần đây";
+	/// "Bạn đã đốt"
+	String get statistics_YouHaveBurnt => "Bạn đã đốt";
+	/// "tuần này"
+	String get statistics_ThisWeek => "tuần này";
+	/// "tháng này"
+	String get statistics_ThisMonth => "tháng này";
+	/// "calories"
+	String get statistics_Calories => "calories";
+	/// "Thật tuyệt vời!"
+	String get statistics_WhatAGreatValue => "Thật tuyệt vời!";
+	/// "Lịch sử chỉ số cơ thể"
+	String get statistics_BodyCountHistory => "Lịch sử chỉ số cơ thể";
+	/// "Chọn tháng"
+	String get statistics_SelectMonth => "Chọn tháng";
+	/// "Biểu đồ"
+	String get chart_Chart => "Biểu đồ";
+	/// ["cột", "thanh", "đường", "đường bậc thang"]
+	List<String> get chart_ChartType => ["cột", "thanh", "đường", "đường bậc thang"];
+	/// "Người dùng tập nhiều chương trình nhất"
+	String get home_TopUsersProgram => "Người dùng tập nhiều chương trình nhất";
+	/// "Người dùng nhắn tin nhiều nhất"
+	String get home_TopUsersInbox => "Người dùng nhắn tin nhiều nhất";
+	/// "Danh sách chương trình của"
+	String get home_ProgramsOf => "Danh sách chương trình của";
+	/// "Danh sách tin nhắn của"
+	String get home_InboxesOf => "Danh sách tin nhắn của";
+	/// "Chương trình được xem nhiều nhất"
+	String get home_MostViewedPrograms => "Chương trình được xem nhiều nhất";
+	/// "Chương trình mới nhất"
+	String get home_NewestPrograms => "Chương trình mới nhất";
+	/// "Biểu đồ tròn độ tuổi người dùng"
+	String get home_UserAgesPieChart => "Biểu đồ tròn độ tuổi người dùng";
+	/// "Biểu đồ tròn giới tính người dùng"
+	String get home_UserGendersPieChart => "Biểu đồ tròn giới tính người dùng";
+	/// ["Nam", "Nữ", "Khác"]
+	List<String> get gender => ["Nam", "Nữ", "Khác"];
+	/// ["Quản trị viên", "Người dùng"]
+	List<String> get role => ["Quản trị viên", "Người dùng"];
+	/// ["Đang hoạt động", "Vô hiệu hoá"]
+	List<String> get account => ["Đang hoạt động", "Vô hiệu hoá"];
 }
 class _I18n_vi_VN extends I18n {
   const _I18n_vi_VN();
+}
+class _I18n_en_US extends I18n {
+  const _I18n_en_US();
   @override
   TextDirection get textDirection => TextDirection.ltr;
 	/// "Email"
 	@override
 	String get login_Email => "Email";
-	/// "Mật khẩu"
+	/// "Password"
 	@override
-	String get login_Password => "Mật khẩu";
-	/// "Nhập email của bạn"
+	String get login_Password => "Password";
+	/// "Enter your email"
 	@override
-	String get login_EmailHint => "Nhập email của bạn";
-	/// "Nhập mật khẩu của bạn"
+	String get login_EmailHint => "Enter your email";
+	/// "Enter your password"
 	@override
-	String get login_PasswordHint => "Nhập mật khẩu của bạn";
-	/// "Quên mật khẩu?"
+	String get login_PasswordHint => "Enter your password";
+	/// "Forgot password?"
 	@override
-	String get login_ForgotPassword => "Quên mật khẩu?";
-	/// "Hoặc đăng nhập bằng"
+	String get login_ForgotPassword => "Forgot password?";
+	/// "Or log in with"
 	@override
-	String get login_OrLogInWith => "Hoặc đăng nhập bằng";
-	/// "Chưa có tài khoản? "
+	String get login_OrLogInWith => "Or log in with";
+	/// "Don't have an account? "
 	@override
-	String get login_DoNotHaveAnAccount => "Chưa có tài khoản? ";
-	/// "Đăng ký"
+	String get login_DoNotHaveAnAccount => "Don't have an account? ";
+	/// "Register now"
 	@override
-	String get login_RegisterNow => "Đăng ký";
-	/// "Đăng Nhập"
+	String get login_RegisterNow => "Register now";
+	/// "Log In"
 	@override
-	String get login_LogIn => "Đăng Nhập";
-	/// "Email không hợp lệ"
+	String get login_LogIn => "Log In";
+	/// "Email is invalid"
 	@override
-	String get login_EmailNotValid => "Email không hợp lệ";
-	/// "Email bắt buộc"
+	String get login_EmailNotValid => "Email is invalid";
+	/// "Email is required"
 	@override
-	String get login_EmailIsRequired => "Email bắt buộc";
-	/// "Mật khẩu phải dài tối thiểu 6 ký tự"
+	String get login_EmailIsRequired => "Email is required";
+	/// "Password must be at least 6 characters"
 	@override
-	String get login_PasswordMustBeAtLeastSixCharacters => "Mật khẩu phải dài tối thiểu 6 ký tự";
-	/// "Mật khẩu bắt buộc"
+	String get login_PasswordMustBeAtLeastSixCharacters => "Password must be at least 6 characters";
+	/// "Password is required"
 	@override
-	String get login_PasswordIsRequired => "Mật khẩu bắt buộc";
-	/// "Đăng nhập dành cho Quản trị viên"
+	String get login_PasswordIsRequired => "Password is required";
+	/// "Admin Login"
 	@override
-	String get login_AdminLogin => "Đăng nhập dành cho Quản trị viên";
-	/// "Đăng nhập thất bại, hãy thử lại"
+	String get login_AdminLogin => "Admin Login";
+	/// "Login failed, please try again"
 	@override
-	String get login_LoginFailed => "Đăng nhập thất bại, hãy thử lại";
-	/// "Tài khoản không được phép đăng nhập vào trang Admin"
+	String get login_LoginFailed => "Login failed, please try again";
+	/// "This account is not allowed to sign in Admin Web"
 	@override
-	String get login_WrongRole => "Tài khoản không được phép đăng nhập vào trang Admin";
-	/// "Tiếp tục"
+	String get login_WrongRole => "This account is not allowed to sign in Admin Web";
+	/// "Next"
 	@override
-	String get button_Next => "Tiếp tục";
-	/// "Xong"
+	String get button_Next => "Next";
+	/// "Done"
 	@override
-	String get button_Done => "Xong";
-	/// "Huỷ bỏ"
+	String get button_Done => "Done";
+	/// "Cancel"
 	@override
-	String get button_Cancel => "Huỷ bỏ";
-	/// "Đồng ý"
+	String get button_Cancel => "Cancel";
+	/// "OK"
 	@override
-	String get button_Ok => "Đồng ý";
-	/// "Áp dụng"
+	String get button_Ok => "OK";
+	/// "Apply"
 	@override
-	String get button_Apply => "Áp dụng";
-	/// "Xác nhận"
+	String get button_Apply => "Apply";
+	/// "Confirm"
 	@override
-	String get button_Confirm => "Xác nhận";
-	/// "Đặt lại"
+	String get button_Confirm => "Confirm";
+	/// "Reset"
 	@override
-	String get button_Reset => "Đặt lại";
-	/// "Lưu"
+	String get button_Reset => "Reset";
+	/// "Save"
 	@override
-	String get button_Save => "Lưu";
-	/// "Xoá"
+	String get button_Save => "Save";
+	/// "Delete"
 	@override
-	String get button_Delete => "Xoá";
-	/// "Sửa"
+	String get button_Delete => "Delete";
+	/// "Edit"
 	@override
-	String get button_Edit => "Sửa";
-	/// "Xem"
+	String get button_Edit => "Edit";
+	/// "View"
 	@override
-	String get button_View => "Xem";
-	/// "Cài đặt"
+	String get button_View => "View";
+	/// "Setting"
 	@override
-	String get setting_Title => "Cài đặt";
-	/// "Ngôn ngữ"
+	String get setting_Title => "Setting";
+	/// "Language"
 	@override
-	String get setting_Language => "Ngôn ngữ";
-	/// "Chia sẻ với bạn bè"
+	String get setting_Language => "Language";
+	/// "Share with friends"
 	@override
-	String get setting_ShareWithFriends => "Chia sẻ với bạn bè";
-	/// "Chính sách bảo mật"
+	String get setting_ShareWithFriends => "Share with friends";
+	/// "Privacy policy"
 	@override
-	String get setting_PrivacyPolicy => "Chính sách bảo mật";
-	/// "Điều khoản và điều kiện"
+	String get setting_PrivacyPolicy => "Privacy policy";
+	/// "Terms and conditions"
 	@override
-	String get setting_TermsAndConditions => "Điều khoản và điều kiện";
-	/// "Thay đổi mật khẩu"
+	String get setting_TermsAndConditions => "Terms and conditions";
+	/// "Change password"
 	@override
-	String get setting_ChangePassword => "Thay đổi mật khẩu";
-	/// "Đăng xuất"
+	String get setting_ChangePassword => "Change password";
+	/// "Log out"
 	@override
-	String get setting_Logout => "Đăng xuất";
-	/// "Tài khoản"
+	String get setting_Logout => "Log out";
+	/// "Account"
 	@override
-	String get setting_Account => "Tài khoản";
-	/// "Bảo mật"
+	String get setting_Account => "Account";
+	/// "Security"
 	@override
-	String get setting_Security => "Bảo mật";
-	/// "Về ứng dụng"
+	String get setting_Security => "Security";
+	/// "About app"
 	@override
-	String get setting_AboutApp => "Về ứng dụng";
-	/// "Vui lòng nhập mật khẩu cũ của bạn, sau đó nhập mật khẩu mới để tiến hành thay đổi mật khẩu"
+	String get setting_AboutApp => "About app";
+	/// "Please enter your old password, then enter the new password to proceed with the password change"
 	@override
-	String get setting_ChangePasswordDes => "Vui lòng nhập mật khẩu cũ của bạn, sau đó nhập mật khẩu mới để tiến hành thay đổi mật khẩu";
-	/// "Mật khẩu cũ"
+	String get setting_ChangePasswordDes => "Please enter your old password, then enter the new password to proceed with the password change";
+	/// "Old password"
 	@override
-	String get setting_OldPassword => "Mật khẩu cũ";
-	/// "Nhập mật khẩu cũ của bạn"
+	String get setting_OldPassword => "Old password";
+	/// "Enter your old password"
 	@override
-	String get setting_OldPasswordHint => "Nhập mật khẩu cũ của bạn";
-	/// "Mật khẩu cũ bắt buộc"
+	String get setting_OldPasswordHint => "Enter your old password";
+	/// "Old password is required"
 	@override
-	String get setting_OldPasswordRequired => "Mật khẩu cũ bắt buộc";
-	/// "Mật khẩu mới"
+	String get setting_OldPasswordRequired => "Old password is required";
+	/// "New password"
 	@override
-	String get setting_NewPassword => "Mật khẩu mới";
-	/// "Nhập mật khẩu mới của bạn"
+	String get setting_NewPassword => "New password";
+	/// "Enter your new password"
 	@override
-	String get setting_NewPasswordHint => "Nhập mật khẩu mới của bạn";
-	/// "Mật khẩu mới bắt buộc"
+	String get setting_NewPasswordHint => "Enter your new password";
+	/// "New password is required"
 	@override
-	String get setting_NewPasswordRequired => "Mật khẩu mới bắt buộc";
-	/// "Xác nhận mật khẩu mới"
+	String get setting_NewPasswordRequired => "New password is required";
+	/// "Confirm new password"
 	@override
-	String get setting_ConfirmNewPassword => "Xác nhận mật khẩu mới";
-	/// "Nhập xác nhận mật khẩu mới"
+	String get setting_ConfirmNewPassword => "Confirm new password";
+	/// "Enter your confirm new password"
 	@override
-	String get setting_ConfirmNewPasswordHint => "Nhập xác nhận mật khẩu mới";
-	/// "Xác nhận mật khẩu mới bắt buộc"
+	String get setting_ConfirmNewPasswordHint => "Enter your confirm new password";
+	/// "Confirm new password is required"
 	@override
-	String get setting_ConfirmNewPasswordRequired => "Xác nhận mật khẩu mới bắt buộc";
-	/// "Mật khẩu không khớp"
+	String get setting_ConfirmNewPasswordRequired => "Confirm new password is required";
+	/// "Password not match"
 	@override
-	String get setting_PasswordNotMatch => "Mật khẩu không khớp";
-	/// "Xác nhận đăng xuất"
+	String get setting_PasswordNotMatch => "Password not match";
+	/// "Confirm logout"
 	@override
-	String get setting_ConfirmLogout => "Xác nhận đăng xuất";
-	/// "Bạn cần xác nhận để đăng xuất khỏi ứng dụng"
+	String get setting_ConfirmLogout => "Confirm logout";
+	/// "You need confirm to logout from this app"
 	@override
-	String get setting_ConfirmLogoutDes => "Bạn cần xác nhận để đăng xuất khỏi ứng dụng";
-	/// "Bạn có chắc chắn muốn thay đổi mật khẩu"
+	String get setting_ConfirmLogoutDes => "You need confirm to logout from this app";
+	/// "Are you sure you want to change your password?"
 	@override
-	String get setting_ChangePasswordConfirm => "Bạn có chắc chắn muốn thay đổi mật khẩu";
-	/// "Bạn đã cập nhật mật khẩu thành công"
+	String get setting_ChangePasswordConfirm => "Are you sure you want to change your password?";
+	/// "Your password has been updated successfully."
 	@override
-	String get setting_ChangePasswordSuccess => "Bạn đã cập nhật mật khẩu thành công";
+	String get setting_ChangePasswordSuccess => "Your password has been updated successfully.";
 	/// ["English (US)", "Tiếng Việt"]
 	@override
 	List<String> get language => ["English (US)", "Tiếng Việt"];
-	/// "Danh sách thể loại"
+	/// "Category List"
 	@override
-	String get categories_CategoryList => "Danh sách thể loại";
+	String get categories_CategoryList => "Category List";
 	/// "calo"
 	@override
 	String get programs_Calo => "calo";
-	/// "Danh sách chương trình tập"
+	/// "Program List"
 	@override
-	String get programs_ProgramList => "Danh sách chương trình tập";
-	/// "Vùng cơ thể"
+	String get programs_ProgramList => "Program List";
+	/// "Body Part"
 	@override
-	String get programs_BodyPart => "Vùng cơ thể";
-	/// "Mô tả"
+	String get programs_BodyPart => "Body Part";
+	/// "Description"
 	@override
-	String get programs_Description => "Mô tả";
-	/// "Nhập tên chương trình"
+	String get programs_Description => "Description";
+	/// "Enter program name"
 	@override
-	String get programs_SearchHint => "Nhập tên chương trình";
-	/// "Thành công"
+	String get programs_SearchHint => "Enter program name";
+	/// "Success"
 	@override
-	String get common_Success => "Thành công";
-	/// "Hành động"
+	String get common_Success => "Success";
+	/// "Actions"
 	@override
-	String get common_Actions => "Hành động";
-	/// "Không tìm thấy"
+	String get common_Actions => "Actions";
+	/// "Not Found"
 	@override
-	String get common_NotFound => "Không tìm thấy";
-	/// "Xem chi tiết"
+	String get common_NotFound => "Not Found";
+	/// "View Detail"
 	@override
-	String get common_ViewDetail => "Xem chi tiết";
-	/// "Cập nhật dữ liệu"
+	String get common_ViewDetail => "View Detail";
+	/// "Update Data"
 	@override
-	String get common_UpdateData => "Cập nhật dữ liệu";
-	/// "Thời gian"
+	String get common_UpdateData => "Update Data";
+	/// "Duration"
 	@override
-	String get common_Duration => "Thời gian";
-	/// "Độ khó"
+	String get common_Duration => "Duration";
+	/// "Level"
 	@override
-	String get common_Level => "Độ khó";
-	/// "Đường dẫn hình ảnh"
+	String get common_Level => "Level";
+	/// "Image URL"
 	@override
-	String get common_ImageUrl => "Đường dẫn hình ảnh";
+	String get common_ImageUrl => "Image URL";
 	/// "ID"
 	@override
 	String get common_Id => "ID";
-	/// "Tên"
+	/// "Name"
 	@override
-	String get common_Name => "Tên";
+	String get common_Name => "Name";
 	/// "Calo"
 	@override
 	String get common_Calo => "Calo";
-	/// "${appName} would like to use your camera for your scan document."
+	/// "${appName} would like to use your camera to take photo."
 	@override
-	String common_CameraPermissionRequest(String appName) => "${appName} would like to use your camera for your scan document.";
-	/// "${appName} requires access to the photo library for you to be able to upload photos for your print document."
+	String common_CameraPermissionRequest(String appName) => "${appName} would like to use your camera to take photo.";
+	/// "${appName} requires access to the photo library for you to be able to upload photos."
 	@override
-	String common_PhotoPermissionRequest(String appName) => "${appName} requires access to the photo library for you to be able to upload photos for your print document.";
-	/// "${appName} requires access to the storage for you to be able to save your print document."
+	String common_PhotoPermissionRequest(String appName) => "${appName} requires access to the photo library for you to be able to upload photos.";
+	/// "${appName} requires access to the storage for you to be able to save your image."
 	@override
-	String common_StoragePermissionRequest(String appName) => "${appName} requires access to the storage for you to be able to save your print document.";
-	/// "Tuần"
+	String common_StoragePermissionRequest(String appName) => "${appName} requires access to the storage for you to be able to save your image.";
+	/// "Weekly"
 	@override
-	String get common_Weekly => "Tuần";
-	/// "Tháng"
+	String get common_Weekly => "Weekly";
+	/// "Monthly"
 	@override
-	String get common_Monthly => "Tháng";
-	/// "Năm"
+	String get common_Monthly => "Monthly";
+	/// "Yearly"
 	@override
-	String get common_Yearly => "Năm";
-	/// "Phút"
+	String get common_Yearly => "Yearly";
+	/// "Minutes"
 	@override
-	String get common_Minutes => "Phút";
-	/// "Hình ảnh"
+	String get common_Minutes => "Minutes";
+	/// "Image"
 	@override
-	String get common_Image => "Hình ảnh";
-	/// "Trang chủ"
+	String get common_Image => "Image";
+	/// "Home"
 	@override
-	String get main_Home => "Trang chủ";
-	/// "Thể loại"
+	String get main_Home => "Home";
+	/// "Categories"
 	@override
-	String get main_Categories => "Thể loại";
-	/// "Chương trình"
+	String get main_Categories => "Categories";
+	/// "Programs"
 	@override
-	String get main_Programs => "Chương trình";
-	/// "Cài đặt"
+	String get main_Programs => "Programs";
+	/// "Setting"
 	@override
-	String get main_Setting => "Cài đặt";
-	/// "Bài tập"
+	String get main_Setting => "Setting";
+	/// "Exercises"
 	@override
-	String get main_Exercises => "Bài tập";
-	/// "Tin Nhắn"
+	String get main_Exercises => "Exercises";
+	/// "Inboxes"
 	@override
-	String get main_Inboxes => "Tin Nhắn";
-	/// "Người dùng"
+	String get main_Inboxes => "Inboxes";
+	/// "Users"
 	@override
-	String get main_Users => "Người dùng";
-	/// ["Dễ", "Trung bình", "Khó"]
+	String get main_Users => "Users";
+	/// ["Beginner", "Intermediate", "Advanced"]
 	@override
-	List<String> get workoutLevel => ["Dễ", "Trung bình", "Khó"];
-	/// ["Thân trên", "Thân dưới", "Bụng", "Toàn thân"]
+	List<String> get workoutLevel => ["Beginner", "Intermediate", "Advanced"];
+	/// ["Upper", "Downer", "Abs", "Full Body"]
 	@override
-	List<String> get workoutBodyPart => ["Thân trên", "Thân dưới", "Bụng", "Toàn thân"];
-	/// "Bộ lọc"
+	List<String> get workoutBodyPart => ["Upper", "Downer", "Abs", "Full Body"];
+	/// "Filter"
 	@override
-	String get filter_Filter => "Bộ lọc";
-	/// "Độ khó của chương trình"
+	String get filter_Filter => "Filter";
+	/// "Workout Level"
 	@override
-	String get filter_WorkoutLevel => "Độ khó của chương trình";
-	/// "Danh sách bài tập"
+	String get filter_WorkoutLevel => "Workout Level";
+	/// "Exercise List"
 	@override
-	String get exercises_ExerciseList => "Danh sách bài tập";
-	/// "Nhập tên bài tập"
+	String get exercises_ExerciseList => "Exercise List";
+	/// "Enter exercise name"
 	@override
-	String get exercises_SearchHint => "Nhập tên bài tập";
-	/// "Chương trình"
+	String get exercises_SearchHint => "Enter exercise name";
+	/// "Program"
 	@override
-	String get exercises_Program => "Chương trình";
-	/// "Mã chương trình"
+	String get exercises_Program => "Program";
+	/// "Program ID"
 	@override
-	String get exercises_ProgramId => "Mã chương trình";
-	/// "Đường dẫn video"
+	String get exercises_ProgramId => "Program ID";
+	/// "Video URL"
 	@override
-	String get exercises_VideoUrl => "Đường dẫn video";
-	/// "Danh sách tin nhắn"
+	String get exercises_VideoUrl => "Video URL";
+	/// "Inbox List"
 	@override
-	String get inboxes_InboxList => "Danh sách tin nhắn";
-	/// "Người dùng"
+	String get inboxes_InboxList => "Inbox List";
+	/// "User"
 	@override
-	String get inboxes_User => "Người dùng";
-	/// "Tin nhắn"
+	String get inboxes_User => "User";
+	/// "Message"
 	@override
-	String get inboxes_Message => "Tin nhắn";
+	String get inboxes_Message => "Message";
 	/// "Bot"
 	@override
 	String get inboxes_Bot => "Bot";
-	/// "Gửi từ"
+	/// "From"
 	@override
-	String get inboxes_From => "Gửi từ";
-	/// "Tạo lúc"
+	String get inboxes_From => "From";
+	/// "Created At"
 	@override
-	String get inboxes_CreatedAt => "Tạo lúc";
-	/// "Chi tiết tin nhắn"
+	String get inboxes_CreatedAt => "Created At";
+	/// "Inbox Detail"
 	@override
-	String get inboxes_InboxDetail => "Chi tiết tin nhắn";
-	/// "Mã người dùng"
+	String get inboxes_InboxDetail => "Inbox Detail";
+	/// "User ID"
 	@override
-	String get inboxes_UserId => "Mã người dùng";
-	/// "Danh sách người dùng"
+	String get inboxes_UserId => "User ID";
+	/// "User List"
 	@override
-	String get users_UserList => "Danh sách người dùng";
-	/// "Nhập tên người dùng"
+	String get users_UserList => "User List";
+	/// "Enter user email"
 	@override
-	String get users_SearchHint => "Nhập tên người dùng";
-	/// "Ảnh đại diện"
+	String get users_SearchHint => "Enter user email";
+	/// "Avatar"
 	@override
-	String get users_Avatar => "Ảnh đại diện";
-	/// "Giới tính"
+	String get users_Avatar => "Avatar";
+	/// "Gender"
 	@override
-	String get users_Gender => "Giới tính";
-	/// "Loại tài khoản"
+	String get users_Gender => "Gender";
+	/// "Role"
 	@override
-	String get users_Role => "Loại tài khoản";
-	/// "Tạo thể loại mới"
+	String get users_Role => "Role";
+	/// "Create New Category"
 	@override
-	String get upsertCategory_CreateNewTitle => "Tạo thể loại mới";
-	/// "Cập nhật thể loại"
+	String get upsertCategory_CreateNewTitle => "Create New Category";
+	/// "Update Category"
 	@override
-	String get upsertCategory_UpdateTitle => "Cập nhật thể loại";
-	/// "Bạn có chắc chắn muốn tạo thể loại mới?"
+	String get upsertCategory_UpdateTitle => "Update Category";
+	/// "Are you sure you want to create a new category?"
 	@override
-	String get upsertCategory_CreateNewDes => "Bạn có chắc chắn muốn tạo thể loại mới?";
-	/// "Bạn có chắc chắn muốn cập nhật thông tin thể loại?"
+	String get upsertCategory_CreateNewDes => "Are you sure you want to create a new category?";
+	/// "Are you sure you want to update this category information?"
 	@override
-	String get upsertCategory_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin thể loại?";
-	/// "Chi tiết thể loại"
+	String get upsertCategory_UpdateDes => "Are you sure you want to update this category information?";
+	/// "Category Detail"
 	@override
-	String get upsertCategory_CategoryDetail => "Chi tiết thể loại";
-	/// "Tên thể loại"
+	String get upsertCategory_CategoryDetail => "Category Detail";
+	/// "Category Name"
 	@override
-	String get upsertCategory_CategoryName => "Tên thể loại";
-	/// "Hình ảnh thể loại"
+	String get upsertCategory_CategoryName => "Category Name";
+	/// "Category Image"
 	@override
-	String get upsertCategory_CategoryImage => "Hình ảnh thể loại";
-	/// "Bạn chưa nhập tên"
+	String get upsertCategory_CategoryImage => "Category Image";
+	/// "Name is required"
 	@override
-	String get upsertCategory_NameIsRequired => "Bạn chưa nhập tên";
-	/// "Bạn chưa chọn hình ảnh"
+	String get upsertCategory_NameIsRequired => "Name is required";
+	/// "Image is required"
 	@override
-	String get upsertCategory_ImageIsRequired => "Bạn chưa chọn hình ảnh";
-	/// "Nhập tên thể loại"
+	String get upsertCategory_ImageIsRequired => "Image is required";
+	/// "Input category name"
 	@override
-	String get upsertCategory_NameHint => "Nhập tên thể loại";
-	/// "Chọn hình ảnh thể loại"
+	String get upsertCategory_NameHint => "Input category name";
+	/// "Choose category image"
 	@override
-	String get upsertCategory_ImageHint => "Chọn hình ảnh thể loại";
-	/// "Mã thể loại"
+	String get upsertCategory_ImageHint => "Choose category image";
+	/// "Category ID"
 	@override
-	String get upsertCategory_CategoryID => "Mã thể loại";
-	/// "Xem danh sách chương trình tập"
+	String get upsertCategory_CategoryID => "Category ID";
+	/// "View Programs"
 	@override
-	String get upsertCategory_ViewPrograms => "Xem danh sách chương trình tập";
-	/// "Thêm chương trình mới"
+	String get upsertCategory_ViewPrograms => "View Programs";
+	/// "Add New Program"
 	@override
-	String get upsertCategory_AddNewProgram => "Thêm chương trình mới";
-	/// "Thể loại này không có chương trình nào"
+	String get upsertCategory_AddNewProgram => "Add New Program";
+	/// "This category doesn't have any program"
 	@override
-	String get upsertCategory_ProgramEmpty => "Thể loại này không có chương trình nào";
-	/// "Thành công"
+	String get upsertCategory_ProgramEmpty => "This category doesn't have any program";
+	/// "Success"
 	@override
-	String get toast_Title_Success => "Thành công";
-	/// "Lỗi"
+	String get toast_Title_Success => "Success";
+	/// "Error"
 	@override
-	String get toast_Title_Error => "Lỗi";
-	/// "Cảnh báo"
+	String get toast_Title_Error => "Error";
+	/// "Warning"
 	@override
-	String get toast_Title_Warning => "Cảnh báo";
-	/// "Đã có lỗi, hãy thử lại"
+	String get toast_Title_Warning => "Warning";
+	/// "Something went wrong, please try again"
 	@override
-	String get toast_Subtitle_Error => "Đã có lỗi, hãy thử lại";
-	/// "Thông tin của bạn chưa hợp lệ, hãy kiểm tra lại"
+	String get toast_Subtitle_Error => "Something went wrong, please try again";
+	/// "Your information is not valid, please try again"
 	@override
-	String get toast_Subtitle_InvalidInformation => "Thông tin của bạn chưa hợp lệ, hãy kiểm tra lại";
-	/// "Tạo thể loại mới thành công"
+	String get toast_Subtitle_InvalidInformation => "Your information is not valid, please try again";
+	/// "You have created a new category successfully"
 	@override
-	String get toast_Subtitle_CreateCategory => "Tạo thể loại mới thành công";
-	/// "Cập nhật thể loại thành công"
+	String get toast_Subtitle_CreateCategory => "You have created a new category successfully";
+	/// "You have updated a category successfully"
 	@override
-	String get toast_Subtitle_UpdateCategory => "Cập nhật thể loại thành công";
-	/// "Xoá thể loại thành công"
+	String get toast_Subtitle_UpdateCategory => "You have updated a category successfully";
+	/// "You have deleted a category successfully"
 	@override
-	String get toast_Subtitle_DeleteCategory => "Xoá thể loại thành công";
-	/// "Tạo chương trình mới thành công"
+	String get toast_Subtitle_DeleteCategory => "You have deleted a category successfully";
+	/// "You have created a new program successfully"
 	@override
-	String get toast_Subtitle_CreateProgram => "Tạo chương trình mới thành công";
-	/// "Cập nhật chương trình thành công"
+	String get toast_Subtitle_CreateProgram => "You have created a new program successfully";
+	/// "You have updated a program successfully"
 	@override
-	String get toast_Subtitle_UpdateProgram => "Cập nhật chương trình thành công";
-	/// "Xoá chương trình thành công"
+	String get toast_Subtitle_UpdateProgram => "You have updated a program successfully";
+	/// "You have deleted a program successfully"
 	@override
-	String get toast_Subtitle_DeleteProgram => "Xoá chương trình thành công";
-	/// "Tạo bài tập mới thành công"
+	String get toast_Subtitle_DeleteProgram => "You have deleted a program successfully";
+	/// "You have created a new exercise successfully"
 	@override
-	String get toast_Subtitle_CreateExercise => "Tạo bài tập mới thành công";
-	/// "Cập nhật bài tập thành công"
+	String get toast_Subtitle_CreateExercise => "You have created a new exercise successfully";
+	/// "You have updated a exercise successfully"
 	@override
-	String get toast_Subtitle_UpdateExercise => "Cập nhật bài tập thành công";
-	/// "Xoá bài tập thành công"
+	String get toast_Subtitle_UpdateExercise => "You have updated a exercise successfully";
+	/// "You have deleted a exercise successfully"
 	@override
-	String get toast_Subtitle_DeleteExercise => "Xoá bài tập thành công";
-	/// "Tạo người dùng mới thành công"
+	String get toast_Subtitle_DeleteExercise => "You have deleted a exercise successfully";
+	/// "You have created a new user successfully"
 	@override
-	String get toast_Subtitle_CreateUser => "Tạo người dùng mới thành công";
-	/// "Cập nhật thông tin người dùng thành công"
+	String get toast_Subtitle_CreateUser => "You have created a new user successfully";
+	/// "You have updated a user successfully"
 	@override
-	String get toast_Subtitle_UpdateUser => "Cập nhật thông tin người dùng thành công";
-	/// "Xoá người dùng thành công"
+	String get toast_Subtitle_UpdateUser => "You have updated a user successfully";
+	/// "You have deleted a user successfully"
 	@override
-	String get toast_Subtitle_DeleteUser => "Xoá người dùng thành công";
-	/// "Tạo tin nhắn mới thành công"
+	String get toast_Subtitle_DeleteUser => "You have deleted a user successfully";
+	/// "You have created a new inbox successfully"
 	@override
-	String get toast_Subtitle_CreateInbox => "Tạo tin nhắn mới thành công";
-	/// "Cập nhật tin nhắn thành công"
+	String get toast_Subtitle_CreateInbox => "You have created a new inbox successfully";
+	/// "You have updated an inbox successfully"
 	@override
-	String get toast_Subtitle_UpdateInbox => "Cập nhật tin nhắn thành công";
-	/// "Xoá tin nhắn thành công"
+	String get toast_Subtitle_UpdateInbox => "You have updated an inbox successfully";
+	/// "You have deleted an inbox successfully"
 	@override
-	String get toast_Subtitle_DeleteInbox => "Xoá tin nhắn thành công";
-	/// "Tạo chương trình mới"
+	String get toast_Subtitle_DeleteInbox => "You have deleted an inbox successfully";
+	/// "Create New Program"
 	@override
-	String get upsertProgram_CreateNewTitle => "Tạo chương trình mới";
-	/// "Cập nhật chương trình"
+	String get upsertProgram_CreateNewTitle => "Create New Program";
+	/// "Update Program"
 	@override
-	String get upsertProgram_UpdateTitle => "Cập nhật chương trình";
-	/// "Bạn có chắc chắn muốn tạo chương trình mới?"
+	String get upsertProgram_UpdateTitle => "Update Program";
+	/// "Are you sure you want to create a new program?"
 	@override
-	String get upsertProgram_CreateNewDes => "Bạn có chắc chắn muốn tạo chương trình mới?";
-	/// "Bạn có chắc chắn muốn cập nhật thông tin chương trình?"
+	String get upsertProgram_CreateNewDes => "Are you sure you want to create a new program?";
+	/// "Are you sure you want to update this program information?"
 	@override
-	String get upsertProgram_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin chương trình?";
-	/// "Chi tiết chương trình"
+	String get upsertProgram_UpdateDes => "Are you sure you want to update this program information?";
+	/// "Program detail"
 	@override
-	String get upsertProgram_ProgramDetail => "Chi tiết chương trình";
-	/// "Tên chương trình"
+	String get upsertProgram_ProgramDetail => "Program detail";
+	/// "Program Name"
 	@override
-	String get upsertProgram_Name => "Tên chương trình";
-	/// "Hình ảnh"
+	String get upsertProgram_Name => "Program Name";
+	/// "Program Image"
 	@override
-	String get upsertProgram_Image => "Hình ảnh";
-	/// "Bạn chưa nhập tên"
+	String get upsertProgram_Image => "Program Image";
+	/// "Name is required"
 	@override
-	String get upsertProgram_NameIsRequired => "Bạn chưa nhập tên";
-	/// "Bạn chưa chọn hình"
+	String get upsertProgram_NameIsRequired => "Name is required";
+	/// "Image is required"
 	@override
-	String get upsertProgram_ImageIsRequired => "Bạn chưa chọn hình";
-	/// "Nhập tên chương trình"
+	String get upsertProgram_ImageIsRequired => "Image is required";
+	/// "Input program name"
 	@override
-	String get upsertProgram_NameHint => "Nhập tên chương trình";
-	/// "Chọn hình ảnh của chương trình"
+	String get upsertProgram_NameHint => "Input program name";
+	/// "Choose program image"
 	@override
-	String get upsertProgram_ImageHint => "Chọn hình ảnh của chương trình";
-	/// "Mã chương trình"
+	String get upsertProgram_ImageHint => "Choose program image";
+	/// "Program ID"
 	@override
-	String get upsertProgram_ID => "Mã chương trình";
-	/// "Độ khó"
+	String get upsertProgram_ID => "Program ID";
+	/// "Level"
 	@override
-	String get upsertProgram_Level => "Độ khó";
-	/// "Vùng cơ thể"
+	String get upsertProgram_Level => "Level";
+	/// "Body Part"
 	@override
-	String get upsertProgram_BodyPart => "Vùng cơ thể";
-	/// "Thể loại"
+	String get upsertProgram_BodyPart => "Body Part";
+	/// "Category"
 	@override
-	String get upsertProgram_Category => "Thể loại";
-	/// "Chọn thể loại"
+	String get upsertProgram_Category => "Category";
+	/// "Choose category"
 	@override
-	String get upsertProgram_CategoryHint => "Chọn thể loại";
-	/// "Bạn chưa chọn độ khó"
+	String get upsertProgram_CategoryHint => "Choose category";
+	/// "Level is required"
 	@override
-	String get upsertProgram_LevelRequired => "Bạn chưa chọn độ khó";
-	/// "Bạn chưa chọn vùng cơ thể"
+	String get upsertProgram_LevelRequired => "Level is required";
+	/// "Body part is required"
 	@override
-	String get upsertProgram_BodyPartRequired => "Bạn chưa chọn vùng cơ thể";
-	/// "Bạn chưa chọn thể loại"
+	String get upsertProgram_BodyPartRequired => "Body part is required";
+	/// "Category is required"
 	@override
-	String get upsertProgram_CategoryRequired => "Bạn chưa chọn thể loại";
-	/// "Bạn chưa nhập mô tả"
+	String get upsertProgram_CategoryRequired => "Category is required";
+	/// "Description is required"
 	@override
-	String get upsertProgram_DescriptionRequired => "Bạn chưa nhập mô tả";
-	/// "Mô tả"
+	String get upsertProgram_DescriptionRequired => "Description is required";
+	/// "Description"
 	@override
-	String get upsertProgram_Description => "Mô tả";
-	/// "Nhập mô tả chương trình"
+	String get upsertProgram_Description => "Description";
+	/// "Input program description"
 	@override
-	String get upsertProgram_DescriptionHint => "Nhập mô tả chương trình";
-	/// "Xem danh sách bài tập"
+	String get upsertProgram_DescriptionHint => "Input program description";
+	/// "View Excercicses"
 	@override
-	String get upsertProgram_ViewExercises => "Xem danh sách bài tập";
-	/// "Thêm bài tập mới"
+	String get upsertProgram_ViewExercises => "View Excercicses";
+	/// "Add New Exercise"
 	@override
-	String get upsertProgram_AddNewExercise => "Thêm bài tập mới";
-	/// "Chương trình này không có bài tập nào"
+	String get upsertProgram_AddNewExercise => "Add New Exercise";
+	/// "This program doesn't have any exercise"
 	@override
-	String get upsertProgram_ExerciseEmpty => "Chương trình này không có bài tập nào";
-	/// "Tạo bài tập mới"
+	String get upsertProgram_ExerciseEmpty => "This program doesn't have any exercise";
+	/// "Create New Exercise"
 	@override
-	String get upsertExercise_CreateNewTitle => "Tạo bài tập mới";
-	/// "Cập nhật bài tập"
+	String get upsertExercise_CreateNewTitle => "Create New Exercise";
+	/// "Update Exercise"
 	@override
-	String get upsertExercise_UpdateTitle => "Cập nhật bài tập";
-	/// "Bạn có chắc chắn muốn tạo bài tập mới?"
+	String get upsertExercise_UpdateTitle => "Update Exercise";
+	/// "Are you sure you want to create a new exercise?"
 	@override
-	String get upsertExercise_CreateNewDes => "Bạn có chắc chắn muốn tạo bài tập mới?";
-	/// "Bạn có chắc chắn muốn cập nhật thông tin bài tập?"
+	String get upsertExercise_CreateNewDes => "Are you sure you want to create a new exercise?";
+	/// "Are you sure you want to update this exercise information?"
 	@override
-	String get upsertExercise_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin bài tập?";
-	/// "Chi tiết bài tập"
+	String get upsertExercise_UpdateDes => "Are you sure you want to update this exercise information?";
+	/// "Exercise Detail"
 	@override
-	String get upsertExercise_ExerciseDetail => "Chi tiết bài tập";
-	/// "Tên bài tập"
+	String get upsertExercise_ExerciseDetail => "Exercise Detail";
+	/// "Exercise Name"
 	@override
-	String get upsertExercise_Name => "Tên bài tập";
-	/// "Hình ảnh"
+	String get upsertExercise_Name => "Exercise Name";
+	/// "Exercise Image"
 	@override
-	String get upsertExercise_Image => "Hình ảnh";
-	/// "Video bài tập"
+	String get upsertExercise_Image => "Exercise Image";
+	/// "Exercise Video"
 	@override
-	String get upsertExercise_Video => "Video bài tập";
-	/// "Bạn chưa nhập tên"
+	String get upsertExercise_Video => "Exercise Video";
+	/// "Name is required"
 	@override
-	String get upsertExercise_NameIsRequired => "Bạn chưa nhập tên";
-	/// "Bạn chưa chọn hình"
+	String get upsertExercise_NameIsRequired => "Name is required";
+	/// "Image is required"
 	@override
-	String get upsertExercise_ImageIsRequired => "Bạn chưa chọn hình";
-	/// "Bạn chưa chọn video"
+	String get upsertExercise_ImageIsRequired => "Image is required";
+	/// "Video is required"
 	@override
-	String get upsertExercise_VideoIsRequired => "Bạn chưa chọn video";
-	/// "Nhập tên bài tập"
+	String get upsertExercise_VideoIsRequired => "Video is required";
+	/// "Input exercise name"
 	@override
-	String get upsertExercise_NameHint => "Nhập tên bài tập";
-	/// "Chọn hình ảnh của bài tập"
+	String get upsertExercise_NameHint => "Input exercise name";
+	/// "Choose exercise image"
 	@override
-	String get upsertExercise_ImageHint => "Chọn hình ảnh của bài tập";
-	/// "Chọn video của bài tập"
+	String get upsertExercise_ImageHint => "Choose exercise image";
+	/// "Choose exercise video"
 	@override
-	String get upsertExercise_VideoHint => "Chọn video của bài tập";
-	/// "Mã bài tập"
+	String get upsertExercise_VideoHint => "Choose exercise video";
+	/// "Exercise ID"
 	@override
-	String get upsertExercise_ID => "Mã bài tập";
-	/// "Chương trình"
+	String get upsertExercise_ID => "Exercise ID";
+	/// "Program"
 	@override
-	String get upsertExercise_Program => "Chương trình";
-	/// "Chọn chương trình"
+	String get upsertExercise_Program => "Program";
+	/// "Choose program"
 	@override
-	String get upsertExercise_ProgramHint => "Chọn chương trình";
-	/// "Bạn chưa chọn chương trình"
+	String get upsertExercise_ProgramHint => "Choose program";
+	/// "Program is required"
 	@override
-	String get upsertExercise_ProgramRequired => "Bạn chưa chọn chương trình";
-	/// "Thời gian"
+	String get upsertExercise_ProgramRequired => "Program is required";
+	/// "Duration"
 	@override
-	String get upsertExercise_Duration => "Thời gian";
-	/// "Chọn video để xem thời gian"
+	String get upsertExercise_Duration => "Duration";
+	/// "Choose a video to see its duration"
 	@override
-	String get upsertExercise_DurationHint => "Chọn video để xem thời gian";
-	/// "Thời gian bắt buộc"
+	String get upsertExercise_DurationHint => "Choose a video to see its duration";
+	/// "Duration is required"
 	@override
-	String get upsertExercise_DurationRequired => "Thời gian bắt buộc";
-	/// "Ban chưa nhập calo"
+	String get upsertExercise_DurationRequired => "Duration is required";
+	/// "Calo is required"
 	@override
-	String get upsertExercise_CaloRequired => "Ban chưa nhập calo";
+	String get upsertExercise_CaloRequired => "Calo is required";
 	/// "Calo"
 	@override
 	String get upsertExercise_Calo => "Calo";
-	/// "Nhập calo của bài tập"
+	/// "Input exercise calo"
 	@override
-	String get upsertExercise_CaloHint => "Nhập calo của bài tập";
-	/// "Xoá thể loại"
+	String get upsertExercise_CaloHint => "Input exercise calo";
+	/// "Delete Category"
 	@override
-	String get deleteCategory_Title => "Xoá thể loại";
-	/// "Bạn có chắc chắn muốn xoá thể loại?"
+	String get deleteCategory_Title => "Delete Category";
+	/// "Are you sure you want to delete this category?"
 	@override
-	String get deleteCategory_Des => "Bạn có chắc chắn muốn xoá thể loại?";
-	/// "Xoá bài tập"
+	String get deleteCategory_Des => "Are you sure you want to delete this category?";
+	/// "Delete Exercise"
 	@override
-	String get deleteExercise_Title => "Xoá bài tập";
-	/// "Bạn có chắc chắn muốn xoá bài tập?"
+	String get deleteExercise_Title => "Delete Exercise";
+	/// "Are you sure you want to delete this exercise?"
 	@override
-	String get deleteExercise_Des => "Bạn có chắc chắn muốn xoá bài tập?";
-	/// "Xoá chương trình"
+	String get deleteExercise_Des => "Are you sure you want to delete this exercise?";
+	/// "Delete Program"
 	@override
-	String get deleteProgram_Title => "Xoá chương trình";
-	/// "Bạn có chắc chắn muốn xoá chương trình?"
+	String get deleteProgram_Title => "Delete Program";
+	/// "Are you sure you want to delete this program?"
 	@override
-	String get deleteProgram_Des => "Bạn có chắc chắn muốn xoá chương trình?";
-	/// "Xoá người dùng"
+	String get deleteProgram_Des => "Are you sure you want to delete this program?";
+	/// "Delete User"
 	@override
-	String get deleteUser_Title => "Xoá người dùng";
-	/// "Bạn có chắc chắn muốn xoá người dùng?"
+	String get deleteUser_Title => "Delete User";
+	/// "Are you sure you want to delete this user?"
 	@override
-	String get deleteUser_Des => "Bạn có chắc chắn muốn xoá người dùng?";
-	/// "Xoá tin nhắn"
+	String get deleteUser_Des => "Are you sure you want to delete this user?";
+	/// "Delete Inbox"
 	@override
-	String get deleteInbox_Title => "Xoá tin nhắn";
-	/// "Bạn có chắc chắn muốn xoá tin nhắn?"
+	String get deleteInbox_Title => "Delete Inbox";
+	/// "Are you sure you want to delete this inbox?"
 	@override
-	String get deleteInbox_Des => "Bạn có chắc chắn muốn xoá tin nhắn?";
-	/// "Tạo người dùng mới"
+	String get deleteInbox_Des => "Are you sure you want to delete this inbox?";
+	/// "Create New User"
 	@override
-	String get upsertUser_CreateNewTitle => "Tạo người dùng mới";
-	/// "Cập nhật thông tin người dùng"
+	String get upsertUser_CreateNewTitle => "Create New User";
+	/// "Update User"
 	@override
-	String get upsertUser_UpdateTitle => "Cập nhật thông tin người dùng";
-	/// "Bạn có chắc chắn muốn tạo một người dùng mới?"
+	String get upsertUser_UpdateTitle => "Update User";
+	/// "Are you sure you want to create a new user?"
 	@override
-	String get upsertUser_CreateNewDes => "Bạn có chắc chắn muốn tạo một người dùng mới?";
-	/// "Bạn có chắc chắn muốn cập nhật thông tin của người dùng này?"
+	String get upsertUser_CreateNewDes => "Are you sure you want to create a new user?";
+	/// "Are you sure you want to update this user information?"
 	@override
-	String get upsertUser_UpdateDes => "Bạn có chắc chắn muốn cập nhật thông tin của người dùng này?";
-	/// "Thông tin người dùng"
+	String get upsertUser_UpdateDes => "Are you sure you want to update this user information?";
+	/// "User Detail"
 	@override
-	String get upsertUser_UserDetail => "Thông tin người dùng";
-	/// "Họ và tên"
+	String get upsertUser_UserDetail => "User Detail";
+	/// "Full Name"
 	@override
-	String get upsertUser_FullName => "Họ và tên";
-	/// "Nhập họ và tên"
+	String get upsertUser_FullName => "Full Name";
+	/// "Enter user full name"
 	@override
-	String get upsertUser_FullNameHint => "Nhập họ và tên";
-	/// "Bạn chưa nhập họ và tên"
+	String get upsertUser_FullNameHint => "Enter user full name";
+	/// "Full name is required"
 	@override
-	String get upsertUser_FullNameRequired => "Bạn chưa nhập họ và tên";
-	/// "Nhập email"
+	String get upsertUser_FullNameRequired => "Full name is required";
+	/// "Enter user email"
 	@override
-	String get upsertUser_EmailHint => "Nhập email";
-	/// "Nhập mật khẩu"
+	String get upsertUser_EmailHint => "Enter user email";
+	/// "Enter password"
 	@override
-	String get upsertUser_PasswordHint => "Nhập mật khẩu";
-	/// "Tuổi"
+	String get upsertUser_PasswordHint => "Enter password";
+	/// "Age"
 	@override
-	String get upsertUser_Age => "Tuổi";
-	/// "Nhập tuổi"
+	String get upsertUser_Age => "Age";
+	/// "Enter user age"
 	@override
-	String get upsertUser_AgeHint => "Nhập tuổi";
-	/// "Bạn chưa nhập tuổi"
+	String get upsertUser_AgeHint => "Enter user age";
+	/// "Age is required"
 	@override
-	String get upsertUser_AgeRequired => "Bạn chưa nhập tuổi";
-	/// "Nhập lại mật khẩu"
+	String get upsertUser_AgeRequired => "Age is required";
+	/// "Enter confirm password"
 	@override
-	String get upsertUser_ConfirmPasswordHint => "Nhập lại mật khẩu";
-	/// "Bạn chưa xác nhận mật khẩu"
+	String get upsertUser_ConfirmPasswordHint => "Enter confirm password";
+	/// "Confirm password is required"
 	@override
-	String get upsertUser_ConfirmPasswordRequired => "Bạn chưa xác nhận mật khẩu";
-	/// "Xác nhận mật khẩu"
+	String get upsertUser_ConfirmPasswordRequired => "Confirm password is required";
+	/// "Confirm password"
 	@override
-	String get upsertUser_ConfirmPassword => "Xác nhận mật khẩu";
-	/// "Loại tài khoản"
+	String get upsertUser_ConfirmPassword => "Confirm password";
+	/// "Role"
 	@override
-	String get upsertUser_Role => "Loại tài khoản";
-	/// "Trạng thái"
+	String get upsertUser_Role => "Role";
+	/// "Status"
 	@override
-	String get upsertUser_Status => "Trạng thái";
-	/// "Cập nhật thông tin"
+	String get upsertUser_Status => "Status";
+	/// "Update Profile"
 	@override
-	String get editProfile_Title => "Cập nhật thông tin";
-	/// "Bạn có chắc chắn muốn cập nhật thông tin cá nhân?"
+	String get editProfile_Title => "Update Profile";
+	/// "Are you sure you want to update your profile?"
 	@override
-	String get editProfile_EditDes => "Bạn có chắc chắn muốn cập nhật thông tin cá nhân?";
-	/// "Thông tin của bạn đã được cập nhật thành công"
+	String get editProfile_EditDes => "Are you sure you want to update your profile?";
+	/// "Your profile has been updated successfully."
 	@override
-	String get editProfile_UpdateSuccess => "Thông tin của bạn đã được cập nhật thành công";
-	/// "Nội dung"
+	String get editProfile_UpdateSuccess => "Your profile has been updated successfully.";
+	/// "Content"
 	@override
-	String get support_Content => "Nội dung";
-	/// "Trạng thái"
+	String get support_Content => "Content";
+	/// "Status"
 	@override
-	String get support_Status => "Trạng thái";
-	/// ["Đang chờ", "Đang xử lý", "Hoàn thành", "Đã huỷ"]
+	String get support_Status => "Status";
+	/// ["Waiting", "Solving", "Done", "Cancelled"]
 	@override
-	List<String> get support_SupportStatus => ["Đang chờ", "Đang xử lý", "Hoàn thành", "Đã huỷ"];
-	/// "Chi tiết yêu cầu hỗ trợ"
+	List<String> get support_SupportStatus => ["Waiting", "Solving", "Done", "Cancelled"];
+	/// "Support Request Details"
 	@override
-	String get support_SupportDetails => "Chi tiết yêu cầu hỗ trợ";
-	/// "Hỗ trợ"
+	String get support_SupportDetails => "Support Request Details";
+	/// "Support"
 	@override
-	String get support_Title => "Hỗ trợ";
-	/// ["T2", "T3", "T4", "T5", "T6", "T7", "CN"]
+	String get support_Title => "Support";
+	/// ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 	@override
-	List<String> get weekDays_ => ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
-	/// "Thống kê dữ liệu tập luyện"
+	List<String> get weekDays_ => ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+	/// "Users Statistics"
 	@override
-	String get statistics_UserStatistics => "Thống kê dữ liệu tập luyện";
-	/// "Chương trình tập gần đây"
+	String get statistics_UserStatistics => "Users Statistics";
+	/// "Recent Workout"
 	@override
-	String get statistics_RecentWorkout => "Chương trình tập gần đây";
-	/// "Bạn đã đốt"
+	String get statistics_RecentWorkout => "Recent Workout";
+	/// "You have burnt"
 	@override
-	String get statistics_YouHaveBurnt => "Bạn đã đốt";
-	/// "tuần này"
+	String get statistics_YouHaveBurnt => "You have burnt";
+	/// "this week"
 	@override
-	String get statistics_ThisWeek => "tuần này";
-	/// "tháng này"
+	String get statistics_ThisWeek => "this week";
+	/// "this month"
 	@override
-	String get statistics_ThisMonth => "tháng này";
+	String get statistics_ThisMonth => "this month";
 	/// "calories"
 	@override
 	String get statistics_Calories => "calories";
-	/// "Thật tuyệt vời!"
+	/// "What a great value!"
 	@override
-	String get statistics_WhatAGreatValue => "Thật tuyệt vời!";
-	/// "Lịch sử chỉ số cơ thể"
+	String get statistics_WhatAGreatValue => "What a great value!";
+	/// "Body Count History"
 	@override
-	String get statistics_BodyCountHistory => "Lịch sử chỉ số cơ thể";
-	/// "Chọn tháng"
+	String get statistics_BodyCountHistory => "Body Count History";
+	/// "Select month"
 	@override
-	String get statistics_SelectMonth => "Chọn tháng";
-	/// "Biểu đồ"
+	String get statistics_SelectMonth => "Select month";
+	/// "Chart"
 	@override
-	String get chart_Chart => "Biểu đồ";
-	/// ["cột", "thanh", "đường", "đường bậc thang"]
+	String get chart_Chart => "Chart";
+	/// ["column", "bar", "line", "stepline"]
 	@override
-	List<String> get chart_ChartType => ["cột", "thanh", "đường", "đường bậc thang"];
-	/// "Người dùng tập nhiều chương trình nhất"
+	List<String> get chart_ChartType => ["column", "bar", "line", "stepline"];
+	/// "Users have most programs"
 	@override
-	String get home_TopUsersProgram => "Người dùng tập nhiều chương trình nhất";
-	/// "Người dùng nhắn tin nhiều nhất"
+	String get home_TopUsersProgram => "Users have most programs";
+	/// "Users have most inboxes"
 	@override
-	String get home_TopUsersInbox => "Người dùng nhắn tin nhiều nhất";
-	/// "Danh sách chương trình của"
+	String get home_TopUsersInbox => "Users have most inboxes";
+	/// "Programs of"
 	@override
-	String get home_ProgramsOf => "Danh sách chương trình của";
-	/// "Danh sách tin nhắn của"
+	String get home_ProgramsOf => "Programs of";
+	/// "Inboxes of"
 	@override
-	String get home_InboxesOf => "Danh sách tin nhắn của";
-	/// "Chương trình được xem nhiều nhất"
+	String get home_InboxesOf => "Inboxes of";
+	/// "Most viewed programs"
 	@override
-	String get home_MostViewedPrograms => "Chương trình được xem nhiều nhất";
-	/// "Chương trình mới nhất"
+	String get home_MostViewedPrograms => "Most viewed programs";
+	/// "Newest programs"
 	@override
-	String get home_NewestPrograms => "Chương trình mới nhất";
-	/// "Biểu đồ tròn độ tuổi người dùng"
+	String get home_NewestPrograms => "Newest programs";
+	/// "User ages pie chart"
 	@override
-	String get home_UserAgesPieChart => "Biểu đồ tròn độ tuổi người dùng";
-	/// "Biểu đồ tròn giới tính người dùng"
+	String get home_UserAgesPieChart => "User ages pie chart";
+	/// "User genders pie chart"
 	@override
-	String get home_UserGendersPieChart => "Biểu đồ tròn giới tính người dùng";
-	/// ["Nam", "Nữ", "Khác"]
+	String get home_UserGendersPieChart => "User genders pie chart";
+	/// ["Male", "Female", "Others"]
 	@override
-	List<String> get gender => ["Nam", "Nữ", "Khác"];
-	/// ["Quản trị viên", "Người dùng"]
+	List<String> get gender => ["Male", "Female", "Others"];
+	/// ["Admin", "User"]
 	@override
-	List<String> get role => ["Quản trị viên", "Người dùng"];
-	/// ["Đang hoạt động", "Vô hiệu hoá"]
+	List<String> get role => ["Admin", "User"];
+	/// ["Active", "Inactive"]
 	@override
-	List<String> get account => ["Đang hoạt động", "Vô hiệu hoá"];
+	List<String> get account => ["Active", "Inactive"];
 }
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<WidgetsLocalizations> {
   const GeneratedLocalizationsDelegate();
