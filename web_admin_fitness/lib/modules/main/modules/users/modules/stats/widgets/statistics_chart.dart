@@ -63,16 +63,18 @@ class _StatisticsChartState extends State<StatisticsChart> {
               filled: true,
               fillColor: AppColors.white,
             ),
-            initialOption: AdaptiveSelectorOption(
-              label: '${i18n.chart_Chart} ${chartType.label(i18n)}',
-              value: chartType,
-            ),
+            initial: [
+              AdaptiveSelectorOption(
+                label: '${i18n.chart_Chart} ${chartType.label(i18n)}',
+                value: chartType,
+              )
+            ],
             type: SelectorType.menu,
             options: options,
             onChanged: (option) {
-              if (option != null) {
+              if (option.isNotEmpty) {
                 setState(() {
-                  chartType = option.value;
+                  chartType = option.first.value;
                 });
               }
             },

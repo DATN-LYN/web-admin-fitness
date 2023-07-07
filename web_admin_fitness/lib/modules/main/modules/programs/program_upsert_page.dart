@@ -321,16 +321,18 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                                 type: isDesktopView
                                     ? SelectorType.menu
                                     : SelectorType.bottomSheet,
-                                initialOption: !isCreateNew
-                                    ? AdaptiveSelectorOption(
-                                        label: initialData.label(i18n),
-                                        value: initialData,
-                                      )
-                                    : options.first,
+                                initial: [
+                                  !isCreateNew
+                                      ? AdaptiveSelectorOption(
+                                          label: initialData.label(i18n),
+                                          value: initialData,
+                                        )
+                                      : options.first,
+                                ],
                                 allowClear: false,
                                 onChanged: (selectedItem) {
-                                  if (selectedItem != null) {
-                                    field.didChange(selectedItem.value);
+                                  if (selectedItem.isNotEmpty) {
+                                    field.didChange(selectedItem.first.value);
                                   }
                                 },
                               );
@@ -363,16 +365,18 @@ class _ProgramUpsertPageState extends State<ProgramUpsertPage>
                                 type: isDesktopView
                                     ? SelectorType.menu
                                     : SelectorType.bottomSheet,
-                                initialOption: !isCreateNew
-                                    ? AdaptiveSelectorOption(
-                                        label: initialData.label(i18n),
-                                        value: initialData,
-                                      )
-                                    : options.first,
+                                initial: [
+                                  !isCreateNew
+                                      ? AdaptiveSelectorOption(
+                                          label: initialData.label(i18n),
+                                          value: initialData,
+                                        )
+                                      : options.first
+                                ],
                                 allowClear: false,
                                 onChanged: (selectedItem) {
-                                  if (selectedItem != null) {
-                                    field.didChange(selectedItem.value);
+                                  if (selectedItem.isNotEmpty) {
+                                    field.didChange(selectedItem.first.value);
                                   }
                                 },
                               );

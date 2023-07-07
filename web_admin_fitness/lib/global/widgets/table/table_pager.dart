@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../graphql/fragment/__generated__/meta_fragment.data.gql.dart';
-import '../../utils/constants.dart';
 
 class TablePager extends StatefulWidget {
   const TablePager({
@@ -29,12 +28,11 @@ class _TablePagerState extends State<TablePager> {
   final scrollController = ScrollController();
   final pageLimitController = TextEditingController();
   final pageNumberController = TextEditingController();
-  late int currentPage = widget.pageMeta?.currentPage!.toInt() ?? 1;
-  late int totalPage = widget.pageMeta?.totalPages!.toInt() ?? 1;
+  late int currentPage = widget.pageMeta?.currentPage?.toInt() ?? 1;
+  late int totalPage = widget.pageMeta?.totalPages?.toInt() ?? 1;
 
-  final pageLimitOptions = [Constants.defaultLimit.toInt(), 15, 20, 25, 30]
+  final pageLimitOptions = [15, 20, 25, 30]
       .map((e) => AdaptiveSelectorOption(label: e.toString(), value: e))
-      .toSet()
       .toList();
 
   @override
@@ -65,7 +63,7 @@ class _TablePagerState extends State<TablePager> {
           child: AdaptiveSelector(
             type: SelectorType.menu,
             allowClear: false,
-            initialOption: pageLimitOptions.first,
+            initial: [pageLimitOptions.first],
             options: pageLimitOptions,
             decoration: InputDecoration(
               contentPadding:
@@ -78,8 +76,8 @@ class _TablePagerState extends State<TablePager> {
               focusedErrorBorder: textFieldBorder,
             ),
             onChanged: (option) {
-              if (option == null) return;
-              widget.onPageLimitChange(option.value);
+              if (option.isEmpty) return;
+              widget.onPageLimitChange(option.first.value);
             },
           ),
         ),
@@ -158,12 +156,12 @@ class _TablePagerState extends State<TablePager> {
 
   Widget renderItemDes() {
     final meta = widget.pageMeta;
-    if (meta != null) {
+    if (meta != null && meta.totalItems! > 0) {
       final startItemIndex = (meta.currentPage! - 1) * meta.itemsPerPage! + 1;
       return Text(
         'Result ${startItemIndex.toInt()}'
-        '-${(startItemIndex + meta.totalItems! - 1).toInt()}'
-        ' of ${meta.itemCount!.toInt()}',
+        '-${(startItemIndex + meta.itemCount! - 1).toInt()}'
+        ' of ${meta.totalItems?.toInt()}',
       );
     }
     return const SizedBox();
@@ -171,7 +169,7 @@ class _TablePagerState extends State<TablePager> {
 
   Widget renderPageButtons() {
     final setPages = <Widget>[];
-    final setButtons = {1, totalPage};
+    final setButtons = totalPage == 0 ? {1} : {1, totalPage};
     const pageRange = 1;
     for (int i = max(currentPage - pageRange, 1);
         i <= min(currentPage + pageRange, totalPage);

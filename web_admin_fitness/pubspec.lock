@@ -21,11 +21,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "feat/multiple_choice"
-      resolved-ref: "652d120b7e836fad275fb47e2000dd3450c4da7e"
+      ref: master
+      resolved-ref: c78cccff3a2a2999735d73bbe05f539b5759d4b8
       url: "https://github.com/lvxduck/adaptive_selector.git"
     source: git
-    version: "0.0.3"
+    version: "1.0.2+1"
   analyzer:
     dependency: transitive
     description:

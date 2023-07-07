@@ -70,7 +70,7 @@ dependencies:
   adaptive_selector:
     git:
       url: https://github.com/lvxduck/adaptive_selector.git
-      ref: feat/multiple_choice
+      ref: master
   responsive_builder: ^0.6.4
   side_sheet: ^1.0.4
   url_strategy: ^0.2.0
