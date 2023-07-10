@@ -408,7 +408,6 @@ abstract class GUpsertUserProgramInputDto
   String? get id;
   String get userId;
   String get programId;
-  bool? get isFavorite;
   static Serializer<GUpsertUserProgramInputDto> get serializer =>
       _$gUpsertUserProgramInputDtoSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
