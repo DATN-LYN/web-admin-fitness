@@ -451,7 +451,6 @@ input UpsertUserProgramInputDto {
   id: ID
   userId: String!
   programId: String!
-  isFavorite: Boolean
 }
 
 input UpsertUserStatisticsInputDto {

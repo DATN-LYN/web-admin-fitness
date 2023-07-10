@@ -13,5 +13,5 @@ A new Flutter project.
    ```
 
    ```sh
-   -  get-graphql-schema https://server-fitness-production.up.railway.app/graphql > lib/global/graphql/schema.graphql
+   -  get-graphql-schema https://datn-nhi-production.up.railway.app/graphql > lib/global/graphql/schema.graphql
    ```
